@@ -72,7 +72,7 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addCarInformation')}}">ادخال بيانات مركبة</a></li>
                         <li role="presentation" class="divider"></li>
 
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/SmartCity/SAdmin/AccountInfo.php">ادخال تخمين مركبة</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('carGuess')}}">ادخال تخمين مركبة</a></li>
                         <li role="presentation" class="divider"></li>
 
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addcarTransaction')}}"> ادخال العمليات على المركبة</a></li>
