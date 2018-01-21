@@ -117,6 +117,17 @@ Route::get('/carGuess', function () {
     return view('MainInput.carGuess');
 });
 
+Route::get('/addCity', function () {
+
+
+    return view('addCity');
+});
+
+Route::get('/addCertification', function () {
+
+
+    return view('addCertification');
+});
 
 
 Route::get('/carGuess','addguesscar@index');
@@ -126,8 +137,14 @@ Route::post('calculateCarCost','carcosts@calculate');
 Route::get('/findCarInfo','cartransaction@findCarInfo');
 Route::get('/addcarTransaction','cartransaction@index');
 Route::get('/dropvalue','dropvalueofcar@index');
+
 Route::get('/findCarInfoforDropValue','dropvalueofcar@findCarInfoforDropValue');
+Route::get('/findCarInfoforGuess','addguesscar@findCarInfoforGesscar');
+
+
 Route::get('/findCostDropValue','dropvalueofcar@findCostDropValue');
+Route::get('/findCostGuesscar','addguesscar@findCostforGuessCar');
+
 Route::post('storDropValue','dropvalueofcar@store');
 
 
@@ -149,6 +166,8 @@ Route::post('storeMechanicParts','addMechanicPart@store');
 Route::post('storeBodyParts','addBodyPart@store');
 Route::post('saveimage','addImages@store');
 Route::post('storeDropStatment','addDropStatment@store');
+Route::post('storeCity','addCity@store');
+Route::post('storeCertification','enter_certificate@store');
 
 
 Auth::routes();

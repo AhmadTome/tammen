@@ -40,7 +40,6 @@
             <div class="panel-heading text-center PanelHeadingCss">ادخال هبوط قيمة</div>
             <div class="panel-body PanelBodyCss">
 
-                <div  style="max-width: 1000px ;margin-bottom: -15px">
                     <form class="form-horizontal" method="post" action="storDropValue" >
                         {{ csrf_field() }}
                         <div class="form-group row col-lg-12 col-md-12 col-xs-12 col-sm-12 " dir="rtl">
@@ -72,6 +71,8 @@
                             </div>
 
                         </div>
+                        <div  style="max-width: 1000px ;margin-bottom: -15px">
+
                         <div class="form-group row" dir="rtl">
 
 
@@ -138,14 +139,14 @@
                             </div>
                             <label class="control-label  pull-right text-left" style="width:100px">ثمن المركبة: </label>
                             <div class="col-sm-2 pull-right">
-                                <input class="form-control" type="text" id="carPrice" name="carPrice" />
+                                <input class="form-control" type="text" id="carPrice" name="carPrice" disabled="" />
                             </div>
                         </div>
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label  pull-right text-left" style="width:110px">قيمة مبلغ الصيانة: </label>
                             <div class="col-sm-5 pull-right">
-                                <input class="form-control" type="text" id="cost" name="cost" />
+                                <input class="form-control" type="text" id="cost" name="cost" disabled="" />
                             </div>
 
 
@@ -288,7 +289,7 @@ if(data.data2.length !=0) {
         data:{'id':file_nom},
         success:function(data) {
 $('#cost').val(data);
-alert($('#cost').val());
+
         }
 
     });

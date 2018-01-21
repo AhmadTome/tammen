@@ -40,8 +40,42 @@
     <div class="panel panel-default">
         <div class="panel-heading text-center PanelHeadingCss">ادخال تخمين مركبة</div>
         <div class="panel-body PanelBodyCss">
+
+
             <form class="form-horizontal" method="post" action="#">
-            <div class="form-group row" dir="rtl">
+
+                <div class="form-group row col-lg-12 col-md-12 col-xs-12 col-sm-12 " dir="rtl">
+
+                    <div class="col-sm-2 pull-right text-left">
+                        <select class="form-control carInfo_select" id="carInfo_select">
+                            <option selected disabled="">اختار رقم المركبة</option>
+                            @foreach($carInfo as $car)
+                                <option value="{{$car->file_num}}">{{$car->ve_num." | ".$car->file_num." | ".$car->ve_used." | ".$car->ve_version." | ".$car->ve_produce_year}}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2 pull-right text-left">
+                        <input type="text" class="form-control PanelBodyCssInput " name="filenumber" id="filenumber" placeholder="رقم الملف" disabled>
+                    </div>
+                    <div class="col-sm-2 pull-right text-left">
+                        <input type="text" class="form-control PanelBodyCssInput " name="carused" id="carused" placeholder="استعمال المركبة" disabled>
+                    </div>
+                    <div class="col-sm-2 pull-right text-left">
+                        <input type="text" class="form-control PanelBodyCssInput " name="carversion" id="carversion" placeholder="طراز المركبة" disabled>
+                    </div>
+                    <div class="col-sm-2 pull-right text-left">
+                        <input type="text" class="form-control PanelBodyCssInput " name="producedyear" id="producedyear" placeholder="سنة الانتاج" disabled>
+                    </div>
+                    <div class="col-sm-2 pull-right text-left">
+                        <input type="text" class="form-control PanelBodyCssInput " name="bodynumber" id="bodynumber" placeholder="رقم الشاصي" disabled required>
+                    </div>
+
+                </div>
+
+                <div  style="max-width: 1000px ;margin-bottom: -15px">
+                    <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   لحضرة : </label>
                 <div class="col-sm-8 pull-right">
                     <input class="form-control" id="ToPerson" type="text"  placeholder="ادخل الاسم"/>
@@ -60,11 +94,15 @@
                 <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
                 <div class="col-sm-4 pull-right text-left">
                     <select class="form-control " id="insuranceCompany_select">
-                        <option>Ahmad</option>
+                        <option selected disabled="">اختار شركة التأمين</option>
+                        @foreach($insuranceCompany as $car)
+                            <option value="{{$car->ins_name}}">{{$car->ins_num." | ".$car->ins_name}}</option>
+
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="insuranceCompany" class="form-control PanelBodyCssInput " id="insuranceCompany" placeholder="">
+                    <input type="text" class="form-control PanelBodyCssInput " id="insuranceCompany" placeholder="" disabled>
                 </div>
 
 
@@ -74,44 +112,52 @@
                 <label class="control-label col-sm-2 pull-right text-left" > المحافظة :</label>
                 <div class="col-sm-4 pull-right text-left">
                     <select class="form-control " id="City_select">
-                        <option>Tulkarm</option>
+                        <option selected disabled="">اختار المدينة</option>
+                        @foreach($cities as $item)
+                            <option value="{{$item->city_name}}">{{$item->city_num." | ".$item->city_name}}</option>
+
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="City" placeholder="">
+                    <input type="text" class="form-control PanelBodyCssInput " id="City" placeholder="" disabled>
                 </div>
 
 
             </div>
 
-            <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left" > رقم الكود :</label>
-                <div class="col-sm-4 pull-right text-left">
-                    <select class="form-control " id="codeNumber_select">
-                        <option>0</option>
-                    </select>
-                </div>
-                <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="codeNumber" placeholder="">
-                </div>
+                    <div class="form-group row" dir="rtl">
+                        <label class="control-label col-sm-2 pull-right text-left" > رقم الهوية :</label>
+                        <div class="col-sm-4 pull-right text-left">
+                            <select class="form-control " id="person_select">
+                                <option selected disabled="">اختار رقم الهوية</option>
+                                @foreach($Id as $item)
+                                    <option value="{{$item->name}}">{{$item->id." | ".$item->name}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-4 pull-right text-left">
+                            <input type="text" class="form-control PanelBodyCssInput " id="personName" placeholder="الاسم" disabled>
+                        </div>
 
 
-            </div>
+                    </div>
 
+                    <div class="form-group row" dir="rtl">
+                        <label class="control-label col-sm-2 pull-right text-left">    اسم المؤمن : </label>
+                        <div class="col-sm-8 pull-right">
+                            <input class="form-control" id="InsurancePersonal" type="text"  placeholder="ادخل  اسم المؤمن"/>
+                        </div>
+                    </div>
 
-            <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left" >  تحديد :</label>
-                <div class="col-sm-4 pull-right text-left">
-                    <select class="form-control " id="limit_select">
-                        <option>0</option>
-                    </select>
-                </div>
-                <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="limit" placeholder="">
-                </div>
+                    <div class="form-group row" dir="rtl">
+                        <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
-
-            </div>
+                        <div class="col-sm-8 pull-right">
+                            <textArea  class="form-control PanelBodyCssInput" rows="5" id="personNote" placeholder="ادخل ملاحظات"></textArea>
+                        </div>
+                    </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">    كشف اضرار : </label>
@@ -152,11 +198,15 @@
                 <label class="control-label col-sm-2 pull-right text-left" >  نوع الضرر :</label>
                 <div class="col-sm-4 pull-right text-left">
                     <select class="form-control " id="damaeType_select">
-                        <option>0</option>
+                        <option selected disabled="">اختار نوع الضرر</option>
+                        @foreach($DamageType as $item)
+                            <option value="{{$item->dam_name}}">{{$item->dam_num." | ".$item->dam_name}}</option>
+
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="damageType" placeholder="">
+                    <input type="text" class="form-control PanelBodyCssInput " id="damageType" placeholder="" disabled>
                 </div>
 
 
@@ -166,11 +216,15 @@
                 <label class="control-label col-sm-2 pull-right text-left" >  رقم المخمن :</label>
                 <div class="col-sm-4 pull-right text-left">
                     <select class="form-control " id="GuessNumber_select">
-                        <option>0</option>
+                        <option selected disabled="">اختار اسم المخمن</option>
+                        @foreach($Estimater as $item)
+                            <option value="{{$item->nes_name}}">{{$item->nes_num." | ".$item->nes_name}}</option>
+
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="GuessNumber" placeholder="">
+                    <input type="text" class="form-control PanelBodyCssInput " id="GuessNumber" placeholder="" disabled>
                 </div>
 
 
@@ -180,11 +234,15 @@
                 <label class="control-label col-sm-2 pull-right text-left" >  رقم الكراج :</label>
                 <div class="col-sm-4 pull-right text-left">
                     <select class="form-control " id="garageNumber_select">
-                        <option>0</option>
+                        <option selected disabled="">اختار اسم الكراج</option>
+                        @foreach($Garage as $item)
+                            <option value="{{$item->gar_name}}">{{$item->gar_num." | ".$item->gar_name}}</option>
+
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="garageNumber" placeholder="">
+                    <input type="text" class="form-control PanelBodyCssInput " id="garageNumber" placeholder="" disabled>
                 </div>
 
 
@@ -194,7 +252,7 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">سعر المركبة   : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="carPrice" type="text"  placeholder="ادخل سعر المركبة"/>
+                    <input class="form-control" id="carPrice" type="text"  placeholder=" سعر المركبة" disabled=""/>
                 </div>
             </div>
 
@@ -220,26 +278,14 @@
             </div>
 
 
-            <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left">     مبلغ الاعمال - صيانة : </label>
-                <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="maintenancePrice" type="text"  placeholder="ادخل  مبلغ الاعمال - الصيانة "/>
-                </div>
-            </div>
+                    <div class="form-group row" dir="rtl">
+                        <label class="control-label col-sm-2 pull-right text-left" >قيمة مبلغ الصيانة: </label>
+                        <div class="col-sm-8 pull-right">
+                            <input class="form-control" type="text" id="cost" name="cost" placeholder=" قيمة الأضرار المباشرة" disabled="" />
+                        </div>
 
-            <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left">     ثمن قطع هيكل : </label>
-                <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="bodyPrice" type="text"  placeholder="ادخل ثمن قطع الهيكل"/>
-                </div>
-            </div>
 
-            <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left">   ثمن غيار ميكانيك : </label>
-                <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="mecanicPrice" type="text"  placeholder="ادخل ثمن غيار ميكانيك"/>
-                </div>
-            </div>
+                    </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   مبلغ نسبة الهبوط : </label>
@@ -331,6 +377,8 @@
             </div>
             </form>
             </div>
+        </div>
+
 
 
     </div>
@@ -354,3 +402,85 @@
 
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+
+        $(document).on("change",".carInfo_select",function () {
+            var file_nom=$(this).val();
+
+
+            $.ajax({
+
+                type:'get',
+                url:'{!!URL::to('findCarInfoforGuess')!!}',
+                data:{'id':file_nom},
+                success:function(data) {
+//console.log('success');
+
+//console.log(data[0].ve_used);
+
+                    console.log(data);
+                    $('#filenumber').val(data.data[0].file_num);
+                    $('#carused').val(data.data[0].ve_used);
+                    $('#carversion').val(data.data[0].ve_version);
+                    $('#producedyear').val(data.data[0].ve_produce_year);
+                    $('#bodynumber').val(data.data[0].ve_body_num);
+
+                    if(data.data2.length !=0) {
+                        $('#carPrice').val(data.data2[0].finalcost);
+                    }else{
+                        $('#carPrice').val(0);
+                    }
+
+                }
+
+            });
+
+            $.ajax({
+
+                type:'get',
+                url:'{!!URL::to('findCostGuesscar')!!}',
+                data:{'id':file_nom},
+                success:function(data) {
+                    $('#cost').val(data);
+
+                }
+
+            });
+
+        });
+
+        $(document).on("change","#insuranceCompany_select",function () {
+           var data = $(this).val();
+           $('#insuranceCompany').val(data);
+        });
+
+        $(document).on("change","#City_select",function () {
+            var data = $(this).val();
+            $('#City').val(data);
+        });
+        $(document).on("change","#person_select",function () {
+            var data = $(this).val();
+            $('#personName').val(data);
+        });
+        $(document).on("change","#damaeType_select",function () {
+            var data = $(this).val();
+            $('#damageType').val(data);
+        });
+
+        $(document).on("change","#GuessNumber_select",function () {
+            var data = $(this).val();
+            $('#GuessNumber').val(data);
+        });
+
+        $(document).on("change","#garageNumber_select",function () {
+            var data = $(this).val();
+            $('#garageNumber').val(data);
+        });
+
+
+
+    });
+
+
+</script>
