@@ -176,5 +176,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => '/report'],function(){
-    Route::get('/carInfo/{fileId}','ReportController@carInfo');
+    Route::get('/carInfo/{fileId}/{l?}','ReportController@carInfo');
+    Route::get('/fileAccount/{fileId}/{l?}','ReportController@fileAccount');
+    Route::get('/personalFileAccount/{fileId}/{l?}','ReportController@personalFileAccount');
 });
