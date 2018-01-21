@@ -111,7 +111,15 @@ Route::get('/carCost', function () {
     return view('MainInput.carCost');
 });
 
+Route::get('/carGuess', function () {
 
+
+    return view('MainInput.carGuess');
+});
+
+
+
+Route::get('/carGuess','addguesscar@index');
 
 Route::get('/carCost','carcosts@index');
 Route::post('calculateCarCost','carcosts@calculate');
