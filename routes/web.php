@@ -146,3 +146,8 @@ Route::post('storeDropStatment','addDropStatment@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => '/report'],function(){
+    Route::get('/carInfo/{fileId}','ReportController@carInfo');
+});
