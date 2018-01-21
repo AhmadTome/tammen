@@ -1,0 +1,16 @@
+form{
+}
+
+input.form-control{
+  text-align:right;
+}
+
+button.btn.btn-default{
+  position:relative;
+  transition:.5s ease;
+  top:191px;
+  
+  right:-420px;
+  margin:50px;
+}
+
