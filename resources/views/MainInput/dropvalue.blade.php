@@ -131,22 +131,22 @@
                         <div class="form-group row" dir="rtl">
                             <label class="control-label pull-right text-left" style="width:110px">عدد القطع: </label>
                             <div class="col-sm-2 pull-right">
-                                <input class="form-control" type="number" id="partcount"/>
+                                <input class="form-control" type="number" id="partcount" required/>
                             </div>
-                            <label class="control-label  pull-right text-left" style="width:80px">نسبة: </label>
+                            <label class="control-label  pull-right text-left" style="width:80px" >نسبة: </label>
                             <div class="col-sm-2 pull-right">
-                                <input class="form-control" type="text" id="dropPercantige" />
+                                <input class="form-control" type="number" id="dropPercantige" placeholder="النسبة %" required />
                             </div>
                             <label class="control-label  pull-right text-left" style="width:100px">ثمن المركبة: </label>
                             <div class="col-sm-2 pull-right">
-                                <input class="form-control" type="text" id="carPrice" name="carPrice" disabled="" />
+                                <input class="form-control" type="text" id="carPrice" name="carPrice" readonly />
                             </div>
                         </div>
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label  pull-right text-left" style="width:110px">قيمة مبلغ الصيانة: </label>
                             <div class="col-sm-5 pull-right">
-                                <input class="form-control" type="text" id="cost" name="cost" disabled="" />
+                                <input class="form-control" type="text" id="cost" name="cost" readonly />
                             </div>
 
 
@@ -157,19 +157,19 @@
                         <div class="form-group row" dir="rtl">
                             <label class="control-label  pull-right text-left" style="width: 110px">ملاحظات: </label>
                             <div class="col-sm-8 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="note"></textArea>
+                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="note" required></textArea>
                             </div>
                         </div>
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label  pull-right text-left" style="width: 110px">المركبة الاولى: </label>
                             <div class="col-sm-4 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="firstcar_note" name="firstcar_note"></textArea>
+                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="firstcar_note" name="firstcar_note" required></textArea>
                             </div>
                             <label class="control-label  pull-right text-left" style="width: 80px">لمركبة الثانية: </label>
 
                             <div class="col-sm-4 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="secondcar_note" name="secondcar_note"></textArea>
+                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="secondcar_note" name="secondcar_note" required></textArea>
                             </div>
                         </div>
 
@@ -212,24 +212,21 @@
                         </div>
 
 
-
-
-
                         <div class="row ">
                             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center pull-left" >
                                 <input type="submit" name="submit" id="submit" class="btn btn-success " value="اضافة" />
                             </div>
                         </div>
+
+                        </div>
                     </form>
-                </div>
+
 
 
             </div>
         </div>
 
 
-
-    </div>
 
     <!-- end Body -->
     <!--footer-->
@@ -302,31 +299,7 @@ $('#cost').val(data);
 
 });
 
-$('input[id="dropPercantige" ]').keyup(function(e) {
-    var num = $(this).val();
-    if (e.which!=8) {
-        num = sortNumber(num);
-        if(isNaN(num)||num<0 ||num>100) {
-            alert("ادخل رقم فقط من 0 - 100");
-            $(this).val(sortNumber(num.substr(0,num.length-1)) + "%");
-        }
-        else
-            $(this).val(sortNumber(num)+"%");
-    }
-    else {
-        if(num < 2)
-            $(this).val("");
-        else
-            $(this).val(sortNumber(num.substr(0,num.length-1)) + "%");
-    }
-});
-function sortNumber(n){
-    var newNumber="";
-    for(var i = 0; i<n.length; i++)
-        if(n[i] != "%")
-            newNumber += n[i];
-    return newNumber;
-}
+
 
 
 var dropcatindex=0;

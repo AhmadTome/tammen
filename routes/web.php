@@ -144,6 +144,8 @@ Route::get('/findCarInfoforGuess','addguesscar@findCarInfoforGesscar');
 
 Route::get('/findCostDropValue','dropvalueofcar@findCostDropValue');
 Route::get('/findCostGuesscar','addguesscar@findCostforGuessCar');
+Route::get('/findDropCostGuesscar','addguesscar@findDropPercantige');
+
 
 Route::post('storDropValue','dropvalueofcar@store');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Body_vehicle_work;
 use App\Damage;
+use App\drop_car;
 use App\enter_city;
 use App\enter_garage;
 use App\enter_insurence_company;
@@ -76,7 +77,25 @@ class addguesscar extends Controller
         }
 
 
-        return json_encode($data);
+
+
+
+        return $data;
+
+    }
+
+    public function findDropPercantige(Request $request){
+
+
+        $finalPercantige=0.0;
+    $percantige = drop_car::select('percantige')->where('filenumber',$request->id)->take(1500)->get();
+    foreach ($percantige as $value) {
+        $finalPercantige = $finalPercantige + $value->percantige;
+    }
+
+
+return $finalPercantige;
+
     }
     /**
      * Store a newly created resource in storage.

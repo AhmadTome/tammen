@@ -82,7 +82,10 @@ class dropvalueofcar extends Controller
      */
     public function store(Request $request)
     {
+
+
         $data =Input::get('dropcartable');
+
         foreach ($data as $item){
 
             $user=new drop_car;
@@ -102,6 +105,8 @@ class dropvalueofcar extends Controller
             $user->save();
 
         }
+
+
         return redirect()->to('/dropvalue');
     }
 

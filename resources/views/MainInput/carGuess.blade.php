@@ -290,14 +290,14 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   مبلغ نسبة الهبوط : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dropPercantigePrice" type="text"  placeholder="ادخل مبلغ نسبة الهبوط"/>
+                    <input class="form-control" id="dropPercantigePrice" type="text"  placeholder=" مبلغ نسبة الهبوط" readonly/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">    نسبة الهبوط : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dropPercantige" type="text"  placeholder="ادخل نسبة الهبوط"/>
+                    <input class="form-control" id="dropPercantige" placeholder="نسبة البوط" type="text" readonly/>
                 </div>
             </div>
 
@@ -311,7 +311,7 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left"> نسبة الضررالفني : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="TechnicalDamage" type="text"  placeholder="ادخل نسبة الضرر الفني"/>
+                    <input class="form-control" id="TechnicalDamage" type="text"  placeholder=" نسبة الضرر الفني" readonly/>
                 </div>
             </div>
 
@@ -419,7 +419,7 @@
 
 //console.log(data[0].ve_used);
 
-                    console.log(data);
+                    //console.log(data);
                     $('#filenumber').val(data.data[0].file_num);
                     $('#carused').val(data.data[0].ve_used);
                     $('#carversion').val(data.data[0].ve_version);
@@ -442,11 +442,34 @@
                 url:'{!!URL::to('findCostGuesscar')!!}',
                 data:{'id':file_nom},
                 success:function(data) {
-                    $('#cost').val(data);
+                   $('#cost').val(data);
+
+                    var carprice=$('#carPrice').val();
+                    $('#TechnicalDamage').val(((data/carprice)*100).toFixed(2));
 
                 }
 
+
+
+
             });
+
+            $.ajax({
+
+                type:'get',
+                url:'{!!URL::to('findDropCostGuesscar')!!}',
+                data:{'id':file_nom},
+                success:function(data) {
+
+                    console.log(data);
+                    $('#dropPercantige').val(data+"%");
+
+                    var dropPrice=((data/100) * $('#carPrice').val());
+                    $('#dropPercantigePrice').val(dropPrice);
+                }
+
+            });
+
 
         });
 
