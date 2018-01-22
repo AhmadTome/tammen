@@ -51,6 +51,14 @@
                             <input class="form-control" name="name" id="name" type="text"  placeholder="ادخل الاسم" required/>
                         </div>
                     </div>
+
+                     <div class="form-group row" dir="rtl">
+                         <label class="control-label col-sm-2 pull-right text-left"> رقم الهوية : </label>
+                         <div class="col-sm-8 pull-right">
+                             <input class="form-control" name="ID" id="ID" type="text"  placeholder="ادخل رقم الهوية" required/>
+                         </div>
+                     </div>
+
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-2 pull-right text-left"> العنوان : </label>
                         <div class="col-sm-8 pull-right">

@@ -171,6 +171,8 @@ Route::post('storeDropStatment','addDropStatment@store');
 Route::post('storeCity','addCity@store');
 Route::post('storeCertification','enter_certificate@store');
 
+Route::post('storeEstimateCar','addguesscar@store');
+
 
 Auth::routes();
 

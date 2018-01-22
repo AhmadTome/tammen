@@ -9,12 +9,14 @@ use App\enter_city;
 use App\enter_garage;
 use App\enter_insurence_company;
 use App\enter_personalInfo;
+use App\estimate_car;
 use App\Estimater;
 use App\maintenance_vehicle_work;
 use App\mechanic_vehicle_work;
 use Illuminate\Http\Request;
 use App\getCarInfo;
 use App\carcost;
+use Illuminate\Support\Facades\Input;
 
 class addguesscar extends Controller
 {
@@ -105,7 +107,44 @@ return $finalPercantige;
      */
     public function store(Request $request)
     {
-        //
+        $user=new estimate_car;
+        $user->fileNumber=Input::get('filenumber');
+        $user->to=Input::get('ToPerson');
+        $user->climeNumber=Input::get('ClaimNumber');
+        $user->insurance_company=Input::get('insuranceCompany');
+        $user->city=Input::get('City');
+        $user->persone_name=Input::get('personName');
+        $user->person_insurances=Input::get('InsurancePersonal');
+        $user->person_insurance_note=Input::get('personNote');
+        $user->coverDamage=Input::get('coverDamage');
+        $user->registerDate=Input::get('dateRegister');
+        $user->accidantDate=Input::get('accidentDate');
+        $user->checkDate=Input::get('checkDate');
+        $user->Insurance_policy=Input::get('InsuranceNumber2');
+        $user->DamageType=Input::get('damageType');
+        $user->estimaterName=Input::get('GuessNumber');
+        $user->Garage=Input::get('garageNumber');
+        $user->carPrice=Input::get('carPrice');
+        $user->transport=Input::get('visit');
+        $user->gelary=Input::get('photograper');
+        $user->officeCost=Input::get('officeCost');
+        $user->finalPriceForMaintinance=Input::get('cost');
+        $user->dropPercantige=Input::get('dropPercantige');
+        $user->dropCost=Input::get('dropPercantigePrice');
+        $user->estimatePercantige=Input::get('Guesspersantige');
+        $user->DamagePercantige=Input::get('TechnicalDamage');
+
+        $user->DamageCost=Input::get('DebrisPrice');
+        $user->visitCost=Input::get('dropPercantige');
+        $user->DamageDiscription=Input::get('DamegeDescription');
+        $user->EstimateNote=Input::get('noteGuess');
+        $user->carEstimateNote=Input::get('noteGuessCar');
+        $user->Attachment=Input::get('AttachmentsGuess');
+        $user->DestroyCarTo=Input::get('crossOffNamer');
+        $user->DestroyText=Input::get('crossOffNote');
+
+        $user->save();
+        return redirect()->to('/carGuess');
     }
 
     /**

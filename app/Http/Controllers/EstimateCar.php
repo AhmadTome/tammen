@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\enter_personalInfo;
+use App\estimate_car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-class addpersonalInformation extends Controller
+class EstimateCar extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,18 +36,8 @@ class addpersonalInformation extends Controller
      */
     public function store(Request $request)
     {
-        $user=new enter_personalInfo;
 
-        $user->name=Input::get('name');
-        $user->id=Input::get('ID');
-        $user->address=Input::get('address');
-        $user->phone_num=Input::get('phoneNumber');
-        $user->tel_num=Input::get('homeNumber');
-        $user->email=Input::get('email');
-        $user->note=Input::get('note');
-        $user->save();
 
-return redirect()->to('/addpersonalInformation');
     }
 
     /**
