@@ -4,80 +4,14 @@
 
 @section('content')
 
-    <div class="row border-2 padding">
-        <table class="table table-bordered black-header">
-            <thead>
-                <tr>
-                    <th>
-                        {{_t('car_num',$l)}}
-                    </th>
-                    <th>
-                        {{_t('file_num',$l)}}
-                    </th>
-                    <th>
-                        {{_t('car_use',$l)}}
-                    </th>
-                    <th>
-                        {{_t('model_type',$l)}}
-                        
-                    </th>
-                    <th>
-                        {{_t('production_year',$l)}}
-                    </th>
-                    <th>
-                        {{_t('body_num',$l)}}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        {{$car['ve_num']}}
-                    </td>
-                    <td>
-                        {{$car['file_num']}}
-                    </td>
-                    <td>
-                        {{$car['ve_used']}}
-                    </td>
-                    <td>
-                        {{$car['ve_version']}}
-                    </td>
-                    <td>
-                        {{$car['ve_produce_year']}}
-                    </td>
-                    <td>
-                        {{$car['ve_body_num']}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    @include('report.parts.carInfoHeader')
+
         <div class="text-center gray-back padding">
             {{_t('car_details',$l)}}
         </div>
         <br>
         <div class="col-sm-3">
-            <table class="table table-bordered">
-                <tr>
-                    <th width="30%" class="gray-back">
-                        {{_t('production_date',$l)}}
-                    </th>
-                    <td width="70%" colspan="2">
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <th class="gray-back" width="30%">
-                        {{_t('file_num',$l)}}
-                    </th>
-                    <td width="20%">
-
-                    </td>
-                    <td width="50%">
-
-                    </td>
-                </tr>
-            </table>
+            @include('report.parts.fileInfo')
         </div>
         <div class="clearfix"></div>
         <br>

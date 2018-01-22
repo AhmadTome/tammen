@@ -90,6 +90,9 @@
         html{
             font-size: 12pt !important;
         }
+        .margin-0{
+            margin:0px;
+        }
 
         @page {
             size: A4;

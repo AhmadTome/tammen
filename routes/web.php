@@ -178,7 +178,28 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => '/report'],function(){
+    
+    //تقرير بيانات مركبة
     Route::get('/carInfo/{fileId}/{l?}','ReportController@carInfo');
+    
+    //تقرير حساب فايل
     Route::get('/fileAccount/{fileId}/{l?}','ReportController@fileAccount');
+
+    //تقرير حساب فايل / ملف شخصي
     Route::get('/personalFileAccount/{fileId}/{l?}','ReportController@personalFileAccount');
+
+    //تقرير شطب مركبة
+    Route::get('/carDestroy/{fileId}/{l?}','ReportController@carDestroy');
+
+    //تقرير ثمن المركبة
+    Route::get('/carPrice/{fileId}/{l?}','ReportController@carPrice');
+
+    //تقرير ثمن المركبة مع حطام
+    Route::get('/carPriceWithRek/{fileId}/{l?}','ReportController@carPriceWithRek');
+
+    //دائرة الترخيص
+    Route::get('/licence/{fileId}/{l?}','ReportController@licence');
+
+    //تقرير أضرار أولي
+    Route::get('/initialDamageReport/{fileId}/{l?}','ReportController@initialDamage');
 });
