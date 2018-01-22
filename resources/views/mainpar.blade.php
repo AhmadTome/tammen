@@ -40,7 +40,7 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addDamage') }}">ادخال ضرر</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/finalProject/classes/addCertificate.php">ادخال شهادة</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('addCertification')}}">ادخال شهادة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addMechParts') }}">ادخال أجزاء ميكانيكية</a></li>
                         <li role="presentation" class="divider"></li>
@@ -61,7 +61,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addAccedentSide') }}">ادخال طرف حادث</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropStatment') }}">ادخال بيان هبوط قيمة</a></li>
-
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addCity') }}">ادخال مدينة</a></li>
 
                     </ul>
                 </li>
