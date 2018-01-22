@@ -37,7 +37,29 @@
                 'total' => 'المجموع',
                 'for' => 'لحضرة',
                 'city' => 'المدينة',
-                'ins_company' => 'شركة التأمين'
+                'ins_company' => 'شركة التأمين',
+                'car_destroy_title' => 'إعلام عن شطب مركبة',
+                'guesser' => 'المخمن',
+                'neg_num' => 'رفم التفويض',
+                'sig_stamp' => 'التوقيع والختم',
+                'car_price_calculate' => 'حساب سعر المركبة',
+                'repair_calc' => 'مجموع مبلغ الأعمال / تصليح',
+                'body_part_calc' => 'مجموع ثمن قطع غيار هيكل',
+                'mech_part_calc' => 'مجموع ثمن قطع غيار ميكانيك',
+                'down_calc' => 'مجموع نسبة الهبوط',
+                'car_price' => 'سعر المركبة',
+                'total_inc_down' => 'المبلغ الكلي للتعويض شامل هبوط القيمة',
+                'direct_damage_total' => 'مبلغ تعويض الأضرار المباشرة',
+                'damage_rate' => 'نسبة الضرر',
+                'attachments' => 'مرفقات',
+                'car_guess_notes' => 'ملاحظات تخمين مركبة',
+                'rek_price' => 'ثمن الحطام',
+                'final_price' => 'المبلغ النهائي للتعويض',
+                'init_damage_report' => 'تقرير أضرار أولي',
+                'visit_pay' => 'أجور زيارة',
+                'garage_name' => 'إسم الكراج',
+                'phone' => 'تلفون',
+                'additions' => 'إضافات'
             ],
             'HR' => [
     
@@ -45,4 +67,10 @@
         ];
 
         return $Resource[$lang][$key];
+    }
+
+    function _td($count){
+        for($i = 0;$i < $count; $i++){
+            echo '<td></td>';
+        }
     }
