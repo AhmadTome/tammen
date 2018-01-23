@@ -42,8 +42,8 @@
         <div class="panel-body PanelBodyCss">
 
 
-            <form class="form-horizontal" method="post" action="#">
-
+            <form class="form-horizontal" method="post" action="storeEstimateCar">
+                {{ csrf_field() }}
                 <div class="form-group row col-lg-12 col-md-12 col-xs-12 col-sm-12 " dir="rtl">
 
                     <div class="col-sm-2 pull-right text-left">
@@ -57,19 +57,19 @@
                     </div>
 
                     <div class="col-sm-2 pull-right text-left">
-                        <input type="text" class="form-control PanelBodyCssInput " name="filenumber" id="filenumber" placeholder="رقم الملف" disabled>
+                        <input type="text" class="form-control PanelBodyCssInput " name="filenumber" id="filenumber" placeholder="رقم الملف" readonly>
                     </div>
                     <div class="col-sm-2 pull-right text-left">
-                        <input type="text" class="form-control PanelBodyCssInput " name="carused" id="carused" placeholder="استعمال المركبة" disabled>
+                        <input type="text" class="form-control PanelBodyCssInput " name="carused" id="carused" placeholder="استعمال المركبة" readonly>
                     </div>
                     <div class="col-sm-2 pull-right text-left">
-                        <input type="text" class="form-control PanelBodyCssInput " name="carversion" id="carversion" placeholder="طراز المركبة" disabled>
+                        <input type="text" class="form-control PanelBodyCssInput " name="carversion" id="carversion" placeholder="طراز المركبة" readonly>
                     </div>
                     <div class="col-sm-2 pull-right text-left">
-                        <input type="text" class="form-control PanelBodyCssInput " name="producedyear" id="producedyear" placeholder="سنة الانتاج" disabled>
+                        <input type="text" class="form-control PanelBodyCssInput " name="producedyear" id="producedyear" placeholder="سنة الانتاج" readonly>
                     </div>
                     <div class="col-sm-2 pull-right text-left">
-                        <input type="text" class="form-control PanelBodyCssInput " name="bodynumber" id="bodynumber" placeholder="رقم الشاصي" disabled required>
+                        <input type="text" class="form-control PanelBodyCssInput " name="bodynumber" id="bodynumber" placeholder="رقم الشاصي" readonly >
                     </div>
 
                 </div>
@@ -78,14 +78,14 @@
                     <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   لحضرة : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="ToPerson" type="text"  placeholder="ادخل الاسم"/>
+                    <input class="form-control" id="ToPerson" name="ToPerson" type="text"  placeholder="ادخل الاسم" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   رقم الادعاء : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="ClaimNumber" type="text"  placeholder="ادخل رقم الادعاء"/>
+                    <input class="form-control" id="ClaimNumber" name="ClaimNumber" type="text"  placeholder="ادخل رقم الادعاء" required/>
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="insuranceCompany" placeholder="" disabled>
+                    <input type="text" class="form-control PanelBodyCssInput " id="insuranceCompany" name="insuranceCompany" placeholder="" readonly required>
                 </div>
 
 
@@ -120,7 +120,7 @@
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="City" placeholder="" disabled>
+                    <input type="text" class="form-control PanelBodyCssInput " id="City" name="City" placeholder="" readonly required>
                 </div>
 
 
@@ -132,13 +132,13 @@
                             <select class="form-control " id="person_select">
                                 <option selected disabled="">اختار رقم الهوية</option>
                                 @foreach($Id as $item)
-                                    <option value="{{$item->name}}">{{$item->id." | ".$item->name}}</option>
+                                    <option value="{{$item->name}}">{{$item->id." | ".$item->name." | ".$item->address}}</option>
 
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-sm-4 pull-right text-left">
-                            <input type="text" class="form-control PanelBodyCssInput " id="personName" placeholder="الاسم" disabled>
+                            <input type="text" class="form-control PanelBodyCssInput " id="personName" name="personName" placeholder="الاسم" readonly required>
                         </div>
 
 
@@ -147,7 +147,7 @@
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-2 pull-right text-left">    اسم المؤمن : </label>
                         <div class="col-sm-8 pull-right">
-                            <input class="form-control" id="InsurancePersonal" type="text"  placeholder="ادخل  اسم المؤمن"/>
+                            <input class="form-control" id="InsurancePersonal" name="InsurancePersonal" type="text"  placeholder="ادخل  اسم المؤمن" required/>
                         </div>
                     </div>
 
@@ -155,42 +155,42 @@
                         <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
                         <div class="col-sm-8 pull-right">
-                            <textArea  class="form-control PanelBodyCssInput" rows="5" id="personNote" placeholder="ادخل ملاحظات"></textArea>
+                            <textArea  class="form-control PanelBodyCssInput" rows="5" id="personNote" name="personNote" placeholder="ادخل ملاحظات" required></textArea>
                         </div>
                     </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">    كشف اضرار : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="coverDamage" type="text"  placeholder="ادخل  كشف الاضرار"/>
+                    <input class="form-control" id="coverDamage" name="coverDamage" type="text"  placeholder="ادخل  كشف الاضرار" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">  تاريخ التسجيل  : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dateRegister" type="date" style="text-align: right" />
+                    <input class="form-control" id="dateRegister" name="dateRegister" type="date" style="text-align: right" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">  تاريخ الحادث  : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="accidentDate" type="date" style="text-align: right" />
+                    <input class="form-control" id="accidentDate" name="accidentDate" type="date" style="text-align: right" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">  تاريخ الفحص  : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="checkDate" type="date" style="text-align: right" />
+                    <input class="form-control" id="checkDate" name="checkDate" type="date" style="text-align: right" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   رقم بوليصة التأمين : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="InsuranceNumber2" type="text"  placeholder="ادخل رقم بوليصة التأمين"/>
+                    <input class="form-control" id="InsuranceNumber2" name="InsuranceNumber2" type="text"  placeholder="ادخل رقم بوليصة التأمين" required/>
                 </div>
             </div>
 
@@ -206,7 +206,7 @@
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="damageType" placeholder="" disabled>
+                    <input type="text" class="form-control PanelBodyCssInput " id="damageType" name="damageType" placeholder="" readonly required>
                 </div>
 
 
@@ -224,7 +224,7 @@
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="GuessNumber" placeholder="" disabled>
+                    <input type="text" class="form-control PanelBodyCssInput " id="GuessNumber" name="GuessNumber" placeholder="" readonly required>
                 </div>
 
 
@@ -242,7 +242,7 @@
                     </select>
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="text" class="form-control PanelBodyCssInput " id="garageNumber" placeholder="" disabled>
+                    <input type="text" class="form-control PanelBodyCssInput " id="garageNumber" name="garageNumber" placeholder="" readonly required>
                 </div>
 
 
@@ -252,28 +252,28 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">سعر المركبة   : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="carPrice" type="text"  placeholder=" سعر المركبة" disabled=""/>
+                    <input class="form-control" id="carPrice" name="carPrice" type="number"  placeholder=" سعر المركبة" readonly required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">     سفريات : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="visit" type="text"  placeholder="ادخل سفريات"/>
+                    <input class="form-control" id="visit" name="visit" type="number"  placeholder="ادخل سفريات" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">تصوير  : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="photograper" type="text"  placeholder="ادخل تصوير  "/>
+                    <input class="form-control" id="photograper" name="photograper" type="number"  placeholder="ادخل تصوير  " required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">مصاريف مكتب : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="officeCost" type="text"  placeholder="ادخل مصاريف المكتب"/>
+                    <input class="form-control" id="officeCost" name="officeCost" type="number"  placeholder="ادخل مصاريف المكتب" required/>
                 </div>
             </div>
 
@@ -281,7 +281,7 @@
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-2 pull-right text-left" >قيمة مبلغ الصيانة: </label>
                         <div class="col-sm-8 pull-right">
-                            <input class="form-control" type="text" id="cost" name="cost" placeholder=" قيمة الأضرار المباشرة" disabled="" />
+                            <input class="form-control" type="number" id="cost" name="cost" placeholder=" قيمة الأضرار المباشرة" readonly required />
                         </div>
 
 
@@ -290,42 +290,42 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   مبلغ نسبة الهبوط : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dropPercantigePrice" type="text"  placeholder="ادخل مبلغ نسبة الهبوط"/>
+                    <input class="form-control" id="dropPercantigePrice" name="dropPercantigePrice" type="number"  placeholder=" مبلغ نسبة الهبوط" readonly required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">    نسبة الهبوط : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dropPercantige" type="text"  placeholder="ادخل نسبة الهبوط"/>
+                    <input class="form-control" id="dropPercantige" name="dropPercantige" placeholder="نسبة البوط" type="text" readonly required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left"> النسبة المئوية للمخمن : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="Guesspersantige" type="text"  placeholder="ادخل  النسبة المئوية للمخمن"/>
+                    <input class="form-control" id="Guesspersantige" name="Guesspersantige" type="number"  placeholder="ادخل  النسبة المئوية للمخمن %" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left"> نسبة الضررالفني : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="TechnicalDamage" type="text"  placeholder="ادخل نسبة الضرر الفني"/>
+                    <input class="form-control" id="TechnicalDamage" name="TechnicalDamage" type="text"  placeholder=" نسبة الضرر الفني" readonly required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left"> ثمن الحطام : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="DebrisPrice" type="text"  placeholder="ادخل ثمن الحطام"/>
+                    <input class="form-control" id="DebrisPrice" name="DebrisPrice" type="number"  placeholder="ادخل ثمن الحطام" required/>
                 </div>
             </div>
 
             <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left"> اجور زائدة : </label>
+                <label class="control-label col-sm-2 pull-right text-left"> اجور زيارة : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dropPercantige" type="text"  placeholder="ادخل مبلغ الاجور الزائدة"/>
+                    <input class="form-control" id="dropPercantige" name="dropPercantige" type="number"  placeholder="ادخل مبلغ الاجور الزائدة" required/>
                 </div>
             </div>
 
@@ -334,7 +334,7 @@
                 <label class="control-label col-sm-2 pull-right text-left">  وصف الضرر : </label>
 
                 <div class="col-sm-8 pull-right">
-                    <textArea  class="form-control PanelBodyCssInput" rows="5" id="DamegeDescription" placeholder="ادخل وصف الضرر"></textArea>
+                    <textArea  class="form-control PanelBodyCssInput" rows="5" id="DamegeDescription" name="DamegeDescription" placeholder="ادخل وصف الضرر" required></textArea>
                 </div>
             </div>
 
@@ -343,7 +343,7 @@
                 <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
                 <div class="col-sm-8 pull-right">
-                    <textArea  class="form-control PanelBodyCssInput" rows="5" id="noteGuess" placeholder="ادخل ملاحظات"></textArea>
+                    <textArea  class="form-control PanelBodyCssInput" rows="5" id="noteGuess" name="noteGuess" placeholder="ادخل ملاحظات" required></textArea>
                 </div>
             </div>
 
@@ -351,7 +351,7 @@
                 <label class="control-label col-sm-2 pull-right text-left">  ملاحظات تخمين المركبة: </label>
 
                 <div class="col-sm-8 pull-right">
-                    <textArea class="form-control PanelBodyCssInput" rows="5" id="noteGuessCar" placeholder=" ادخل ملاحظات تخمين المركبة"></textArea>
+                    <textArea class="form-control PanelBodyCssInput" rows="5" id="noteGuessCar" name="noteGuessCar" placeholder=" ادخل ملاحظات تخمين المركبة" required></textArea>
                 </div>
             </div>
 
@@ -359,24 +359,32 @@
                 <label class="control-label col-sm-2 pull-right text-left">  المرفقات : </label>
 
                 <div class="col-sm-8 pull-right">
-                    <textArea class="form-control PanelBodyCssInput" rows="5" id="AttachmentsGuess" placeholder="ادخل المرفقات"></textArea>
+                    <textArea class="form-control PanelBodyCssInput" rows="5" id="AttachmentsGuess" name="AttachmentsGuess" placeholder="ادخل المرفقات" required></textArea>
                 </div>
             </div>
 
 
             <div class="form-group row" dir="rtl" >
-                <label class="control-label col-sm-2 pull-right text-left">:  شطب المركبة لحضرة</label>
+                <label class="control-label col-sm-2 pull-right text-left">  شطب المركبة لحضرة :</label>
                 <div class="col-sm-4 pull-right text-left">
-                    <input type="crossOffNamer" class="form-control PanelBodyCssInput" value="مدير سلطة الترخيص المحترم" id="crossOffNamer">
+                    <input type="crossOffNamer" class="form-control PanelBodyCssInput" value="مدير سلطة الترخيص المحترم" id="crossOffNamer" name="crossOffNamer" required>
 
                 </div>
                 <div class="col-sm-4 pull-right text-left">
-                    <textArea type="crossOffNote" class="form-control PanelBodyCssInput" rows="5" id="crossOffNote" ></textArea>
+                    <textArea type="crossOffNote" class="form-control PanelBodyCssInput" rows="5" id="crossOffNote" name="crossOffNote" required></textArea>
                 </div>
+
+
+
+            </div>
+                    <div class="row ">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center pull-left" >
+                            <input type="submit" name="submit" id="submit" class="btn btn-success " value="اضافة" />
+                        </div>
+                    </div>
 
             </div>
             </form>
-            </div>
         </div>
 
 
@@ -419,7 +427,7 @@
 
 //console.log(data[0].ve_used);
 
-                    console.log(data);
+                    //console.log(data);
                     $('#filenumber').val(data.data[0].file_num);
                     $('#carused').val(data.data[0].ve_used);
                     $('#carversion').val(data.data[0].ve_version);
@@ -442,11 +450,34 @@
                 url:'{!!URL::to('findCostGuesscar')!!}',
                 data:{'id':file_nom},
                 success:function(data) {
-                    $('#cost').val(data);
+                   $('#cost').val(data);
+
+                    var carprice=$('#carPrice').val();
+                    $('#TechnicalDamage').val(((data/carprice)*100).toFixed(2));
 
                 }
 
+
+
+
             });
+
+            $.ajax({
+
+                type:'get',
+                url:'{!!URL::to('findDropCostGuesscar')!!}',
+                data:{'id':file_nom},
+                success:function(data) {
+
+                    console.log(data);
+                    $('#dropPercantige').val(data+"%");
+
+                    var dropPrice=((data/100) * $('#carPrice').val());
+                    $('#dropPercantigePrice').val(dropPrice);
+                }
+
+            });
+
 
         });
 

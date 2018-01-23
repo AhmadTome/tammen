@@ -35,7 +35,7 @@
                     </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">مدخلات ثابتة <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" role="menu" style="width:290px; overflow:scroll; height: 500px;">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addEstimater') }}">ادخال مخمن</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addDamage') }}">ادخال ضرر</a></li>

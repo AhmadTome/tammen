@@ -144,6 +144,8 @@ Route::get('/findCarInfoforGuess','addguesscar@findCarInfoforGesscar');
 
 Route::get('/findCostDropValue','dropvalueofcar@findCostDropValue');
 Route::get('/findCostGuesscar','addguesscar@findCostforGuessCar');
+Route::get('/findDropCostGuesscar','addguesscar@findDropPercantige');
+
 
 Route::post('storDropValue','dropvalueofcar@store');
 
@@ -168,6 +170,8 @@ Route::post('saveimage','addImages@store');
 Route::post('storeDropStatment','addDropStatment@store');
 Route::post('storeCity','addCity@store');
 Route::post('storeCertification','enter_certificate@store');
+
+Route::post('storeEstimateCar','addguesscar@store');
 
 
 Auth::routes();
