@@ -200,4 +200,22 @@ Route::group(['prefix' => '/report'],function(){
 
     //تقرير أضرار أولي
     Route::get('/initialDamageReport/{fileId}/{l?}','ReportController@initialDamage');
+
+    //كشف زيارات المركبة
+    Route::get('/carVisit/{fileId}/{l?}','ReportController@carVisit');
+
+    //حساب شركة التامين
+    Route::get('/insCompanyAcc/{l?}','ReportController@insCompanyAcc');
+
+    //حساب شركة التامين للمستفيد
+    Route::get('/insCompanyUser/{l?}','ReportController@insCompanyUser');
+
+    //تقرير قطع غيار هيكل
+    Route::get('/bodyPartChange/{l?}','ReportController@bodyPartChange');
+
+    //تقرير قطع غيار ميكانيك
+    Route::get('/mechPartChange/{l?}','ReportController@mechPartChange');
+
+    //أعمال مركبة
+    Route::get('/carWork/{fileId}/{l?}','ReportController@carWork');
 });
