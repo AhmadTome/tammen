@@ -61,25 +61,51 @@
                 <div class="container " style="max-width: 1000px ;margin-bottom: -15px">
                     <form class="form-horizontal" method="post" action="store">
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-9">
+
+                        <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right" for="garNum">الرقم :</label>
+
+                            <div class="col-sm-8 pull-right">
                                 <input type="name" class="form-control PanelBodyCssInput" name="garNum" id="garNum" placeholder="ادخل رقم الكراج" required>
                             </div>
-                            <label class="control-label col-sm-1" for="garNum">: الرقم</label>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-9">
+
+                        <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right" for="garName">الاسم :</label>
+
+                            <div class="col-sm-8 pull-right">
                                 <input type="address" class="form-control PanelBodyCssInput" name="garName" id="garName" placeholder="ادخل الاسم" required>
                             </div>
-                            <label class="control-label col-sm-1" for="garName">: الاسم</label>
+                        </div>
+
+                        <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right">رقم الجوال :</label>
+
+                            <div class="col-sm-8 pull-right">
+                                <input type="address" class="form-control PanelBodyCssInput" name="garphoneNumber" id="garphoneNumber" placeholder="ادخل رقم الجوال" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right" > هاتف ارضي :</label>
+                            <div class="col-sm-8 pull-right">
+                                <input type="address" class="form-control PanelBodyCssInput" name="gartelNumber" id="gartelNumber" placeholder="ادخل رقم الهاتف الارضي" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right" >الايميل :</label>
+                            <div class="col-sm-8 pull-right">
+                                <input type="text" class="form-control" name="garemail" id="garemail" placeholder="ادخل الايميل" required>
+                            </div>
+
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-3">
-                                <input type="submit" class="btn-success" id="submit" value="إدخال">
+                                <input type="submit" class="btn btn-success" id="submit" value="إدخال">
                             </div>
                             <label class="control-label col-sm-7"></label>
                         </div>

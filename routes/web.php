@@ -46,9 +46,10 @@ Route::get('/addMaintinance', function () {
 });
 
 Route::get('/addInsuranceCompany', function () {
+$ins=\App\enter_insurence_company::all();
 
 
-    return view('addInsuranceCompany');
+    return view('addInsuranceCompany')->with('ins',$ins);
 });
 
 Route::get('/addTextStructure', function () {
@@ -172,6 +173,15 @@ Route::post('storeCity','addCity@store');
 Route::post('storeCertification','enter_certificate@store');
 
 Route::post('storeEstimateCar','addguesscar@store');
+
+
+
+//Route::get('/addInsuranceCompany','addInsuranceCompany@findCarInfoforGesscar');
+
+
+
+
+
 
 
 Auth::routes();
