@@ -21,6 +21,9 @@
                     <th>
                         {{_t('body_num',$l)}}
                     </th>
+                    <th>
+                        {{_t('production_date',$l)}}
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +45,9 @@
                     </td>
                     <td>
                         {{$car['ve_body_num']}}
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
             </tbody>

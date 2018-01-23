@@ -55,4 +55,38 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         return view('report.initialDamage',['car' => $car,'l' => $l]);
     }
+
+    //كشف الزيارات
+    public function carVisit($fileId,$l = 'AR'){
+        $car = enter_car_info::find($fileId);
+        return view('report.carVisit',['car' => $car,'l' => $l]);
+    }
+
+    //حساب شركة التامي
+    public function insCompanyAcc($l = 'AR'){
+        return view('report.insCompanyAcc',['l' => $l]);
+    }
+
+    //حساب شركة التامين للمستفيد
+    public function insCompanyUser($l = 'AR'){
+        return view('report.insCompanyUser',['l' => $l]);
+    }
+
+    //تقرير قطع غيار هيكل
+    public function bodyPartChange($fileId,$l = 'AR'){
+        $car = enter_car_info::find($fileId);
+        return view('report.bodyPartChange',['car' => $car,'l' => $l]);
+    }
+
+    //تقرير قطع غيار ميكانيك
+    public function mechPartChange($fileId,$l = 'AR'){
+        $car = enter_car_info::find($fileId);
+        return view('report.mechPartChange',['car' => $car,'l' => $l]);
+    }
+
+    //أعمالمركبة
+    public function carWork($fileId,$l = 'AR'){
+        $car = enter_car_info::find($fileId);
+        return view('report.carWork',['car' => $car,'l' => $l]);
+    }
 }

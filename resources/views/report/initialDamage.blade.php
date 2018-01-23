@@ -144,7 +144,7 @@
     <br>
     <div class="row">
         <div class="col-xs-4">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-0">
                 <tr>
                     <th class="gray-back" colspan="2">
                         {{_t('additions',$l)}}
@@ -160,6 +160,79 @@
                     </tr>
                 @endfor
             </table>
+        </div>
+        <div class="col-xs-8">
+            <table class="table table-bordered" >
+                <tr height="250px">
+                    <td colspan="2" width="40%"></td>
+                    <td rowspan="5" width="30%"></td>
+                    <td rowspan="5" width="30%"></td>
+                </tr>
+                <tr>
+                    <th width="30%">
+                        {{_t('repair_calc',$l)}}
+                    </th>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="30%">
+                        {{_t('body_part_calc',$l)}}
+                    </th>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="30%">
+                        {{_t('mech_part_calc',$l)}}
+                    </th>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="30%">
+                        {{_t('car_price',$l)}}
+                    </th>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class='row'>
+        <div class="col-xs-10 col-xs-offset-1">
+            <table class="table table-bordered">
+                <tr>
+                    <th width="50%" class="gray-back">
+                        {{_t('damage_desc',$l)}}
+                    </th>
+                    <th class="gray-back">
+                        {{_t('recomendations',$l)}}
+                    </th>
+                </tr>
+                <tr height="80px">
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-xs-4">
+            <p>
+                {{_t('garage_sig',$l)}}: ..................................
+            </p>
+            <p>
+                {{_t('garage_phone',$l)}}: ................................
+            </p>
+        </div>
+        <div class="col-xs-8">
+            1- {{_t('init_damage_msg_1',$l)}}
+            <br>
+            2- {{_t('init_damage_msg_2',$l)}}
+            <br>
+            3- {{_t('init_damage_msg_3',$l)}}
         </div>
     </div>
 @endsection
