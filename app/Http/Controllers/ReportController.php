@@ -8,6 +8,11 @@ use App\enter_car_info;
 class ReportController extends Controller
 {
 
+    public function car(){
+        $files = enter_car_info::get();
+        return view('carReport',['files' => $files]);
+    }
+
     //تقرير بيانات مركبة
     public function carInfo($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
