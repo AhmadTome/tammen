@@ -156,7 +156,12 @@ Route::post('storeCrossOff','addcrossoff@store');
 Route::post('storeEstimater','addEstimater@store');
 Route::post('storeDamage','addDamage@store');
 Route::post('storeMaintinance','addMaintinance@store');
+
 Route::post('storeInsurancecompany','addInsuranceCompany@store');
+Route::post('/deleteInsuranceCompany','addInsuranceCompany@deleteCompany');
+
+
+
 Route::post('storeTextStructure','addTextStructure@store');
 Route::post('storeEstimatevalue','addEstimatevalue@store');
 Route::post('storeAccedentSide','addAccedentSide@store');

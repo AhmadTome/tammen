@@ -88,8 +88,18 @@ class addInsuranceCompany extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function deleteCompany(){
+      return 'Hello';
+    }
+
+
+
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+       // enter_insurence_company::where('ins_num','=',$num)->where('ins_name','=',$name)->delete();
+        return $name ;
     }
 }
