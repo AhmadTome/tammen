@@ -179,6 +179,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/car/reports','ReportController@car');
+
 Route::group(['prefix' => '/report'],function(){
     
     //تقرير بيانات مركبة
