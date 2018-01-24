@@ -45,8 +45,17 @@ class addgarage extends Controller
 $user=new enter_garage;
 $user->gar_num=Input::get('garNum');
 $user->gar_name=Input::get('garName');
-$user->save();
-session()->flash("notif","تم ادخال الكراج بنجاح");
+
+        $user->phone=Input::get('garphoneNumber');
+        $user->tel=Input::get('gartelNumber');
+        $user->email=Input::get('garemail');
+        if($user->save()){
+            session()->flash("notif","تم ادخال الكراج بنجاح");
+        }else{
+            session()->flash("notif","لم يتم ادخال الكراج لحدوث خطأ في الادخال");
+
+        }
+
 
 return redirect()->to('garage');
 

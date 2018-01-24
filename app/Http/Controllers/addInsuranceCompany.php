@@ -40,6 +40,10 @@ class addInsuranceCompany extends Controller
       $user->ins_num=Input::get('compNum');
       $user->ins_name=Input::get('compName');
       $user->ins_phone=Input::get('compTele');
+        $user->ins_jawwalphone=Input::get('insPhoneNumber');
+        $user->ins_email=Input::get('insemail');
+
+
       $user->save();
       return redirect()->to('addInsuranceCompany');
     }
