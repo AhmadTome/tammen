@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\enter_body_part;
-use App\enter_mechanic_part;
+use App\bankinfo;
 use Illuminate\Http\Request;
-use App\getCarInfo;
-use App\Product;
-use App\enter_maintinance;
-class cartransaction extends Controller
+use Illuminate\Support\Facades\Input;
+
+class addbankinfo extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,25 +15,8 @@ class cartransaction extends Controller
      */
     public function index()
     {
-     $carInfo=getCarInfo::all();
-     $maintinanceinfo=enter_maintinance::all();
-     $mechanicinfo=enter_mechanic_part::all();
-     $Bodyinfo=enter_body_part::all();
-
-
-        return view('MainInput.carTransaction')->with("carInfo",$carInfo)->with("maintinanceinfo",$maintinanceinfo)->with("mechanicinfo",$mechanicinfo)->with("Bodyinfo",$Bodyinfo);
+        //
     }
-
-    public function findCarInfo(Request $request){
-
-
-        //if our chosen id and products table prod_cat_id col match the get first 100 data
-
-        //$request->id here is the id of our chosen option id
-        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_license_end_date','ve_insurence_end_date','attachments','ve_note')->where('file_num',$request->id)->take(1500)->get();
-        return response()->json($data);//then sent this data to ajax success
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -56,7 +36,30 @@ class cartransaction extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $status=Input::get('status');
+        $name=Input::get('name');
+        $output='';
+        for($i=0 ;$i < count($name) ; $i++){
+            $output = $output.$name[$i].'-'.$status[$i].'/';
+        }
+
+
+
+
+
+        $user=new bankinfo;
+        $user->filenumber =Input::get('filenumber');
+        $user->bankfilenumber =Input::get('bankfilenumber');
+        $user->personname =Input::get('personName');
+        $user->personowner =Input::get('personownercar');
+        $user->idpersonowner =Input::get('idpersonownercar');
+        $user->limit =Input::get('limit');
+        $user->date =Input::get('dateregister');
+        $user->estimatorvalue =Input::get('estimatevalue');
+        $user->banknote =Input::get('banknote');
+        $user->checking =$output;
+        $user->save();
+        return redirect()->to('/BankDisclosure');
     }
 
     /**
@@ -67,7 +70,7 @@ class cartransaction extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**

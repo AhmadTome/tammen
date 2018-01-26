@@ -99,7 +99,7 @@ class addInsuranceCompany extends Controller
     {
         $num = $request->num;
         $name = $request->name;
-       // enter_insurence_company::where('ins_num','=',$num)->where('ins_name','=',$name)->delete();
-        return $name ;
+        enter_insurence_company::where('ins_num','=',$num)->where('ins_name','=',$name)->delete();
+return $name;
     }
 }

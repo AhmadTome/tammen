@@ -196,8 +196,8 @@
 
 
 
-                        <div class="form-group row" dir="rtl">
-                            <label class="control-label col-sm-2 pull-right text-left" for="Attachments">: المرفقات</label>
+                        <div class="form-group  row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left" for="Attachments">المرفقات :</label>
                             <div class="col-sm-8 pull-right">
                                 <div class="form-group">
 

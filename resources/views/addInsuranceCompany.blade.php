@@ -230,6 +230,8 @@
 </html>
 
 <script>
+    var lastid_delete;
+    var lastname_delete;
     $(document).ready(function() {
         $(document).on('click', '.edit-modal', function() {
             $('#footer_action_button').text("Update");
@@ -252,7 +254,8 @@
 
 
         $(document).on('click', '.delete-modal', function() {
-
+            lastid_delete =$(this).data('id');
+            lastname_delete=$(this).data('name');
             $('#footer_action_button').text(" Delete");
            // $('#footer_action_button').removeClass('glyphicon-check');
             //$('#footer_action_button').addClass('glyphicon-trash');
@@ -268,16 +271,17 @@
         });
 
         $('.modal-footer').on('click', '.delete', function() {
+
             $.ajax({
-                type: 'post',
+                type: 'get',
                 url: '{!!URL::to('deleteInsuranceCompany')!!}',
                 data: {
-                    'num':$('#insNumber').val(),
-                    'name':$('#insName').val()
+                    'num':lastid_delete,
+                    'name':lastname_delete
                 },
                 success: function(data) {
-                    //$('.item' + $('.did').text()).remove();
-                console.log('success')
+                   //$('.item' + $('.did').text()).remove();
+                console.log(data)
                 },
                 error:function (data) {
                     console.log('error')
