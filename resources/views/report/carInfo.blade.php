@@ -36,7 +36,9 @@
                         <th>
                             {{_t('car_num',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$car['ve_num']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
@@ -48,13 +50,17 @@
                         <th>
                             {{_t('car_use',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$car['ve_used']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
                             {{_t('meter',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$car['ve_speedometer']}}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -78,7 +84,9 @@
                         <th>
                             {{_t('ins_policy',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$car['ve_insurence_num']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
@@ -96,13 +104,17 @@
                         <th>
                             {{_t('damage',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+
+                        </td>
                     </tr>
                     <tr>
                         <th>
                             {{_t('body_num',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$car['ve_body_num']}}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -115,18 +127,24 @@
                             {{_t('car_desc_add',$l)}}
                         </th>
                     </tr>
-                    @for($i = 1; $i <= 7; $i += 2)
+                    <?php
+                        $atts = preg_split ('/[\s*,\s*]*,+[\s*,\s*]*/',$car['attachments']);
+                    ?>
+                    @for($i = 0; $i < count($atts);$i++)
                         <tr>
                             <th width="10%" class="gray-back">
-                                {{$i}}
+                                {{$i + 1}}
                             </th>
                             <td width="40%">
+                                {{$atts[$i]}}
                             </td>
-                            @if(($i + 1) <= 7)
+                            <?php $i++; ?>
+                            @if($i < count($atts))
                                 <th width="10%" class="gray-back">
                                     {{$i + 1}}
                                 </th>
                                 <td width="40%">
+                                    {{$atts[$i]}}
                                 </td>
                             @endif
                         </tr>

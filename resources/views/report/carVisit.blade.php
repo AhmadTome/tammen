@@ -35,7 +35,27 @@
                 </th>
             </tr>
             <tr>
-                {{_td(7)}}
+                <td>
+                    {{$car['ve_num']}}
+                </td>
+                <td>
+                    {{$car['file_num']}}
+                </td>
+                <td>
+                    {{$car['ve_used']}}
+                </td>
+                <td>
+                    {{$car['ve_body_num']}}
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    {{$car['ve_produce_year']}}
+                </td>
+                <td>
+                    {{$car['ve_color']}}
+                </td>
             </tr>
         </table>
     </div>
@@ -56,9 +76,22 @@
                     {{_t('notes',$l)}}
                 </th>
             </tr>
-            <tr>
-                {{_td(4)}}
-            </tr>
+            @foreach($visits as $v)
+                <tr>
+                    <td>
+                        {{$v['vis_day']}}
+                    </td>
+                    <td>
+                        {{$v['vis_date']}}
+                    </td>
+                    <td>
+                        {{$v['vis_vehicle_work']}}
+                    </td>
+                    <td>
+                        {{$v['notes']}}
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
 @endsection

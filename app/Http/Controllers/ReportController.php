@@ -4,13 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\enter_car_info;
+use App\CarVisit;
+use App\enter_insurence_company;
+use App\enter_personalinfo;
+use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
 {
 
     public function car(){
-        $files = enter_car_info::get();
-        return view('carReport',['files' => $files]);
+        $carInfo = enter_car_info::get();
+        return view('carReport',['carInfo' => $carInfo]);
+    }
+
+    public function insurance(){
+        $companies = enter_insurence_company::all();
+        return view('insCompanyReport',['companies' => $companies]);
+    }
+
+    public function insuranceBenifiter(){
+        $carInfo = enter_car_info::all();
+        $companies = enter_insurence_company::all();
+        return view('insCompanyBenifiter',['companies' => $companies,'carInfo' => $carInfo]);
+    }
+
+    public function carParts(){
+        $carInfo = enter_car_info::all();
+        return view('carPartsReports',['carInfo' => $carInfo]);
+    }
+
+    public function bank(){
+        $carInfo = enter_car_info::all();
+        $people = enter_personalinfo::all();
+        return view('bank',['carInfo' => $carInfo,'people' => $people]);
     }
 
     //تقرير بيانات مركبة
@@ -63,17 +89,33 @@ class ReportController extends Controller
 
     //كشف الزيارات
     public function carVisit($fileId,$l = 'AR'){
+        $From = Input::get('From',date('Y-m-d'));
+        $To = Input::get('To',date('Y-m-d'));
         $car = enter_car_info::find($fileId);
-        return view('report.carVisit',['car' => $car,'l' => $l]);
+        $visits = CarVisit::where('vis_date','>=',$From)->where('vis_date','<=',$To)->where('vis_vehicle_num',$car->ve_num)->get();
+        return view('report.carVisit',['car' => $car,'l' => $l,'visits' => $visits]);
     }
 
     //حساب شركة التامي
-    public function insCompanyAcc($l = 'AR'){
-        return view('report.insCompanyAcc',['l' => $l]);
+    public function insCompanyAcc(){
+        $l = Input::get('lang','AR');
+        $ins_num = Input::get('ins_num',1);
+        $benName = Input::get('benName',0);
+        $From = Input::get('From',date('Y-m-d'));
+        $To = Input::get('To',date('Y-m-d'));
+
+        $company = enter_insurence_company::find($ins_num);
+
+        return view('report.insCompanyAcc',['l' => $l,'company' => $company]);
     }
 
     //حساب شركة التامين للمستفيد
-    public function insCompanyUser($l = 'AR'){
+    public function insCompanyUser(){
+        $l = Input::get('lang','AR');
+        $car_num = Input::get('car_num',0);
+        $ins_num = Input::get('ins_num',1);
+        $benName = Input::get('benName',0);
+        $RegDate = Input::get('RegDate',date('Y-m-d'));
         return view('report.insCompanyUser',['l' => $l]);
     }
 
@@ -93,5 +135,16 @@ class ReportController extends Controller
     public function carWork($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
         return view('report.carWork',['car' => $car,'l' => $l]);
+    }
+
+    //شهادة
+    public function degree($fileId,$l = 'AR'){
+        $car = enter_car_info::find($fileId);
+        return view('report.degree',['car' => $car,'l' => $l]);
+    }
+
+    //شهادة بنك
+    public function bankStmnt($l = 'AR'){
+        return view('report.bankStmnt',['l' => $l]);
     }
 }

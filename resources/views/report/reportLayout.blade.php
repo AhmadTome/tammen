@@ -78,7 +78,7 @@
             border: 1px solid black;
         }
         .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-            padding: 4px !important;
+            padding: 1px !important;
         }
         .box{
             display: block;
@@ -93,7 +93,9 @@
         .margin-0{
             margin:0px;
         }
-
+        .padding-0{
+            padding: 0px;
+        }
         @page {
             size: A4;
             margin: 11mm 17mm 17mm 17mm;
@@ -103,6 +105,9 @@
             html, body {
             width: 210mm;
             height: 297mm;
+        }
+        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+            padding: 1px !important;
         }
         .dont-print{
             display:none;

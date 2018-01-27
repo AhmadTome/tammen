@@ -214,9 +214,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/car/reports','ReportController@car');
-
 Route::group(['prefix' => '/report'],function(){
+    
+    Route::get('/car','ReportController@car');
+
+    Route::get('/insurance','ReportController@insurance');
+
+    Route::get('/insurance/benifiter','ReportController@insuranceBenifiter');
+
+    Route::get('/car/parts','ReportController@carParts');
+
+    Route::get('/car/bank','ReportController@bank');
     
     //تقرير بيانات مركبة
     Route::get('/carInfo/{fileId}/{l?}','ReportController@carInfo');
@@ -246,10 +254,10 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/carVisit/{fileId}/{l?}','ReportController@carVisit');
 
     //حساب شركة التامين
-    Route::get('/insCompanyAcc/{l?}','ReportController@insCompanyAcc');
+    Route::get('/insCompanyAcc','ReportController@insCompanyAcc');
 
     //حساب شركة التامين للمستفيد
-    Route::get('/insCompanyUser/{l?}','ReportController@insCompanyUser');
+    Route::get('/insCompanyUser','ReportController@insCompanyUser');
 
     //تقرير قطع غيار هيكل
     Route::get('/bodyPartChange/{l?}','ReportController@bodyPartChange');
@@ -258,5 +266,11 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/mechPartChange/{l?}','ReportController@mechPartChange');
 
     //أعمال مركبة
-    Route::get('/carWork/{fileId}/{l?}','ReportController@carWork');
+    Route::get('/carWork/{l?}','ReportController@carWork');
+
+    //شهادة
+    Route::get('/degree/{fileId}/{l?}','ReportController@degree');
+
+    //شهادة بنك
+    Route::get('/bankStmnt/{l?}','ReportController@bankStmnt');
 });
