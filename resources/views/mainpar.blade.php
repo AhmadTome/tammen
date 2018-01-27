@@ -83,6 +83,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/SmartCity/SAdmin/AccountInfo.php">ادخال مراسلة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('carCost')}}>احتساب سعر المركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('BankDisclosure')}}>ادخال كشف بنك</a></li>
 
                     </ul>
                 </li>
