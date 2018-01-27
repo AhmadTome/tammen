@@ -10,7 +10,7 @@
             {{_t('car_details',$l)}}
         </div>
         <br>
-        <div class="col-sm-3">
+        <div class="col-xs-5">
             @include('report.parts.fileInfo')
         </div>
         <div class="clearfix"></div>
@@ -24,13 +24,17 @@
                         <th>
                             {{_t('acc_date',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$est['accidantDate']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
                             {{_t('exam_date',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$est['checkDate']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
@@ -44,7 +48,9 @@
                         <th>
                             {{_t('car_model',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$car['ve_version']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
@@ -72,13 +78,17 @@
                         <th>
                             {{_t('name',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$est['persone_name']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
                             {{_t('ins_name',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$est['person_insurances']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
@@ -92,20 +102,24 @@
                         <th>
                             {{_t('exam_place',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+                            {{$est['Garage']}}
+                        </td>
                     </tr>
                     <tr>
                         <th>
                             {{_t('car_model_num',$l)}}
                         </th>
-                        <td></td>
+                        <td>
+
+                        </td>
                     </tr>
                     <tr>
                         <th>
                             {{_t('damage',$l)}}
                         </th>
                         <td>
-
+                            {{$est['DamageType']}}
                         </td>
                     </tr>
                     <tr>

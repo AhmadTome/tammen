@@ -128,7 +128,13 @@
     </style>
     </head>
     <body>
-            <button onclick="window.print()" class="dont-print">Print</button>
+        <div class="col-sm-4 col-sm-offset-4">
+            <button onclick="window.print()" class="dont-print btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-print"></span> Print
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <br>
         <div>
         <div class="header">
             <div class="text-center">

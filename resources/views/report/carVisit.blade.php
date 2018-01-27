@@ -48,7 +48,7 @@
                     {{$car['ve_body_num']}}
                 </td>
                 <td>
-                    
+                    {{$car['ve_version']}}
                 </td>
                 <td>
                     {{$car['ve_produce_year']}}
