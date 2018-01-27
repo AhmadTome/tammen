@@ -1,6 +1,8 @@
 <html>
 <head>
-    <title>تقارير المركبة</title>
+    <title>
+        كشف بنك
+    </title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
@@ -41,11 +43,24 @@
         <div class="panel panel-default">
             <div class="panel-heading text-center PanelHeadingCss">معلومات المركبة</div>
             <div class="panel-body PanelBodyCss">
-
-                <div >
-
-    @include('report.parts.carFileChooser')
-    <div class="form-group">
+                @include('report.parts.carFileChooser')
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <select name="id" id="id" class='form-control'>
+                            @foreach($people as $p)
+                                <option value="{{$p['id']}}">
+                                    {{$p['name']}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label class="control-label col-md-2">
+                        الشخص
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         <select name="lang" id="lang" class='form-control'>
                             <option value="AR">اللغة العربية</option>
@@ -58,7 +73,16 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
-
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <input type="date" id="Date" name="Date" class="form-control">
+                    </div>
+                    <label class="control-label col-md-2">
+                        التاريخ
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+                <br>
                 </div>
             </div>
         </div>
@@ -74,18 +98,18 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carInfo')">
-                            معاينة تقرير بيانات المركبة
+                        <button class="btn btn-block btn-primary" onclick="goTo('bodyPartChange')">
+                            تقرير قطع غيار هيكل
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('fileAccount')">
-                            معاينة تقرير حساب فايل / ملف
+                        <button class="btn btn-block btn-primary" onclick="goTo('mechPartChange')">
+                            تقرير قطع غيار ميكانيك
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('personalFileAccount')">
-                            معاينة تقرير حساب ملف / فايل شخصي
+                        <button class="btn btn-block btn-primary" onclick="goTo('carWork')">
+                            تقرير أعمال مركبة
                         </button>
                     </div>
                     <div class="col-sm-3">
@@ -97,57 +121,29 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carPrice')">
-                            معاينة حساب ثمن المركبة
+                        <button class="btn btn-block btn-primary" onclick="goTo('bodyPartChange')">
+                            أضرار فنية لدائرة الترخيص
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carPriceWithRek')">
-                            معاينة حساب ثمن المركبة مع حطام
+                        <button class="btn btn-block btn-primary" onclick="goTo('mechPartChange')">
+                            تقرير هبوط قيمة
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('licence')">
-                            معاينة لدائرة الترخيص
+                        <button class="btn btn-block btn-primary" onclick="goTo('degree')">
+                            شهادة
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('initialDamageReport')">
-                            معاينة الكشف الأولي
+                        <button class="btn btn-block btn-primary" onclick="goTo('carDestroy')">
+                            معاينة تقرير شطب مركبة
                         </button>
                     </div>
                 </div>
             </div>
         </div> 
         <Br>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                الزيارات
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="col-md-11">
-                            <input type="date" class="form-control" name="To" id="To" >
-                        </div>
-                        <label class="control-label col-md-1">إلى</label>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-md-11">
-                            <input type="date" class="form-control" name="From" id="From" >
-                        </div>
-                        <label class="control-label col-md-1">من</label>
-                    </div>
-                </div>
-                <br>
-                <div class="col-sm-4 col-sm-offset-4">
-                    <button class="btn btn-primary btn-block" onclick="goTo('carVisit',true)">
-                        معاينة الزيارات
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- end Body -->
     <!--footer-->
@@ -158,11 +154,11 @@
     <!--/footer-->
 
     <script>
-        function goTo(route,withDate){
+        function goTo(route){
             var type = $("#filenumber").val();
             if(!type){
                 $("#fileError").show();
-                $("#fileError").html("قم باختيار ملف");
+                $("#fileError").html("قم باختيار مركبة");
                 return;
             }
 
@@ -170,13 +166,10 @@
             $("#fileError").html("");
             
             var lang = $("#lang").val();
-            if(withDate){
-                var To = $("#To").val();
-                var From = $("#From").val();
-                window.open("/report/" + route + "/" + type + "/" + lang + "?From=" + From + "&To=" + To);
-            }else{
-                window.open("/report/" + route + "/" + type + "/" + lang);
-            }
+            var car_num = $("#carnumber").val();
+            var date = $("#Date").val();
+            var id = $("#id").val();
+            window.open("/report/" + route + "/" + lang + "?car_num=" + car_num + "&date=" + date + "&id=" + id);
         }
     $(document).ready(function () {
     });

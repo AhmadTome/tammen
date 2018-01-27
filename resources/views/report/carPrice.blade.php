@@ -4,36 +4,7 @@
 
 @section('content')
 
-    <div class="border-2 padding">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="gray-back">
-                        {{_t('car_num',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('file_num',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('car_use',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('model_type',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('production_year',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('body_num',$l)}}
-                    </th>
-                </tr>
-                <tr>
-                    {{_td(6)}}
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <br>
+    @include('report.parts.carInfoHeader')
     <div class="row">
         <div class='col-xs-4 col-xs-offset-1'>
             <table class="table table-bordered">

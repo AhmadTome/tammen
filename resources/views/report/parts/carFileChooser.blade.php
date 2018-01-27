@@ -27,6 +27,9 @@
 
 
     </div>
+    <div class="clearfix"></div>
+    <div class="text-danger text-center" id="fileError"></div>
+    <br>
 <script>
 
     $(document).ready(function(){
