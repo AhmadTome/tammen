@@ -93,8 +93,8 @@
 
 
 
-                        <table class="table" dir="rtl" border="1">
-                            <tr>
+                        <table class="table" dir="rtl" border="1" id="mytable">
+                            <tbody>
 
                                 <td><label>الرقم</label></td>
                                 <td><label>اسم الشركة</label></td>
@@ -104,7 +104,7 @@
                                 <td><label>تعديل</label></td>
                                 <td><label>حذف</label></td>
 
-                            </tr>
+                            </tbody>
                             @foreach($ins as $item)
                                 <tr>
                                 <td ><label>{{$item->ins_num}}</label></td>
@@ -232,6 +232,17 @@
 <script>
     var lastid_delete;
     var lastname_delete;
+
+    var lastcompanynumnum;
+    var lastcompanyname;
+    var num_update;
+    var companyname_update;
+    var telnum_update;
+    var phonenum_update;
+    var email_update;
+
+    var deleterow;
+    var updaterow;
     $(document).ready(function() {
         $(document).on('click', '.edit-modal', function() {
             $('#footer_action_button').text("Update");
@@ -248,6 +259,11 @@
             $('#insphone').val($(this).data('phone'));
             $('#modelJawwal').val($(this).data('jawwal'));
             $('#modelEmail').val($(this).data('email'));
+            lastcompanynumnum=$(this).data('id');
+            lastcompanyname=$(this).data('name');
+
+            updaterow=$(this).parent().parent();
+
 
             $('#myModal').modal('show');
         });
@@ -256,6 +272,7 @@
         $(document).on('click', '.delete-modal', function() {
             lastid_delete =$(this).data('id');
             lastname_delete=$(this).data('name');
+            deleterow=$(this).parent().parent();
             $('#footer_action_button').text(" Delete");
            // $('#footer_action_button').removeClass('glyphicon-check');
             //$('#footer_action_button').addClass('glyphicon-trash');
@@ -281,7 +298,8 @@
                 },
                 success: function(data) {
                    //$('.item' + $('.did').text()).remove();
-                console.log(data)
+                console.log(data);
+                deleterow.remove();
                 },
                 error:function (data) {
                     console.log('error')
@@ -290,6 +308,39 @@
             });
         });
 
+        $('.modal-footer').on('click', '.edit', function() {
+            num_update=$('#insNumber').val();
+            companyname_update=$('#insName').val();
+            telnum_update=$('#insphone').val();
+            phonenum_update=$('#modelJawwal').val();
+            email_update = $('#modelEmail').val();
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('updateInsuranceCompany')!!}',
+                data: {
+                    'num':num_update,
+                    'name':companyname_update,
+                    'tel':telnum_update,
+                    'phone':phonenum_update,
+                    'email':email_update,
+                    'lastnum':lastcompanynumnum,
+                    'lastname':lastcompanyname
+                },
+                success: function(data) {
+                    //$('.item' + $('.did').text()).remove();
+                    console.log(data)
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+            });
+
+
+
+
+        });
 
 
 
