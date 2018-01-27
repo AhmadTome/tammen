@@ -9,8 +9,8 @@ class ReportController extends Controller
 {
 
     public function car(){
-        $files = enter_car_info::get();
-        return view('carReport',['files' => $files]);
+        $carInfo = enter_car_info::get();
+        return view('carReport',['carInfo' => $carInfo]);
     }
 
     //تقرير بيانات مركبة
@@ -93,5 +93,16 @@ class ReportController extends Controller
     public function carWork($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
         return view('report.carWork',['car' => $car,'l' => $l]);
+    }
+
+    //شهادة
+    public function degree($fileId,$l = 'AR'){
+        $car = enter_car_info::find($fileId);
+        return view('report.degree',['car' => $car,'l' => $l]);
+    }
+
+    //شهادة بنك
+    public function bankStmnt($l = 'AR'){
+        return view('report.bankStmnt',['l' => $l]);
     }
 }

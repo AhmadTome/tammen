@@ -36,30 +36,16 @@
 
     <!-- Body -->
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="text-center">
-                أختر الملف
-                </h4>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-2">
-                        <select name="fileId" id="fileId" class='form-control'>                        
-                            @foreach($files as $f)
-                                <option value="{{$f->file_num}}">
-                                    {{$f->file_num}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <label class="control-label col-md-2">
-                        رقم الملف
-                    </label>
-                </div>
-                <div class="clearfix"></div>
-                <br>
-                <div class="form-group">
+
+    <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12  " >
+        <div class="panel panel-default">
+            <div class="panel-heading text-center PanelHeadingCss">معلومات المركبة</div>
+            <div class="panel-body PanelBodyCss">
+
+                <div >
+
+    @include('report.parts.carFileChooser')
+    <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         <select name="lang" id="lang" class='form-control'>
                             <option value="AR">اللغة العربية</option>
@@ -72,6 +58,20 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
+
+                </div>
+            </div>
+        </div>
+
+</div>
+<!-- end car info -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="text-center">
+                التقارير
+                </h4>
+            </div>
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-3">
                         <button class="btn btn-block btn-primary" onclick="goTo('carInfo')">
@@ -109,7 +109,7 @@
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('initialDamage')">
+                        <button class="btn btn-block btn-primary" onclick="goTo('initialDamageReport')">
                             معاينة الكشف الأولي
                         </button>
                     </div>
@@ -127,10 +127,12 @@
 
     <script>
         function goTo(route){
-            var type = $("#fileId").val();
+            var type = $("#filenumber").val();
             var lang = $("#lang").val();
             window.open("/report/" + route + "/" + type + "/" + lang);
         }
+    $(document).ready(function () {
+    });
     </script>   
 
 </div>

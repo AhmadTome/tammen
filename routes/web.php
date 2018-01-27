@@ -234,4 +234,10 @@ Route::group(['prefix' => '/report'],function(){
 
     //أعمال مركبة
     Route::get('/carWork/{fileId}/{l?}','ReportController@carWork');
+
+    //شهادة
+    Route::get('/degree/{fileId}/{l?}','ReportController@degree');
+
+    //شهادة بنك
+    Route::get('/bankStmnt/{l?}','ReportController@bankStmnt');
 });
