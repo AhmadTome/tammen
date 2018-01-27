@@ -5,6 +5,8 @@
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
@@ -112,12 +114,11 @@
                                 <td><label>{{$item->ins_email}}</label></td>
                                 <td><input class="edit-modal btn btn-info" data-email="{{$item->ins_email}}" data-id="{{$item->ins_num}}" data-name="{{$item->ins_name}}" data-phone="{{$item->ins_phone}}" data-jawwal="{{$item->ins_jawwalphone}}"
                                            value="تعديل"></td>
+
                                 <td><input class="delete-modal btn btn-danger"
                                             data-id="{{$item->ins_num}}" data-name="{{$item->ins_name}}"
                                     value="حذف"
-                                    >
-
-                                    </td>
+                                    ></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -135,6 +136,8 @@
                                     <div class="modal-body" >
 
                                         <form class="form-horizontal" role="form" >
+                                           <div class="EditContent">
+
                                             <div class="form-group" dir="rtl">
                                                 <label class="control-label col-sm-2 pull-right" >الرقم :</label>
                                                 <div class="col-sm-10 pull-right">
@@ -168,7 +171,7 @@
                                                     <input type="text" class="form-control" id="modelEmail">
                                                 </div>
                                             </div>
-
+                                           </div>
                                         </form>
 
 
@@ -181,10 +184,10 @@
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn actionBtn" data-dismiss="modal">
-                                                <span id="footer_action_button" class='glyphicon'> </span>
+                                                <span id="footer_action_button" > </span>
                                             </button>
                                             <button type="button" class="btn btn-warning" data-dismiss="modal">
-                                                <span class='glyphicon glyphicon-remove'></span> Close
+                                                <span></span> Close
                                             </button>
                                         </div>
                                     </div>
@@ -227,17 +230,19 @@
 </html>
 
 <script>
+    var lastid_delete;
+    var lastname_delete;
     $(document).ready(function() {
         $(document).on('click', '.edit-modal', function() {
             $('#footer_action_button').text("Update");
-            $('#footer_action_button').addClass('glyphicon-check');
-            $('#footer_action_button').removeClass('glyphicon-trash');
+           // $('#footer_action_button').addClass('glyphicon-check');
+            //$('#footer_action_button').removeClass('glyphicon-trash');
             $('.actionBtn').addClass('btn-success');
             $('.actionBtn').removeClass('btn-danger');
             $('.actionBtn').addClass('edit');
             $('.modal-title').text('Edit');
             $('.deleteContent').hide();
-            $('.form-horizontal').show();
+            $('.EditContent').show();
             $('#insNumber').val($(this).data('id'));
             $('#insName').val($(this).data('name'));
             $('#insphone').val($(this).data('phone'));
@@ -249,20 +254,45 @@
 
 
         $(document).on('click', '.delete-modal', function() {
-
+            lastid_delete =$(this).data('id');
+            lastname_delete=$(this).data('name');
             $('#footer_action_button').text(" Delete");
-            $('#footer_action_button').removeClass('glyphicon-check');
-            $('#footer_action_button').addClass('glyphicon-trash');
+           // $('#footer_action_button').removeClass('glyphicon-check');
+            //$('#footer_action_button').addClass('glyphicon-trash');
             $('.actionBtn').removeClass('btn-success');
             $('.actionBtn').addClass('btn-danger');
             $('.actionBtn').addClass('delete');
             $('.modal-title').text('Delete');
-            $('.form-horizontal').hide();
+            $('.EditContent').hide();
             $('.did').text($(this).data('id'));
             $('.deleteContent').show();
             $('.dname').html($(this).data('name'));
             $('#myModal').modal('show');
         });
+
+        $('.modal-footer').on('click', '.delete', function() {
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('deleteInsuranceCompany')!!}',
+                data: {
+                    'num':lastid_delete,
+                    'name':lastname_delete
+                },
+                success: function(data) {
+                   //$('.item' + $('.did').text()).remove();
+                console.log(data)
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+            });
+        });
+
+
+
+
     });
 
 

@@ -130,6 +130,13 @@ Route::get('/addCertification', function () {
     return view('addCertification');
 });
 
+Route::get('/BankDisclosure', function () {
+    $carInfo = \App\getCarInfo::all();
+    $Id =\App\enter_personalInfo::all();
+    $estimatevalue = \App\enter_estimit_value::all();
+
+    return view('MainInput.BankDisclosure')->with('carInfo',$carInfo)->with('Id',$Id)->with('estimatevalue',$estimatevalue);
+});
 
 Route::get('/carGuess','addguesscar@index');
 
@@ -156,7 +163,12 @@ Route::post('storeCrossOff','addcrossoff@store');
 Route::post('storeEstimater','addEstimater@store');
 Route::post('storeDamage','addDamage@store');
 Route::post('storeMaintinance','addMaintinance@store');
+
 Route::post('storeInsurancecompany','addInsuranceCompany@store');
+Route::get('/deleteInsuranceCompany','addInsuranceCompany@destroy');
+
+
+
 Route::post('storeTextStructure','addTextStructure@store');
 Route::post('storeEstimatevalue','addEstimatevalue@store');
 Route::post('storeAccedentSide','addAccedentSide@store');
@@ -173,6 +185,7 @@ Route::post('storeCity','addCity@store');
 Route::post('storeCertification','enter_certificate@store');
 
 Route::post('storeEstimateCar','addguesscar@store');
+Route::post('storBankinfo','addbankinfo@store');
 
 
 
