@@ -77,9 +77,21 @@ class addInsuranceCompany extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+        $newtel=$request->tel;
+        $newphone=$request->phone;
+        $newemail=$request->email;
+
+        enter_insurence_company::where('ins_num', '=', $lastnum)
+            ->where('ins_name','=',$lastname)
+            ->update(array('ins_num' =>$newnum , 'ins_name'=>$newname ,'ins_phone'=>$newtel , 'ins_jawwalphone'=>$newphone , 'ins_email'=>$newemail));
+        return $newemail;
     }
 
     /**
@@ -90,7 +102,7 @@ class addInsuranceCompany extends Controller
      */
 
     public function deleteCompany(){
-      return 'Hello';
+
     }
 
 

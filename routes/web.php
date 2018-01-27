@@ -176,6 +176,7 @@ Route::post('storeMaintinance','addMaintinance@store');
 
 Route::post('storeInsurancecompany','addInsuranceCompany@store');
 Route::get('/deleteInsuranceCompany','addInsuranceCompany@destroy');
+Route::get('/updateInsuranceCompany','addInsuranceCompany@update');
 
 
 
