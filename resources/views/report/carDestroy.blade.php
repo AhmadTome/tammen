@@ -11,14 +11,14 @@
     </div>
     <br>
     <div class='row'>
-        <div class='col-xs-4 col-xs-offset-1'>
+        <div class='col-xs-5'>
             <table class="table table-bordered">
                 <tr>
                     <th width="30%">
                         {{_t('production_date',$l)}}
                     </th>
                     <td colspan="2">
-
+                        {{date('Y-m-d')}}
                     </td>
                 </tr>
                 <tr>
@@ -26,9 +26,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-
+                        {{explode('-',$car['file_num'])[1]}}
                     </td>
                     <td>
+                        {{explode('-',$car['file_num'])[0]}}
                     </td>
                 </tr>
             </table>
@@ -40,6 +41,7 @@
                         {{_t('for',$l)}}
                     </th>
                     <td>
+                        {{$est['to']}}
                     </td>
                 </tr>
             </table>
@@ -48,14 +50,14 @@
     <br>
     
     <div class="row">
-        <div class="col-xs-4 col-xs-offset-2">
+        <div class="col-xs-6">
             <table class="table table-bordered cols-2">
                 <tr>
                     <th>
                         {{_t('acc_date',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est['accidantDate']}}
                     </td>
                 </tr>
                 <tr>
@@ -63,7 +65,7 @@
                         {{_t('exam_date',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est['checkDate']}}
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +73,7 @@
                         {{_t('car_num',$l)}}
                     </th>
                     <td>
-                    
+                        {{$car['ve_num']}}
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +81,7 @@
                         {{_t('car_model',$l)}}
                     </th>
                     <td>
-                    
+                        {{$car['ve_version']}}
                     </td>
                 </tr>
                 <tr>
@@ -87,7 +89,7 @@
                         {{_t('car_use',$l)}}
                     </th>
                     <td>
-                    
+                        {{$car['ve_used']}}
                     </td>
                 </tr>
                 <tr>
@@ -95,7 +97,7 @@
                         {{_t('meter',$l)}}
                     </th>
                     <td>
-                    
+                        {{$car->ve_speedometer}}
                     </td>
                 </tr>
             </table>
@@ -107,7 +109,7 @@
                         {{_t('name',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est['persone_name']}}
                     </td>
                 </tr>
                 <tr>
@@ -115,7 +117,7 @@
                         {{_t('ins_name',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est['person_insurances']}}
                     </td>
                 </tr>
                 <tr>
@@ -123,7 +125,7 @@
                         {{_t('ins_policy',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est['Insurance_policy']}}
                     </td>
                 </tr>
                 <tr>
@@ -131,7 +133,7 @@
                         {{_t('car_model_num',$l)}}
                     </th>
                     <td>
-                    
+                        {{$car['ve_version_num']}}
                     </td>
                 </tr>
                 <tr>
@@ -139,7 +141,7 @@
                         {{_t('damage',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est['DamageType']}}
                     </td>
                 </tr>
                 <tr>
@@ -147,7 +149,7 @@
                         {{_t('body_num',$l)}}
                     </th>
                     <td>
-                    
+                        {{$car['ve_body_num']}}
                     </td>
                 </tr>
             </table>
@@ -171,7 +173,12 @@
                 </th>
             </tr>
             <tr>
-                {{_td(3)}}
+                <td>
+                    {{$est['estimaterName']}}
+                </td>
+                <td>
+                </td>
+                <td></td>
             </tr>
         </table>
     </div>

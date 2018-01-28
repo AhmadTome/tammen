@@ -18,8 +18,10 @@
                 </tr>
                 <tr>
                     <td>
+                        {{$car['ve_produce_year']}}
                     </td>
                     <td>
+                        {{$car['ve_body_num']}}
                     </td>
                 </tr>
             </table>
@@ -36,10 +38,10 @@
                 </tr>
                 <tr>
                     <td>
-
+                        {{$car['ve_num']}}
                     </td>
                     <td>
-
+                        {{$car['file_num']}}
                     </td>
                 </tr>
             </table>
@@ -55,7 +57,7 @@
                         {{_t('production_date',$l)}}
                     </th>
                     <td colspan="2" width="70%">
-
+                        {{date('Y-m-d')}}
                     </td>
                 </tr>
                 <tr>
@@ -63,8 +65,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
+                        {{explode('-',$car['file_num'])[1]}}
                     </td>
                     <td width="50%">
+                        {{explode('-',$car['file_num'])[0]}}
                     </td>
                 </tr>
                 <tr>
@@ -81,17 +85,19 @@
         <div class="col-xs-4 col-xs-push-2">
             <table class="table table-bordered">
                 <tr>
-                    <th class="gray-back">
-
+                    <th width="30%" class="gray-back">
+                        {{_t('for',$l)}}
                     </th>
                     <td>
-
+                        {{$est['to']}}
                     </td>
                 </tr>
                 <tr>
                     <th class="gray-back">
+                        {{_t('city',$l)}}
                     </th>
                     <td>
+                        {{$est['city']}}
                     </td>
                 </tr>
                 <tr>
@@ -99,6 +105,7 @@
                         {{_t('jawwal',$l)}}
                     </th>
                     <td>
+
                     </td>
                 </tr>
             </table>    
@@ -114,7 +121,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th width="30%"> {{_t('claim_num',$l)}} </th>
-                    <td width="70%"> </td>
+                    <td width="70%"> {{$est['climeNumber']}} </td>
                 </tr>
             </table>
         </div>
@@ -122,8 +129,8 @@
             <table class="table table-bordered">
                 <tr>
                     <th width="30%"> {{_t('file_num',$l)}} </th>
-                    <td width="20%"> </td>
-                    <td width="50%"> </td>
+                    <td width="20%"> {{explode('-',$car['file_num'])[1]}} </td>
+                    <td width="50%"> {{explode('-',$car['file_num'])[0]}}  </td>
                 </tr>
             </table>
         </div>
@@ -141,6 +148,7 @@
                         {{_t('acc_date',$l)}}
                     </th>
                     <td>
+                        {{$est['accidantDate']}}
                     </td>
                 </tr>
                 <tr>
@@ -148,6 +156,7 @@
                         {{_t('car_num',$l)}}
                     </th>
                     <td>
+                        {{$car['ve_num']}}
                     </td>
                 </tr>
             </table>
@@ -158,6 +167,7 @@
                         {{_t('production_year',$l)}}
                     </th>
                     <td>
+                        {{$car['ve_produce_year']}}
                     </td>
                 </tr>
             </table>
@@ -170,6 +180,7 @@
                         {{_t('ins_policy',$l)}}
                     </th>
                     <td>
+                        {{$est['Insurance_policy']}}
                     </td>
                 </tr>
             </table>
@@ -180,6 +191,8 @@
                         {{_t('surv_pay',$l)}}
                     </th>
                     <td>
+                        <?php $total = $est['gelary']; ?>
+                        {{$est['gelary']}}
                     </td>
                 </tr>
                 <tr>
@@ -187,25 +200,34 @@
                         {{_t('travel',$l)}}
                     </th>
                     <td>
+                        <?php $total += $est['transport']; ?>
+                        {{$est['transport']}}
                     </td>
                 </tr>
                 <tr>
                     <th width="30%">
                         {{_t('picture',$l)}}
                     </th>
-                    <td></td>
+                    <td>
+                        
+                    </td>
                 </tr>
                 <tr>
                     <th width="30%">
                         {{_t('disk_money',$l)}}
                     </th>
-                    <td></td>
+                    <td>
+                        <?php $total += $est['officeCost']; ?>
+                        {{$est['officeCost']}}
+                    </td>
                 </tr>
                 <tr>
                     <th width="30%">
                         {{_t('total',$l)}}
                     </th>
-                    <td></td>
+                    <td>
+                        {{$total}}
+                    </td>
                 </tr>
             </table>
             <br>

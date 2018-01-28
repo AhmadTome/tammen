@@ -7,6 +7,7 @@ use App\enter_car_info;
 use App\CarVisit;
 use App\enter_insurence_company;
 use App\enter_personalinfo;
+use App\estimate_car;
 use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
@@ -42,31 +43,36 @@ class ReportController extends Controller
     //تقرير بيانات مركبة
     public function carInfo($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.carInfo',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.carInfo',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //تقرير حساب ملف
     public function fileAccount($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.fileAccount',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.fileAccount',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //تقرير حساب ملف شخصي
     public function personalFileAccount($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.personalFileAccount',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.personalFileAccount',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //تقرير شطب مركبة
     public function carDestroy($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.carDestroy',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.carDestroy',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //تقرير ثمن المركبة
     public function carPrice($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.carPrice',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.carPrice',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //تقرير ثمن المركبة مع حطام
@@ -90,7 +96,9 @@ class ReportController extends Controller
     //كشف الزيارات
     public function carVisit($fileId,$l = 'AR'){
         $From = Input::get('From',date('Y-m-d'));
+        if($From == null) $From = date('Y-m-d');
         $To = Input::get('To',date('Y-m-d'));
+        if($To == null) $To = date('Y-m-d');
         $car = enter_car_info::find($fileId);
         $visits = CarVisit::where('vis_date','>=',$From)->where('vis_date','<=',$To)->where('vis_vehicle_num',$car->ve_num)->get();
         return view('report.carVisit',['car' => $car,'l' => $l,'visits' => $visits]);
