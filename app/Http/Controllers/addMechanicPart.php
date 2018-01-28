@@ -39,7 +39,12 @@ class addMechanicPart extends Controller
         $user=new enter_mechanic_part;
         $user->mec_num=Input::get('IdMechNum');
         $user->mec_name=Input::get('MechName');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال الضرر بنجاح");
+        }else{
+            session()->flash("notif","لم يتم ادخال الضرر لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addMechParts');
 
 
@@ -74,9 +79,18 @@ class addMechanicPart extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_mechanic_part::where('mec_num', '=', $lastnum)
+            ->where('mec_name','=',$lastname)
+            ->update(array('mec_num' =>$newnum , 'mec_name'=>$newname ));
     }
 
     /**
@@ -85,8 +99,11 @@ class addMechanicPart extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_mechanic_part::where('mec_num','=',$num)->where('mec_name','=',$name)->delete();
+        return response()->json();
     }
 }

@@ -39,7 +39,12 @@ class addDamage extends Controller
         $user=new Damage;
         $user->dam_num=Input::get('IdDamNum');
         $user->dam_name=Input::get('damName');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال القطعة الميكانيكية بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال القطعة الميكانيكية لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addDamage');
     }
 
@@ -72,9 +77,19 @@ class addDamage extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        Damage::where('dam_num', '=', $lastnum)
+            ->where('dam_name','=',$lastname)
+            ->update(array('dam_num' =>$newnum , 'dam_name'=>$newname ));
+
     }
 
     /**
@@ -83,8 +98,11 @@ class addDamage extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        Damage::where('dam_num','=',$num)->where('dam_name','=',$name)->delete();
+        return response()->json();
     }
 }

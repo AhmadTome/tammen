@@ -39,6 +39,19 @@
     <!--Body-->
 
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+        <div class="container">
+            @if(session()->has('notif'))
+
+                <div class="row">
+                    <div class="alert alert-success" dir="rtl">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{ session('notif') }}</strong>
+
+                    </div>
+                </div>
+            @endif
+            @yield('content')
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading text-center PanelHeadingCss">ادخال شركة تأمين</div>
             <div class="panel-body PanelBodyCss">
@@ -330,6 +343,8 @@
                 success: function(data) {
                     //$('.item' + $('.did').text()).remove();
                     console.log(data)
+
+                    location.reload();
                 },
                 error:function (data) {
                     console.log('error')

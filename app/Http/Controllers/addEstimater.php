@@ -43,7 +43,12 @@ class addEstimater extends Controller
         $user->nes_name=Input::get('name');
         $user->nes_authorization_num=Input::get('authNumber');
         $user->nes_signature=Input::get('signature');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال المخمن بنجاح بنجاح");
+        }else{
+            session()->flash("notif","لم يتم ادخال المخمن لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addEstimater');
 
 
@@ -79,9 +84,21 @@ class addEstimater extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+        $newestimaterid=$request->estimaterid;
+        $newsign=$request->sign;
+
+
+        Estimater::where('nes_authorization_num', '=', $lastnum)
+            ->where('nes_name','=',$lastname)
+            ->update(array('nes_num' =>$newnum , 'nes_name'=>$newname ,'nes_authorization_num'=>$newestimaterid , 'nes_signature'=>$newsign ));
+
     }
 
     /**
@@ -90,8 +107,11 @@ class addEstimater extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        Estimater::where('nes_authorization_num','=',$num)->where('nes_name','=',$name)->delete();
+        return response()->json();
     }
 }

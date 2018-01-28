@@ -42,7 +42,12 @@ class enter_certificate extends Controller
             $user = new add_certificate;
             $user->cer_text=$sku;
             $user->save();
+
         }
+
+
+     session()->flash("notif","تم ادخال الشهادات بنجاح");
+
         return redirect()->to('/addCertification');
     }
 
@@ -75,9 +80,17 @@ class enter_certificate extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastname=$request->lastname;
+
+
+        $newname=$request->name;
+
+
+        add_certificate::where('cer_text','=',$lastname)
+            ->update(array('cer_text' =>$newname ));
+
     }
 
     /**
@@ -86,8 +99,11 @@ class enter_certificate extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+        $name = $request->name;
+        add_certificate::where('cer_text','=',$name)->delete();
+        return response()->json();
     }
 }
