@@ -44,7 +44,12 @@ class addAccedentSide extends Controller
         $user=new enter_accedent_side;
         $user->si_num=Input::get('accSideNum');
         $user->si_name=Input::get('accSideValue');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال طرف حادث بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال طرف حادث لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addAccedentSide');
     }
 
@@ -77,9 +82,19 @@ class addAccedentSide extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_accedent_side::where('si_num', '=', $lastnum)
+            ->where('si_name','=',$lastname)
+            ->update(array('si_num' =>$newnum , 'si_name'=>$newname ));
+
     }
 
     /**
@@ -88,8 +103,11 @@ class addAccedentSide extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_accedent_side::where('si_num','=',$num)->where('si_name','=',$name)->delete();
+        return response()->json();
     }
 }

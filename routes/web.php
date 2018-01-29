@@ -22,9 +22,9 @@ Route::get('/garage', function () {
 });
 
 Route::get('/crossOff', function () {
+    $crossoff=\App\crossoff::all();
 
-
-    return view('crossOff');
+    return view('crossOff')->with('crossoff',$crossoff);
 });
 
 Route::get('/addEstimater', function () {
@@ -41,8 +41,8 @@ $damage=\App\Damage::all();
 
 Route::get('/addMaintinance', function () {
 
-
-    return view('addMaintinance');
+    $maintinance=\App\enter_maintinance::all();
+    return view('addMaintinance')->with('maintinance',$maintinance);
 });
 
 Route::get('/addInsuranceCompany', function () {
@@ -53,27 +53,27 @@ $ins=\App\enter_insurence_company::all();
 });
 
 Route::get('/addTextStructure', function () {
+    $text=\App\enter_structer_text::all();
 
-
-    return view('addTextStructure');
+    return view('addTextStructure')->with('text',$text);
 });
 
 Route::get('/addEstimatevalue', function () {
+    $estimatevalue=\App\enter_estimit_value::all();
 
-
-    return view('addEstimatevalue');
+    return view('addEstimatevalue')->with('estimatevalue',$estimatevalue);
 });
 
 Route::get('/addAccedentSide', function () {
+    $accedentside=\App\enter_accedent_side::all();
 
-
-    return view('addAccedentSide');
+    return view('addAccedentSide')->with('accedentside',$accedentside);
 });
 
 Route::get('/dropStatment', function () {
+    $dropstatment=\App\enter_Drop_statment::all();
 
-
-    return view('StatementDropCar');
+    return view('StatementDropCar')->with('dropstatment',$dropstatment);
 });
 
 Route::get('/addpersonalInformation', function () {
@@ -95,9 +95,9 @@ Route::get('/addMechParts', function () {
 });
 
 Route::get('/addBodyParts', function () {
+    $bodypart=\App\enter_body_part::all();
 
-
-    return view('addBodyParts');
+    return view('addBodyParts')->with('bodypart',$bodypart);
 });
 
 Route::get('/dropvalue', function () {
@@ -120,8 +120,8 @@ Route::get('/carGuess', function () {
 
 Route::get('/addCity', function () {
 
-
-    return view('addCity');
+    $city=\App\enter_city::all();
+    return view('addCity')->with('city',$city);
 });
 
 Route::get('/addCertification', function () {
@@ -173,8 +173,11 @@ Route::get('/deletegarage','addgarage@destroy');
 Route::get('/updategarage','addgarage@update');
 
 
-
+// cross off transaction
 Route::post('storeCrossOff','addcrossoff@store');
+Route::get('/deletecrossoff','addcrossoff@destroy');
+Route::get('/updatecrossoff','addcrossoff@update');
+
 
 //Estimater transaction
 Route::post('storeEstimater','addEstimater@store');
@@ -188,26 +191,43 @@ Route::get('/updatedamage','addDamage@update');
 
 
 
-
+// maintinance part transaction
 Route::post('storeMaintinance','addMaintinance@store');
+Route::get('/deletemaintinance','addMaintinance@destroy');
+Route::get('/updatemaintinance','addMaintinance@update');
 
-// insyrance company transaction
+
+// insurance company transaction
 Route::post('storeInsurancecompany','addInsuranceCompany@store');
 Route::get('/deleteInsuranceCompany','addInsuranceCompany@destroy');
 Route::get('/updateInsuranceCompany','addInsuranceCompany@update');
 
 
-
+// text structer transaction
 Route::post('storeTextStructure','addTextStructure@store');
+Route::get('/deletetext','addTextStructure@destroy');
+Route::get('/updatetext','addTextStructure@update');
+
+// Estimate value Transaction
 Route::post('storeEstimatevalue','addEstimatevalue@store');
+Route::get('/deleteestimatevalue','addEstimatevalue@destroy');
+Route::get('/updateestimatevalue','addEstimatevalue@update');
+
+
+// accedent side Transaction
 Route::post('storeAccedentSide','addAccedentSide@store');
+Route::get('/deleteaccedentside','addAccedentSide@destroy');
+Route::get('/updateaccedentside','addAccedentSide@update');
+
+
+
 Route::post('storepersonalInformation','addpersonalInformation@store');
 Route::post('storeCarInformation','addcarInformation@store');
 Route::post('storeMaintinancework','addmaintinancework@store');
 Route::post('storeMechanicwork','addMechanicwork@store');
 Route::post('storeBodywork','addBodywork@store');
 
-
+// mechanic part transaction
 Route::post('storeMechanicParts','addMechanicPart@store');
 Route::get('/deletemechpart','addMechanicPart@destroy');
 Route::get('/updatemechpart','addMechanicPart@update');
@@ -215,11 +235,27 @@ Route::get('/updatemechpart','addMechanicPart@update');
 
 
 
-
+// Body part transaction
 Route::post('storeBodyParts','addBodyPart@store');
+Route::get('/deletebodypart','addBodyPart@destroy');
+Route::get('/updatebodypart','addBodyPart@update');
+
+
+
 Route::post('saveimage','addImages@store');
+
+// Drop statment Transaction
 Route::post('storeDropStatment','addDropStatment@store');
+Route::get('/deletedropstatment','addDropStatment@destroy');
+Route::get('/updatedropstatment','addDropStatment@update');
+
+
+// City Transaction
 Route::post('storeCity','addCity@store');
+Route::get('/deletecity','addCity@destroy');
+Route::get('/updatecity','addCity@update');
+
+
 
 //certification constant input transaction
 Route::post('storeCertificat','enter_certificate@store');

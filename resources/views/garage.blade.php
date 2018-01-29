@@ -24,13 +24,13 @@
 -->
     <div class="row headrDiv">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-           @include('logodiv');
+           @include('logodiv')
 
         </div>
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-       @include('mainpar');
+       @include('mainpar')
 
     </div>
 
@@ -111,8 +111,8 @@
                         </div>
 
 
-                        <table class="table" dir="rtl" border="1" id="mytable">
-                            <tbody>
+                        <table class="table" dir="rtl" border="0" id="mytable">
+                            <tbody style="text-align: center">
 
                             <td><label>الرقم</label></td>
                             <td><label>اسم الكراج</label></td>
@@ -230,7 +230,7 @@
 
     <!--footer-->
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-       @include('footer');
+       @include('footer')
 
     </div>
     <!--/footer-->

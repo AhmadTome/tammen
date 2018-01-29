@@ -40,7 +40,12 @@ class addcrossoff extends Controller
         $user=new crossoff;
         $user->scr_num=Input::get('CrossNum');
         $user->scr_name=Input::get('txtCroosOff');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال نص الشطب بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال نص الشطب لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('crossOff');
     }
 
@@ -73,9 +78,17 @@ class addcrossoff extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastname=$request->lastname;
+
+
+        $newname=$request->name;
+
+
+        crossoff::where('scr_name','=',$lastname)
+            ->update(array('scr_name' =>$newname ));
+
     }
 
     /**
@@ -84,8 +97,11 @@ class addcrossoff extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+        $name = $request->name;
+        crossoff::where('scr_name','=',$name)->delete();
+        return response()->json();
     }
 }

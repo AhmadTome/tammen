@@ -41,7 +41,12 @@ class addEstimatevalue extends Controller
         $user->estim_num=Input::get('textNum');
         $user->estim_name=Input::get('textName');
 
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال قيمة التخمين بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال قيمة التخمين لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addEstimatevalue');
 
     }
@@ -75,9 +80,19 @@ class addEstimatevalue extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_estimit_value::where('estim_num', '=', $lastnum)
+            ->where('estim_name','=',$lastname)
+            ->update(array('estim_num' =>$newnum , 'estim_name'=>$newname ));
+
     }
 
     /**
@@ -86,8 +101,11 @@ class addEstimatevalue extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_estimit_value::where('estim_num','=',$num)->where('estim_name','=',$name)->delete();
+        return response()->json();
     }
 }

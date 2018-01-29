@@ -87,8 +87,8 @@
                         <label class="control-label col-sm-7"></label>
                     </div>
 
-                    <table class="table" dir="rtl" border="1" id="mytable">
-                        <tbody>
+                    <table class="table" dir="rtl" border="0" id="mytable">
+                        <tbody style="text-align: center">
 
                         <td><label>الشهادة</label></td>
 
@@ -127,7 +127,7 @@
                                         <div class="EditContent">
 
                                             <div class="form-group" dir="rtl">
-                                                <label class="control-label col-sm-2 pull-right"  >اسم الشركة :</label>
+                                                <label class="control-label col-sm-2 pull-right"  >الشهادة :</label>
                                                 <div class="col-sm-10 pull-right">
                                                     <textarea class="form-control" id="insName" rows="5"
                                                         ></textarea>
