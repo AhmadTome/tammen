@@ -16,6 +16,7 @@ use App\mechanic_vehicle_work;
 use Illuminate\Http\Request;
 use App\getCarInfo;
 use App\carcost;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class addguesscar extends Controller
@@ -135,7 +136,7 @@ return $finalPercantige;
         $user->DamagePercantige=Input::get('TechnicalDamage');
 
         $user->DamageCost=Input::get('DebrisPrice');
-        $user->visitCost=Input::get('dropPercantige');
+        $user->visitCost=Input::get('visitcost');
         $user->DamageDiscription=Input::get('DamegeDescription');
         $user->EstimateNote=Input::get('noteGuess');
         $user->carEstimateNote=Input::get('noteGuessCar');
@@ -176,9 +177,59 @@ return $finalPercantige;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $fileNumber=Input::get('filenumber');
+        $to=Input::get('ToPerson');
+        $climeNumber=Input::get('ClaimNumber');
+        $insurance_company=Input::get('insuranceCompany');
+        $city=Input::get('City');
+        $persone_name=Input::get('personName');
+        $person_insurances=Input::get('InsurancePersonal');
+        $person_insurance_note=Input::get('personNote');
+        $coverDamage=Input::get('coverDamage');
+        $registerDate=Input::get('dateRegister');
+        $accidantDate=Input::get('accidentDate');
+        $checkDate=Input::get('checkDate');
+        $Insurance_policy=Input::get('InsuranceNumber2');
+        $DamageType=Input::get('damageType');
+        $estimaterName=Input::get('GuessNumber');
+        $Garage=Input::get('garageNumber');
+       // $carPrice=Input::get('carPrice');
+        $transport=Input::get('visit');
+        $gelary=Input::get('photograper');
+        $officeCost=Input::get('officeCost');
+        //$finalPriceForMaintinance=Input::get('cost');
+       // $dropPercantige=Input::get('dropPercantige');
+      //  $dropCost=Input::get('dropPercantigePrice');
+        $estimatePercantige=Input::get('Guesspersantige');
+      //  $DamagePercantige=Input::get('TechnicalDamage');
+
+        $DamageCost=Input::get('DebrisPrice');
+        $visitCost=Input::get('visitcost');
+        $DamageDiscription=Input::get('DamegeDescription');
+        $EstimateNote=Input::get('noteGuess');
+        $carEstimateNote=Input::get('noteGuessCar');
+        $Attachment=Input::get('AttachmentsGuess');
+        $DestroyCarTo=Input::get('crossOffNamer');
+        $DestroyText=Input::get('crossOffNote');
+
+        $lastid=Input::get('carInfo_select');
+
+        estimate_car::where('fileNumber', '=', $lastid)
+            ->update(array('fileNumber' =>$fileNumber , 'to'=>$to ,'climeNumber'=>$climeNumber , 'insurance_company'=>$insurance_company ,
+                'city'=>$city,'persone_name'=>$persone_name,'person_insurances'=>$person_insurances,
+                'person_insurance_note'=>$person_insurance_note,'coverDamage'=>$coverDamage,'registerDate'=>$registerDate,
+                'accidantDate'=>$accidantDate,'checkDate'=>$checkDate,'Insurance_policy'=>$Insurance_policy,
+                'DamageType'=>$DamageType,'estimaterName'=>$estimaterName,'Garage'=>$Garage,
+                'transport'=>$transport,'gelary'=>$gelary,'officeCost'=>$officeCost,
+                'estimatePercantige'=>$estimatePercantige,'DamageCost'=>$DamageCost
+            ,'visitCost'=>$visitCost,'DamageDiscription'=>$DamageDiscription
+            ,'EstimateNote'=>$EstimateNote,'carEstimateNote'=>$carEstimateNote
+            ,'Attachment'=>$Attachment,'DestroyCarTo'=>$DestroyCarTo
+            ,'DestroyText'=>$DestroyText));
+
+        return redirect()->to('/CarGuessTransaction');
     }
 
     /**
@@ -187,8 +238,23 @@ return $finalPercantige;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+
+        estimate_car::where('fileNumber','=',$num)->delete();
+        return response()->json();
+    }
+    public function findallinfo(Request $request){
+        $data=estimate_car::select('fileNumber','to','climeNumber','insurance_company','city',
+            'persone_name','person_insurances','person_insurance_note','coverDamage','registerDate','accidantDate'
+            ,'checkDate','Insurance_policy','DamageType','estimaterName'
+            ,'Garage','carPrice','transport','gelary'
+            ,'officeCost','finalPriceForMaintinance','dropPercantige','dropCost'
+            ,'estimatePercantige','DamagePercantige','DamageCost','visitCost'
+            ,'DamageDiscription','EstimateNote','carEstimateNote','Attachment'
+            ,'DestroyCarTo','DestroyText')
+            ->where('fileNumber',$request->id)->take(1500)->get();
+        return response()->json($data);
     }
 }

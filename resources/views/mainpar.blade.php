@@ -22,20 +22,19 @@
                         <li><a href="/report/car/bank">تقرير كشف بنك</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">التعديلات <span class="caret"></span></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">الاستعلامات و التعديلات <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">First Item</a></li>
-                        <li><a href="#">Second Item</a></li>
-                        <li><a href="#">Third Item</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('personalinformationTransaction') }}">بيانات شخصية</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('carinfoTransaction') }}">بيانات مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('CarGuessTransaction') }}">تخمين مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('certificationTransaction') }}">كشف شهادة</a></li>
+                        <li role="presentation" class="divider"></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">الاستعلامات <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">First Item</a></li>
-                        <li><a href="#">Second Item</a></li>
-                        <li><a href="#">Third Item</a></li>
-                    </ul>
-                </li>
+
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">مدخلات ثابتة <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" style="width:290px; overflow:scroll; height: 500px;">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addEstimater') }}">ادخال مخمن</a></li>

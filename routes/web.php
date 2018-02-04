@@ -11,9 +11,17 @@
 |
 */
 
+use App\Damage;
+use App\enter_city;
+use App\enter_garage;
+use App\enter_insurence_company;
+use App\enter_personalInfo;
+use App\Estimater;
+use App\getCarInfo;
+
 Route::get('/', function () {
 
-    return view('garage');
+    return view('auth.login');
 });
 
 Route::get('/garage', function () {
@@ -76,17 +84,32 @@ Route::get('/dropStatment', function () {
     return view('StatementDropCar')->with('dropstatment',$dropstatment);
 });
 
+
+// personal Information
 Route::get('/addpersonalInformation', function () {
 
 
     return view('MainInput.personalInformation');
 });
+Route::get('/personalinformationTransaction', function () {
 
+    $Id=\App\enter_personalInfo::all();
+    return view('EditDelete.personalinformationTransaction')->with('Id',$Id);
+});
+
+//Car Information
 Route::get('/addCarInformation', function () {
 
 
     return view('MainInput.CarInformation');
 });
+Route::get('/carinfoTransaction', function () {
+    $carInfo=\App\enter_car_info::all();
+
+    return view('EditDelete.carinfoTransaction')->with('carInfo',$carInfo);
+});
+
+
 
 Route::get('/addMechParts', function () {
 
@@ -112,11 +135,27 @@ Route::get('/carCost', function () {
     return view('MainInput.carCost');
 });
 
+// Car Guess Transaction
 Route::get('/carGuess', function () {
 
 
     return view('MainInput.carGuess');
 });
+Route::get('/CarGuessTransaction', function () {
+    $carInfo=getCarInfo::all();
+    $insuranceCompany=enter_insurence_company::all();
+    $cities=enter_city::all();
+    $Id = enter_personalInfo::all();
+    $DamageType=Damage::all();
+    $Estimater=Estimater::all();
+    $Garage=enter_garage::all();
+
+    return view('EditDelete.CarGuessTransaction')->with('carInfo',$carInfo)->with('insuranceCompany',$insuranceCompany)
+        ->with('cities',$cities)->with('Id',$Id)->with('DamageType',$DamageType)->with('Estimater',$Estimater)
+        ->with('Garage',$Garage);;
+});
+
+
 
 Route::get('/addCity', function () {
 
@@ -130,6 +169,7 @@ Route::get('/addCertification', function () {
     return view('addCertification')->with('cert',$cert);
 });
 
+//Bank Transaction
 Route::get('/BankDisclosure', function () {
     $carInfo = \App\getCarInfo::all();
     $Id =\App\enter_personalInfo::all();
@@ -137,18 +177,37 @@ Route::get('/BankDisclosure', function () {
 
     return view('MainInput.BankDisclosure')->with('carInfo',$carInfo)->with('Id',$Id)->with('estimatevalue',$estimatevalue);
 });
+Route::get('/BankTransaction', function () {
+    $carInfo = \App\getCarInfo::all();
+    $Id =\App\enter_personalInfo::all();
+    $estimatevalue = \App\enter_estimit_value::all();
 
+    return view('EditDelete.BankTransaction')->with('carInfo',$carInfo)->with('Id',$Id)->with('estimatevalue',$estimatevalue);
+});
+
+// Certifaction Main Input Transaction
 Route::get('/CertificationInput', function () {
     $carInfo = \App\getCarInfo::all();
     $estimater =\App\Estimater::all();
     $certificate=\App\add_certificate::all();
     return view('MainInput.CertificationInput')->with('carInfo',$carInfo)->with('estimater',$estimater)->with('certificate',$certificate);
 });
+Route::get('/certificationTransaction', function () {
+    $carInfo = \App\getCarInfo::all();
+    $estimater =\App\Estimater::all();
+    $certificate=\App\add_certificate::all();
+    return view('EditDelete.certificationTransaction')->with('carInfo',$carInfo)->with('estimater',$estimater)->with('certificate',$certificate);
+});
 
 
 Route::get('/findEstimaterinfo','addCertification@estimaterinfo');
 
+// car Guess Transaction
 Route::get('/carGuess','addguesscar@index');
+Route::get('/getallinfo','addguesscar@findallinfo');
+Route::get('/deleteGuess','addguesscar@destroy');
+Route::post('editGuess','addguesscar@update');
+
 
 Route::get('/carCost','carcosts@index');
 Route::post('calculateCarCost','carcosts@calculate');
@@ -220,10 +279,26 @@ Route::get('/deleteaccedentside','addAccedentSide@destroy');
 Route::get('/updateaccedentside','addAccedentSide@update');
 
 
-
+// personal transation
 Route::post('storepersonalInformation','addpersonalInformation@store');
+Route::get('/findpersoninfo','addpersonalInformation@findinfo');
+Route::get('/deletpersoninfo','addpersonalInformation@destroy');
+Route::get('/editpersoninfo','addpersonalInformation@update');
+
+
+// Car Information Transaction
 Route::post('storeCarInformation','addcarInformation@store');
+Route::get('/getalldataaboutcar','addcarInformation@findcarinfo');
+Route::get('/deletcar','addcarInformation@destroy');
+Route::post('EditCarInformation','addcarInformation@update');
+
+
+
+
 Route::post('storeMaintinancework','addmaintinancework@store');
+//Route::get('/maintinancework','addmaintinancework@store');
+
+
 Route::post('storeMechanicwork','addMechanicwork@store');
 Route::post('storeBodywork','addBodywork@store');
 
@@ -266,15 +341,27 @@ Route::get('/updatecert','enter_certificate@update');
 
 
 Route::post('storeEstimateCar','addguesscar@store');
-Route::post('storBankinfo','addbankinfo@store');
 
+// Bank Transaction
+Route::post('storBankinfo','addbankinfo@store');
+Route::get('/getbankonfo','addbankinfo@findbankinfo');
+Route::get('/getallbankinfo','addbankinfo@findallbankinfo');
+Route::get('/deletbankfile','addbankinfo@destroy');
+Route::post('EditBankinfo','addbankinfo@update');
+
+
+// certification main input Transaction
 Route::post('storeCertification','addCertification@store');
+Route::get('/getallinfoforcert','addCertification@findcertinfo');
+Route::get('/deletcert','addCertification@destroy');
+Route::post('EditCertification','addCertification@update');
+
 
 
 //Route::get('/addInsuranceCompany','addInsuranceCompany@findCarInfoforGesscar');
 
 
-
+Route::get('/uploadimage','addImages@store');
 
 
 

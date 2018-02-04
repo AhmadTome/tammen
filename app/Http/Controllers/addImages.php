@@ -37,7 +37,31 @@ class addImages extends Controller
     public function store(Request $request)
     {
 
+        if($request->imge != null){
+            foreach($request->imge as $file) {
 
+                $file->move(base_path().'/public/uploads/', $file->getClientOriginalName());
+                $user=new add_image;
+                $user->im_vehicl_num=$request->carnumber;
+                $user->file_number=$request->filenumber;
+                $user->im_photo_date=$request->date;
+                $user->path='/public/uploads/'.$file->getClientOriginalName();
+                $user->save();
+            }
+        }
+
+
+
+        else{
+            return 'No image selected';
+        }
+        return redirect()->to('addcarTransaction');
+
+
+
+
+
+/*
             if($request->hasFile('images')){
                 foreach($request->file('images') as $file) {
 
@@ -57,6 +81,8 @@ class addImages extends Controller
             return 'No image selected';
         }
 return redirect()->to('addcarTransaction');
+
+*/
     }
 
 

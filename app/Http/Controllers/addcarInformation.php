@@ -38,11 +38,11 @@ class addcarInformation extends Controller
     public function store(Request $request)
     {
         $output=Input::get('name');
-$attach=' ';
-        foreach ($output as $sku){
-            $attach = $attach.','.$sku;
-        }
-
+$attach='';
+    for($i=0;$i<count($output)-1;$i++){
+        $attach=$attach.$output[$i].',';
+    }
+        $attach=$attach.$output[count($output)-1];
 
         $user=new enter_car_info;
 
@@ -77,8 +77,7 @@ $attach=' ';
         $user->save();
 
 
-        return redirect()->to('MainInput.CarInformation');
-
+        return redirect()->to('/carinfoTransaction');
 
 
     }
@@ -112,9 +111,53 @@ $attach=' ';
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $output=Input::get('name');
+        $attach='';
+        for($i=0;$i<count($output)-1;$i++){
+            $attach=$attach.$output[$i].',';
+        }
+        $attach=$attach.$output[count($output)-1];
+        $filenumber=Input::get('fileNumber');
+        $carnumber=Input::get('carNumber');
+        $bodynumber=Input::get('bodyNumber');
+        $enginnumber=Input::get('EnginNumber');
+        $enginsize=Input::get('Enginsize');
+
+        $carversion=Input::get('carVersion');
+        $producesyear=Input::get('producedYear');
+        $carused=Input::get('carused');
+        $carcolor=Input::get('carColor');
+        $weight=Input::get('weight');
+
+        $speedmeter=Input::get('speedMeter');
+        $gastype=Input::get('gasType');
+        $power=Input::get('power');
+        $geartype=Input::get('gearType');
+        $insurancenumber=Input::get('insuranceNumber');
+
+        $startinsurance=Input::get('startInsurance');
+        $endinsurance=Input::get('endInsurance');
+        $endlicense=Input::get('endlicense');
+        $note=Input::get('note');
+        $numbercarversion=Input::get('NumberCarVersion');
+
+        $passengernumber=Input::get('passengerNumber');
+
+        $seatsCloseofDriver=Input::get('seatsCloseofDriver');
+$lastfilenum=Input::get('carInfo_select');
+        enter_car_info::where('file_num', '=', $lastfilenum)
+            ->update(array('file_num' =>$filenumber , 've_num'=>$carnumber ,'ve_body_num'=>$bodynumber , 've_engin_num'=>$enginnumber ,
+                've_engin_size'=>$enginsize,'ve_version'=>$carversion,'ve_produce_year'=>$producesyear,
+                've_used'=>$carused,'ve_color'=>$carcolor,'ve_weight'=>$weight,
+                  've_speedometer'=>$speedmeter,'ve_gas_type'=>$gastype,'ve_power_push'=>$power,
+                've_gear_type'=>$geartype,'ve_insurence_num'=>$insurancenumber,'ve_insurence_statr_date'=>$startinsurance,
+                've_insurence_end_date'=>$endinsurance,'ve_license_end_date'=>$endlicense,'ve_note'=>$note,
+                've_version_num'=>$numbercarversion,'seat_num'=>$passengernumber,'attachments'=>$attach,'seat_close_Driver'=>$seatsCloseofDriver));
+
+        return redirect()->to('/carinfoTransaction');
+
     }
 
     /**
@@ -123,8 +166,22 @@ $attach=' ';
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+
+        enter_car_info::where('file_num','=',$num)->delete();
+        return response()->json();
+    }
+
+
+    public function findcarinfo(Request $request){
+        $data=enter_car_info::select('file_num','ve_num','ve_body_num','ve_engin_num','ve_engin_size',
+            've_version','ve_produce_year','ve_used','ve_color','ve_weight','ve_speedometer'
+            ,'ve_gas_type','ve_power_push','ve_gear_type','ve_insurence_num'
+            ,'ve_insurence_statr_date','ve_insurence_end_date','ve_license_end_date','ve_note'
+            ,'ve_version_num','seat_num','attachments','seat_close_Driver')
+            ->where('file_num',$request->id)->take(1500)->get();
+        return response()->json($data);
     }
 }

@@ -79,9 +79,22 @@ return redirect()->to('/addpersonalInformation');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastid=$request->lastid;
+
+
+        $newid=$request->id;
+        $newname=$request->name;
+        $newaddress=$request->address;
+        $newphone=$request->phonenumber;
+        $newtel=$request->telnumber;
+        $newemail=$request->email;
+        $newnote=$request->note;
+
+        enter_personalInfo::where('id', '=', $lastid)
+            ->update(array('id' =>$newid , 'name'=>$newname ,'address'=>$newaddress , 'phone_num'=>$newphone , 'tel_num'=>$newtel,'email'=>$newemail,'note'=>$newnote));
+
     }
 
     /**
@@ -90,8 +103,16 @@ return redirect()->to('/addpersonalInformation');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+
+        enter_personalInfo::where('id','=',$num)->delete();
+        return response()->json();
+    }
+
+    public function findinfo(Request $request){
+        $data=enter_personalInfo::select('id','name','address','phone_num','tel_num','email','note')->where('id',$request->id)->take(1500)->get();
+        return response()->json($data);
     }
 }

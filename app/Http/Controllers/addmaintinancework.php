@@ -40,6 +40,7 @@ class addmaintinancework extends Controller
 
 
       $data=Input::get('maintinacetable');
+       // $data = $request->maintinacetable;
      foreach ($data as $item){
        $user=new maintenance_vehicle_work;
 
@@ -53,7 +54,12 @@ class addmaintinancework extends Controller
          $user->mawo_limit_name=$item['limit'];
          $user->mawo_work_name=$item['work'];
          $user->file_number=$item['fileNumber'];
-         $user->save();
+         if($user->save()){
+             session()->flash("notif","تم ادخال اعمال صيانة بنجاح ");
+         }else{
+             session()->flash("notif","لم يتم ادخال اعمال صيانة لحدوث خطأ في الادخال");
+
+         }
 
      }
         return redirect()->to('/addcarTransaction');
