@@ -22,6 +22,7 @@
                         {{_t('benif_name',$l)}}
                     </th>
                     <td>
+                        {{$est['persone_name']}}
                     </td>
                 </tr>
             </table>
@@ -33,6 +34,7 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <td>
+                        {{$company->ins_name}}
                     </td>
                 </tr>
             </table>
@@ -44,7 +46,7 @@
                         {{_t('ins_company_num',$l)}}
                     </th>
                     <td>
-                    
+                        {{$company->ins_num}}
                     </td>
                 </tr>
             </table>
@@ -92,7 +94,40 @@
                 </th>
             </tr>
             <tr>
-                {{_td(12)}}
+                <td>
+                    {{$est->carInfo->ve_num}}
+                </td>
+                <td>
+                    {{$est->carInfo->file_num}}
+                </td>
+                <td>
+                    {{$est->climeNumber}}
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    {{$est->transport}}
+                </td>
+                <td>
+                    {{$est->gelary}}
+                </td>
+                <td>
+                    {{$est->officeCost}}
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    {{$est->total}}
+                </td>
+                <td>
+                    {{$est->registerDate}}
+                </td>
             </tr>
             <tr>
                 <td style="visibility:hidden;">

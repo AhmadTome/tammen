@@ -83,66 +83,19 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button class="btn btn-block btn-primary" onclick="goTo('bankStmnt')">
+                            معاينة تقرير كشف البنك
+                        </button>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
 
 </div>
 <!-- end car info -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="text-center">
-                التقارير
-                </h4>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('bodyPartChange')">
-                            تقرير قطع غيار هيكل
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('mechPartChange')">
-                            تقرير قطع غيار ميكانيك
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carWork')">
-                            تقرير أعمال مركبة
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carDestroy')">
-                            معاينة تقرير شطب مركبة
-                        </button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('bodyPartChange')">
-                            أضرار فنية لدائرة الترخيص
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('mechPartChange')">
-                            تقرير هبوط قيمة
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('degree')">
-                            شهادة
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carDestroy')">
-                            معاينة تقرير شطب مركبة
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div> 
         <Br>
     </div>
     <!-- end Body -->
@@ -166,10 +119,10 @@
             $("#fileError").html("");
             
             var lang = $("#lang").val();
-            var car_num = $("#carnumber").val();
+            var car_num = $("#filenumber").val();
             var date = $("#Date").val();
             var id = $("#id").val();
-            window.open("/report/" + route + "/" + lang + "?car_num=" + car_num + "&date=" + date + "&id=" + id);
+            window.open("/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date + "&id=" + id);
         }
     $(document).ready(function () {
     });

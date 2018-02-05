@@ -50,7 +50,7 @@
                             <div class="col-sm-10">
                                 <select name="ins_num" id="ins_num" class="form-control">
                                     @foreach($companies as $c)
-                                        <option value="{{$c['ins_num']}}">
+                                        <option value="{{$c['ins_name']}}">
                                             {{$c['ins_name']}}
                                         </option>
                                     @endforeach

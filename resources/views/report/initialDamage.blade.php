@@ -21,10 +21,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-                    
+                        {{explode('-',$car['file_num'])[1]}}
                     </td>
-                    <td width="50%">
-                    
+                    <td>
+                        {{explode('-',$car['file_num'])[0]}}
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@
                         {{_t('car_num',$l)}}
                     </th>
                     <td colspan="2">
-
+                        {{$car['ve_num']}}
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                         {{_t('car_use',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$car['ve_used']}}
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                         {{_t('production_year',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$car['ve_produce_year']}}
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
                         {{_t('meter',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$car['ve_speedometer']}}
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +64,7 @@
                         {{_t('body_num',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$car['ve_body_num']}}
                     </td>
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@
                         {{_t('visit_pay',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$est['visitCost']}}
                     </td>
                 </tr>
             </table>
@@ -84,7 +84,7 @@
                         {{_t('acc_date',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$est['accidantDate']}}
                     </td>
                 </tr>
                 <tr>
@@ -92,7 +92,7 @@
                         {{_t('exam_date',$l)}}
                     </th>
                     <td colspan="2">
-
+                        {{$est['checkDate']}}
                     </td>
                 </tr>
                 <tr>
@@ -100,7 +100,7 @@
                         {{_t('garage_name',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$est['Garage']}}
                     </td>
                 </tr>
                 <tr>
@@ -108,7 +108,7 @@
                         {{_t('name',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$est['persone_name']}}
                     </td>
                 </tr>
                 <tr>
@@ -116,7 +116,7 @@
                         {{_t('ins_name',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$est['person_insurances']}}
                     </td>
                 </tr>
                 <tr>
@@ -135,7 +135,7 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{$est['insurance_company']}}
                     </td>
                 </tr>
             </table>

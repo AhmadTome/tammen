@@ -54,7 +54,7 @@
                             <div class="col-sm-10">
                                 <select name="ins_num" id="ins_num" class="form-control">
                                     @foreach($companies as $c)
-                                        <option value="{{$c['ins_num']}}">
+                                        <option value="{{$c['ins_name']}}">
                                             {{$c['ins_name']}}
                                         </option>
                                     @endforeach
@@ -135,7 +135,7 @@
 
     <script>
     $("#carInfo_select").on("change",function(){
-        $("#car_num").val($("#carnumber").val());
+        $("#car_num").val($("#filenumber").val());
     });
         function goTo(route,withDate){
             var type = $("#filenumber").val();

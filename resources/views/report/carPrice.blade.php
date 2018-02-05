@@ -55,7 +55,20 @@
             </th>
         </tr>
         <tr>
-            {{_td(5)}}
+            <td>
+                {{$car->total_maintenance}}
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                {{$car->total_mechanic}}
+            </td>
+            <td>
+                {{$car->total_drop}}
+            </td>
+            <td>
+            </td>
         </tr>
     </table>
     <br>

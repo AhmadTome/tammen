@@ -268,6 +268,12 @@ Route::group(['prefix' => '/report'],function(){
     //أعمال مركبة
     Route::get('/carWork/{l?}','ReportController@carWork');
 
+    //هبوط مركبة
+    Route::get('/carDown/{l?}','ReportController@carDown');
+
+    //أضرار فنية لدائرة الترخيص
+    Route::get('/carTechDamage/{l?}','ReportController@carTechDamage');
+
     //شهادة
     Route::get('/degree/{fileId}/{l?}','ReportController@degree');
 

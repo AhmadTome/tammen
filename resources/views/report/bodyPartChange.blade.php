@@ -38,9 +38,28 @@
                     {{_t('part_code',$l)}}
                 </th>
             </tr>
-            <tr>
-                {{_td(6)}}
-            </tr>
+            @foreach($parts as $p)
+                <tr>
+                    <td>
+                        {{$p->bo_part_name}}
+                    </td>
+                    <td>
+                        {{$p->bo_part_type}}
+                    </td>
+                    <td>
+                        {{$p->partPrice}}
+                    </td>
+                    <td>
+                        {{$p->bo_bod_count}}
+                    </td>
+                    <td>
+                        {{$p->bo_bod_count * $p->partPrice}}
+                    </td>
+                    <td>
+                        {{$p->bo_limit_num}}
+                    </td>
+                </tr>
+            @endforeach
             <tr>
                 <td style="visibility:hidden">
                 </td>
