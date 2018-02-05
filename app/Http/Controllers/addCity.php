@@ -39,7 +39,12 @@ class addCity extends Controller
         $user=new enter_city;
         $user->city_num=Input::get('IdDamNum');
         $user->city_name=Input::get('damName');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال المدينة بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال المدينة لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addCity');
 
     }
@@ -73,9 +78,19 @@ class addCity extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_city::where('city_num', '=', $lastnum)
+            ->where('city_name','=',$lastname)
+            ->update(array('city_num' =>$newnum , 'city_name'=>$newname ));
+
     }
 
     /**
@@ -84,8 +99,11 @@ class addCity extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_city::where('city_num','=',$num)->where('city_name','=',$name)->delete();
+        return response()->json();
     }
 }

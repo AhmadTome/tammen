@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\enter_insurence_company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use function MongoDB\BSON\toJSON;
 
 class addInsuranceCompany extends Controller
 {
@@ -44,7 +45,12 @@ class addInsuranceCompany extends Controller
         $user->ins_email=Input::get('insemail');
 
 
-      $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال شركة التأمين بنجاح");
+        }else{
+            session()->flash("notif","لم يتم ادخال شركة التأمين لحدوث خطأ في الادخال");
+
+        }
       return redirect()->to('addInsuranceCompany');
     }
 
@@ -91,7 +97,7 @@ class addInsuranceCompany extends Controller
         enter_insurence_company::where('ins_num', '=', $lastnum)
             ->where('ins_name','=',$lastname)
             ->update(array('ins_num' =>$newnum , 'ins_name'=>$newname ,'ins_phone'=>$newtel , 'ins_jawwalphone'=>$newphone , 'ins_email'=>$newemail));
-        return $newemail;
+
     }
 
     /**
@@ -112,6 +118,6 @@ class addInsuranceCompany extends Controller
         $num = $request->num;
         $name = $request->name;
         enter_insurence_company::where('ins_num','=',$num)->where('ins_name','=',$name)->delete();
-return $name;
+return response()->json();
     }
 }

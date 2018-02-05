@@ -2,6 +2,19 @@
 
 
 <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 pull-left" >
+    <div class="container">
+        @if(session()->has('notif'))
+
+            <div class="row">
+                <div class="alert alert-success" dir="rtl">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('notif') }}</strong>
+
+                </div>
+            </div>
+        @endif
+        @yield('content')
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading text-center PanelHeadingCss">ادخال أعمال مركبة صيانة</div>
         <div class="panel-body PanelBodyCss">
@@ -10,7 +23,7 @@
 
 
 
-                <form class="form-group" method="post" action="storeMaintinancework">
+                <form class="form-group" method="post" action="storeMaintinancework" id="maintinanceform">
                     {{ csrf_field() }}
                 <div class="form-group row" dir="rtl">
                     <label class="control-label col-sm-2 pull-right text-left" >  تحديد :</label>
@@ -89,7 +102,7 @@
                     <button type="button" onclick="addrow()" name="addMaintinance" id="addMaintinance" class="btn btn-success pull-left" style="margin-bottom: 10px"> اضافة المزيد على الجدول</button>
 
                 <div class="table-responsive col-sm-12 row" dir="rtl">
-                    <table class="table Maintinancetable" name="maintinacetable[]" id="maintinacetable"  border="1">
+                    <table class="table Maintinancetable" name="maintinacetable[]" id="maintinacetable[]"  border="1">
                         <thead>
                         <tr>
 
@@ -199,6 +212,38 @@ var Maintinanceindex=0;
 
 
     $(document).ready(function () {
+
+       /* $(document).on('submit','#maintinanceform',function () {
+            var table=$('#maintinacetable');
+
+            $.ajax({
+
+                type:'get',
+                url:'{!!URL::to('maintinancework')!!}',
+                data:{'maintinacetable':table},
+                success:function(data) {
+                    console.log('success');
+
+                   console.log(data)
+
+                    console.log(data.length);
+
+
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+
+
+
+            });
+
+        });
+
+
+*/
+
 
         $(this).on("change","#limit_select",function () {
           var limit=$("#limit_select").val();

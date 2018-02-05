@@ -39,7 +39,12 @@ class addMaintinance extends Controller
      $user=new enter_maintinance;
      $user->mai_num=Input::get('mainNum');
      $user->mai_name=Input::get('mainName');
-     $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال الصيانة بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال الصيانة لحدوث خطأ في الادخال");
+
+        }
      return redirect()->to('addMaintinance');
 
 
@@ -76,9 +81,19 @@ class addMaintinance extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_maintinance::where('mai_num', '=', $lastnum)
+            ->where('mai_name','=',$lastname)
+            ->update(array('mai_num' =>$newnum , 'mai_name'=>$newname ));
+
     }
 
     /**
@@ -87,8 +102,11 @@ class addMaintinance extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_maintinance::where('mai_num','=',$num)->where('mai_name','=',$name)->delete();
+        return response()->json();
     }
 }

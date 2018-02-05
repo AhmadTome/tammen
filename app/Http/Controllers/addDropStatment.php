@@ -39,7 +39,12 @@ class addDropStatment extends Controller
         $user=new enter_Drop_statment;
         $user->id=Input::get('IdStatmentNum');
         $user->text=Input::get('text');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال بيان الهبوط بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال بيان الهبوط لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('dropStatment');
     }
 
@@ -72,9 +77,19 @@ class addDropStatment extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_Drop_statment::where('id', '=', $lastnum)
+            ->where('text','=',$lastname)
+            ->update(array('id' =>$newnum , 'text'=>$newname ));
+
     }
 
     /**
@@ -83,8 +98,11 @@ class addDropStatment extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_Drop_statment::where('id','=',$num)->where('text','=',$name)->delete();
+        return response()->json();
     }
 }

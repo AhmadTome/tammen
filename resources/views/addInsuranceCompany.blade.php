@@ -26,19 +26,32 @@
     -->
     <div class="row headrDiv">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-            @include('logodiv');
+            @include('logodiv')
 
         </div>
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('mainpar');
+        @include('mainpar')
 
     </div>
 
     <!--Body-->
 
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+        <div class="container">
+            @if(session()->has('notif'))
+
+                <div class="row">
+                    <div class="alert alert-success" dir="rtl">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{ session('notif') }}</strong>
+
+                    </div>
+                </div>
+            @endif
+            @yield('content')
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading text-center PanelHeadingCss">ادخال شركة تأمين</div>
             <div class="panel-body PanelBodyCss">
@@ -93,8 +106,8 @@
 
 
 
-                        <table class="table" dir="rtl" border="1" id="mytable">
-                            <tbody>
+                        <table class="table" dir="rtl" border="0" id="mytable">
+                            <tbody style="text-align: center;">
 
                                 <td><label>الرقم</label></td>
                                 <td><label>اسم الشركة</label></td>
@@ -217,7 +230,7 @@
     <!-- end Body -->
     <!--footer-->
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('footer');
+        @include('footer')
 
     </div>
     <!--/footer-->
@@ -330,6 +343,8 @@
                 success: function(data) {
                     //$('.item' + $('.did').text()).remove();
                     console.log(data)
+
+                    location.reload();
                 },
                 error:function (data) {
                     console.log('error')

@@ -41,7 +41,12 @@ class addTextStructure extends Controller
 
         $user->str_num=Input::get('textNum');
         $user->str_name=Input::get('textName');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال نص التركيب بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال نص التركيب لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('addTextStructure');
 
     }
@@ -75,9 +80,19 @@ class addTextStructure extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+
+
+        enter_structer_text::where('str_num', '=', $lastnum)
+            ->where('str_name','=',$lastname)
+            ->update(array('str_num' =>$newnum , 'str_name'=>$newname ));
+
     }
 
     /**
@@ -86,8 +101,11 @@ class addTextStructure extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_structer_text::where('str_num','=',$num)->where('str_name','=',$name)->delete();
+        return response()->json();
     }
 }

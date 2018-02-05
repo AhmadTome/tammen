@@ -83,9 +83,19 @@ class addCertification extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
+        $filenumber=Input::get('filenumber');
+        $limit=Input::get('limit');
+        $date=Input::get('date');
+        $estimater_number=Input::get('estimaternumber');
+        $cert=Input::get('cert');
+        $note=Input::get('note');
+
+        enter_certificate::where('filenumber', '=', $filenumber)
+            ->update(array('limit' =>$limit , 'date'=>$date ,'estimater_number'=>$estimater_number , 'cert'=>$cert , 'note'=>$note));
+        return redirect()->to('/certificationTransaction');
     }
 
     /**
@@ -94,9 +104,12 @@ class addCertification extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+
+        enter_certificate::where('filenumber','=',$num)->delete();
+        return response()->json();
     }
 
 
@@ -104,6 +117,16 @@ class addCertification extends Controller
         $data=Estimater::select('nes_num','nes_name','nes_authorization_num','nes_signature')->where('nes_authorization_num',$request->id)->take(1500)->get();
         return response()->json($data);
 
+    }
+    public function findcertinfo(Request $request){
+        $data=enter_certificate::select('filenumber','limit','date','estimater_number','cert','note')->where('filenumber',$request->id)->take(1500)->get();
+       if(count($data)>0){
+        $estimater=$data[0]->estimater_number;
+        $data2=Estimater::select('nes_num','nes_name','nes_authorization_num','nes_signature')->where('nes_authorization_num',$estimater)->take(1500)->get();
 
+        return response()->json(array('data'=>$data , 'data2'=>$data2));
+       }else{
+           return "";
+       }
     }
 }

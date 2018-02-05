@@ -5,7 +5,7 @@
         <div class="panel-body PanelBodyCss">
 
             <div  >
-                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="saveimage" id="imgform" >
+                <form class="form-horizontal" enctype="multipart/form-data" method="post"  id="imgform" >
                     {{ csrf_field() }}
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-1 pull-right text-left">تاريخ التصوير: </label>
@@ -21,7 +21,7 @@
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-1 pull-right text-left">ادراج صور: </label>
                         <div class="col-sm-7 pull-right">
-                            <input class="form-control" type="file" name="images[]" id="images[]" value="اختيار الصور"  multiple/>
+                            <input class="form-control image" type="file" name="images[]" id="images" value="اختيار الصور"  multiple/>
                             <input class="form-control" type="hidden" name="carnumberhidden" id="carnumberhidden" value=""  />
                             <input class="form-control" type="hidden" name="filrnumberhidden" id="filrnumberhidden" value=""  />
 
@@ -55,15 +55,50 @@
 <script>
 
 $(document).ready(function () {
+
+var arr;
+    $('#images').on('change', function (e) {
+         arr = e.target.files
+
+    });
+
+    $('#imgform').on('submit',function () {
+
+        var carnumber=$('#carnumberhidden').val();
+        var filenumber=$('#filrnumberhidden').val();
+        var date=$('#pictureDate').val();
+alert(arr)
+        $.ajax({
+            type: 'get',
+            url: '{!!URL::to('uploadimage')!!}',
+            data: {
+                'imge':arr,
+                'carnumber':carnumber,
+                'filenumber':filenumber,
+                'date':date
+            },
+            success: function(data) {
+                //$('.item' + $('.did').text()).remove();
+                console.log(data)
+
+                //location.reload();
+            },
+            error:function (data) {
+                console.log('error')
+            }
+
+        });
+    });
+
 /*
     $('#imgform').submit(function (e) {
 
 
-        $form=$(this);
-
-        uploadImage($form);
+     //   $form=$(this);
+//console.log($form);
+        //uploadImage($form);
     });
-    function uploadImage($form) {
+    /*function uploadImage($form) {
         var formdate=new FormData($form[0]);
         var request= new XMLHttpRequest();
 
@@ -79,7 +114,9 @@ $(document).ready(function () {
         request.open('post','');
         request.send(formdate);
     }
-    */
+*/
+
+
 });
 
 </script>

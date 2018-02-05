@@ -325,7 +325,7 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left"> اجور زيارة : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="dropPercantige" name="dropPercantige" type="number"  placeholder="ادخل مبلغ الاجور الزائدة" required/>
+                    <input class="form-control" id="visitcost" name="visitcost" type="number"  placeholder="ادخل مبلغ الاجور الزائدة" required/>
                 </div>
             </div>
 
@@ -453,6 +453,7 @@
                    $('#cost').val(data);
 
                     var carprice=$('#carPrice').val();
+                    if(carprice !=0)
                     $('#TechnicalDamage').val(((data/carprice)*100).toFixed(2));
 
                 }
@@ -470,7 +471,7 @@
                 success:function(data) {
 
                     console.log(data);
-                    $('#dropPercantige').val(data+"%");
+                    $('#dropPercantige').val(data);
 
                     var dropPrice=((data/100) * $('#carPrice').val());
                     $('#dropPercantigePrice').val(dropPrice);

@@ -95,9 +95,21 @@ return redirect()->to('garage');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $lastnum=$request->lastnum;
+        $lastname=$request->lastname;
+
+        $newnum=$request->num;
+        $newname=$request->name;
+        $newtel=$request->tel;
+        $newphone=$request->phone;
+        $newemail=$request->email;
+
+        enter_garage::where('gar_num', '=', $lastnum)
+            ->where('gar_name','=',$lastname)
+            ->update(array('gar_num' =>$newnum , 'gar_name'=>$newname ,'tel'=>$newtel , 'phone'=>$newphone , 'email'=>$newemail));
+
     }
 
     /**
@@ -106,8 +118,11 @@ return redirect()->to('garage');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->num;
+        $name = $request->name;
+        enter_garage::where('gar_num','=',$num)->where('gar_name','=',$name)->delete();
+        return response()->json();
     }
 }
