@@ -5,7 +5,7 @@
         <div class="panel-body PanelBodyCss">
 
             <div  >
-                <form class="form-horizontal" enctype="multipart/form-data" method="post"  id="imgform" >
+                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="saveimage" id="imgform" >
                     {{ csrf_field() }}
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-1 pull-right text-left">تاريخ التصوير: </label>
@@ -61,16 +61,16 @@ var arr;
          arr = e.target.files
 
     });
+    /*
+        $('#imgform').on('submit',function () {
 
-    $('#imgform').on('submit',function () {
-
-        var carnumber=$('#carnumberhidden').val();
-        var filenumber=$('#filrnumberhidden').val();
-        var date=$('#pictureDate').val();
-alert(arr)
-        $.ajax({
-            type: 'get',
-            url: '{!!URL::to('uploadimage')!!}',
+            var carnumber=$('#carnumberhidden').val();
+            var filenumber=$('#filrnumberhidden').val();
+            var date=$('#pictureDate').val();
+    alert(arr)
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('uploadimage')!!}',
             data: {
                 'imge':arr,
                 'carnumber':carnumber,
@@ -90,7 +90,7 @@ alert(arr)
         });
     });
 
-/*
+
     $('#imgform').submit(function (e) {
 
 

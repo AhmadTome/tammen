@@ -12,9 +12,12 @@
 */
 
 use App\Damage;
+use App\enter_body_part;
 use App\enter_city;
+use App\enter_Drop_statment;
 use App\enter_garage;
 use App\enter_insurence_company;
+use App\enter_maintinance;
 use App\enter_personalInfo;
 use App\Estimater;
 use App\getCarInfo;
@@ -123,16 +126,32 @@ Route::get('/addBodyParts', function () {
     return view('addBodyParts')->with('bodypart',$bodypart);
 });
 
+// Drop Car Transaction
+Route::get('/dropcarTransaction', function () {
+
+    $carInfo=getCarInfo::all();
+    $dropStatment=enter_Drop_statment::all();
+    $maintinance=enter_maintinance::all();
+    $bodypart=enter_body_part::all();
+    return view('EditDelete.dropcarTransaction')->with('carInfo',$carInfo)->with('dropStatment',$dropStatment)
+        ->with('maintinance',$maintinance)->with('bodypart',$bodypart);
+});
 Route::get('/dropvalue', function () {
 
 
     return view('MainInput.dropvalue');
 });
 
+// car cost Transaction
 Route::get('/carCost', function () {
 
 
     return view('MainInput.carCost');
+});
+Route::get('/carcostTransaction', function () {
+    $carInfo=getCarInfo::all();
+
+    return view('EditDelete.carcostTransaction')->with('carInfo',$carInfo);
 });
 
 // Car Guess Transaction
@@ -199,6 +218,23 @@ Route::get('/certificationTransaction', function () {
     return view('EditDelete.certificationTransaction')->with('carInfo',$carInfo)->with('estimater',$estimater)->with('certificate',$certificate);
 });
 
+Route::get('/maintinanceTransaction', function () {
+    $carInfo=getCarInfo::all();
+    $maintinanceinfo=enter_maintinance::all();
+    return view('EditDelete.maintinanceTransaction')->with('carInfo',$carInfo)->with('maintinanceinfo',$maintinanceinfo);
+});
+Route::get('/mechanicalTransaction', function () {
+    $carInfo=getCarInfo::all();
+    $mechanicinfo=\App\enter_mechanic_part::all();
+    return view('EditDelete.mechanicalTransaction')->with('carInfo',$carInfo)->with('mechanicinfo',$mechanicinfo);
+});
+
+Route::get('/BodyTransaction', function () {
+    $carInfo=getCarInfo::all();
+    $Bodyinfo=enter_body_part::all();
+    return view('EditDelete.BodyTransaction')->with('carInfo',$carInfo)->with('Bodyinfo',$Bodyinfo);
+});
+
 
 Route::get('/findEstimaterinfo','addCertification@estimaterinfo');
 
@@ -208,14 +244,20 @@ Route::get('/getallinfo','addguesscar@findallinfo');
 Route::get('/deleteGuess','addguesscar@destroy');
 Route::post('editGuess','addguesscar@update');
 
-
+// car cost Transaction
 Route::get('/carCost','carcosts@index');
 Route::post('calculateCarCost','carcosts@calculate');
+Route::get('/getcarcostinfo','carcosts@getcarcostinfo');
+Route::get('/deletcarprice','carcosts@destroy');
+Route::post('Editcarcost','carcosts@update');
+
+
+
+
 Route::get('/findCarInfo','cartransaction@findCarInfo');
 Route::get('/addcarTransaction','cartransaction@index');
 Route::get('/dropvalue','dropvalueofcar@index');
 
-Route::get('/findCarInfoforDropValue','dropvalueofcar@findCarInfoforDropValue');
 Route::get('/findCarInfoforGuess','addguesscar@findCarInfoforGesscar');
 
 
@@ -223,8 +265,12 @@ Route::get('/findCostDropValue','dropvalueofcar@findCostDropValue');
 Route::get('/findCostGuesscar','addguesscar@findCostforGuessCar');
 Route::get('/findDropCostGuesscar','addguesscar@findDropPercantige');
 
-
+// drop car Transaction
 Route::post('storDropValue','dropvalueofcar@store');
+Route::get('/findCarInfoforDropValue','dropvalueofcar@findCarInfoforDropValue');
+Route::get('/deletedropcar','dropvalueofcar@destroy');
+Route::post('EditDropValue','dropvalueofcar@update');
+
 
 //garage transaction
 Route::post('store','addgarage@store');
@@ -294,13 +340,29 @@ Route::post('EditCarInformation','addcarInformation@update');
 
 
 
-
+// Maintinance work Transaction
 Route::post('storeMaintinancework','addmaintinancework@store');
-//Route::get('/maintinancework','addmaintinancework@store');
+Route::get('/getallmaintinancedata','addmaintinancework@getall');
+Route::get('/deletemaintinancework','addmaintinancework@destroy');
+Route::post('EditMaintinancework','addmaintinancework@update');
 
 
+
+// Mechanical work Transaction
 Route::post('storeMechanicwork','addMechanicwork@store');
+Route::get('/getallmechanicaldata','addMechanicwork@getall');
+Route::get('/deletemechanicalwork','addMechanicwork@destroy');
+Route::post('Editmechanicalwork','addMechanicwork@update');
+
+
+
+// Body work Transaction
 Route::post('storeBodywork','addBodywork@store');
+Route::get('/getallbodyworkdata','addBodywork@getall');
+Route::get('deleteBodywork/','addBodywork@destroy');
+Route::post('EditBodywork','addBodywork@update');
+
+
 
 // mechanic part transaction
 Route::post('storeMechanicParts','addMechanicPart@store');

@@ -24,13 +24,13 @@
     -->
     <div class="row headrDiv">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-            @include('logodiv');
+            @include('logodiv')
 
         </div>
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('mainpar');
+        @include('mainpar')
 
     </div>
 
@@ -108,7 +108,8 @@
                                             <table class="table table-bordered"  id="dynamic_field">
                                                 <tr>
                                                     <td><input type="text" name="name[]" placeholder="المسبب" class="form-control name_list" /></td>
-                                                    <td><input type="number"  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/></td>
+                                                    <td><input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) ||
+   event.charCode == 46 || event.charCode == 0 "  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/></td>
 
                                                     <td>  <select class="form-control " id="limit_select" name="sign[]">
                                                             <option selected disabled="">اختار الاشارة</option>
@@ -168,7 +169,7 @@
     <!-- end Body -->
     <!--footer-->
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('footer');
+        @include('footer')
 
     </div>
     <!--/footer-->
@@ -216,7 +217,7 @@
         var i = 1;
         $('#add').click(function () {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="name[]" placeholder="ادخل المسبب" class="form-control name_list" /></td><td><input type="number"  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/><td> <select class="form-control " id="limit_select" name="sign[]"><option selected disabled="">اختار الاشارة</option> <option>+</option> <option>-</option> </select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="name[]" placeholder="ادخل المسبب" class="form-control name_list" /></td><td><input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || + event.charCode == 46 || event.charCode == 0 "  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/><td> <select class="form-control " id="limit_select" name="sign[]"><option selected disabled="">اختار الاشارة</option> <option>+</option> <option>-</option> </select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");

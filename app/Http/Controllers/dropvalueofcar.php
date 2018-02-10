@@ -38,8 +38,11 @@ class dropvalueofcar extends Controller
 
         $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_body_num')->where('file_num',$request->id)->take(1500)->get();
         $data2=carcost::select('finalcost')->where('filrnumberhidden',$request->id)->take(100)->get();
+        $data3=drop_car::select('filenumber','dropStatment','part','maintinance','data','count','percantige','finalprice','maintinanceCost','note'
+        ,'firstCar','secondCar'
+        )->where('filenumber',$request->id)->take(100)->get();
 
-        return response()->json(array('data'=>$data , 'data2'=>$data2));//then sent this data to ajax success
+        return response()->json(array('data'=>$data , 'data2'=>$data2, 'data3'=>$data3));//then sent this data to ajax success
     }
 
     public function findCostDropValue(Request $request){
@@ -139,9 +142,35 @@ class dropvalueofcar extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $num=Input::get('filenumber');
+
+        drop_car::where('filenumber','=',$num)->delete();
+        $data =Input::get('dropcartable');
+
+        foreach ($data as $item){
+
+            $user=new drop_car;
+            $user->filenumber=$item['filenumber'];
+            $user->dropStatment=$item['dropvaluestatment'];
+            $user->part=$item['part'];
+            $user->maintinance=$item['maintinace'];
+            $user->data=$item['date'];
+            $user->count=$item['countpart'];
+            $user->percantige=$item['percantige'];
+            $user->note=$item['note'];
+            $user->finalprice=Input::get('carPrice');
+            $user->maintinanceCost=Input::get('cost');
+            $user->firstCar=Input::get('firstcar_note');
+            $user->secondCar=Input::get('secondcar_note');
+
+            $user->save();
+
+        }
+
+
+        return redirect()->to('/dropcarTransaction');
     }
 
     /**
@@ -150,8 +179,11 @@ class dropvalueofcar extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+
+        drop_car::where('filenumber','=',$num)->delete();
+        return response()->json();
     }
 }

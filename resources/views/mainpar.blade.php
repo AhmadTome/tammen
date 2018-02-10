@@ -30,6 +30,22 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('CarGuessTransaction') }}">تخمين مركبة</a></li>
                         <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('maintinanceTransaction') }}"> أعمال صيانة على المركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('mechanicalTransaction') }}">قطع غيار ميكانيك</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('BodyTransaction') }}">قطع غيار هيكل</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropcarTransaction') }}">صور الحادث</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropcarTransaction') }}">هبوط مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('carcostTransaction') }}">احتساب سعر مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('BankTransaction') }}">كشف بنك</a></li>
+                        <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('certificationTransaction') }}">كشف شهادة</a></li>
                         <li role="presentation" class="divider"></li>
                     </ul>

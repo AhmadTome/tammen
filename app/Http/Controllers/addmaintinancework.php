@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\getCarInfo;
 use App\maintenance_vehicle_work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -95,9 +96,30 @@ class addmaintinancework extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $num = Input::get('filenumber');
+        maintenance_vehicle_work::where('file_number', '=', $num)->delete();
+
+        $data = Input::get('maintinacetable');
+        // $data = $request->maintinacetable;
+        foreach ($data as $item) {
+            $user = new maintenance_vehicle_work;
+
+            $user->mawo_vehicl_num = $item['carnumber'];
+            $user->mawo_limit_num = $item['limitno'];
+            $user->mawo_work_num = $item['workno'];
+            $user->mawo_cost = $item['price'];
+            $user->mawo_rate = $item['percantige'];
+            $user->mawo_register_date = $item['date'];
+            $user->mawo_details = $item['details'];
+            $user->mawo_limit_name = $item['limit'];
+            $user->mawo_work_name = $item['work'];
+            $user->file_number = $item['fileNumber'];
+            $user->save();
+        }
+        return redirect()->to('/maintinanceTransaction');
     }
 
     /**
@@ -106,8 +128,18 @@ class addmaintinancework extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+        maintenance_vehicle_work::where('file_number','=',$num)->delete();
+        return response()->json();
+    }
+
+    public function getall(Request $request){
+        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_license_end_date','ve_insurence_end_date','attachments','ve_note')->where('file_num',$request->id)->take(1500)->get();
+        $data2=maintenance_vehicle_work::select('mawo_vehicl_num','file_number','mawo_limit_num','mawo_limit_name',
+            'mawo_work_name','mawo_work_num','mawo_cost','mawo_rate','mawo_register_date','mawo_details')->where('file_number',$request->id)->take(1500)->get();
+
+        return response()->json(array('data' => $data, 'data2' => $data2));
     }
 }

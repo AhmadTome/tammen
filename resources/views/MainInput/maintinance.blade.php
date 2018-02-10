@@ -102,7 +102,7 @@
                     <button type="button" onclick="addrow()" name="addMaintinance" id="addMaintinance" class="btn btn-success pull-left" style="margin-bottom: 10px"> اضافة المزيد على الجدول</button>
 
                 <div class="table-responsive col-sm-12 row" dir="rtl">
-                    <table class="table Maintinancetable" name="maintinacetable[]" id="maintinacetable[]"  border="1">
+                    <table class="table Maintinancetable" name="maintinacetable[]" id="maintinacetable"  border="1">
                         <thead>
                         <tr>
 
