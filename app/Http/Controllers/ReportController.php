@@ -45,12 +45,17 @@ class ReportController extends Controller
         return view('bank',['carInfo' => $carInfo,'people' => $people]);
     }
 
+    public function monitor(){
+        return view('monitor');
+    }
+
     //تقرير بيانات مركبة
     public function carInfo($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->first();
         return view('report.carInfo',['car' => $car,'est' => $est,'l' => $l]);
     }
+    
 
     //تقرير حساب ملف
     public function fileAccount($fileId,$l = 'AR'){
@@ -83,7 +88,8 @@ class ReportController extends Controller
     //تقرير ثمن المركبة مع حطام
     public function carPriceWithRek($fileId,$l='AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.carPriceWithRek',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.carPriceWithRek',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //دائرة الترخيص
@@ -130,8 +136,8 @@ class ReportController extends Controller
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
         $RegDate = Input::get('RegDate',date('Y-m-d'));
-        $company = enter_insurence_company::where('ins_name',$ins_num)->first();
-        $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->first();
+        $company = enter_insurence_company::where('ins_name',$ins_num)->firstOrFail();
+        $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->firstOrFail();
         return view('report.insCompanyUser',['l' => $l,'company' => $company,'est' => $est]);
     }
 
@@ -164,7 +170,7 @@ class ReportController extends Controller
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
         $date = Input::get('date',date('Y-m-d'));
-        $drop = drop_car::where('filenumber',$fileId)->where('data',$date)->first();
+        $drop = drop_car::where('filenumber',$fileId)->where('data',$date)->firstOrFail();
         return view("report.carDown",['car' => $car,'drop' => $drop,'l' => $l]);
     }
 
@@ -193,5 +199,14 @@ class ReportController extends Controller
         $carInfo = enter_car_info::find($fileId);
         $person = enter_personalinfo::find($id);
         return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l]);
+    }
+
+    //تقرير الرقابة
+    public function monitorReport(){
+        $l = Input::get('lang','AR');
+        $From = Input::get('From',date('Y-m-d'));
+        $To = Input::get('To',date('Y-m-d'));
+        $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+        return view('report.monitorReport',['l' => $l,'ests' => $ests]);
     }
 }

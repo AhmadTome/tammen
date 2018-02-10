@@ -20,6 +20,7 @@
                         {{_t('car_price',$l)}}
                     </th>
                     <td>
+                        {{$car->cost->finalcost}}
                     </td>
                 </tr>
             </table>
@@ -44,7 +45,15 @@
                 </th>
             </tr>
             <tr>
-                {{_td(3)}}
+                <td>
+                    {{$car->total_maintenance}}
+                </td>
+                <td>
+                    {{$car->total_body_work}}
+                </td>
+                <td>
+                    {{$car->total_mechanic}}
+                </td>
             </tr>
         </table>
     </div>

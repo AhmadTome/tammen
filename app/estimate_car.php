@@ -13,4 +13,8 @@ class estimate_car extends Model
     public function carInfo(){
         return $this->belongsTo('App\enter_car_info','fileNumber','file_num');
     }
+
+    public function getEstimaterCostAttribute(){
+        return $this->total * $this->estimatePercantige;
+    }
 }

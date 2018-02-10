@@ -120,10 +120,10 @@
                     {{$est->officeCost}}
                 </td>
                 <td>
-
+                    {{$est->estimater_cost}}
                 </td>
                 <td>
-                    {{$est->total}}
+                    {{$est->total + $est->estimater_cost}}
                 </td>
                 <td>
                     {{$est->registerDate}}
@@ -143,7 +143,21 @@
                 <td>
                     {{_t('total_sum',$l)}}
                 </td>
-                {{_td(5)}}
+                <td>
+                    {{$est->transport}}
+                </td>
+                <td>
+                    {{$est->gelary}}
+                </td>
+                <td>
+                    {{$est->officeCost}}
+                </td>
+                <td>
+                    {{$est->estimater_cost}}
+                </td>
+                <td>
+                    {{$est->total + $est->estimater_cost}}
+                </td>
             </tr>
         </table>
     </div>

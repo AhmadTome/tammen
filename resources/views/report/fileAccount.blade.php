@@ -191,8 +191,7 @@
                         {{_t('surv_pay',$l)}}
                     </th>
                     <td>
-                        <?php $total = $est['gelary']; ?>
-                        {{$est['gelary']}}
+                        {{$est->estimater_cost}}
                     </td>
                 </tr>
                 <tr>
@@ -200,7 +199,6 @@
                         {{_t('travel',$l)}}
                     </th>
                     <td>
-                        <?php $total += $est['transport']; ?>
                         {{$est['transport']}}
                     </td>
                 </tr>
@@ -209,7 +207,7 @@
                         {{_t('picture',$l)}}
                     </th>
                     <td>
-                        
+                        {{$est->gelary}}
                     </td>
                 </tr>
                 <tr>
@@ -217,7 +215,6 @@
                         {{_t('disk_money',$l)}}
                     </th>
                     <td>
-                        <?php $total += $est['officeCost']; ?>
                         {{$est['officeCost']}}
                     </td>
                 </tr>
@@ -226,7 +223,7 @@
                         {{_t('total',$l)}}
                     </th>
                     <td>
-                        {{$total}}
+                        {{$est->total + $est->estimater_cost}}
                     </td>
                 </tr>
             </table>

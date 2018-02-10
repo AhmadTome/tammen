@@ -173,6 +173,7 @@
                         {{_t('repair_calc',$l)}}
                     </th>
                     <td>
+                        {{$car->total_maintenance_work}}
                     </td>
                 </tr>
                 <tr>
@@ -180,6 +181,7 @@
                         {{_t('body_part_calc',$l)}}
                     </th>
                     <td>
+                        {{$car->total_body_work}}
                     </td>
                 </tr>
                 <tr>
@@ -187,6 +189,7 @@
                         {{_t('mech_part_calc',$l)}}
                     </th>
                     <td>
+                        {{$car->total_mechanic}}
                     </td>
                 </tr>
                 <tr>
@@ -194,6 +197,7 @@
                         {{_t('car_price',$l)}}
                     </th>
                     <td>
+                        {{$car->cost->finalcost}}
                     </td>
                 </tr>
             </table>

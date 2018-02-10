@@ -23,14 +23,13 @@ class enter_car_info extends Model
     }
 
     public function getTotalBodyWorkAttribute(){
-        /*
         $total = 0;
         
-        foreach($this->body_work as $bd){
+        foreach($this->bodyVehicleWork as $bd){
             $total += ($bd->partPrice * $bd->bo_bod_count);
         }
 
-        return $total;*/
+        return $total;
     }
 
     public function mechanic(){
@@ -56,5 +55,13 @@ class enter_car_info extends Model
 
     public function estimate(){
         return $this->hasMany('App\estimate_car','fileNumber','file_num');
+    }
+
+    public function cost(){
+        return $this->hasOne('App\carcost','filrnumberhidden','file_num');
+    }
+
+    public function getFullTotalAttribute(){
+        return $this->total_mechanic + $this->total_body_work + $this->total_body_work;
     }
 }

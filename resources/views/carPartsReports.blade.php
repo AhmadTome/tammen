@@ -103,9 +103,7 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('mechPartChange')">
-                            تقرير هبوط قيمة
-                        </button>
+                       
                     </div>
                     <div class="col-sm-3">
                         <button class="btn btn-block btn-primary" onclick="goTo('degree')">

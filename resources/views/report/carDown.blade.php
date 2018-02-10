@@ -54,7 +54,7 @@
                     {{_t('car_price',$l)}}
                 </th>
                 <td>
-                    {{$drop->finalPrice}}
+                    {{$drop->finalprice}}
                 </td>
             </tr>
         </table>

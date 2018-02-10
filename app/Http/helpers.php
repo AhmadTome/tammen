@@ -13,7 +13,7 @@
                 'production_date' => 'تاريخ الإصدار',
                 'name' => 'الإسم',
                 'ins_name' => 'إسم المؤمن',
-                'ins_policy' => 'رقم بوليصة التأمين',
+                'ins_policy' => 'رقم ليصة التأمين',
                 'exam_place' => 'مكان الفحص',
                 'car_model_num' => 'رقم طراز المركبة',
                 'damage' => 'الضرر',
@@ -129,7 +129,10 @@
                 'total_down_ratio' => 'مجموع نسبة هبوط القيمة',
                 'direct_damage' => 'الأضرار المباشرة',
                 'total_drop_value' => 'مبلغ هبوط القيمة',
-                'tech_damage_table' => 'جدولة الأضرار الفنية'
+                'tech_damage_table' => 'جدولة الأضرار الفنية',
+                'claim_type' => 'نوع المطالبة',
+                'claim_money' => 'مبلغ المطالبة',
+                'report_fees' => 'رسوم التقرير'
             ],
             'HR' => [
     
@@ -143,4 +146,12 @@
         for($i = 0;$i < $count; $i++){
             echo '<td></td>';
         }
+    }
+
+    function tax(){
+        return env('TAX_VALUE',0);
+    }
+
+    function calcTax($amuont){
+        return $amuont * tax();
     }

@@ -382,6 +382,8 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/car/parts','ReportController@carParts');
 
     Route::get('/car/bank','ReportController@bank');
+
+    Route::get('/monitor','ReportController@monitor');
     
     //تقرير بيانات مركبة
     Route::get('/carInfo/{fileId}/{l?}','ReportController@carInfo');
@@ -436,4 +438,7 @@ Route::group(['prefix' => '/report'],function(){
 
     //شهادة بنك
     Route::get('/bankStmnt/{l?}','ReportController@bankStmnt');
+
+    //تقرير الرقابة
+    Route::get('/monitorReport','ReportController@monitorReport');
 });
