@@ -95,22 +95,15 @@
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carDestroy')">
-                            معاينة تقرير شطب مركبة
+                        <button class="btn btn-block btn-primary" onclick="goTo('carDown')">
+                            تقرير هبوط مركبة
                         </button>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('bodyPartChange')">
-                            أضرار فنية لدائرة الترخيص
-                        </button>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('mechPartChange')">
-                            تقرير هبوط قيمة
-                        </button>
+                       
                     </div>
                     <div class="col-sm-3">
                         <button class="btn btn-block btn-primary" onclick="goTo('degree')">
@@ -118,8 +111,8 @@
                         </button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-block btn-primary" onclick="goTo('carDestroy')">
-                            معاينة تقرير شطب مركبة
+                        <button class="btn btn-block btn-primary" onclick="goTo('carTechDamage')">
+                            أضرار فنية لدائرة الترخيص
                         </button>
                     </div>
                 </div>
@@ -148,9 +141,9 @@
             $("#fileError").html("");
             
             var lang = $("#lang").val();
-            var car_num = $("#carnumber").val();
+            var car_num = $("#filenumber").val();
             var date = $("#Date").val();
-            window.open("/report/" + route + "/" + lang + "?car_num=" + car_num + "&date=" + date);
+            window.open("/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date);
         }
     $(document).ready(function () {
     });

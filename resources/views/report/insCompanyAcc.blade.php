@@ -22,6 +22,7 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <td>
+                        {{$company->ins_name}}
                     </td>
                 </tr>
             </table>
@@ -33,7 +34,7 @@
                         {{_t('ins_company_num',$l)}}
                     </th>
                     <td>
-                    
+                        {{$company->ins_num}}
                     </td>
                 </tr>
             </table>
@@ -80,9 +81,58 @@
                     {{_t('reg_date',$l)}}
                 </th>
             </tr>
-            <tr>
-                {{_td(12)}}
-            </tr>
+            <?php 
+                $totalTransport = 0;
+                $totalGelary = 0;
+                $totalOfficeCost = 0;
+                $total = 0;
+            ?>
+            @foreach($ests as $e)
+                <tr>
+                    <td>
+                        {{$e->carInfo->ve_num}}
+                    </td>
+                    <td>
+                        {{$e->fileNumber}}
+                    </td>
+                    <td>
+                        {{$e->climeNumber}}
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                    
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+                        {{$e->transport}}
+                    </td>
+                    <td>
+                        {{$e->gelary}}
+                    </td>
+                    <td>
+                        {{$e->officeCost}}
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        {{$e->total}}
+                    </td>
+                    <td>
+                        {{$e->registerDate}}
+                    </td>
+                </tr>
+                <?php
+                    $totalTransport += $e->transport;
+                    $totalGelary += $e->gelary;
+                    $totalOfficeCost += $e->officeCost;
+                    $total += $e->total;
+                ?>
+            @endforeach
             <tr>
                 <td style="visibility:hidden;">
                 </td>
@@ -97,7 +147,21 @@
                 <td>
                     {{_t('total_sum',$l)}}
                 </td>
-                {{_td(5)}}
+                <td>
+                    {{$totalTransport}}
+                </td>
+                <td>
+                    {{$totalGelary}}
+                </td>
+                <td>
+                    {{$totalOfficeCost}}
+                </td>
+                <td>
+                
+                </td>
+                <td>
+                    {{$total}}
+                </td>
             </tr>
         </table>
     </div>

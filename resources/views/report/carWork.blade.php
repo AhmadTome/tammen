@@ -25,9 +25,19 @@
                     {{_t('details',$l)}}
                 </th>
             </tr>
-            <tr>
-                {{_td(3)}}
-            </tr>
+            @foreach($parts as $p)
+                <tr>
+                    <td>
+                        {{$p->mawo_work_name}}
+                    </td>
+                    <td>
+                        {{$p->mawo_cost}}
+                    </td>
+                    <td>
+                        {{$p->mawo_details}}
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     <div class="clearfix"></div>

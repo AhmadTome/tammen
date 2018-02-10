@@ -111,7 +111,7 @@
                             {{_t('car_model_num',$l)}}
                         </th>
                         <td>
-
+                            {{$car['ve_version_num']}}
                         </td>
                     </tr>
                     <tr>

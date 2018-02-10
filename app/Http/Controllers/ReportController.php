@@ -8,6 +8,11 @@ use App\CarVisit;
 use App\enter_insurence_company;
 use App\enter_personalinfo;
 use App\estimate_car;
+use App\body_vehicle_work;
+use App\mechanic_vehicle_work;
+use App\maintenance_vehicle_work;
+use App\drop_car;
+use App\enter_certificate;
 use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
@@ -40,12 +45,17 @@ class ReportController extends Controller
         return view('bank',['carInfo' => $carInfo,'people' => $people]);
     }
 
+    public function monitor(){
+        return view('monitor');
+    }
+
     //تقرير بيانات مركبة
     public function carInfo($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->first();
         return view('report.carInfo',['car' => $car,'est' => $est,'l' => $l]);
     }
+    
 
     //تقرير حساب ملف
     public function fileAccount($fileId,$l = 'AR'){
@@ -70,7 +80,7 @@ class ReportController extends Controller
 
     //تقرير ثمن المركبة
     public function carPrice($fileId,$l = 'AR'){
-        $car = enter_car_info::find($fileId);
+        $car = enter_car_info::with(['maintenance','bodyVehicleWork'])->find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->first();
         return view('report.carPrice',['car' => $car,'est' => $est,'l' => $l]);
     }
@@ -78,7 +88,8 @@ class ReportController extends Controller
     //تقرير ثمن المركبة مع حطام
     public function carPriceWithRek($fileId,$l='AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.carPriceWithRek',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.carPriceWithRek',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //دائرة الترخيص
@@ -90,7 +101,8 @@ class ReportController extends Controller
     //تقرير أضرار أولي
     public function initialDamage($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.initialDamage',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.initialDamage',['car' => $car,'est' => $est,'l' => $l]);
     }
 
     //كشف الزيارات
@@ -112,9 +124,9 @@ class ReportController extends Controller
         $From = Input::get('From',date('Y-m-d'));
         $To = Input::get('To',date('Y-m-d'));
 
-        $company = enter_insurence_company::find($ins_num);
-
-        return view('report.insCompanyAcc',['l' => $l,'company' => $company]);
+        $company = enter_insurence_company::where('ins_name',$ins_num)->first();
+        $ests = estimate_car::with('carInfo')->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+        return view('report.insCompanyAcc',['l' => $l,'company' => $company,'ests' => $ests]);
     }
 
     //حساب شركة التامين للمستفيد
@@ -124,35 +136,77 @@ class ReportController extends Controller
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
         $RegDate = Input::get('RegDate',date('Y-m-d'));
-        return view('report.insCompanyUser',['l' => $l]);
+        $company = enter_insurence_company::where('ins_name',$ins_num)->firstOrFail();
+        $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->firstOrFail();
+        return view('report.insCompanyUser',['l' => $l,'company' => $company,'est' => $est]);
     }
 
     //تقرير قطع غيار هيكل
-    public function bodyPartChange($fileId,$l = 'AR'){
+    public function bodyPartChange($l = 'AR'){
+        $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        return view('report.bodyPartChange',['car' => $car,'l' => $l]);
+        $parts = body_vehicle_work::where('file_number',$fileId)->get();
+        return view('report.bodyPartChange',['car' => $car,'parts' => $parts,'l' => $l]);
     }
 
     //تقرير قطع غيار ميكانيك
-    public function mechPartChange($fileId,$l = 'AR'){
+    public function mechPartChange($l = 'AR'){
+        $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        return view('report.mechPartChange',['car' => $car,'l' => $l]);
+        $parts = mechanic_vehicle_work::where('filenumber',$fileId)->get();
+        return view('report.mechPartChange',['car' => $car,'parts' => $parts,'l' => $l]);
     }
 
     //أعمالمركبة
     public function carWork($fileId,$l = 'AR'){
+        $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        return view('report.carWork',['car' => $car,'l' => $l]);
+        $parts = maintenance_vehicle_work::where('file_number',$fileId)->get();
+        return view('report.carWork',['car' => $car,'parts'=> $parts,'l' => $l]);
+    }
+
+    //هبوط مركبة
+    public function carDown($l = 'AR'){
+        $fileId = Input::get('file_num','');
+        $car = enter_car_info::find($fileId);
+        $date = Input::get('date',date('Y-m-d'));
+        $drop = drop_car::where('filenumber',$fileId)->where('data',$date)->firstOrFail();
+        return view("report.carDown",['car' => $car,'drop' => $drop,'l' => $l]);
+    }
+
+    //اضرار فنية لدائرة الترخيص
+    public function carTechDamage($l = 'AR'){
+        $fileId = Input::get('file_num','');
+        $car = enter_car_info::find($fileId);
+        $date = Input::get('date',date('Y-m-d'));
+        return view('report.carTechDamage',['car' => $car,'l' => $l]);
     }
 
     //شهادة
-    public function degree($fileId,$l = 'AR'){
+    public function degree($l = 'AR'){
+        $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        return view('report.degree',['car' => $car,'l' => $l]);
+        $date = Input::get('date',date('Y-m-d'));
+        $cer = enter_certificate::where('filenumber',$fileId)->where('date',$date)->first();
+        return view('report.degree',['car' => $car,'cer' => $cer,'l' => $l]);
     }
 
     //شهادة بنك
     public function bankStmnt($l = 'AR'){
-        return view('report.bankStmnt',['l' => $l]);
+        $id = Input::get('id',1);
+        $fileId = Input::get('file_num','');
+        $date = Input::get('date',date('Y-m-d'));
+        $carInfo = enter_car_info::find($fileId);
+        $person = enter_personalinfo::find($id);
+        return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l]);
+    }
+
+    //تقرير الرقابة
+    public function monitorReport(){
+        $l = Input::get('lang','AR');
+        $From = Input::get('From',date('Y-m-d'));
+        $To = Input::get('To',date('Y-m-d'));
+        $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+        return view('report.monitorReport',['l' => $l,'ests' => $ests]);
     }
 }

@@ -4,35 +4,7 @@
 
 @section('content')
 
-    <div class="border-2 padding">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="gray-back">
-                        {{_t('car_num',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('file_num',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('car_use',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('model_type',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('production_year',$l)}}
-                    </th>
-                    <th class="gray-back">
-                        {{_t('body_num',$l)}}
-                    </th>
-                </tr>
-                <tr>
-                    {{_td(6)}}
-                </tr>
-            </thead>
-        </table>
-    </div>
+    @include('report.parts.carInfoHeader')
     <br>
     <div class="row">
         <div class='col-xs-4 col-xs-offset-1'>
@@ -42,7 +14,7 @@
                         {{_t('production_date',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{date('Y-m-d')}}
                     </td>
                 </tr>
                 <tr>
@@ -50,9 +22,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
+                        {{explode('-',$car['file_num'])[1]}}
                     </td>
                     <td>
-                    
+                        {{explode('-',$car['file_num'])[0]}}
                     </td>
                 </tr>
             </table>
@@ -83,7 +56,21 @@
             </th>
         </tr>
         <tr>
-            {{_td(5)}}
+            <td>
+                {{$car->total_maintenance}}
+            </td>
+            <td>
+                {{$car->total_body_work}}
+            </td>
+            <td>
+                {{$car->total_mechanic}}
+            </td>
+            <td>
+                {{$car->total_drop}}
+            </td>
+            <td>
+                {{$car->cost->finalcost}}
+            </td>
         </tr>
     </table>
     <br>
@@ -103,6 +90,7 @@
                     
                     </td>
                     <td>
+                        {{$car->total_maintenance + $car->total_body_work + $car->total_mechanic + $car->total_drop }}
                     </td>
                 </tr>
                 <tr>
@@ -110,7 +98,7 @@
                         {{_t('damage_rate',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est->DamagePercantige}}
                     </td>
                 </tr>
                 <tr>
@@ -118,6 +106,7 @@
                         {{_t('rek_price',$l)}}
                     </th>
                     <td>
+                        {{$est->DamageCost}}
                     </td>
                 </tr>
                 <tr>

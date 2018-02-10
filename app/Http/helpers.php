@@ -13,7 +13,7 @@
                 'production_date' => 'تاريخ الإصدار',
                 'name' => 'الإسم',
                 'ins_name' => 'إسم المؤمن',
-                'ins_policy' => 'رقم بوليصة التأمين',
+                'ins_policy' => 'رقم ليصة التأمين',
                 'exam_place' => 'مكان الفحص',
                 'car_model_num' => 'رقم طراز المركبة',
                 'damage' => 'الضرر',
@@ -115,7 +115,24 @@
                 'gear_box' => 'علبة الغيارات',
                 'front_face' => 'الهيئة الأمامية',
                 'car_attachments' => 'إضافات المركبة',
-                'guess_val' => 'قيمة التخمين'
+                'guess_val' => 'قيمة التخمين',
+                'ins_company_info' => 'معلومات شركة التامين',
+                'car_down_table' => 'جدولة هبوط مركبة',
+                'car_1' => 'المركبة الأولى',
+                'car_2' => 'المركبة الثانية',
+                'third_party_stmnt' => 'بيانات الطرف الثالث',
+                'part' => 'القطعة',
+                'maintenece' => 'الصيانة',
+                'part_count' => 'عدد القطع',
+                'work_ratio' => 'نسبة العمل',
+                'down_ratio' => 'نسبة الهبوط',
+                'total_down_ratio' => 'مجموع نسبة هبوط القيمة',
+                'direct_damage' => 'الأضرار المباشرة',
+                'total_drop_value' => 'مبلغ هبوط القيمة',
+                'tech_damage_table' => 'جدولة الأضرار الفنية',
+                'claim_type' => 'نوع المطالبة',
+                'claim_money' => 'مبلغ المطالبة',
+                'report_fees' => 'رسوم التقرير'
             ],
             'HR' => [
     
@@ -129,4 +146,12 @@
         for($i = 0;$i < $count; $i++){
             echo '<td></td>';
         }
+    }
+
+    function tax(){
+        return env('TAX_VALUE',0);
+    }
+
+    function calcTax($amuont){
+        return $amuont * tax();
     }

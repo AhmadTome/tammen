@@ -19,7 +19,7 @@
                         {{_t('production_date',$l)}}
                     </th>
                     <td colspan="2">
-                    
+                        {{date('Y-m-d')}}
                     </td>
                 </tr>
                 <tr>
@@ -27,7 +27,7 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-                    
+
                     </td>
                     <td width="40%">
                     
@@ -42,6 +42,7 @@
                         {{_t('name',$l)}}
                     </th>
                     <td>
+                        {{$person->name}}
                     </td>
                 </tr>
                 <tr>
@@ -49,6 +50,7 @@
                         {{_t('address',$l)}}
                     </th>
                     <td>
+                        {{$person->address}}
                     </td>
                 </tr>
             </table>
@@ -57,7 +59,7 @@
     <br>
     <div class='row border-2'>
         <h3 class='text-center margin-0'>
-            {{_t('file_num',$l)}}: 
+            {{_t('file_num',$l)}}: {{$carInfo->file_num}}
         </h3>
     </div>
     <br>
@@ -69,6 +71,7 @@
                         {{_t('car_num',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_num}}
                     </td>
                 </tr>
                 <tr>
@@ -76,6 +79,7 @@
                         {{_t('body_num',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_body_num}}
                     </td>
                 </tr>
                 <tr>
@@ -83,6 +87,7 @@
                         {{_t('car_model',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_version}}
                     </td>
                 </tr>
                 <tr>
@@ -90,6 +95,7 @@
                         {{_t('production_year',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_produce_year}}
                     </td>
                 </tr>
                 <tr>
@@ -97,6 +103,7 @@
                         {{_t('car_use',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_used}}
                     </td>
                 </tr>
                 <tr>
@@ -104,6 +111,7 @@
                         {{_t('weight',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_weight}}
                     </td>
                 </tr>
                 <tr>
@@ -111,6 +119,7 @@
                         {{_t('engine_size',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_engin_size}}
                     </td>
                 </tr>
             </table>
@@ -122,6 +131,7 @@
                         {{_t('car_owner_name',$l)}}
                     </th>
                     <td>
+
                     </td>
                 </tr>
                 <tr>
@@ -136,6 +146,7 @@
                         {{_t('walk_power',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_power_push}}
                     </td>
                 </tr>
                 <tr>
@@ -143,6 +154,7 @@
                         {{_t('car_color',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_color}}
                     </td>
                 </tr>
                 <tr>
@@ -150,6 +162,7 @@
                         {{_t('gas_type',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->ve_gas_type}}
                     </td>
                 </tr>
                 <tr>
@@ -157,6 +170,7 @@
                         {{_t('pass_num',$l)}}
                     </th>
                     <td>
+                        {{$carInfo->seat_num}}
                     </td>
                 </tr>
             </table>

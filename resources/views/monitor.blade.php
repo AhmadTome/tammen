@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>
-        كشف بنك
+        تقرير الرقابة
     </title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
@@ -37,29 +37,23 @@
     </div>
 
     <!-- Body -->
-    <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12  " >
         <div class="panel panel-default">
-            <div class="panel-heading text-center PanelHeadingCss">معلومات المركبة</div>
-            <div class="panel-body PanelBodyCss">
-                @include('report.parts.carFileChooser')
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-2">
-                        <select name="id" id="id" class='form-control'>
-                            @foreach($people as $p)
-                                <option value="{{$p['id']}}">
-                                    {{$p['name']}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <label class="control-label col-md-2">
-                        الشخص
-                    </label>
+            <div class="panel-heading">
+                تقرير الرقابة
+            </div>
+            <div>
+            <form action="/report/monitorReport" method="GET">
+                <div class="col-sm-6">
+                    <label class="contrl-label">من تاريخ: </label>
+                    <input type="date" class="form-control" name='From'>
+                </div>
+                <div class="col-sm-6">
+                    <label class="contrl-label">إلى تاريخ: </label>
+                    <input type="date" class="form-control" name='To'>
                 </div>
                 <div class="clearfix"></div>
-                <br>
+                <br>    
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         <select name="lang" id="lang" class='form-control'>
@@ -72,31 +66,19 @@
                     </label>
                 </div>
                 <div class="clearfix"></div>
-                <br>
+                <Br>
                 <div class="form-group">
-                    <div class="col-md-8 col-md-offset-2">
-                        <input type="date" id="Date" name="Date" class="form-control">
-                    </div>
-                    <label class="control-label col-md-2">
-                        التاريخ
-                    </label>
-                </div>
-                <div class="clearfix"></div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <button class="btn btn-block btn-primary" onclick="goTo('bankStmnt')">
-                            معاينة تقرير كشف البنك
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary btn-block">
+                            معاينة التقرير
                         </button>
                     </div>
                 </div>
-                </div>
+                <div class="clearfix"></div>
+                <br>
+                </form>
             </div>
         </div>
-
-</div>
-<!-- end car info -->
-        <Br>
     </div>
     <!-- end Body -->
     <!--footer-->
@@ -105,28 +87,7 @@
 
     </div>
     <!--/footer-->
-
-    <script>
-        function goTo(route){
-            var type = $("#filenumber").val();
-            if(!type){
-                $("#fileError").show();
-                $("#fileError").html("قم باختيار مركبة");
-                return;
-            }
-
-            $("#fileError").hide();
-            $("#fileError").html("");
-            
-            var lang = $("#lang").val();
-            var car_num = $("#filenumber").val();
-            var date = $("#Date").val();
-            var id = $("#id").val();
-            window.open("/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date + "&id=" + id);
-        }
-    $(document).ready(function () {
-    });
-    </script>   
+ 
 
 </div>
 

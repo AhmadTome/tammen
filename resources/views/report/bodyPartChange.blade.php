@@ -38,18 +38,40 @@
                     {{_t('part_code',$l)}}
                 </th>
             </tr>
-            <tr>
-                {{_td(6)}}
-            </tr>
+            <?php $total = 0; ?>
+            @foreach($parts as $p)
+                <tr>
+                    <td>
+                        {{$p->bo_part_name}}
+                    </td>
+                    <td>
+                        {{$p->bo_part_type}}
+                    </td>
+                    <td>
+                        {{$p->partPrice}}
+                    </td>
+                    <td>
+                        {{$p->bo_bod_count}}
+                    </td>
+                    <td>
+                        <?php $total += $p->bo_bod_count * $p->partPrice; ?>
+                        {{$p->bo_bod_count * $p->partPrice}}
+                    </td>
+                    <td>
+                        {{$p->bo_limit_num}}
+                    </td>
+                </tr>
+            @endforeach
             <tr>
                 <td style="visibility:hidden">
                 </td>
                 <td style="visibility:hidden">
                 </td>
-                <th class="gray-back">
+                <th class="gray-back" colspan="2">
                     {{_t('total',$l)}}
                 </th>
                 <td>
+                    {{$total}}
                 </td>
             </tr>
             <tr>
@@ -57,10 +79,11 @@
                 </td>
                 <td style="visibility:hidden">
                 </td>
-                <th class="gray-back">
+                <th class="gray-back" colspan="2">
                     {{_t('tax_value',$l)}}
                 </th>
                 <td>
+                    {{tax() * $total}}
                 </td>
             </tr>
             <tr>
@@ -68,10 +91,11 @@
                 </td>
                 <td style="visibility:hidden">
                 </td>
-                <th class="gray-back">
+                <th class="gray-back" colspan="2">
                     {{_t('tax_price',$l)}}
                 </th>
                 <td>
+                    {{$total + calcTax($total)}}
                 </td>
             </tr>
             <tr>
@@ -79,10 +103,11 @@
                 </td>
                 <td style="visibility:hidden">
                 </td>
-                <th class="gray-back">
+                <th class="gray-back" colspan="2">
                     {{_t('consume_ammount',$l)}}
                 </th>
                 <td>
+
                 </td>
             </tr>
             <tr>
@@ -90,7 +115,7 @@
                 </td>
                 <td style="visibility:hidden">
                 </td>
-                <th class="gray-back">
+                <th class="gray-back" colspan="2">
                     {{_t('money_to_pay',$l)}}
                 </th>
                 <td>

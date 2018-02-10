@@ -55,7 +55,21 @@
             </th>
         </tr>
         <tr>
-            {{_td(5)}}
+        <td>
+            {{$car->total_maintenance}}
+        </td>
+        <td>
+            {{$car->total_body_work}}
+        </td>
+        <td>
+            {{$car->total_mechanic}}
+        </td>
+        <td>
+            {{$car->total_drop}}
+        </td>
+        <td>
+            {{$car->cost->finalcost}}
+        </td>
         </tr>
     </table>
     <br>
@@ -75,6 +89,7 @@
 
                     </td>
                     <td>
+                        {{$car->total_maintenance + $car->total_body_work + $car->total_mechanic + $car->total_drop }}
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +97,7 @@
                         {{_t('damage_rate',$l)}}
                     </th>
                     <td>
-                    
+                        {{$est->DamagePercantige}}
                     </td>
                 </tr>
             </table>

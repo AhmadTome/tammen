@@ -20,6 +20,7 @@
                         <li><a href="/report/insurance/benifiter">حساب شركة التامين للمستفيد</a></li>
                         <li><a href="/report/car/parts">تقارير قطع المركبة</a></li>
                         <li><a href="/report/car/bank">تقرير كشف بنك</a></li>
+                        <li><a href="/report/monitor">تقرير الرقابة</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">الاستعلامات و التعديلات <span class="caret"></span></a>
