@@ -25,13 +25,13 @@
     -->
     <div class="row headrDiv">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-            @include('logodiv');
+            @include('logodiv')
 
         </div>
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12  " >
-        @include('mainpar');
+        @include('mainpar')
 
     </div>
 
@@ -89,29 +89,29 @@
 
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('MainInput.maintinance');
+        @include('MainInput.maintinance')
 
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('MainInput.mechanicpart');
+        @include('MainInput.mechanicpart')
 
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('MainInput.bodypart');
+        @include('MainInput.bodypart')
 
     </div>
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('MainInput.accedantImage');
+        @include('MainInput.accedantImage')
 
     </div>
 </div>
     <!-- end Body -->
     <!--footer-->
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
-        @include('footer');
+        @include('footer')
 
     </div>
     <!--/footer-->

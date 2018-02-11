@@ -36,16 +36,19 @@ class addImages extends Controller
      */
     public function store(Request $request)
     {
-
+$imagcount=1;
             if($request->hasFile('images')){
                 foreach($request->file('images') as $file) {
+                    $ext=$file->getClientOriginalExtension();
+                    $date=date('Ymd_His');
+                    $imagename =time().'_'.$date.'_'.($imagcount++).'.'.$ext ;
+                    $file->move(public_path().'\uploads', $imagename);
 
-                    $file->move(base_path().'/public/uploads/', $file->getClientOriginalName());
                     $user=new add_image;
                     $user->im_vehicl_num=Input::get('carnumberhidden');
                     $user->file_number=Input::get('filrnumberhidden');
                     $user->im_photo_date=Input::get('pictureDate');
-                    $user->path='/public/uploads/'.$file->getClientOriginalName();
+                    $user->path=public_path().'/uploads'.$imagename;
                     $user->save();
                 }
             }
@@ -57,12 +60,7 @@ class addImages extends Controller
         }
 
 
-      /*  $arr=$request->file('images');
-        for ($i=0 ;$i<count($arr);$i++){
-            $name=$arr[$i]->getClientOriginalName();
-            $arr[$i]->move(base_path().'/public/uploads/',utf8_encode($name));
-        }
-      */
+
 return redirect()->to('addcarTransaction');
 
 
