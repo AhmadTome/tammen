@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -127,6 +129,11 @@
 
 
     $(document).ready(function () {
+        $("#carInfo_select").select2({
+            placeholder: "Select a State",
+            allowClear: true
+        });
+
 
       $(document).on("change",".carInfo_select",function () {
         var file_nom=$(this).val();

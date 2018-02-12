@@ -81,20 +81,20 @@ return redirect()->to('/addpersonalInformation');
      */
     public function update(Request $request)
     {
-        $lastid=$request->lastid;
+        $lastid=Input::get('person_select');
 
 
-        $newid=$request->id;
-        $newname=$request->name;
-        $newaddress=$request->address;
-        $newphone=$request->phonenumber;
-        $newtel=$request->telnumber;
-        $newemail=$request->email;
-        $newnote=$request->note;
+        $newid=Input::get('ID');
+        $newname=Input::get('name');
+        $newaddress=Input::get('address');
+        $newphone=Input::get('phoneNumber');
+        $newtel=Input::get('homeNumber');
+        $newemail=Input::get('email');
+        $newnote=Input::get('note');
 
         enter_personalInfo::where('id', '=', $lastid)
             ->update(array('id' =>$newid , 'name'=>$newname ,'address'=>$newaddress , 'phone_num'=>$newphone , 'tel_num'=>$newtel,'email'=>$newemail,'note'=>$newnote));
-
+        return redirect()->to('/personalinformationTransaction');
     }
 
     /**
