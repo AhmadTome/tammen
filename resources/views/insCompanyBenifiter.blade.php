@@ -1,3 +1,116 @@
+@extends('layouts.app')
+
+@section('title','حساب شركة التامين للمستفيد')
+
+@section('content')
+
+<form method="get" action="/report/insCompanyUser">
+<div class="panel panel-default">
+            <div class="panel-heading text-center PanelHeadingCss">
+                معلومات شركة التامين
+            </div>
+            <div class="panel-body PanelBodyCss">
+                @include("report.parts.carFileChooser")
+                <input type="hidden" name="car_num" id="car_num" value="" required />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <select name="ins_num" id="ins_num" class="form-control">
+                                    @foreach($companies as $c)
+                                        <option value="{{$c['ins_name']}}">
+                                            {{$c['ins_name']}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <label class="control-label col-md-2">
+                                شركة التأمين
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <select name="benName" id="benName" class="form-control">
+                                    <option value="0">
+                                        شركة التأمين
+                                    </option>
+                                    <option value="1">
+                                        مالك المركبة
+                                    </option>
+                                    <option value="2">
+                                        المحكمة
+                                    </option>
+                                    <option value="3">
+                                        البنك
+                                    </option>
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2">إسم المستفيد</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <input type="date" class="form-control" name="RegDate" id="RegDate" required />
+                        </div>
+                        <label class="control-label col-md-2">تاريخ التسجيل</label>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <select name="lang" id="lang" class='form-control'>
+                            <option value="AR">اللغة العربية</option>
+                            <option value="HR">اللغة العبرية</option>
+                        </select>
+                    </div>
+                    <label class="control-label col-md-2">
+                        اللغة
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary btn-block">
+                            معاينة التقرير
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+</form>
+<!-- end car info -->
+
+<script>
+    $("#carInfo_select").on("change",function(){
+        $("#car_num").val($("#filenumber").val());
+    });
+        function goTo(route,withDate){
+            var type = $("#filenumber").val();
+            var lang = $("#lang").val();
+            if(withDate){
+                var To = $("#To").val();
+                var From = $("#From").val();
+                window.open("/report/" + route + "/" + type + "/" + lang + "?From=" + From + "&To=" + To);
+            }else{
+                window.open("/report/" + route + "/" + type + "/" + lang);
+            }
+        }
+    $(document).ready(function () {
+    });
+    </script> 
+
+@endsection
+
+{{--
 <html>
 <head>
     <title>
@@ -156,3 +269,5 @@
 
 </body>
 </html>
+
+--}}

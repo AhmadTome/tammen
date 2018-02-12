@@ -302,3 +302,128 @@
 
 
 </script>
+
+
+@extends('layouts.app')
+
+@section('title','')
+
+@section('content')
+
+<div class="panel panel-default">
+            <div class="panel-heading text-center PanelHeadingCss">ادخال طرف حادث</div>
+            <div class="panel-body PanelBodyCss">
+
+                <div  style="max-width: 1000px ;margin-bottom: -15px">
+                    <form class="form-horizontal" method="post" action="storeAccedentSide">
+                        {{ csrf_field() }}
+                        <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-1 pull-right text-left" >الرقم: </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" type="text" name="accSideNum" id="accSideNum" placeholder="ادخل الرقم" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-1 pull-right text-left">النص: </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" type="text" name="accSideValue" id="accSideValue" placeholder="ادخل النص" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-3">
+                                <input type="submit" class="btn btn-success" id="submit" value="إدخال">
+                            </div>
+                            <label class="control-label col-sm-7"></label>
+                        </div>
+
+                        <table class="table" dir="rtl" border="0" id="mytable">
+                            <tbody style="text-align: center">
+
+                            <td><label>الرقم</label></td>
+                            <td><label>نص طرف حادث</label></td>
+                            <td><label>تعديل</label></td>
+                            <td><label>حذف</label></td>
+
+                            </tbody>
+                            @foreach($accedentside as $item)
+                                <tr>
+                                    <td ><label>{{$item->si_num}}</label></td>
+                                    <td><label>{{$item->si_name}}</label></td>
+
+                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->si_num}}" data-name="{{$item->si_name}}"
+                                                                          value="تعديل"></td>
+
+                                    <td style="text-align: center"><input class="delete-modal btn btn-danger"
+                                                                          data-id="{{$item->si_num}}" data-name="{{$item->si_name}}"
+                                                                          value="حذف"
+                                        ></td>
+                                </tr>
+                            @endforeach
+                        </table>
+
+                        <!-- Start Model -->
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"></h4>
+                                    </div>
+                                    <div class="modal-body" >
+
+                                        <form class="form-horizontal" role="form" >
+                                            <div class="EditContent">
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right" >الرقم :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <input type="text" class="form-control" id="insNumber" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >اسم الضرر :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <input type="text" class="form-control" id="insName">
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+
+
+
+                                        <div class="deleteContent" dir="rtl">
+                                            هل أنت متأكد من أنك تريد حذف  <span class="dname"></span> ?
+                                            <span class="hidden did"></span>
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn actionBtn" data-dismiss="modal">
+                                                <span id="footer_action_button" > </span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">
+                                                <span></span> Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Model -->
+
+
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+
+@endsection

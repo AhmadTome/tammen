@@ -85,6 +85,7 @@
                 $totalTransport = 0;
                 $totalGelary = 0;
                 $totalOfficeCost = 0;
+                $totalEstimaterCost = 0;
                 $total = 0;
             ?>
             @foreach($ests as $e)
@@ -117,7 +118,7 @@
                         {{$e->officeCost}}
                     </td>
                     <td>
-                        
+                        {{$e->estimater_cost}}
                     </td>
                     <td>
                         {{$e->total}}
@@ -130,6 +131,7 @@
                     $totalTransport += $e->transport;
                     $totalGelary += $e->gelary;
                     $totalOfficeCost += $e->officeCost;
+                    $totalEstimaterCost += $e->estimater_cost;
                     $total += $e->total;
                 ?>
             @endforeach
@@ -157,7 +159,7 @@
                     {{$totalOfficeCost}}
                 </td>
                 <td>
-                
+                    {{$totalEstimaterCost}}
                 </td>
                 <td>
                     {{$total}}

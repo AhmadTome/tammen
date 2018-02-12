@@ -446,6 +446,8 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/car/bank','ReportController@bank');
 
     Route::get('/monitor','ReportController@monitor');
+
+    Route::get('/images','ReportController@images');
     
     //تقرير بيانات مركبة
     Route::get('/carInfo/{fileId}/{l?}','ReportController@carInfo');
@@ -503,4 +505,7 @@ Route::group(['prefix' => '/report'],function(){
 
     //تقرير الرقابة
     Route::get('/monitorReport','ReportController@monitorReport');
+
+    //صور الحادث
+    Route::get('/carImages/{fileId}','ReportController@carImages');
 });

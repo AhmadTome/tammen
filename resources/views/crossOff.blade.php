@@ -1,3 +1,244 @@
+@extends('layouts.app')
+
+@section('title','إدخال شطب')
+
+@section('content')
+<div class="panel panel-default">
+            <div class="panel-heading text-center PanelHeadingCss">ادخال شطب</div>
+            <div class="panel-body PanelBodyCss">
+
+                <div class="container " style="max-width: 1000px ;margin-bottom: -15px">
+                    <form class="form-horizontal" method="post" action="storeCrossOff">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <input type="name" class="form-control PanelBodyCssInput" name="CrossNum" id="CrossNum" placeholder="ادخل الرقم" required>
+                            </div>
+                            <label class="control-label col-sm-1" for="textCrossNum">: الرقم</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <textArea type="note" class="form-control PanelBodyCssInput" rows="5" name="txtCroosOff" id="txtCroosOff" placeholder="ادخل النص" required></textArea>
+                            </div>
+                            <label class="control-label col-sm-1" for="note">: نص الشطب</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-3">
+                                <input type="submit" class="btn btn-success" id="submit" value="إدخال">
+                            </div>
+                            <label class="control-label col-sm-7"></label>
+                        </div>
+                        <table class="table" dir="rtl" border="0" id="mytable">
+                            <tbody style="text-align: center">
+
+                            <td><label>النص</label></td>
+
+                            <td><label>تعديل</label></td>
+                            <td><label>حذف</label></td>
+
+                            </tbody>
+                            @foreach($crossoff as $item)
+                                <tr>
+                                    <td style="text-align: center"><textarea rows="5">{{$item->scr_name}}</textarea></td>
+
+                                    <td style="text-align: center"><input class="edit-modal btn btn-info" data-name="{{$item->scr_name}}"
+                                                                          value="تعديل"></td>
+
+                                    <td style="text-align: center"><input class="delete-modal btn btn-danger"
+                                                                          data-name="{{$item->scr_name}}"
+                                                                          value="حذف"
+                                        ></td>
+                                </tr>
+                            @endforeach
+                        </table>
+
+                        <!-- Start Model -->
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"></h4>
+                                    </div>
+                                    <div class="modal-body" >
+
+                                        <form class="form-horizontal" role="form" >
+                                            <div class="EditContent">
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >نص الشطب :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                    <textarea class="form-control" id="insName" rows="5"
+                                                    ></textarea>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+
+
+
+                                        <div class="deleteContent" dir="rtl">
+                                            هل أنت متأكد من أنك تريد حذف  <span class="dname"></span> ?
+                                            <span class="hidden did"></span>
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn actionBtn" data-dismiss="modal">
+                                                <span id="footer_action_button" > </span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">
+                                                <span></span> Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Model -->
+
+
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+
+        <script>
+
+    var lastname_delete;
+
+
+    var lastcompanyname;
+
+    var companyname_update;
+
+
+    var deleterow;
+    var updaterow;
+    $(document).ready(function () {
+        var i = 1;
+        $('#add').click(function () {
+            i++;
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><textarea rows="5"  name="name[]" placeholder="ادخل الشهادة" class="form-control name_list" ></textarea></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+
+        $(document).on('click', '.edit-modal', function() {
+            $('#footer_action_button').text("Update");
+            // $('#footer_action_button').addClass('glyphicon-check');
+            //$('#footer_action_button').removeClass('glyphicon-trash');
+            $('.actionBtn').addClass('btn-success');
+            $('.actionBtn').removeClass('btn-danger');
+            $('.actionBtn').addClass('edit');
+            $('.modal-title').text('Edit');
+            $('.deleteContent').hide();
+            $('.EditContent').show();
+
+            $('#insName').val($(this).data('name'));
+
+            lastcompanyname=$(this).data('name');
+
+            updaterow=$(this).parent().parent();
+
+
+            $('#myModal').modal('show');
+        });
+
+
+        $(document).on('click', '.delete-modal', function() {
+            lastname_delete=$(this).data('name');
+            deleterow=$(this).parent().parent();
+            $('#footer_action_button').text(" Delete");
+            // $('#footer_action_button').removeClass('glyphicon-check');
+            //$('#footer_action_button').addClass('glyphicon-trash');
+            $('.actionBtn').removeClass('btn-success');
+            $('.actionBtn').addClass('btn-danger');
+            $('.actionBtn').addClass('delete');
+            $('.modal-title').text('Delete');
+            $('.EditContent').hide();
+
+            $('.deleteContent').show();
+            $('.dname').html($(this).data('name'));
+            $('#myModal').modal('show');
+        });
+
+        $('.modal-footer').on('click', '.delete', function() {
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('deletecrossoff')!!}',
+                data: {
+
+                    'name':lastname_delete
+                },
+                success: function(data) {
+                    //$('.item' + $('.did').text()).remove();
+                    console.log(data);
+                    deleterow.remove();
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+            });
+        });
+
+        $('.modal-footer').on('click', '.edit', function() {
+            num_update=$('#insNumber').val();
+            companyname_update=$('#insName').val();
+            telnum_update=$('#insphone').val();
+            phonenum_update=$('#modelJawwal').val();
+            email_update = $('#modelEmail').val();
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('updatecrossoff')!!}',
+                data: {
+
+                    'name':companyname_update,
+                    'lastname':lastcompanyname
+                },
+                success: function(data) {
+                    //$('.item' + $('.did').text()).remove();
+                    console.log(data)
+
+                    location.reload();
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+            });
+
+
+
+
+        });
+
+
+
+    });
+</script>
+@endsection
+
+{{--
 <html>
 <head>
     <title>ادخال شطب</title>
@@ -304,3 +545,5 @@
 
     });
 </script>
+
+--}}

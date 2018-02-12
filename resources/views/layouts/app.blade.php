@@ -1,80 +1,174 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <title>
+        @yield('title')
+    </title>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
+    <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+<div class="container-fluid">
+    <!-- Background pic -->
+    <div class="BackImageSuperAd" ></div>
+    <!-- End of Background pic -->
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+    <!--
+        <div class="row ">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-right" >
+                <a href="" class="btn btn-danger exit" title="Exit"><b>Exit</b></a>
+            </div>
+        </div>
+    -->
+    <div class="row headrDiv">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+            @include('logodiv')
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+        </div>
+    </div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+        @include('mainpar')
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+    </div>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+    <!--Body-->
+    <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+        
+        @if(session()->has('notif'))
+            <div class="row">
+                <div class="alert alert-success" dir="rtl">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('notif') }}</strong>
                 </div>
             </div>
-        </nav>
-
+        @endif
+        
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- end Body -->
+    <!--footer-->
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+        @include('footer')
+
+    </div>
+    <!--/footer-->
+
+
+
+</div>
+
 </body>
 </html>
+
+<script>
+    var lastid_delete;
+    var lastname_delete;
+
+    var lastcompanynumnum;
+    var lastcompanyname;
+    var num_update;
+    var companyname_update;
+
+
+    var deleterow;
+    var updaterow;
+    $(document).ready(function() {
+        $(document).on('click', '.edit-modal', function() {
+            $('#footer_action_button').text("Update");
+            // $('#footer_action_button').addClass('glyphicon-check');
+            //$('#footer_action_button').removeClass('glyphicon-trash');
+            $('.actionBtn').addClass('btn-success');
+            $('.actionBtn').removeClass('btn-danger');
+            $('.actionBtn').addClass('edit');
+            $('.modal-title').text('Edit');
+            $('.deleteContent').hide();
+            $('.EditContent').show();
+            $('#insNumber').val($(this).data('id'));
+            $('#insName').val($(this).data('name'));
+
+            lastcompanynumnum=$(this).data('id');
+            lastcompanyname=$(this).data('name');
+
+            updaterow=$(this).parent().parent();
+
+
+            $('#myModal').modal('show');
+        });
+
+
+        $(document).on('click', '.delete-modal', function() {
+            lastid_delete =$(this).data('id');
+            lastname_delete=$(this).data('name');
+            deleterow=$(this).parent().parent();
+            $('#footer_action_button').text(" Delete");
+            // $('#footer_action_button').removeClass('glyphicon-check');
+            //$('#footer_action_button').addClass('glyphicon-trash');
+            $('.actionBtn').removeClass('btn-success');
+            $('.actionBtn').addClass('btn-danger');
+            $('.actionBtn').addClass('delete');
+            $('.modal-title').text('Delete');
+            $('.EditContent').hide();
+            $('.did').text($(this).data('id'));
+            $('.deleteContent').show();
+            $('.dname').html($(this).data('name'));
+            $('#myModal').modal('show');
+        });
+
+        $('.modal-footer').on('click', '.delete', function() {
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('deletecity')!!}',
+                data: {
+                    'num':lastid_delete,
+                    'name':lastname_delete
+                },
+                success: function(data) {
+                    //$('.item' + $('.did').text()).remove();
+                    console.log(data);
+                    deleterow.remove();
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+            });
+        });
+
+        $('.modal-footer').on('click', '.edit', function() {
+            num_update=$('#insNumber').val();
+            companyname_update=$('#insName').val();
+
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('updatecity')!!}',
+                data: {
+                    'num':num_update,
+                    'name':companyname_update,
+
+                    'lastnum':lastcompanynumnum,
+                    'lastname':lastcompanyname
+                },
+                success: function(data) {
+                    //$('.item' + $('.did').text()).remove();
+                    console.log(data)
+
+                    location.reload();
+                },
+                error:function (data) {
+                    console.log('error')
+                }
+
+            });
+        });
+    });
+</script>

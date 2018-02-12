@@ -13,6 +13,7 @@ use App\mechanic_vehicle_work;
 use App\maintenance_vehicle_work;
 use App\drop_car;
 use App\enter_certificate;
+use App\add_image;
 use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
@@ -47,6 +48,11 @@ class ReportController extends Controller
 
     public function monitor(){
         return view('monitor');
+    }
+
+    public function images(){
+        $carInfo = enter_car_info::all();
+        return view('images',['carInfo' => $carInfo]);
     }
 
     //تقرير بيانات مركبة
@@ -208,5 +214,11 @@ class ReportController extends Controller
         $To = Input::get('To',date('Y-m-d'));
         $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
         return view('report.monitorReport',['l' => $l,'ests' => $ests]);
+    }
+
+    //
+    public function carImages($fileId){
+        $images = add_image::where('file_number',$fileId)->get();
+        return view('report.carImages',['images' => $images]);
     }
 }
