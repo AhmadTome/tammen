@@ -43,13 +43,13 @@
 
                 <div style="max-width: 1000px ;margin-bottom: -15px">
 
-                    <form class="form-horizontal" method="post" action="storepersonalInformation">
+                    <form class="form-horizontal" method="post" action="Editpersoninfo">
                         {{ csrf_field() }}
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left" > رقم الهوية :</label>
                             <div class="col-sm-8 pull-right text-left">
-                                <select class="form-control " id="person_select">
+                                <select class="form-control " id="person_select" name="person_select">
                                     <option selected disabled>اختار رقم الهوية</option>
                                     @foreach($Id as $item)
                                         <option value="{{$item->id}}">{{$item->id." | ".$item->name." | ".$item->address." | ".$item->phone_num." | ".$item->email}}</option>
@@ -103,7 +103,7 @@
                         <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left">الايميل : </label>
                             <div class="col-sm-8 pull-right">
-                                <input class="form-control" name="email" id="email" type="email"  placeholder="ادخل الايميل" required/>
+                                <input class="form-control" name="email" id="email" type="text"  placeholder="ادخل الايميل" required/>
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@
                         <div class="form-group row col-sm-12 ">
 
                             <div class="col-sm-4 pull-right">
-                        <button type="button" class="btn btn-primary"  id="Edit">تعديل</button>
+                        <input type="submit" class="btn btn-primary"  id="Edit" value="تعديل"/>
                             </div>
 
                             <div class="col-sm-3 pull-right">
@@ -253,9 +253,10 @@
 
         });
 
-
+/*
         $(document).on('click','#Edit',function () {
-
+            alert(ID)
+            alert($('#ID').val())
             $.ajax({
 
                 type:'get',
@@ -273,6 +274,7 @@
                 success:function(data) {
                     location.reload();
 
+
                     alert('تم التعديل بنجاح');
 
                 }
@@ -281,6 +283,7 @@
 
 
         });
+        */
     });
 
 

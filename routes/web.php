@@ -96,7 +96,7 @@ Route::get('/addpersonalInformation', function () {
 });
 Route::get('/personalinformationTransaction', function () {
 
-    $Id=\App\enter_personalInfo::all();
+    $Id=enter_personalInfo::all();
     return view('EditDelete.personalinformationTransaction')->with('Id',$Id);
 });
 
@@ -329,7 +329,7 @@ Route::get('/updateaccedentside','addAccedentSide@update');
 Route::post('storepersonalInformation','addpersonalInformation@store');
 Route::get('/findpersoninfo','addpersonalInformation@findinfo');
 Route::get('/deletpersoninfo','addpersonalInformation@destroy');
-Route::get('/editpersoninfo','addpersonalInformation@update');
+Route::post('Editpersoninfo','addpersonalInformation@update');
 
 
 // Car Information Transaction

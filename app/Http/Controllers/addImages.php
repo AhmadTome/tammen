@@ -61,7 +61,7 @@ $imagcount=1;
 
 
 
-return redirect()->to('addcarTransaction');
+//return redirect()->to('addcarTransaction');
 
 
     }
