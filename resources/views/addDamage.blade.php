@@ -1,4 +1,4 @@
-@extends('app.layouts')
+@extends('layouts.app')
 
 @section('title','إدخال ضرر')
 

@@ -1,4 +1,4 @@
-@yield('layouts.app')
+@extends('layouts.app')
 
 @section('title','إدخال مخمن')
 
@@ -283,6 +283,7 @@
 
 
 </script>
+
 @endsection
 
 
