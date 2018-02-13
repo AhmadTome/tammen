@@ -7,6 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -45,10 +48,11 @@
                 <div  style="max-width: 1000px ;margin-bottom: -15px">
                     <form class="form-horizontal" method="post" action="EditCertification">
                         {{ csrf_field() }}
+
                         <div class="form-group row col-sm-12 " dir="rtl">
 
                             <div class="col-sm-2 pull-right text-left">
-                                <select class="form-control carInfo_select" id="carInfo_select">
+                                <select class="form-group-lg carInfo_select" id="carInfo_select">
                                     <option selected disabled="">اختار رقم المركبة</option>
                                     @foreach($carInfo as $car)
                                         <option value="{{$car->file_num}}">{{$car->ve_num." | ".$car->file_num." | ".$car->ve_used." | ".$car->ve_version." | ".$car->ve_produce_year}}</option>
@@ -56,6 +60,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                        <div class="form-group row col-sm-12 " dir="rtl">
+
+
                             <div class="col-sm-2 pull-right text-left">
                                 <input type="text" class="form-control PanelBodyCssInput " name="carnumber" id="carnumber" placeholder="رقم المركبة" readonly required>
                             </div>
@@ -104,11 +112,9 @@
                             </div>
                         </div>
 
-
-
                         <div class="form-group col-sm-12 row" dir="rtl">
                             <div class="col-sm-2 pull-right text-left">
-                                <select class="form-control" id="estimater_select" name="estimater_select">
+                                <select class="form-group-lg" id="estimater_select" name="estimater_select">
                                     <option selected disabled="">اختار المخمن</option>
                                     @foreach($estimater as $car)
                                         <option value="{{$car->nes_authorization_num}}">{{$car->nes_num." | ".$car->nes_name." | ".$car->nes_authorization_num." | ".$car->nes_signature}}</option>
@@ -116,6 +122,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 row" dir="rtl">
+
                             <div class="col-sm-2 pull-right text-left">
                                 <input type="text" class="form-control PanelBodyCssInput " name="estimatername" id="estimatername" placeholder="الاسم" readonly required>
                             </div>
@@ -231,9 +241,33 @@
 
 </body>
 </html>
+<style>
+    .select2-selection {
 
+        background-color: #fff;
+        border: 0;
+        border-radius: 0;
+        color: #555555;
+        font-size: 14px;
+
+        min-height: 30px;
+        text-align: right;
+    }
+
+
+
+    .select2-selection__arrow {
+        margin: 1px;
+    }
+</style>
 <script>
     $(document).ready(function () {
+
+        $("#carInfo_select,#estimater_select,#cert_select").select2({
+            dropdownAutoWidth : true,
+            theme: "classic"
+        });
+        
         var ID;
         $(document).on('click', '.delete-modal', function() {
 

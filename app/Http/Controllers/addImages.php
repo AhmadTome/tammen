@@ -48,7 +48,7 @@ $imagcount=1;
                     $user->im_vehicl_num=Input::get('carnumberhidden');
                     $user->file_number=Input::get('filrnumberhidden');
                     $user->im_photo_date=Input::get('pictureDate');
-                    $user->path=public_path().'/uploads'.$imagename;
+                    $user->path='/uploads/'.$imagename;
                     $user->save();
                 }
             }

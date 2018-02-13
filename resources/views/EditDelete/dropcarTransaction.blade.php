@@ -7,6 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -45,7 +48,7 @@
                     <div class="form-group row col-lg-12 col-md-12 col-xs-12 col-sm-12 " dir="rtl">
 
                         <div class="col-sm-2 pull-right text-left">
-                            <select class="form-control carInfo_select" id="carInfo_select">
+                            <select class="form-group-lg carInfo_select" id="carInfo_select">
                                 <option selected disabled="">اختار رقم المركبة</option>
                                 @foreach($carInfo as $car)
                                     <option value="{{$car->file_num}}">{{$car->ve_num." | ".$car->file_num." | ".$car->ve_used." | ".$car->ve_version." | ".$car->ve_produce_year}}</option>
@@ -53,6 +56,9 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group row col-lg-12 col-md-12 col-xs-12 col-sm-12 " dir="rtl">
+
 
                         <div class="col-sm-2 pull-right text-left">
                             <input type="text" class="form-control PanelBodyCssInput " name="filenumber" id="filenumber" placeholder="رقم الملف" readonly required>
@@ -282,9 +288,34 @@
 </div>
 </body>
 </html>
+<style>
+    .select2-selection {
+
+        background-color: #fff;
+        border: 0;
+        border-radius: 0;
+        color: #555555;
+        font-size: 14px;
+
+        min-height: 30px;
+        text-align: right;
+    }
+
+
+
+    .select2-selection__arrow {
+        margin: 1px;
+    }
+</style>
 <script>
     var dropcatindex=0;
     $(document).ready(function () {
+
+        $("#carInfo_select,#dropstatment,#part,#maintinancework").select2({
+            dropdownAutoWidth : true,
+            theme: "classic"
+        });
+
         var ID;
         $(document).on('click', '.delete-modal', function() {
 
