@@ -7,6 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -321,7 +324,31 @@
 
 </body>
 </html>
+<style>
+    .select2-selection {
+
+        background-color: #fff;
+        border: 0;
+        border-radius: 0;
+        color: #555555;
+        font-size: 14px;
+
+        min-height: 30px;
+        text-align: right;
+    }
+
+
+
+    .select2-selection__arrow {
+        margin: 1px;
+    }
+</style>
 <script>
+    $("#carInfo_select").select2({
+        dropdownAutoWidth : true,
+        theme: "classic"
+    });
+
     $(document).ready(function () {
         var i = 1;
         var ID;
