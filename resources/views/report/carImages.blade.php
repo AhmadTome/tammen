@@ -7,6 +7,9 @@
         .margin-bottom{
             margin-bottom: 10px;
         }
+        @page {
+            size : landscape;
+        }
     </style>
     @foreach($images as $img)
         <div class="col-xs-4 margin-bottom">
