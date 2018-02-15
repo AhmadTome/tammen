@@ -66,7 +66,7 @@
                 {{$car->total_mechanic}}
             </td>
             <td>
-                {{$car->total_drop}}
+                {{(($car->total_drop / 100) * $car->cost->finalcost)}}
             </td>
             <td>
                 {{$car->cost->finalcost}}
@@ -87,10 +87,10 @@
                 </tr>
                 <tr>
                     <td width="50%" colspan="2">
-                    
+                        {{ $car->total_maintenance + $car->total_body_work + $car->total_mechanic + (($car->total_drop / 100) * $car->cost->finalcost) }}
                     </td>
                     <td>
-                        {{$car->total_maintenance + $car->total_body_work + $car->total_mechanic + $car->total_drop }}
+                        {{$car->total_maintenance + $car->total_body_work + $car->total_mechanic }}
                     </td>
                 </tr>
                 <tr>
