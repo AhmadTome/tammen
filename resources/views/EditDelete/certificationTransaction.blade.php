@@ -267,7 +267,7 @@
             dropdownAutoWidth : true,
             theme: "classic"
         });
-        
+
         var ID;
         $(document).on('click', '.delete-modal', function() {
 

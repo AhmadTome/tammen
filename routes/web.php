@@ -236,6 +236,26 @@ Route::get('/BodyTransaction', function () {
 });
 
 
+Route::get('/sendMessage', function () {
+
+    return view('MainInput.sendMessage');
+});
+
+Route::post('/sendmail', function (\Illuminate\Http\Request $request,\Illuminate\Mail\Mailer $mailer) {
+
+    $mailer->to($request->input('mail'))->send(new \App\Mail\MyMail($request->input('title'),$request->input('subject')));
+
+    return redirect()->back();
+})->name('sendmail');
+
+Route::get('/imageTreansaction', function () {
+$carInfo =getCarInfo::all();
+    return view('EditDelete.imageTreansaction')->with('carInfo',$carInfo);
+});
+
+
+
+
 Route::get('/findEstimaterinfo','addCertification@estimaterinfo');
 
 // car Guess Transaction
@@ -378,8 +398,12 @@ Route::get('/deletebodypart','addBodyPart@destroy');
 Route::get('/updatebodypart','addBodyPart@update');
 
 
-
+//Image Transacrtion
 Route::post('saveimage','addImages@store');
+Route::get('/getimageinfo','addImages@getall');
+Route::get('deleteiamge','addImages@destroy');
+
+
 
 // Drop statment Transaction
 Route::post('storeDropStatment','addDropStatment@store');

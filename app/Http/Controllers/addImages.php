@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\add_image;
+use App\getCarInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -107,8 +108,24 @@ $imagcount=1;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $path = $request->path;
+        $filenumber=$request->filenum;
+
+        add_image::where('file_number','=',$filenumber)->where('path','=',$path)->delete();
+        unlink(public_path().$path);
+        return response()->json();
+    }
+
+
+    public function getall(Request $request){
+        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_license_end_date','ve_insurence_end_date','attachments','ve_note')->where('file_num',$request->id)->take(1500)->get();
+        $data2=add_image::select('path')->where('file_number',$request->id)->take(1500)->get();
+        if(count($data2)>0) {
+            return response()->json(array('data' => $data, 'data2' => $data2));
+        }else{
+            return "";
+        }
     }
 }

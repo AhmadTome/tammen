@@ -39,7 +39,7 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('BodyTransaction') }}">قطع غيار هيكل</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropcarTransaction') }}">صور الحادث</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('imageTreansaction') }}">صور الحادث</a></li>
                         <li role="presentation" class="divider"></li>
 
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropcarTransaction') }}">هبوط مركبة</a></li>
@@ -99,7 +99,7 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropvalue')}}"> ادخال هبوط المركبة</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/SmartCity/SAdmin/AccountInfo.php">ادخال مراسلة</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('sendMessage')}}">ادخال مراسلة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('carCost')}}>احتساب سعر المركبة</a></li>
                         <li role="presentation" class="divider"></li>
