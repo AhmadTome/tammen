@@ -234,7 +234,7 @@
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-3">
-                                <input type="submit" class="btn-success" id="submit" value="إدخال">
+                                <input type="submit" class="btn btn-success" id="submit" value="إدخال">
                             </div>
                             <label class="control-label col-sm-7"></label>
                         </div>

@@ -27,6 +27,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/welcomahmad', function () {
+
+    return "hello ahmad";
+});
+
+
 Route::get('/garage', function () {
     $garage=\App\enter_garage::all();
     return view('garage')->with('garage',$garage);

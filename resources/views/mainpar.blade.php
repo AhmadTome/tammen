@@ -48,8 +48,10 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('BankTransaction') }}">كشف بنك</a></li>
                         <li role="presentation" class="divider"></li>
+                        <!--
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('certificationTransaction') }}">كشف شهادة</a></li>
                         <li role="presentation" class="divider"></li>
+                  -->
                     </ul>
                 </li>
 
@@ -104,8 +106,11 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('carCost')}}>احتساب سعر المركبة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('BankDisclosure')}}>ادخال كشف بنك</a></li>
+
+                        <!--
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('CertificationInput')}}>ادخال كشف شهادة</a></li>
+-->
 
                     </ul>
                 </li>

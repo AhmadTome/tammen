@@ -163,9 +163,9 @@
                         </div>
 
                         <div class="form-group row" dir="rtl">
-                            <label class="control-label col-sm-2 pull-right text-left"> النسبة : </label>
+                            <label class="control-label col-sm-2 pull-right text-left"> الضريبة : </label>
                             <div class="col-sm-8 pull-right">
-                                <input class="form-control" id="BodyPercantige" type="text"  placeholder="ادخل  النسبة"/>
+                                <input class="form-control" id="BodyPercantige" type="text"  placeholder="ادخل  الضريبة"/>
                             </div>
                         </div>
 

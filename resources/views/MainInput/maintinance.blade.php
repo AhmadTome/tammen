@@ -73,10 +73,10 @@
                 </div>
 
                 <div class="form-group row" dir="rtl">
-                    <label class="control-label col-sm-2 pull-right text-left" > النسبة : </label>
+                    <label class="control-label col-sm-2 pull-right text-left" > الضريبة : </label>
                     <div class="col-sm-8 pull-right">
                        <!-- <input class="form-control" id="Percantige" type="text"  placeholder="ادخل  النسبة" value="%"/> -->
-                        <input class="form-control" id="Percantige" type="text"  placeholder="ادخل  النسبة"   required/>
+                        <input class="form-control" id="Percantige" type="text"  placeholder="ادخل  الضريبة"   required/>
 
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-3">
-                            <input type="submit" class="btn-success" id="submit" value="إدخال">
+                            <input type="submit" class="btn btn-success" id="submit" value="إدخال">
                         </div>
                         <label class="control-label col-sm-7"></label>
                     </div>
