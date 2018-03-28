@@ -26,15 +26,9 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
-Route::get('/welcomahmad', function () {
-
-    return "hello ahmad";
-});
-
+    Route::get('/',function(){
+        return view('home');
+    });
 
 Route::get('/garage', function () {
     $garage=\App\enter_garage::all();
@@ -463,9 +457,6 @@ Route::post('saveletter','saveletterConreoller@store');
 
 
 Route::get('/uploadimage','addImages@store');
-
-// logout
-//Route::post('/logout','Authcontroller@logout');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
