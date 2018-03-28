@@ -11,7 +11,7 @@
             </div>
             <div class="panel-body PanelBodyCss">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <select name="ins_num" id="ins_num" class="form-control">
@@ -27,7 +27,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <select name="benName" id="benName" class="form-control">
@@ -46,6 +46,22 @@
                                 </select>
                             </div>
                             <label class="control-label col-sm-2">إسم المستفيد</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <select name="toName" id="toName" class="form-control">
+                                    @foreach($toNames as $name)
+                                        <option>
+                                            {{$name->to}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2">
+                                لحضرة
+                            </label>
                         </div>
                     </div>
                 </div>

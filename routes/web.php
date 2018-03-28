@@ -22,6 +22,10 @@ use App\enter_personalInfo;
 use App\Estimater;
 use App\getCarInfo;
 
+Auth::routes();
+
+Route::group(['middleware' => 'auth'],function(){
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -464,9 +468,6 @@ Route::get('/uploadimage','addImages@store');
 //Route::post('/logout','Authcontroller@logout');
 
 
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -545,4 +546,6 @@ Route::group(['prefix' => '/report'],function(){
 
     //صور الحادث
     Route::get('/carImages/{fileId}','ReportController@carImages');
+});
+
 });
