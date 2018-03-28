@@ -38,11 +38,7 @@
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <form method="post" action="logout" id="formlogout">
-                    {{ csrf_field() }}
-<input type="submit" id="logoutbtn" name="logoutbtn">
-                </li>
-                </form>
+
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">التقارير <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/report/car">تقارير المركبة</a></li>
@@ -150,10 +146,3 @@
         </div>
     </div>
 </nav>
-<script>
-    var form = document.getElementById("formlogout");
-
-    document.getElementById("logoutbtn").addEventListener("click", function () {
-        form.submit();
-    });
-</script>
