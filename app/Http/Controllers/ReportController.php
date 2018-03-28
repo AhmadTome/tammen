@@ -26,7 +26,8 @@ class ReportController extends Controller
 
     public function insurance(){
         $companies = enter_insurence_company::all();
-        return view('insCompanyReport',['companies' => $companies]);
+        $toNames = estimate_car::distinct('to')->select('to')->get();
+        return view('insCompanyReport',['companies' => $companies,'toNames' => $toNames]);
     }
 
     public function insuranceBenifiter(){
@@ -129,9 +130,9 @@ class ReportController extends Controller
         $benName = Input::get('benName',0);
         $From = Input::get('From',date('Y-m-d'));
         $To = Input::get('To',date('Y-m-d'));
-
+        $toName = Input::get('toName');
         $company = enter_insurence_company::where('ins_name',$ins_num)->first();
-        $ests = estimate_car::with('carInfo')->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+        $ests = estimate_car::with('carInfo')->where('to',$toName)->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
         return view('report.insCompanyAcc',['l' => $l,'company' => $company,'ests' => $ests]);
     }
 
@@ -192,9 +193,9 @@ class ReportController extends Controller
     public function degree($l = 'AR'){
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        $date = Input::get('date',date('Y-m-d'));
-        $cer = enter_certificate::where('filenumber',$fileId)->where('date',$date)->first();
-        return view('report.degree',['car' => $car,'cer' => $cer,'l' => $l]);
+        //$date = Input::get('date',date('Y-m-d'));
+        $certificates = enter_certificate::all();
+        return view('report.degree',['car' => $car,'certificates' => $certificates,'l' => $l]);
     }
 
     //شهادة بنك
@@ -218,7 +219,11 @@ class ReportController extends Controller
 
     //
     public function carImages($fileId){
-        $images = add_image::where('file_number',$fileId)->get();
-        return view('report.carImages',['images' => $images]);
+        $allImages = add_image::where('file_number',$fileId)->get();
+        $groupedImages = [];
+        foreach($allImages as $image){
+            $groupedImages[$image->im_photo_date][] = $image;
+        }
+        return view('report.carImages',['groupedImages' => $groupedImages]);
     }
 }

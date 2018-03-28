@@ -94,7 +94,7 @@
                 </tr>
                 <tr>
                     <th class="gray-back">
-                        {{_t('damage_rate',$l)}}
+                        {{_t('damage_rate',$l)}} %
                     </th>
                     <td>
                         {{$est->DamagePercantige}}
