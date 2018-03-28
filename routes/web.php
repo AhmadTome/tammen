@@ -23,7 +23,6 @@ use App\Estimater;
 use App\getCarInfo;
 
 Route::get('/', function () {
-
     return view('auth.login');
 });
 
@@ -259,6 +258,11 @@ $carInfo =getCarInfo::all();
     return view('EditDelete.imageTreansaction')->with('carInfo',$carInfo);
 });
 
+// save letter
+Route::get('/SaveLetter', function () {
+    return view('MainInput.saveletter');
+});
+
 
 
 
@@ -448,13 +452,16 @@ Route::get('/getallinfoforcert','addCertification@findcertinfo');
 Route::get('/deletcert','addCertification@destroy');
 Route::post('EditCertification','addCertification@update');
 
-
+// save letter
+Route::post('saveletter','saveletterConreoller@store');
 
 //Route::get('/addInsuranceCompany','addInsuranceCompany@findCarInfoforGesscar');
 
 
 Route::get('/uploadimage','addImages@store');
 
+// logout
+//Route::post('/logout','Authcontroller@logout');
 
 
 
