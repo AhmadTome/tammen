@@ -14,6 +14,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-md-3"></div>
