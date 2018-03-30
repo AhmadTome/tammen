@@ -1,5 +1,4 @@
 
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -144,8 +143,5 @@
             </ul>
         </div>
     </div>
-<<<<<<< HEAD
 </nav>
-=======
 </nav>
->>>>>>> 99a0661dd26fafbff2dd8ef3575aa0a9b26ae7d1

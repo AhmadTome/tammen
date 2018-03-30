@@ -1,0 +1,146 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.1.35-community
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema drivenschool
+--
+
+CREATE DATABASE IF NOT EXISTS drivenschool;
+USE drivenschool;
+
+--
+-- Definition of table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(45) NOT NULL,
+  `pass` varchar(45) NOT NULL,
+  `f_name` varchar(45) NOT NULL,
+  `l_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`ID`,`UserName`,`pass`,`f_name`,`l_name`) VALUES 
+ (1,'1','1','1','1'),
+ (2,'2','2','2','2');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
+
+--
+-- Definition of table `advertisement`
+--
+
+DROP TABLE IF EXISTS `advertisement`;
+CREATE TABLE `advertisement` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `desc` longtext NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `advertisement`
+--
+
+/*!40000 ALTER TABLE `advertisement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `advertisement` ENABLE KEYS */;
+
+
+--
+-- Definition of table `diff_pic`
+--
+
+DROP TABLE IF EXISTS `diff_pic`;
+CREATE TABLE `diff_pic` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `diff_pic`
+--
+
+/*!40000 ALTER TABLE `diff_pic` DISABLE KEYS */;
+/*!40000 ALTER TABLE `diff_pic` ENABLE KEYS */;
+
+
+--
+-- Definition of table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE `question` (
+  `ID` int(10) unsigned NOT NULL,
+  `Q_Desc` longtext NOT NULL,
+  `Main_Pic_Path` varchar(45) DEFAULT NULL,
+  `Q1_desc` varchar(45) DEFAULT NULL,
+  `Q1_desc_pic` varchar(45) DEFAULT NULL,
+  `Q2_desc` varchar(45) DEFAULT NULL,
+  `Q2_desc_pic` varchar(45) DEFAULT NULL,
+  `Q3_desc` varchar(45) DEFAULT NULL,
+  `Q3_desc_pic` varchar(45) DEFAULT NULL,
+  `Q4_desc` varchar(45) DEFAULT NULL,
+  `Q4_descpic` varchar(45) DEFAULT NULL,
+  `answerNum` int(10) unsigned NOT NULL,
+  `type` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `question`
+--
+
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+
+
+--
+-- Definition of table `trafficlight`
+--
+
+DROP TABLE IF EXISTS `trafficlight`;
+CREATE TABLE `trafficlight` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `path1` longtext NOT NULL,
+  `desc 1` longtext NOT NULL,
+  `type1` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `trafficlight`
+--
+
+/*!40000 ALTER TABLE `trafficlight` DISABLE KEYS */;
+/*!40000 ALTER TABLE `trafficlight` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
