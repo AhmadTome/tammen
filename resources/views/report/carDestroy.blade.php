@@ -18,7 +18,7 @@
                         {{_t('production_date',$l)}}
                     </th>
                     <td colspan="2">
-                        {{date('Y-m-d')}}
+                        {{ date('Y-m-d',strtotime($car->created_at)) }}
                     </td>
                 </tr>
                 <tr>
@@ -26,10 +26,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-                        {{explode('-',$car['file_num'])[1]}}
+                        ت
                     </td>
                     <td>
-                        {{explode('-',$car['file_num'])[0]}}
+                        {{$car->file_num}}
                     </td>
                 </tr>
             </table>
@@ -41,7 +41,7 @@
                         {{_t('for',$l)}}
                     </th>
                     <td>
-                        {{$est['to']}}
+                        {{$est['DestroyCarTo']}}
                     </td>
                 </tr>
             </table>
@@ -155,8 +155,8 @@
             </table>
         </div>
     </div>
-    <div class="box">
-
+    <div class="box" style="padding: 10px;">
+        {{$est->DestroyText}}
     </div>
     <br>
     <div class="col-xs-8 col-xs-offset-2">
@@ -174,13 +174,20 @@
             </tr>
             <tr>
                 <td>
-                    {{$est['estimaterName']}}
+                    {{ $estimater->nes_name }}
                 </td>
                 <td>
+                    {{ $estimater->nes_authorization_num }}
                 </td>
-                <td></td>
+                <td>
+                    {{ $estimater->nes_signature }}
+                </td>
             </tr>
         </table>
     </div>
     <div class="clearfix"></div>
+    <br><br>
+    <h4 class="text-center">
+        {{_t('with_respect_message',$l)}}
+    </h4>
 @endsection

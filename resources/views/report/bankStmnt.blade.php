@@ -1,6 +1,6 @@
 @extends('report.reportLayout')
 
-@section('title','شهادة تثمين')
+@section('title','كشف بنك')
 
 @section('content')
 
@@ -19,7 +19,7 @@
                         {{_t('production_date',$l)}}
                     </th>
                     <td colspan="2">
-                        {{date('Y-m-d')}}
+                        {{date('Y-m-d',strtotime($carInfo->created_at))}}
                     </td>
                 </tr>
                 <tr>
@@ -184,109 +184,41 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-xs-6">
+        <?php
+            $allChecking = preg_split('@/@',$bankInfo->checking, NULL, PREG_SPLIT_NO_EMPTY);
+            $totalCount = count($allChecking);
+            $firstTable = ceil($totalCount / 2);
+        ?>
+        <div class="col-xs-6 pull-right">
             <table class="table table-bordered">
+                @for($i = 0; $i < $firstTable; $i++)
+                    <?php $col = explode("-",$allChecking[$i]); ?>
                 <tr>
                     <th width="30%">
-                        {{_t('front_face',$l)}}
+
+                        {{$col[0]}}
                     </th>
                     <td>
+                        {{$col[1]}}
                     </td>
                 </tr>
-                <tr>
-                    <th>
-                        {{_t('suspen_device',$l)}}
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{_t('engine',$l)}}
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{_t('gear_box',$l)}}
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        2
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        4
-                    </th>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        6
-                    </th>
-                    <td></td>
-                </tr>
+                @endfor
             </table>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-6 pull-right">
             <table class="table table-bordered">
+            @for($i = $firstTable; $i < $totalCount; $i++)
+                <?php $col = explode("-",$allChecking[$i]); ?>
                 <tr>
                     <th width="30%">
-                        {{_t('front',$l)}}
+
+                        {{$col[0]}}
                     </th>
                     <td>
+                        {{$col[1]}}
                     </td>
                 </tr>
-                <tr>
-                    <th>
-                        {{_t('right_side',$l)}}
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{_t('left_side',$l)}}
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{_t('back',$l)}}
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        3
-                    </th>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        5
-                    </th>
-                    <td></td>
-                </tr>
+            @endfor
             </table>
         </div>
     </div>
@@ -296,6 +228,35 @@
         </h3>
     </div>
     <br>
+    <div class="row">
+        <?php 
+            $attachments = preg_split('@,@',$carInfo->attachments, NULL, PREG_SPLIT_NO_EMPTY); 
+            $totalCount = count($attachments);
+            $firstTable = ceil($totalCount / 2);
+        ?>
+        <div class="col-xs-6 pull-right">
+            <table class="table table-bordered">
+                @for($i = 0; $i < $firstTable; $i++)
+                    <tr>
+                        <td>
+                            {{$attachments[$i]}}
+                        </td>
+                    </tr>
+                @endfor
+            </table>
+        </div>
+        <div class="col-xs-6 pull-right">
+            <table class="table table-bordered">
+                @for($i = $firstTable; $i < $totalCount; $i++)
+                    <tr>
+                        <td>
+                            {{$attachments[$i]}}
+                        </td>
+                    </tr>
+                @endfor
+            </table>
+        </div>
+    </div>
     <table class="table table-bordered">
         <tr>
             <td width="20%" style="padding-top: 10px !important;padding-bottom: 10px !important;">
@@ -310,7 +271,7 @@
                 {{_t('notes',$l)}}
             </td>
             <td>
-            
+                {{$est->EstimateNote}}
             </td>
         </tr>
     </table>

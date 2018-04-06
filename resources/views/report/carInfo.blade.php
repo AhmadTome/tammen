@@ -172,8 +172,8 @@
                     {{_t('damage_desc',$l)}}
                 </p>
                 <div class="clearfix"></div>
-                <div class="box">
-
+                <div class="box padding">
+                    {{ $est->DamageDiscription }}
                 </div>
             </div>
         </div>
