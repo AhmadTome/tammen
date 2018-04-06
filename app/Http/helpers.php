@@ -132,7 +132,8 @@
                 'tech_damage_table' => 'جدولة الأضرار الفنية',
                 'claim_type' => 'نوع المطالبة',
                 'claim_money' => 'مبلغ المطالبة',
-                'report_fees' => 'رسوم التقرير'
+                'report_fees' => 'رسوم التقرير',
+                'with_respect_message' => 'وتفضلو بقبول فائق الاحترام'
             ],
             'HR' => [
     
@@ -154,4 +155,8 @@
 
     function calcTax($amuont){
         return $amuont * tax();
+    }
+
+    function toPercentage($per){
+        return str_replace("%","",$per) / 100;
     }

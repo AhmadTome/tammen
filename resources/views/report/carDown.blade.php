@@ -83,6 +83,9 @@
                 </tr>
             </thead>
             <tbody>
+                <?php
+                    $totalDrop = 0;
+                ?>
                 <tr>
                     <td>
                         {{$drop->part}}
@@ -94,10 +97,11 @@
                         {{$drop->count}}
                     </td>
                     <td>
-                        {{$drop->percantige}}
+                        {{$drop->percantige / 100}}
                     </td>
                     <td>
-                        {{$drop->percantige}}
+                        % {{$drop->percantige}}
+                        <?php $totalDrop += $drop->percantige; ?>
                     </td>
                 </tr>
                 <tr>
@@ -105,6 +109,7 @@
                         {{_t('total_down_ratio',$l)}}
                     </th>
                     <td>
+                        % {{ $totalDrop }}
                     </td>
                 </tr>
                 <tr>
@@ -112,7 +117,7 @@
                         {{_t("direct_damage",$l)}}
                     </th>
                     <td>
-                    
+                        {{$drop->maintinanceCost}}
                     </td>
                 </tr>
                 <tr>
@@ -120,7 +125,7 @@
                         {{_t('total_drop_value',$l)}}
                     </th>
                     <td>
-                    
+                        {{ ($totalDrop / 100) * $drop->finalprice}}
                     </td>
                 </tr>
             </tbody>

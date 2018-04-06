@@ -14,6 +14,8 @@ use App\maintenance_vehicle_work;
 use App\drop_car;
 use App\enter_certificate;
 use App\add_image;
+use App\Estimater;
+use App\bankinfo;
 use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
@@ -82,7 +84,8 @@ class ReportController extends Controller
     public function carDestroy($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.carDestroy',['car' => $car,'est' => $est,'l' => $l]);
+        $estimater = Estimater::where('nes_name',$est->estimaterName)->first();
+        return view('report.carDestroy',['car' => $car,'est' => $est,'l' => $l,'estimater' => $estimater]);
     }
 
     //تقرير ثمن المركبة
@@ -102,7 +105,8 @@ class ReportController extends Controller
     //دائرة الترخيص
     public function licence($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        return view('report.licence',['car' => $car,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->first();
+        return view('report.licence',['car' => $car,'l' => $l,'est' => $est]);
     }
 
     //تقرير أضرار أولي
@@ -205,7 +209,9 @@ class ReportController extends Controller
         $date = Input::get('date',date('Y-m-d'));
         $carInfo = enter_car_info::find($fileId);
         $person = enter_personalinfo::find($id);
-        return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l]);
+        $est = estimate_car::where('registerDate',$date)->where('fileNumber',$fileId)->firstOrFail();
+        $bankInfo = bankinfo::where('filenumber',$fileId)->first();
+        return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l,'bankInfo' => $bankInfo,'est' => $est]);
     }
 
     //تقرير الرقابة

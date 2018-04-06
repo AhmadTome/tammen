@@ -3,4 +3,6 @@
             </h4>
             <div class="clearfix">
             </div>
-            <div class="box"></div>
+            <div class="box padding">
+                {{$est->Attachment}}
+            </div>

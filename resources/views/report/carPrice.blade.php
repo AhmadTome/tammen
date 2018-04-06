@@ -86,7 +86,11 @@
                 </tr>
                 <tr>
                     <td width="50%" colspan="2">
-                        {{ $car->total_maintenance + $car->total_body_work + $car->total_mechanic + (($car->total_drop / 100) * $car->cost->finalcost) }}
+                        @if($car->total_drop == 0)
+                            {{$car->cost->finalcost}}
+                        @else
+                            {{ $car->total_maintenance + $car->total_body_work + $car->total_mechanic + (($car->total_drop / 100) * $car->cost->finalcost) }}
+                        @endif
                     </td>
                     <td>
                         {{ $car->total_maintenance + $car->total_body_work + $car->total_mechanic }}
@@ -94,10 +98,10 @@
                 </tr>
                 <tr>
                     <th class="gray-back">
-                        {{_t('damage_rate',$l)}} %
+                        {{_t('damage_rate',$l)}}
                     </th>
                     <td>
-                        {{$est->DamagePercantige}}
+                        {{$est->DamagePercantige}} %
                     </td>
                 </tr>
             </table>
@@ -111,7 +115,9 @@
             </h4>
             <div class="clearfix">
             </div>
-            <div class="box"></div>
+            <div class="box padding">
+                {{$est->carEstimateNote}}
+            </div>
         </div>
         <div class="col-xs-3">
             <h4 class="gray-back border-1 padding pull-right margin-0">
@@ -119,7 +125,9 @@
             </h4>
             <div class="clearfix">
             </div>
-            <div class="box"></div>
+            <div class="box padding">
+                {{$est->Attachment}}
+            </div>
         </div>
     </div>
 @endsection

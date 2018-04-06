@@ -56,7 +56,7 @@
                     {{_t('production_date',$l)}}
                 </th>
                 <td>
-                    {{date('Y-m-d')}}
+                    {{date('Y-m-d',strtotime($est->created_at))}}
                 </td>
             </tr>
             <tr>

@@ -17,4 +17,8 @@ class estimate_car extends Model
     public function getEstimaterCostAttribute(){
         return $this->total * $this->estimatePercantige;
     }
+
+    public function getNetTotalAttribute(){
+        return $this->total + $this->estimater_cost;
+    }
 }

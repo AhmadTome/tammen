@@ -121,7 +121,7 @@
                         {{$e->estimater_cost}}
                     </td>
                     <td>
-                        {{$e->total}}
+                        {{$e->net_total}}
                     </td>
                     <td>
                         {{$e->registerDate}}
@@ -132,7 +132,7 @@
                     $totalGelary += $e->gelary;
                     $totalOfficeCost += $e->officeCost;
                     $totalEstimaterCost += $e->estimater_cost;
-                    $total += $e->total;
+                    $total += $e->net_total;
                 ?>
             @endforeach
             <tr>

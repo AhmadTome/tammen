@@ -46,16 +46,10 @@
                     <th>
                         {{_t('work_ratio',$l)}}
                     </th>
-                    <th>
-                        {{_t('down_ratio')}}
-                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                        
-                    </td>
                     <td>
                         
                     </td>

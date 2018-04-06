@@ -3,7 +3,11 @@
 @section('title','شهادة مركبة')
 
 @section('content')
-
+    <style>
+        .certificate{
+            padding: 5px;
+        }
+    </style>
     @include('report.parts.carInfoHeader')
     <br>
     <h3 class='text-center'>
@@ -16,9 +20,13 @@
         <p>
             أنا الموقع أدناه (محمد أحمد أسعد بدارنة) حامل التراخيص التالية
         </p>
+        <br>
         @foreach($certificates as $cer)
-            {{$cer}}
+            <p class="certificate">
+            {{$cer->cert}}
+            </p>
         @endforeach
+        <br>
         <p>
             أعطي وبناءا على طلبكم تقرير خبير والذي يعتبر شهادة في المحكمة أصرح انه معروف لدى فحوى وتعليمات القانون الجنائي المتعلقة بإعطاء شهادة كاذبة
             أمام المحكمة وهذا التقرير المصدق والمختوم بيدي هو شهادة في المحكمة.
