@@ -47,7 +47,7 @@
                         {{$car['ve_body_num']}}
                     </td>
                     <td>
-                        {{date('Y-m-d')}}
+                        {{date('Y-m-d',strtotime($car->created_at))}}
                     </td>
                 </tr>
             </tbody>

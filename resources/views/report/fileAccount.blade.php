@@ -65,10 +65,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-                        {{explode('-',$car['file_num'])[1]}}
+                        ت
                     </td>
                     <td width="50%">
-                        {{explode('-',$car['file_num'])[0]}}
+                        {{$car->file_num }}
                     </td>
                 </tr>
                 <tr>
@@ -129,8 +129,8 @@
             <table class="table table-bordered">
                 <tr>
                     <th width="30%"> {{_t('file_num',$l)}} </th>
-                    <td width="20%"> {{explode('-',$car['file_num'])[1]}} </td>
-                    <td width="50%"> {{explode('-',$car['file_num'])[0]}}  </td>
+                    <td width="20%"> ت </td>
+                    <td width="50%"> {{ $car->file_num }}  </td>
                 </tr>
             </table>
         </div>
