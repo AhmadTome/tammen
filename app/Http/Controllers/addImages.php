@@ -43,7 +43,7 @@ $imagcount=1;
                     $ext=$file->getClientOriginalExtension();
                     $date=date('Ymd_His');
                     $imagename =time().'_'.$date.'_'.($imagcount++).'.'.$ext ;
-                    $file->move(public_path().'\uploads', $imagename);
+                    $file->move(public_path().'/uploads', $imagename);
 
                     $user=new add_image;
                     $user->im_vehicl_num=Input::get('carnumberhidden');

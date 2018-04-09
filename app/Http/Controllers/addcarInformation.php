@@ -37,6 +37,13 @@ class addcarInformation extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'fileNumber' => 'required|unique:enter_car_infos,file_num'
+        ]);
+
+
+
+
         $output=Input::get('name');
 $attach='';
     for($i=0;$i<count($output)-1;$i++){
