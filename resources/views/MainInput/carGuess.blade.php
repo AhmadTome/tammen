@@ -34,7 +34,6 @@
 
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
         @include('mainpar')
-
     </div>
 
     <!--Body-->
@@ -386,7 +385,7 @@
             </div>
                     <div class="row ">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center pull-left" >
-                            <input type="submit" name="submit" id="submit" class="btn btn-success " value="اضافة" />
+                            <input type="submit" name="submit" id="submit" class="btn btn-success " value="ادخال" />
                         </div>
                     </div>
 

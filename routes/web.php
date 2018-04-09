@@ -24,7 +24,7 @@ use App\getCarInfo;
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => ['auth','preventBackHistory']],function(){
 
     Route::get('/',function(){
         return view('home');
