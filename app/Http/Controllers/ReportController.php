@@ -146,7 +146,7 @@ class ReportController extends Controller
         $car_num = Input::get('car_num',0);
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
-        $RegDate = Input::get('RegDate',date('Y-m-d'));
+        //$RegDate = Input::get('RegDate',date('Y-m-d'));
         $company = enter_insurence_company::where('ins_name',$ins_num)->firstOrFail();
         $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->firstOrFail();
         return view('report.insCompanyUser',['l' => $l,'company' => $company,'est' => $est]);
@@ -156,7 +156,8 @@ class ReportController extends Controller
     public function bodyPartChange($l = 'AR'){
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        $parts = body_vehicle_work::where('file_number',$fileId)->get();
+        $date = Input::get('date',date('Y-m-d'));
+        $parts = body_vehicle_work::where('file_number',$fileId)->where('bo_date',$date)->get();
         return view('report.bodyPartChange',['car' => $car,'parts' => $parts,'l' => $l]);
     }
 
@@ -171,8 +172,9 @@ class ReportController extends Controller
     //أعمالمركبة
     public function carWork($fileId,$l = 'AR'){
         $fileId = Input::get('file_num','');
+        $date = Input::get('date',date('Y-m-d'));
         $car = enter_car_info::find($fileId);
-        $parts = maintenance_vehicle_work::where('file_number',$fileId)->get();
+        $parts = maintenance_vehicle_work::where('file_number',$fileId)->where('mawo_register_date',$date)->get();
         return view('report.carWork',['car' => $car,'parts'=> $parts,'l' => $l]);
     }
 
@@ -231,5 +233,48 @@ class ReportController extends Controller
             $groupedImages[$image->im_photo_date][] = $image;
         }
         return view('report.carImages',['groupedImages' => $groupedImages]);
+    }
+
+    public function partsDates($fileId){
+        $dropDates = drop_car::where('filenumber',$fileId)->distinct('data')->select('data')->get();
+        $dates = [];
+        foreach($dropDates as $date){
+            $dates[] = [
+                'value' => $date->data,
+                'display' => $date->data." - هبوط مركبة"
+            ];
+        }
+
+        $mDates = maintenance_vehicle_work::where('file_number',$fileId)->distinct('mawo_register_date')->select('mawo_register_date')->get();
+        foreach($mDates as $date){
+            $dates[] = [
+                'value' => $date->mawo_register_date,
+                'display' => $date->mawo_register_date." - أعمال مركبة"
+            ];
+        }
+
+        $mcDates = mechanic_vehicle_work::where('filenumber',$fileId)->distinct('me_date')->select('me_date')->get();
+        foreach($mcDates as $date){
+            $dates[] = [
+                'value' => $date->me_date,
+                'display' => $date->me_date." - قطع غيار ميكانيك"
+            ];
+        }
+
+        $bDates = body_vehicle_work::where('file_number',$fileId)->distinct('bo_date')->select('bo_date')->get();
+        foreach($bDates as $date){
+            $dates[] = [
+                'value' => $date->bo_date,
+                'display' => $date->bo_date." - قطع غيار هيكل"
+            ];
+        }
+
+        return response()->json($dates);
+    }
+
+    public function bankDates($fileId){
+        $dates = estimate_car::where('fileNumber',$fileId)->distinct('registerDate')->select('registerDate')->get();
+        
+        return response()->json($dates);
     }
 }
