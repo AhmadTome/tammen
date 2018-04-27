@@ -168,7 +168,8 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">    كشف اضرار : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="coverDamage" name="coverDamage" type="text"  placeholder="ادخل  كشف الاضرار" required/>
+
+               <textarea class="form-control" rows="5" cols="80" placeholder="ادخل  كشف الاضرار" required id="coverDamage" name="coverDamage" ></textarea>
                 </div>
             </div>
 
@@ -315,9 +316,11 @@
             </div>
 
             <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left"> نسبة الضررالفني : </label>
+                <label class="control-label col-sm-2 pull-right text-left"> نسبة الضررالفني % : </label>
                 <div class="col-sm-8 pull-right">
+
                     <input class="form-control" id="TechnicalDamage" name="TechnicalDamage" type="text"  placeholder=" نسبة الضرر الفني" readonly required/>
+
                 </div>
             </div>
 
@@ -485,6 +488,8 @@
                     var carprice=$('#carPrice').val();
                     if(carprice !=0)
                     $('#TechnicalDamage').val(((data/carprice)*100).toFixed(2));
+                    else
+                    $('#TechnicalDamage').val("0");
 
                 }
 

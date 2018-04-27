@@ -39,6 +39,7 @@ class addImages extends Controller
     {
 $imagcount=1;
             if($request->hasFile('images')){
+
                 foreach($request->file('images') as $file) {
                     $ext=$file->getClientOriginalExtension();
                     $date=date('Ymd_His');
