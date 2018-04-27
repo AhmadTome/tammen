@@ -41,6 +41,7 @@
                 data:{'id':file_nom},
                 success:function(data) {
                     $('#filenumber').val(data[0].file_num);
+                    $("#filenumber").trigger("change");
                     $('#carused').val(data[0].ve_used);
                     $('#carversion').val(data[0].ve_version);
                     $('#producedyear').val(data[0].ve_produce_year);

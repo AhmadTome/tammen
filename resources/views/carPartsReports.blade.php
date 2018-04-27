@@ -92,18 +92,16 @@
             var $fileNumber = $("#filenumber");
             var $fileChooser = $("#carInfo_select");
             var dateChoose = document.getElementById("Date");
-            $fileChooser.on("change",function(){
-                setTimeout(() => {
-                    var fileId = $fileNumber.val();
-                    $.get("/car/parts/dates/" + fileId).done(function(data){
-                        dateChoose.innerHTML = "";
-                        for(var i = 0,l = data.length; i < l; i++){
-                            dateChoose.appendChild(new Option(data[i].display,data[i].value));
-                        }
-                    }).fail(function(err){
+            $fileNumber.on("change",function(){
+                var fileId = this.value;
+                $.get("/car/parts/dates/" + fileId).done(function(data){
+                    dateChoose.innerHTML = "";
+                    for(var i = 0,l = data.length; i < l; i++){
+                        dateChoose.appendChild(new Option(data[i].display,data[i].value));
+                    }
+                }).fail(function(err){
 
-                    });
-                }, 100);
+                });
             });
         function goTo(route){
             var type = $("#filenumber").val();
