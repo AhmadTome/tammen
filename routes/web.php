@@ -22,6 +22,10 @@ use App\enter_personalInfo;
 use App\Estimater;
 use App\getCarInfo;
 
+Route::get('/err',function(){
+    return view('errors.noData');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth','preventBackHistory']],function(){

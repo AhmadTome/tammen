@@ -61,59 +61,88 @@ class ReportController extends Controller
     //تقرير بيانات مركبة
     public function carInfo($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.carInfo',['car' => $car,'est' => $est,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('errors.noData');
+        }
+        return view('report.carInfo',['car' => $car,'est' => $est[0],'l' => $l]);
     }
     
 
     //تقرير حساب ملف
     public function fileAccount($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.fileAccount',['car' => $car,'est' => $est,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('errors.noData');
+        }
+
+        return view('report.fileAccount',['car' => $car,'est' => $est[0],'l' => $l]);
     }
 
     //تقرير حساب ملف شخصي
     public function personalFileAccount($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.personalFileAccount',['car' => $car,'est' => $est,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('report.noData');
+        }
+
+        return view('report.personalFileAccount',['car' => $car,'est' => $est[0],'l' => $l]);
     }
 
     //تقرير شطب مركبة
     public function carDestroy($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        $estimater = Estimater::where('nes_name',$est->estimaterName)->first();
-        return view('report.carDestroy',['car' => $car,'est' => $est,'l' => $l,'estimater' => $estimater]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        $estimater = Estimater::where('nes_name',$est->estimaterName)->get();
+
+        if(count($est) == 0 || count($estimater) == 0){
+            return view('errors.noData');
+        }
+
+        return view('report.carDestroy',['car' => $car,'est' => $est[0],'l' => $l,'estimater' => $estimater[0]]);
     }
 
     //تقرير ثمن المركبة
     public function carPrice($fileId,$l = 'AR'){
         $car = enter_car_info::with(['maintenance','bodyVehicleWork'])->find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.carPrice',['car' => $car,'est' => $est,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('errors.noData');
+        }
+        return view('report.carPrice',['car' => $car,'est' => $est[0],'l' => $l]);
     }
 
     //تقرير ثمن المركبة مع حطام
     public function carPriceWithRek($fileId,$l='AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.carPriceWithRek',['car' => $car,'est' => $est,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('errors.noData');
+        }
+
+        return view('report.carPriceWithRek',['car' => $car,'est' => $est[0],'l' => $l]);
     }
 
     //دائرة الترخيص
     public function licence($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.licence',['car' => $car,'l' => $l,'est' => $est]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('errors.noData');
+        }
+        return view('report.licence',['car' => $car,'l' => $l,'est' => $est[0]]);
     }
 
     //تقرير أضرار أولي
     public function initialDamage($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->first();
-        return view('report.initialDamage',['car' => $car,'est' => $est,'l' => $l]);
+        $est = estimate_car::where('fileNumber',$fileId)->get();
+        if(count($est) == 0){
+            return view('errors.noData');
+        }
+        return view('report.initialDamage',['car' => $car,'est' => $est[0],'l' => $l]);
     }
 
     //كشف الزيارات
@@ -147,9 +176,12 @@ class ReportController extends Controller
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
         //$RegDate = Input::get('RegDate',date('Y-m-d'));
-        $company = enter_insurence_company::where('ins_name',$ins_num)->firstOrFail();
-        $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->firstOrFail();
-        return view('report.insCompanyUser',['l' => $l,'company' => $company,'est' => $est]);
+        $company = enter_insurence_company::where('ins_name',$ins_num)->get();
+        $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->get();
+        if(count($company) == 0 || count($est) == 0){
+            return view('errors.noData');
+        }
+        return view('report.insCompanyUser',['l' => $l,'company' => $company[0],'est' => $est[0]]);
     }
 
     //تقرير قطع غيار هيكل
@@ -183,8 +215,11 @@ class ReportController extends Controller
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
         $date = Input::get('date',date('Y-m-d'));
-        $drop = drop_car::where('filenumber',$fileId)->where('data',$date)->firstOrFail();
-        return view("report.carDown",['car' => $car,'drop' => $drop,'l' => $l]);
+        $drop = drop_car::where('filenumber',$fileId)->where('data',$date)->get();
+        if(count($drop) == 0){
+            return view('errors.noData');
+        }
+        return view("report.carDown",['car' => $car,'drop' => $drop[0],'l' => $l]);
     }
 
     //اضرار فنية لدائرة الترخيص
@@ -211,9 +246,13 @@ class ReportController extends Controller
         $date = Input::get('date',date('Y-m-d'));
         $carInfo = enter_car_info::find($fileId);
         $person = enter_personalinfo::find($id);
-        $est = estimate_car::where('registerDate',$date)->where('fileNumber',$fileId)->firstOrFail();
-        $bankInfo = bankinfo::where('filenumber',$fileId)->first();
-        return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l,'bankInfo' => $bankInfo,'est' => $est]);
+        $est = estimate_car::where('registerDate',$date)->where('fileNumber',$fileId)->get();
+        $bankInfo = bankinfo::where('filenumber',$fileId)->get();
+        if(count($est) == 0 || count($bankInfo) == 0){
+            return view('errors.noData');
+        }
+
+        return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l,'bankInfo' => $bankInfo[0],'est' => $est[0]]);
     }
 
     //تقرير الرقابة

@@ -4,13 +4,13 @@
 }
 
 .BackImageSuperAd{
-    position: absolute;
+    /*position: absolute;
     top: -20px;
     left: -20px;
     right: -40px;
     bottom: -1000px;
     width: auto;
-    height: auto;
+    height: auto;*/
    background-color:#ffffff;
    // background-image: url("../../img/background.jpg");
    // background-repeat: repeat;
