@@ -19,7 +19,7 @@
             لم يتم إيجاد اي معلومات تتناسب مع المعلومات التي قمت بادخالها
         </h4>
         <br>
-        <button class="btn btn-primary btn-block" onclick="window.history.back()">
+        <button type="button" class="btn btn-primary btn-block" onclick="goBack()">
             عودة
         </button>
     </div>

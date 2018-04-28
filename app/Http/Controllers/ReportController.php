@@ -85,7 +85,7 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('report.noData');
+            return view('errors.noData');
         }
 
         return view('report.personalFileAccount',['car' => $car,'est' => $est[0],'l' => $l]);
@@ -95,10 +95,15 @@ class ReportController extends Controller
     public function carDestroy($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
-        $estimater = Estimater::where('nes_name',$est->estimaterName)->get();
-
-        if(count($est) == 0 || count($estimater) == 0){
+        
+        if(count($est) == 0){
             return view('errors.noData');
+        }else{
+            if(count($estimater) == 0){
+                return view('errors.noData');
+            }else{
+                $estimater = Estimater::where('nes_name',$est->estimaterName)->get();
+            }
         }
 
         return view('report.carDestroy',['car' => $car,'est' => $est[0],'l' => $l,'estimater' => $estimater[0]]);
@@ -161,8 +166,17 @@ class ReportController extends Controller
         $l = Input::get('lang','AR');
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
+        
         $From = Input::get('From',date('Y-m-d'));
+        if($From == null){
+            $From = date('Y-m-d');
+        }
+        
         $To = Input::get('To',date('Y-m-d'));
+        if($To == null){
+            $To = date('Y-m-d');
+        }
+
         $toName = Input::get('toName');
         $company = enter_insurence_company::where('ins_name',$ins_num)->first();
         $ests = estimate_car::with('carInfo')->where('to',$toName)->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
@@ -243,10 +257,9 @@ class ReportController extends Controller
     public function bankStmnt($l = 'AR'){
         $id = Input::get('id',1);
         $fileId = Input::get('file_num','');
-        $date = Input::get('date',date('Y-m-d'));
         $carInfo = enter_car_info::find($fileId);
         $person = enter_personalinfo::find($id);
-        $est = estimate_car::where('registerDate',$date)->where('fileNumber',$fileId)->get();
+        $est = estimate_car::where('fileNumber',$fileId)->get();
         $bankInfo = bankinfo::where('filenumber',$fileId)->get();
         if(count($est) == 0 || count($bankInfo) == 0){
             return view('errors.noData');

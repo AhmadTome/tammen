@@ -117,7 +117,7 @@
             var lang = $("#lang").val();
             var car_num = $("#filenumber").val();
             var date = $("#Date").val();
-            window.open("/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date);
+            window.location.href = "/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date;
         }
     $(document).ready(function () {
     });

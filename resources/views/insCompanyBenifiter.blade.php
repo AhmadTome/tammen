@@ -101,9 +101,9 @@
             if(withDate){
                 var To = $("#To").val();
                 var From = $("#From").val();
-                window.open("/report/" + route + "/" + type + "/" + lang + "?From=" + From + "&To=" + To);
+                window.location.href = "/report/" + route + "/" + type + "/" + lang + "?From=" + From + "&To=" + To;
             }else{
-                window.open("/report/" + route + "/" + type + "/" + lang);
+                window.location.href = "/report/" + route + "/" + type + "/" + lang;
             }
         }
     $(document).ready(function () {
