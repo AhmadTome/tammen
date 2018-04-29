@@ -99,10 +99,10 @@ class ReportController extends Controller
         if(count($est) == 0){
             return view('errors.noData');
         }else{
+            $estimater = Estimater::where('nes_name',$est[0]->estimaterName)->get();
+            
             if(count($estimater) == 0){
                 return view('errors.noData');
-            }else{
-                $estimater = Estimater::where('nes_name',$est->estimaterName)->get();
             }
         }
 
@@ -271,8 +271,13 @@ class ReportController extends Controller
     //تقرير الرقابة
     public function monitorReport(){
         $l = Input::get('lang','AR');
+        
         $From = Input::get('From',date('Y-m-d'));
+        if($From == null) $From = date('Y-m-d');
+        
         $To = Input::get('To',date('Y-m-d'));
+        if($To == null) $To = date('Y-m-d');
+
         $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
         return view('report.monitorReport',['l' => $l,'ests' => $ests]);
     }
