@@ -16,6 +16,7 @@ use App\enter_certificate;
 use App\add_image;
 use App\Estimater;
 use App\bankinfo;
+use App\letter;
 use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
@@ -333,5 +334,14 @@ class ReportController extends Controller
         $dates = estimate_car::where('fileNumber',$fileId)->distinct('registerDate')->select('registerDate')->get();
         
         return response()->json($dates);
+    }
+
+    public function letter($id){
+        $letter = letter::find($id);
+        if($letter == null){
+            return view('errors.noData');
+        }
+
+        return view('report.letter',['letter' => $letter]);
     }
 }

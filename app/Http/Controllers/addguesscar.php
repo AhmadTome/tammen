@@ -8,7 +8,7 @@ use App\drop_car;
 use App\enter_city;
 use App\enter_garage;
 use App\enter_insurence_company;
-use App\enter_personalInfo;
+use App\enter_personalinfo;
 use App\estimate_car;
 use App\Estimater;
 use App\maintenance_vehicle_work;
@@ -31,7 +31,7 @@ class addguesscar extends Controller
         $carInfo=getCarInfo::all();
         $insuranceCompany=enter_insurence_company::all();
         $cities=enter_city::all();
-        $Id = enter_personalInfo::all();
+        $Id = enter_personalinfo::all();
         $DamageType=Damage::all();
         $Estimater=Estimater::all();
         $Garage=enter_garage::all();

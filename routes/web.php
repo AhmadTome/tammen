@@ -542,6 +542,13 @@ Route::group(['prefix' => '/report'],function(){
 
     //صور الحادث
     Route::get('/carImages/{fileId}','ReportController@carImages');
+
+    Route::get('/letter/{id}','ReportController@letter');
+});
+
+Route::group(['prefix' => '/letters'],function(){
+    Route::get('/list','LetterController@getList');
+    Route::post('/list','LetterController@getListPost');
 });
 
 });
