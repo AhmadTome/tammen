@@ -38,14 +38,29 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">التقارير <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="/report/car">تقارير المركبة</a></li>
-                        <li><a href="/report/insurance">حساب شركة التأمين</a></li>
-                        <li><a href="/report/insurance/benifiter">حساب شركة التامين للمستفيد</a></li>
-                        <li><a href="/report/car/parts">تقارير قطع المركبة</a></li>
-                        <li><a href="/report/car/bank">تقرير كشف بنك</a></li>
-                        <li><a href="/report/monitor">تقرير الرقابة</a></li>
-                        <li><a href="/report/images">صور الحادث</a></li>
-                        <li><a href="/letters/list">المراسﻻت</a></li>
+                        <li role="presentation"><a href="/report/car">تقارير المركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/insurance">حساب شركة التأمين</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/insurance/benifiter">حساب شركة التامين للمستفيد</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/car/parts">تقارير قطع المركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/car/bank">تقرير كشف بنك</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/monitor">تقرير الرقابة</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/images">صور الحادث</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a  role="menuitem" tabindex="-1" href="/letters/list">المراسلات</a></li>
+                        <li role="presentation" class="divider"></li>
+
                     </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">الاستعلامات و التعديلات <span class="caret"></span></a>
