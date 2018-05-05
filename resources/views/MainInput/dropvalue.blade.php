@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="form-group row" dir="rtl">
-                            <label class="control-label pull-right text-left" style="width: 110px">القطعة: </label>
+                            <label class="control-label pull-right text-left" style="width: 80px">القطعة: </label>
                             <div class="col-sm-3 pull-right">
                                 <select class="form-control" type="text" id="part" >
 
@@ -133,7 +133,7 @@
                                 </select>
                             </div>
                             <label class="control-label pull-right text-left" style="width: 80px">تاريخ التسجيل: </label>
-                            <div class="col-sm-2 pull-right">
+                            <div class="col-sm-3 pull-right">
                                 <input class="form-control" type="date" id="dropdate" />
                             </div>
 

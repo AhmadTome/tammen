@@ -95,6 +95,12 @@
                 </div>
             </div>
 
+            <div class="form-group row" dir="rtl">
+                <label class="control-label col-sm-2 pull-right text-left">   مكان الفحص : </label>
+                <div class="col-sm-8 pull-right">
+                    <input class="form-control" id="checkplace" name="checkplace" type="text"  placeholder="ادخل مكان الفحص" required/>
+                </div>
+            </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
@@ -197,7 +203,7 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   رقم بوليصة التأمين : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="InsuranceNumber2" name="InsuranceNumber2" type="text"  placeholder="ادخل رقم بوليصة التأمين" required/>
+                    <input class="form-control" id="InsuranceNumber2" name="InsuranceNumber2" type="text"  placeholder="ادخل رقم بوليصة التأمين" readonly/>
                 </div>
             </div>
 
@@ -466,6 +472,7 @@
                     $('#carversion').val(data.data[0].ve_version);
                     $('#producedyear').val(data.data[0].ve_produce_year);
                     $('#bodynumber').val(data.data[0].ve_body_num);
+                    $('#InsuranceNumber2').val(data.data[0].ve_insurence_num);
 
                     if(data.data2.length !=0) {
                         $('#carPrice').val(data.data2[0].finalcost);

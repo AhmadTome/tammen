@@ -55,7 +55,7 @@ class addguesscar extends Controller
 
     public function findCarInfoforGesscar(Request $request){
 
-        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_body_num')->where('file_num',$request->id)->take(1500)->get();
+        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_body_num','ve_insurence_num')->where('file_num',$request->id)->take(1500)->get();
         $data2=carcost::select('finalcost')->where('filrnumberhidden',$request->id)->take(100)->get();
 
         return response()->json(array('data'=>$data , 'data2'=>$data2));//then sent this data to ajax success
@@ -134,7 +134,7 @@ return $finalPercantige;
         $user->dropCost=Input::get('dropPercantigePrice');
         $user->estimatePercantige=Input::get('Guesspersantige');
         $user->DamagePercantige=Input::get('TechnicalDamage');
-
+        $user->checkplace=Input::get('checkplace');
         $user->DamageCost=Input::get('DebrisPrice');
         $user->visitCost=Input::get('visitcost');
         $user->DamageDiscription=Input::get('DamegeDescription');
@@ -214,6 +214,8 @@ return $finalPercantige;
         $DestroyCarTo=Input::get('crossOffNamer');
         $DestroyText=Input::get('crossOffNote');
 
+        $checkplace=Input::get('checkplace');
+
         $lastid=Input::get('carInfo_select');
 
         estimate_car::where('fileNumber', '=', $lastid)
@@ -227,7 +229,7 @@ return $finalPercantige;
             ,'visitCost'=>$visitCost,'DamageDiscription'=>$DamageDiscription
             ,'EstimateNote'=>$EstimateNote,'carEstimateNote'=>$carEstimateNote
             ,'Attachment'=>$Attachment,'DestroyCarTo'=>$DestroyCarTo
-            ,'DestroyText'=>$DestroyText));
+            ,'DestroyText'=>$DestroyText,'checkplace'=>$checkplace));
 
         return redirect()->to('/CarGuessTransaction');
     }
@@ -253,7 +255,7 @@ return $finalPercantige;
             ,'officeCost','finalPriceForMaintinance','dropPercantige','dropCost'
             ,'estimatePercantige','DamagePercantige','DamageCost','visitCost'
             ,'DamageDiscription','EstimateNote','carEstimateNote','Attachment'
-            ,'DestroyCarTo','DestroyText')
+            ,'DestroyCarTo','DestroyText','checkplace')
             ->where('fileNumber',$request->id)->take(1500)->get();
         return response()->json($data);
     }
