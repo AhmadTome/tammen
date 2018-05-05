@@ -1,9 +1,7 @@
 <html>
 <head>
     
-    <title>
-        @yield('title')
-    </title>
+    <title>@yield('title')</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
@@ -11,11 +9,15 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="/js/main.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .text-left{
             text-align:left !important;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=pr258dvhk93ysoi90l1gq5dtc887f9djj8i9rozctarmfaql"></script>
+    <script>tinymce.init({ selector:'.tinymce' });</script>
 </head>
 <body>
 
@@ -87,6 +89,12 @@
     var deleterow;
     var updaterow;
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).on('click', '.edit-modal', function() {
             $('#footer_action_button').text("Update");
             // $('#footer_action_button').addClass('glyphicon-check');

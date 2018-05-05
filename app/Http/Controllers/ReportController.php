@@ -16,6 +16,7 @@ use App\enter_certificate;
 use App\add_image;
 use App\Estimater;
 use App\bankinfo;
+use App\letter;
 use Illuminate\Support\Facades\Input;
 
 class ReportController extends Controller
@@ -99,10 +100,10 @@ class ReportController extends Controller
         if(count($est) == 0){
             return view('errors.noData');
         }else{
+            $estimater = Estimater::where('nes_name',$est[0]->estimaterName)->get();
+            
             if(count($estimater) == 0){
                 return view('errors.noData');
-            }else{
-                $estimater = Estimater::where('nes_name',$est->estimaterName)->get();
             }
         }
 
@@ -271,8 +272,13 @@ class ReportController extends Controller
     //تقرير الرقابة
     public function monitorReport(){
         $l = Input::get('lang','AR');
+        
         $From = Input::get('From',date('Y-m-d'));
+        if($From == null) $From = date('Y-m-d');
+        
         $To = Input::get('To',date('Y-m-d'));
+        if($To == null) $To = date('Y-m-d');
+
         $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
         return view('report.monitorReport',['l' => $l,'ests' => $ests]);
     }
@@ -328,5 +334,14 @@ class ReportController extends Controller
         $dates = estimate_car::where('fileNumber',$fileId)->distinct('registerDate')->select('registerDate')->get();
         
         return response()->json($dates);
+    }
+
+    public function letter($id){
+        $letter = letter::find($id);
+        if($letter == null){
+            return view('errors.noData');
+        }
+
+        return view('report.letter',['letter' => $letter]);
     }
 }
