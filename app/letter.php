@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class letter extends Model
 {
-    //
+    protected $primaryKey = 'idletter';
 }

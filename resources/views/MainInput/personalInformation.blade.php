@@ -83,7 +83,7 @@
                      <div class="form-group row" dir="rtl">
                          <label class="control-label col-sm-2 pull-right text-left">الايميل : </label>
                          <div class="col-sm-8 pull-right">
-                             <input class="form-control" name="email" id="email" type="email"  placeholder="ادخل الايميل" required/>
+                             <input class="form-control" name="email" id="email" type="text"  placeholder="ادخل الايميل" required/>
                          </div>
                      </div>
 

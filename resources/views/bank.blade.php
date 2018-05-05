@@ -37,16 +37,6 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-2">
-                        <input type="date" id="Date" name="Date" class="form-control">
-                    </div>
-                    <label class="control-label col-md-2">
-                        التاريخ
-                    </label>
-                </div>
-                <div class="clearfix"></div>
-                <br>
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-4">
                         <button class="btn btn-block btn-primary" onclick="goTo('bankStmnt')">
@@ -78,9 +68,8 @@
             
             var lang = $("#lang").val();
             var car_num = $("#filenumber").val();
-            var date = $("#Date").val();
             var id = $("#id").val();
-            window.open("/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date + "&id=" + id);
+            window.location.href = "/report/" + route + "/" + lang + "?file_num=" + car_num + "&id=" + id;
         }
     $(document).ready(function () {
     });

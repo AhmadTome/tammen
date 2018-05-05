@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=pr258dvhk93ysoi90l1gq5dtc887f9djj8i9rozctarmfaql"></script>
+    <script>tinymce.init({ selector:'.tinymce' });</script>
 </head>
 <body>
 
@@ -62,7 +64,7 @@
     <div class="form-group col-sm-12 row" dir="rtl">
         <label class="control-label col-sm-2 pull-right text-left">نص الرسالة :</label>
         <div class="col-sm-8 pull-right text-left">
-           <textarea class="form-control" name="title" placeholder="ادخل النص" rows="10" cols="15" required>
+           <textarea class="tinymce" name="title" placeholder="ادخل النص" rows="10" cols="15" required>
 
            </textarea>
         </div>

@@ -176,20 +176,15 @@
                                 <input class="form-control" type="date" id="dateregister" name="dateregister" required />
                             </div>
                         </div>
-                        <div class="form-group col-sm-12 row" dir="rtl">
-                            <label class="control-label col-sm-2 pull-right text-left">قيمة التخمين: </label>
-                            <div class="col-sm-6 pull-right">
-                                <select class="form-control " type="text"  id="estimatevalue" name="estimatevalue">
-                                    <option selected disabled>اختار قيمة التخمين</option>
-                                    @foreach($estimatevalue as $car)
-                                        <option value="{{$car->estim_name}}">{{$car->estim_num." | ".$car->estim_name}}</option>
 
-                                    @endforeach
-                                </select>
+
+
+                            <div class="form-group col-sm-12 row" dir="rtl">
+                                <label class="control-label col-sm-2 pull-right text-left">قيمة التخمين: </label>
+                                <div class="col-sm-8 pull-right">
+                                    <textArea class="form-control PanelBodyCssInput" rows="5"  id="estimatevalue" name="estimatevalue" required>                                                                            بناء على نتائج الفحص أعلاه فإن قيمة المركبة حسب السوق الفلسطيني هي () شيقل</textArea>
+                                </div>
                             </div>
-                        </div>
-
-
 
                         <div class="form-group col-sm-12 row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left">ملاحظات البنك: </label>
@@ -311,7 +306,7 @@
 </style>
 <script>
     $(document).ready(function () {
-        $("#carInfo_select,#person_select,#estimatevalue").select2({
+        $("#carInfo_select,#person_select").select2({
             dropdownAutoWidth : true,
             theme: "classic"
         });

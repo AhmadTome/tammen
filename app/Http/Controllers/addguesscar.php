@@ -8,7 +8,7 @@ use App\drop_car;
 use App\enter_city;
 use App\enter_garage;
 use App\enter_insurence_company;
-use App\enter_personalInfo;
+use App\enter_personalinfo;
 use App\estimate_car;
 use App\Estimater;
 use App\maintenance_vehicle_work;
@@ -31,7 +31,7 @@ class addguesscar extends Controller
         $carInfo=getCarInfo::all();
         $insuranceCompany=enter_insurence_company::all();
         $cities=enter_city::all();
-        $Id = enter_personalInfo::all();
+        $Id = enter_personalinfo::all();
         $DamageType=Damage::all();
         $Estimater=Estimater::all();
         $Garage=enter_garage::all();
@@ -55,7 +55,7 @@ class addguesscar extends Controller
 
     public function findCarInfoforGesscar(Request $request){
 
-        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_body_num')->where('file_num',$request->id)->take(1500)->get();
+        $data=getCarInfo::select('ve_num','ve_used','ve_version','ve_produce_year','file_num','ve_body_num','ve_insurence_num')->where('file_num',$request->id)->take(1500)->get();
         $data2=carcost::select('finalcost')->where('filrnumberhidden',$request->id)->take(100)->get();
 
         return response()->json(array('data'=>$data , 'data2'=>$data2));//then sent this data to ajax success
@@ -64,19 +64,19 @@ class addguesscar extends Controller
 
     public function findCostforGuessCar(Request $request){
         $data =0.0;
-        $mecha_work=mechanic_vehicle_work::select('mech_price')->where('filenumber',$request->id)->take(1500)->get();
+        $mecha_work=mechanic_vehicle_work::select('mech_price','me_mech_count')->where('filenumber',$request->id)->take(1500)->get();
         $maintinance_work=maintenance_vehicle_work::select('mawo_cost')->where('file_number',$request->id)->take(1500)->get();
-        $body_work=Body_vehicle_work::select('partPrice')->where('file_number',$request->id)->take(1500)->get();
+        $body_work=Body_vehicle_work::select('partPrice','bo_bod_count')->where('file_number',$request->id)->take(1500)->get();
 
         foreach ($mecha_work as $value){
-            $data = $data+($value->mech_price);
+            $data = $data+($value->mech_price * $value->me_mech_count);
         }
         foreach ($maintinance_work as $value){
-            $data = $data+($value->mawo_cost);
+            $data = $data+($value->mawo_cost );
         }
 
         foreach ($body_work as $value){
-            $data = $data+($value->partPrice);
+            $data = $data+($value->partPrice * $value->bo_bod_count);
         }
 
 
@@ -134,7 +134,7 @@ return $finalPercantige;
         $user->dropCost=Input::get('dropPercantigePrice');
         $user->estimatePercantige=Input::get('Guesspersantige');
         $user->DamagePercantige=Input::get('TechnicalDamage');
-
+        $user->checkplace=Input::get('checkplace');
         $user->DamageCost=Input::get('DebrisPrice');
         $user->visitCost=Input::get('visitcost');
         $user->DamageDiscription=Input::get('DamegeDescription');
@@ -214,6 +214,8 @@ return $finalPercantige;
         $DestroyCarTo=Input::get('crossOffNamer');
         $DestroyText=Input::get('crossOffNote');
 
+        $checkplace=Input::get('checkplace');
+
         $lastid=Input::get('carInfo_select');
 
         estimate_car::where('fileNumber', '=', $lastid)
@@ -227,7 +229,7 @@ return $finalPercantige;
             ,'visitCost'=>$visitCost,'DamageDiscription'=>$DamageDiscription
             ,'EstimateNote'=>$EstimateNote,'carEstimateNote'=>$carEstimateNote
             ,'Attachment'=>$Attachment,'DestroyCarTo'=>$DestroyCarTo
-            ,'DestroyText'=>$DestroyText));
+            ,'DestroyText'=>$DestroyText,'checkplace'=>$checkplace));
 
         return redirect()->to('/CarGuessTransaction');
     }
@@ -253,7 +255,7 @@ return $finalPercantige;
             ,'officeCost','finalPriceForMaintinance','dropPercantige','dropCost'
             ,'estimatePercantige','DamagePercantige','DamageCost','visitCost'
             ,'DamageDiscription','EstimateNote','carEstimateNote','Attachment'
-            ,'DestroyCarTo','DestroyText')
+            ,'DestroyCarTo','DestroyText','checkplace')
             ->where('fileNumber',$request->id)->take(1500)->get();
         return response()->json($data);
     }

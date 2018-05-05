@@ -53,12 +53,12 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <!--<div class="col-sm-12">
                         <div class="col-sm-8 col-sm-offset-2">
                             <input type="date" class="form-control" name="RegDate" id="RegDate" required />
                         </div>
                         <label class="control-label col-md-2">تاريخ التسجيل</label>
-                    </div>
+                    </div>-->
                 </div>
                 <br>
                 <div class="form-group">
@@ -91,7 +91,9 @@
 
 <script>
     $("#carInfo_select").on("change",function(){
-        $("#car_num").val($("#filenumber").val());
+        setTimeout(() => {
+            $("#car_num").val($("#filenumber").val());
+        }, 100);
     });
         function goTo(route,withDate){
             var type = $("#filenumber").val();
@@ -99,9 +101,9 @@
             if(withDate){
                 var To = $("#To").val();
                 var From = $("#From").val();
-                window.open("/report/" + route + "/" + type + "/" + lang + "?From=" + From + "&To=" + To);
+                window.location.href = "/report/" + route + "/" + type + "/" + lang + "?From=" + From + "&To=" + To;
             }else{
-                window.open("/report/" + route + "/" + type + "/" + lang);
+                window.location.href = "/report/" + route + "/" + type + "/" + lang;
             }
         }
     $(document).ready(function () {

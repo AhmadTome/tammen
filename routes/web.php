@@ -22,6 +22,10 @@ use App\enter_personalInfo;
 use App\Estimater;
 use App\getCarInfo;
 
+Route::get('/err',function(){
+    return view('errors.noData');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth','preventBackHistory']],function(){
@@ -461,6 +465,7 @@ Route::get('/uploadimage','addImages@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/car/parts/dates/{fileId}','ReportController@partsDates');
 
 Route::group(['prefix' => '/report'],function(){
     
@@ -537,6 +542,13 @@ Route::group(['prefix' => '/report'],function(){
 
     //صور الحادث
     Route::get('/carImages/{fileId}','ReportController@carImages');
+
+    Route::get('/letter/{id}','ReportController@letter');
+});
+
+Route::group(['prefix' => '/letters'],function(){
+    Route::get('/list','LetterController@getList');
+    Route::post('/list','LetterController@getListPost');
 });
 
 });

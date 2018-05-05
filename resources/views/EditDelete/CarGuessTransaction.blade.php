@@ -97,6 +97,12 @@
                             </div>
                         </div>
 
+                        <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left">   مكان الفحص : </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" id="checkplace" name="checkplace" type="text"  placeholder="ادخل مكان الفحص" required/>
+                            </div>
+                        </div>
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
@@ -622,6 +628,7 @@
                     $('#AttachmentsGuess').val(data[0].Attachment);
                     $('#crossOffNamer').val(data[0].DestroyCarTo);
                     $('#crossOffNote').val(data[0].DestroyText);
+                    $('#checkplace').val(data[0].checkplace);
                     }else{
                         alert("لم يتم تسجيل تخمين لهذه المركبة من قبل")
                         $('#ToPerson').val("");
@@ -656,6 +663,7 @@
                         $('#AttachmentsGuess').val("");
                         $('#crossOffNamer').val("");
                         $('#crossOffNote').val("");
+                        $('#checkplace').val("");
                     }
 
                 }

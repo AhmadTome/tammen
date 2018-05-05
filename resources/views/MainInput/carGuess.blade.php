@@ -95,6 +95,12 @@
                 </div>
             </div>
 
+            <div class="form-group row" dir="rtl">
+                <label class="control-label col-sm-2 pull-right text-left">   مكان الفحص : </label>
+                <div class="col-sm-8 pull-right">
+                    <input class="form-control" id="checkplace" name="checkplace" type="text"  placeholder="ادخل مكان الفحص" required/>
+                </div>
+            </div>
 
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
@@ -168,7 +174,8 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">    كشف اضرار : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="coverDamage" name="coverDamage" type="text"  placeholder="ادخل  كشف الاضرار" required/>
+
+               <textarea class="form-control" rows="5" cols="80" placeholder="ادخل  كشف الاضرار" required id="coverDamage" name="coverDamage" ></textarea>
                 </div>
             </div>
 
@@ -196,7 +203,7 @@
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left">   رقم بوليصة التأمين : </label>
                 <div class="col-sm-8 pull-right">
-                    <input class="form-control" id="InsuranceNumber2" name="InsuranceNumber2" type="text"  placeholder="ادخل رقم بوليصة التأمين" required/>
+                    <input class="form-control" id="InsuranceNumber2" name="InsuranceNumber2" type="text"  placeholder="ادخل رقم بوليصة التأمين" readonly/>
                 </div>
             </div>
 
@@ -315,9 +322,11 @@
             </div>
 
             <div class="form-group row" dir="rtl">
-                <label class="control-label col-sm-2 pull-right text-left"> نسبة الضررالفني : </label>
+                <label class="control-label col-sm-2 pull-right text-left"> نسبة الضررالفني % : </label>
                 <div class="col-sm-8 pull-right">
+
                     <input class="form-control" id="TechnicalDamage" name="TechnicalDamage" type="text"  placeholder=" نسبة الضرر الفني" readonly required/>
+
                 </div>
             </div>
 
@@ -463,6 +472,7 @@
                     $('#carversion').val(data.data[0].ve_version);
                     $('#producedyear').val(data.data[0].ve_produce_year);
                     $('#bodynumber').val(data.data[0].ve_body_num);
+                    $('#InsuranceNumber2').val(data.data[0].ve_insurence_num);
 
                     if(data.data2.length !=0) {
                         $('#carPrice').val(data.data2[0].finalcost);
@@ -485,6 +495,8 @@
                     var carprice=$('#carPrice').val();
                     if(carprice !=0)
                     $('#TechnicalDamage').val(((data/carprice)*100).toFixed(2));
+                    else
+                    $('#TechnicalDamage').val("0");
 
                 }
 
