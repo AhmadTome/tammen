@@ -11,4 +11,8 @@ class maintenance_vehicle_work extends Model
     public function getTotalAttribute(){
         return toPercentage($this->mawo_rate) * $this->mawo_cost;
     }
+    
+    public function getTaxAttribute(){
+        return toPercentage($this->mawo_rate) * $this->mawo_cost;
+    }
 }

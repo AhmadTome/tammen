@@ -25,9 +25,9 @@
                     {{_t('details',$l)}}
                 </th>
             </tr>
-            <?php $total = 0; ?>
+            <?php $total = 0;$taxValue = 0; ?>
             @foreach($parts as $p)
-                <?php $total += $p->total ?>
+                <?php $total += $p->mawo_cost; $taxValue += $p->tax; ?>
                 <tr>
                     <td>
                         {{$p->mawo_work_name}}
@@ -59,7 +59,7 @@
                     {{_t('tax_value',$l)}}
                 </th>
                 <td>
-                    {{calcTax($total)}}
+                    {{ $taxValue }}
                 </td>
             </tr>
             <tr>
@@ -67,7 +67,7 @@
                     {{_t('money_to_pay',$l)}}
                 </th>
                 <td>
-                    {{$total + calcTax($total)}}
+                    {{$total + $taxValue }}
                 </td>
             </tr>
         </table>
