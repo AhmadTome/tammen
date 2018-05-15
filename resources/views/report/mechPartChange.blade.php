@@ -38,7 +38,7 @@
                     {{_t('part_code',$l)}}
                 </th>
             </tr>
-            <?php $total = 0; $totalConsum = 0; ?>
+            <?php $total = 0; $totalConsum = 0;$taxValue = 0; ?>
             @foreach($parts as $p)
                 <tr>
                     <td>
@@ -54,7 +54,11 @@
                         {{$p->me_mech_count}}
                     </td>
                     <td>
-                        <?php $totalConsum += $p->total_consum; $total += $p->mech_price * $p->me_mech_count; ?>
+                        <?php 
+                            $totalConsum += $p->total_consum; 
+                            $total += $p->mech_price * $p->me_mech_count;
+                            $taxValue += $p->tax;
+                         ?>
                         {{$p->mech_price * $p->me_mech_count}}
                     </td>
                     <td>
@@ -83,7 +87,7 @@
                     {{_t('tax_value',$l)}}
                 </th>
                 <td>
-                    {{tax()}}
+                    {{$taxValue}}
                 </td>
             </tr>
             <tr>
@@ -95,7 +99,7 @@
                     {{_t('tax_price',$l)}}
                 </th>
                 <td>
-                    {{ $total + calcTax($total)}}
+                    {{ $total + $taxValue}}
                 </td>
             </tr>
             <tr>
@@ -119,7 +123,7 @@
                     {{_t('money_to_pay',$l)}}
                 </th>
                 <td>
-                    {{$total + calcTax($total) + $totalConsum}}
+                    {{$total + $taxValue + $totalConsum}}
                 </td>
             </tr>
         </table>
