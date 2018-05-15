@@ -104,14 +104,14 @@ class ReportController extends Controller
         $est = estimate_car::where('fileNumber',$fileId)->get();
         
         if(count($est) == 0){
-            return view('errors.noData'[
+            return view('errors.noData',[
                 'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
             ]);
         }else{
             $estimater = Estimater::where('nes_name',$est[0]->estimaterName)->get();
             
             if(count($estimater) == 0){
-                return view('errors.noData'[
+                return view('errors.noData',[
                     'msg' => 'لم يتم ايجاد مخمن'
                 ]);
             }
@@ -264,7 +264,7 @@ class ReportController extends Controller
                 'msg' => 'يجب ادخال هبوط مركبة اوﻻ'
             ]);
         }
-        return view("report.carDown",['car' => $car,'drop' => $drop[0],'l' => $l]);
+        return view("report.carDown",['car' => $car,'drops' => $drop,'l' => $l]);
     }
 
     //اضرار فنية لدائرة الترخيص
