@@ -24,7 +24,7 @@
                 <br>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        <select name="Date" id="Date" class="form-control">
+                        <select name="Date" id="Date" class="form-control select-2">
                         </select>
                     </div>
                     <label class="control-label col-md-2">
@@ -93,7 +93,11 @@
             var $fileChooser = $("#carInfo_select");
             var dateChoose = document.getElementById("Date");
             $fileNumber.on("change",function(){
-                var fileId = this.value;
+                getDates();
+            });
+
+            function getDates(){
+                var fileId = $fileNumber.val();
                 $.get("/car/parts/dates/" + fileId).done(function(data){
                     dateChoose.innerHTML = "";
                     for(var i = 0,l = data.length; i < l; i++){
@@ -102,7 +106,7 @@
                 }).fail(function(err){
 
                 });
-            });
+            }
         function goTo(route){
             var type = $("#filenumber").val();
             if(!type){
@@ -120,6 +124,7 @@
             window.location.href = "/report/" + route + "/" + lang + "?file_num=" + car_num + "&date=" + date;
         }
     $(document).ready(function () {
+        getDates();
     });
     </script> 
 
