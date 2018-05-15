@@ -1,6 +1,6 @@
 @extends('report.reportLayout')
 
-@section('titile','تقرير أضرار أولي')
+@section('title','تقرير أضرار أولي')
 
 @section('content')
 
@@ -150,12 +150,21 @@
                         {{_t('additions',$l)}}
                     </th>
                 </tr>
-                @for($i = 1; $i <= 12; $i++)
+                <?php $attachments = preg_split('/,/', $car->attachments, -1, PREG_SPLIT_NO_EMPTY); ?>
+                @if(count($attachments) == 0)
+                    <tr>
+                        <td colspan="2" class="danger">
+                            لا يوجد إضافات
+                        </td>
+                    </tr>
+                @endif
+                @for($i = 0; $i < count($attachments); $i++)
                     <tr>
                         <th width="20%"> 
-                            {{$i}}
+                            {{$i + 1}}
                         </th>
                         <td>
+                            {{ $attachments[$i] }}
                         </td>
                     </tr>
                 @endfor

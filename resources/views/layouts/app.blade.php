@@ -18,6 +18,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=pr258dvhk93ysoi90l1gq5dtc887f9djj8i9rozctarmfaql"></script>
     <script>tinymce.init({ selector:'.tinymce' });</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+    <style>
+    .select2-selection {
+
+        background-color: #fff;
+        border: 0;
+        border-radius: 0;
+        color: #555555;
+        font-size: 14px;
+
+        min-height: 30px;
+        text-align: right;
+    }
+
+
+
+    .select2-selection__arrow {
+        margin: 1px;
+    }
+</style>
 </head>
 <body>
 
@@ -183,6 +206,11 @@
                 }
 
             });
+        });
+
+        $(".select-2").select2({
+            dropdownAutoWidth : true,
+            theme: "classic"
         });
     });
 </script>
