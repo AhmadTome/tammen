@@ -12,6 +12,7 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
+                        ت
                     </td>
                     <td>
                         {{$car['file_num']}}
