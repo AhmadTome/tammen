@@ -19,6 +19,11 @@
             لم يتم إيجاد اي معلومات تتناسب مع المعلومات التي قمت بادخالها
         </h4>
         <br>
+        @if(!empty($msg))
+            <div class="alert alert-danger">
+                {{$msg}}
+            </div>
+        @endif
         <button type="button" class="btn btn-primary btn-block" onclick="goBack()">
             عودة
         </button>

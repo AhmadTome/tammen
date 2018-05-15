@@ -64,7 +64,9 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
         return view('report.carInfo',['car' => $car,'est' => $est[0],'l' => $l]);
     }
@@ -75,7 +77,9 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
 
         return view('report.fileAccount',['car' => $car,'est' => $est[0],'l' => $l]);
@@ -86,7 +90,9 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
 
         return view('report.personalFileAccount',['car' => $car,'est' => $est[0],'l' => $l]);
@@ -98,12 +104,16 @@ class ReportController extends Controller
         $est = estimate_car::where('fileNumber',$fileId)->get();
         
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }else{
             $estimater = Estimater::where('nes_name',$est[0]->estimaterName)->get();
             
             if(count($estimater) == 0){
-                return view('errors.noData');
+                return view('errors.noData',[
+                    'msg' => 'لم يتم ايجاد مخمن'
+                ]);
             }
         }
 
@@ -115,7 +125,9 @@ class ReportController extends Controller
         $car = enter_car_info::with(['maintenance','bodyVehicleWork'])->find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
         return view('report.carPrice',['car' => $car,'est' => $est[0],'l' => $l]);
     }
@@ -125,7 +137,9 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
 
         return view('report.carPriceWithRek',['car' => $car,'est' => $est[0],'l' => $l]);
@@ -136,7 +150,9 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
         return view('report.licence',['car' => $car,'l' => $l,'est' => $est[0]]);
     }
@@ -146,7 +162,9 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
         }
         return view('report.initialDamage',['car' => $car,'est' => $est[0],'l' => $l]);
     }
@@ -193,9 +211,19 @@ class ReportController extends Controller
         //$RegDate = Input::get('RegDate',date('Y-m-d'));
         $company = enter_insurence_company::where('ins_name',$ins_num)->get();
         $est = estimate_car::with('carInfo')->where('fileNumber',$car_num)->get();
-        if(count($company) == 0 || count($est) == 0){
-            return view('errors.noData');
+
+        if(count($company) == 0){
+            return view('errors.noData',[
+                'msg' => 'لم يتم ايجاد شركة التامين'
+            ]);
         }
+
+        if(count($est) == 0){
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
+        }
+        
         return view('report.insCompanyUser',['l' => $l,'company' => $company[0],'est' => $est[0]]);
     }
 
@@ -232,9 +260,11 @@ class ReportController extends Controller
         $date = Input::get('date',date('Y-m-d'));
         $drop = drop_car::where('filenumber',$fileId)->where('data',$date)->get();
         if(count($drop) == 0){
-            return view('errors.noData');
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال هبوط مركبة اوﻻ'
+            ]);
         }
-        return view("report.carDown",['car' => $car,'drop' => $drop[0],'l' => $l]);
+        return view("report.carDown",['car' => $car,'drops' => $drop,'l' => $l]);
     }
 
     //اضرار فنية لدائرة الترخيص
@@ -262,8 +292,16 @@ class ReportController extends Controller
         $person = enter_personalinfo::find($id);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         $bankInfo = bankinfo::where('filenumber',$fileId)->get();
-        if(count($est) == 0 || count($bankInfo) == 0){
-            return view('errors.noData');
+        if(count($est) == 0){
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
+            ]);
+        }
+
+        if(count($bankInfo) == 0){
+            return view('errors.noData',[
+                'msg' => 'يجب ادخال كشف بنك'
+            ]);
         }
 
         return view('report.bankStmnt',['carInfo' => $carInfo,'person' => $person,'l' => $l,'bankInfo' => $bankInfo[0],'est' => $est[0]]);

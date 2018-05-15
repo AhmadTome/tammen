@@ -21,10 +21,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-                        {{explode('-',$car['file_num'])[1]}}
+                        ت
                     </td>
                     <td>
-                        {{explode('-',$car['file_num'])[0]}}
+                        {{ $car['file_num'] }}
                     </td>
                 </tr>
                 <tr>

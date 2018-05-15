@@ -34,13 +34,13 @@
             <tbody>
                 <tr style='height:200px;'>
                     <td>
-                        {{$drop->firstCar}}
+                        {{$drops[0]->firstCar}}
                     </td>
                     <td>
                     
                     </td>
                     <td>
-                        {{$drop->secondCar}}
+                        {{$drops[0]->secondCar}}
                     </td>
                 </tr>
             </tbody>
@@ -54,7 +54,7 @@
                     {{_t('car_price',$l)}}
                 </th>
                 <td>
-                    {{$drop->finalprice}}
+                    {{$drops[0]->finalprice}}
                 </td>
             </tr>
         </table>
@@ -86,24 +86,26 @@
                 <?php
                     $totalDrop = 0;
                 ?>
-                <tr>
-                    <td>
-                        {{$drop->part}}
-                    </td>
-                    <td>
-                        {{$drop->maintinance}}
-                    </td>
-                    <td>
-                        {{$drop->count}}
-                    </td>
-                    <td>
-                        {{$drop->percantige / 100}}
-                    </td>
-                    <td>
-                        % {{$drop->percantige}}
-                        <?php $totalDrop += $drop->percantige; ?>
-                    </td>
-                </tr>
+                @foreach($drops as $drop)
+                    <tr>
+                        <td>
+                            {{$drop->part}}
+                        </td>
+                        <td>
+                            {{$drop->maintinance}}
+                        </td>
+                        <td>
+                            {{$drop->count}}
+                        </td>
+                        <td>
+                            {{$drop->percantige / 100}}
+                        </td>
+                        <td>
+                            % {{$drop->percantige}}
+                            <?php $totalDrop += $drop->percantige; ?>
+                        </td>
+                    </tr>
+                @endforeach
                 <tr>
                     <th colspan="3">
                         {{_t('total_down_ratio',$l)}}
