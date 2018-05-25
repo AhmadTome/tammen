@@ -198,7 +198,7 @@ class ReportController extends Controller
 
         $toName = Input::get('toName');
         $company = enter_insurence_company::where('ins_name',$ins_num)->first();
-        $ests = estimate_car::with('carInfo')->where('to',$toName)->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+        $ests = estimate_car::with('carInfo')->whereIn('to',$toName)->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
         return view('report.insCompanyAcc',['l' => $l,'company' => $company,'ests' => $ests]);
     }
 

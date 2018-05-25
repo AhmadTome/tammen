@@ -133,7 +133,8 @@
                 'claim_type' => 'نوع المطالبة',
                 'claim_money' => 'مبلغ المطالبة',
                 'report_fees' => 'رسوم التقرير',
-                'with_respect_message' => 'وتفضلو بقبول فائق الاحترام'
+                'with_respect_message' => 'وتفضلو بقبول فائق الاحترام',
+                'discount' => 'الخصم'
             ],
             'HR' => [
     

@@ -58,7 +58,7 @@
                         {{$p->bo_bod_count * $p->partPrice}}
                     </td>
                     <td>
-                        {{$p->bo_limit_num}}
+                        {{$p->bo_part_produce_num}}
                     </td>
                 </tr>
             @endforeach
@@ -106,8 +106,18 @@
             <th class="gray-back" colspan="2">
                 {{_t('consume_ammount',$l)}}
             </th>
-            <td>
-                {{$totalConsum}}
+            <td>{{$totalConsum}}</td>
+        </tr>
+        <tr>
+            <td style="visibility:hidden;">
+            </td>
+            <td style="visibility:hidden;">
+            </td>
+            <th class="gray-back" colspan="2">
+                {{ _t('discount',$l) }}
+            </th>
+            <td id="discount">
+            <input type="number" value="0">
             </td>
         </tr>
         <tr>
@@ -118,9 +128,7 @@
             <th class="gray-back" colspan="2">
                 {{_t('money_to_pay',$l)}}
             </th>
-            <td>
-                {{$total + calcTax($total) + $totalConsum}}
-            </td>
+            <td id="oldValue">{{$total + calcTax($total) + $totalConsum}}</td>
         </tr>
         </table>
     </div>
