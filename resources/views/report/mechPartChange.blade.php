@@ -115,6 +115,18 @@
                 </td>
             </tr>
             <tr>
+                <td style="visibility:hidden;">
+                </td>
+                <td style="visibility:hidden;">
+                </td>
+                <th class="gray-back" colspan="2">
+                    {{ _t('discount',$l) }}
+                </th>
+                <td id="discount">
+                <input type="number" value="0">
+                </td>
+            </tr>
+            <tr>
                 <td style="visibility:hidden">
                 </td>
                 <td style="visibility:hidden">
@@ -122,9 +134,7 @@
                 <th class="gray-back" colspan="2">
                     {{_t('money_to_pay',$l)}}
                 </th>
-                <td>
-                    {{$total + $taxValue + $totalConsum}}
-                </td>
+                <td id="oldValue">{{$total + $taxValue + $totalConsum}}</td>
             </tr>
         </table>
     </div>

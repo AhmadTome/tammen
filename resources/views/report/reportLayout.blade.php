@@ -126,6 +126,25 @@
             background-color: lightgray;
         }
         }
+
+        #discount{
+            width: 100px;
+        }
+
+        #discount input{
+            width: 100px;
+            border: none;
+            text-align:center;
+        }
+        #discount input:focus{
+            border:none;
+        }
+
+        #discount input::-webkit-inner-spin-button, 
+        #discount input::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
     </style>
     </head>
     <body>
@@ -182,5 +201,17 @@
                 تلفون: 04-2461640 فاكس: 04-2462312 جوال: 0599-261388 وطنية: 0569-261388
             </div>
         </div>
+
+        <script>
+            var $discount = $("#discount input");
+            var $oldVal = $("#oldValue");
+            var oldValue = parseInt($oldVal.html());
+
+            $discount.on("change keyup",function(){
+                var discount = this.value;
+                var newVal = oldValue - discount;
+                $oldVal.html(newVal);
+            });
+        </script>
     </body>
 </html>

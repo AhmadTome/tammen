@@ -1,6 +1,6 @@
 @extends('report.reportLayout')
 
-@section('title','Personal File Account')
+@section('title','تقرير الرقابة')
 
 @section('content')
 
@@ -8,6 +8,9 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>
+                        {{_t('car_num',$l)}}
+                    </th>
                     <th>
                         {{_t('ins_name',$l)}}
                     </th>
@@ -18,13 +21,10 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <th>
-                        {{_t('claim_type',$l)}}
-                    </th>
-                    <th>
                         {{_t('ins_policy',$l)}}
                     </th>
                     <th>
-                        {{_t('damage',$l)}}
+                        {{_t('damage_rate',$l)}}
                     </th>
                     <th>
                         {{_t('claim_money',$l)}}
@@ -41,6 +41,9 @@
                 @foreach($ests as $est)
                     <tr>
                         <td>
+                            {{$est->fileNumber}}
+                        </td>
+                        <td>
                             {{$est->person_insurances}}
                         </td>
                         <td>
@@ -50,18 +53,17 @@
                             {{$est->insurance_company}}
                         </td>
                         <td>
-                            
-                        </td>
-                        <td>
                             {{$est->Insurance_policy}}
                         </td>
                         <td>
-                            {{$est->DamageType}}
+                            {{$est->DamagePercantige * 100}} %
+                        </td>
+                        <td>
+                            {{$est->netTotal}}
                         </td>
                         <td>
                             
                         </td>
-                        <td></td>
                         <td>
                             {{$est->registerDate}}
                         </td>
