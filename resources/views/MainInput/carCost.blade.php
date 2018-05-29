@@ -9,7 +9,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
-    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -35,6 +35,17 @@
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
         @include('mainpar')
 
+    </div>
+    <div class="col-sm-12">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 
     <!-- start car info-->
@@ -120,8 +131,8 @@
 
                                                     <td>  <select class="form-control " id="limit_select" name="sign[]">
                                                             <option selected disabled="">اختار الاشارة</option>
-                                                            <option>+</option>
-                                                            <option>-</option>
+                                                            <option value="+">+</option>
+                                                            <option value="-">-</option>
                                                         </select>
                                                     </td>
 
@@ -143,7 +154,7 @@
                                 </div>
 
                                 <div class="col-sm-3 pull-right">
-                                    <input type="button"   class="form-control btn-info" id="calculate" name="" value="احتساب السعر النهائي للمركبة" style="background-color: #57e4ff">
+                                    <input type="button" class="form-control btn-info calculate_car_cost" id="calculate" name="" value="احتساب السعر النهائي للمركبة" style="background-color: #57e4ff">
                                 </div>
                                 <div class="col-sm-2 pull-right">
                                     <input type="text" class="form-control" id="finalcost" name="finalcost" value=" ">
@@ -214,6 +225,12 @@
         $("#carInfo_select").select2({
             dropdownAutoWidth : true,
             theme: "classic"
+        });
+
+        $(".calculate_car_cost").on("click",function () {
+
+         alert('hi')
+
         });
 
         $(document).on("change",".carInfo_select",function () {

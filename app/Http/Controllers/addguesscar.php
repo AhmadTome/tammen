@@ -108,6 +108,11 @@ return $finalPercantige;
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'filenumber' => 'required|unique:estimate_cars,fileNumber'
+        ]);
+
+
         $user=new estimate_car;
         $user->fileNumber=Input::get('filenumber');
         $user->to=Input::get('ToPerson');

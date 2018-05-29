@@ -33,7 +33,16 @@
         @include('mainpar')
 
     </div>
-
+    <div class="col-sm-12">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+    @endif
     <!--Body-->
 
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >

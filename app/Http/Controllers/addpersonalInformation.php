@@ -36,6 +36,11 @@ class addpersonalInformation extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'ID' => 'required|unique:enter_personal_infos,id'
+        ]);
+
+
         $user=new enter_personalinfo;
 
         $user->name=Input::get('name');

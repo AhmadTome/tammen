@@ -161,6 +161,9 @@ Route::get('/carcostTransaction', function () {
     return view('EditDelete.carcostTransaction')->with('carInfo',$carInfo);
 });
 
+
+
+
 // Car Guess Transaction
 Route::get('/carGuess', function () {
 
