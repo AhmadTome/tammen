@@ -1,6 +1,6 @@
 <html xmlns="">
 <head>
-    <title>ادخال العمليات على المركبة</title>
+    <title>استعلام على غيار ميكانيك</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">

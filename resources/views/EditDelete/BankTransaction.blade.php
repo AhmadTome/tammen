@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>ادخال كشف بنك</title>
+    <title>استعلام على كشوفات بنك</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
@@ -41,7 +41,7 @@
 
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
         <div class="panel panel-default">
-            <div class="panel-heading text-center PanelHeadingCss">ادخال كشف بنك</div>
+            <div class="panel-heading text-center PanelHeadingCss">استعلام وتعديل كشف بنك</div>
             <div class="panel-body PanelBodyCss">
 
                 <div  style="max-width: 1000px ;margin-bottom: -15px">
