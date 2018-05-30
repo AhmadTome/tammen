@@ -125,16 +125,17 @@
                                         <div class="table-responsive">
                                             <table class="table table-bordered"  id="dynamic_field">
                                                 <tr>
-                                                    <td><input type="text" name="name[]" placeholder="المسبب" class="form-control name_list" /></td>
-                                                    <td><input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) ||
-   event.charCode == 46 || event.charCode == 0 "  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/></td>
-
-                                                    <td>  <select class="form-control " id="limit_select" name="sign[]">
-                                                            <option selected disabled="">اختار الاشارة</option>
+                                                    <td><input type="text" name="name[]" placeholder="المسبب" class="form-control " /></td>
+                                                    <td>  <select class="form-control name_list" id="limit_select" name="sign[]">
+                                                            <option selected readonly="" value="0">اختار الاشارة</option>
                                                             <option value="+">+</option>
                                                             <option value="-">-</option>
                                                         </select>
                                                     </td>
+                                                    <td><input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) ||
+   event.charCode == 46 || event.charCode == 0 "  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/></td>
+
+
 
                                                     <td><button type="button" name="add" id="add" class="btn btn-success">اضافة المزيد</button></td>
 
@@ -229,7 +230,43 @@
 
         $(".calculate_car_cost").on("click",function () {
 
-         alert('hi')
+            var pos_percantige=0;
+            var neg_percantage=0;
+            var final_percantage=0;
+            var sum=0;
+            var lastsign=0;
+            var table = document.getElementById("dynamic_field");
+            var rowLength = table.rows.length;
+
+                $(".name_list").each(function () {
+
+                    if($(this).val()=="+" || $(this).val()=="-" || $(this).val()=="0"){
+                        lastsign =$(this).val();
+                    }else{
+                       if(lastsign == "+")pos_percantige+= parseFloat($(this).val());
+                  else if(lastsign == "-")neg_percantage+=  parseFloat($(this).val());
+                    }
+                    console.log($(this).val())
+                    console.log("pos"+pos_percantige)
+                    console.log("neg"+neg_percantage)
+
+
+                    final_percantage = pos_percantige-neg_percantage;
+                    var originprice =  parseFloat($("#orginalPrice").val());
+                    if(final_percantage > 0){
+                      sum = originprice + ((final_percantage/100)*originprice);
+                    }else if (final_percantage < 0){
+                        final_percantage*=-1;
+                        sum = originprice - ((final_percantage/100)*originprice);
+                    }else{
+                        sum=originprice;
+                    }
+
+
+                });
+
+               $("#finalcost").val(sum);
+                sum=0;
 
         });
 
@@ -264,7 +301,7 @@
         var i = 1;
         $('#add').click(function () {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="name[]" placeholder="ادخل المسبب" class="form-control name_list" /></td><td><input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || + event.charCode == 46 || event.charCode == 0 "  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/><td> <select class="form-control " id="limit_select" name="sign[]"><option selected disabled="">اختار الاشارة</option> <option>+</option> <option>-</option> </select></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="name[]" placeholder="ادخل المسبب" class="form-control " /></td><td> <select class="form-control name_list" id="limit_select" name="sign[]"><option selected readonly="" value="0">اختار الاشارة</option> <option value="+">+</option> <option value="-">-</option> </select></td><td><input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || + event.charCode == 46 || event.charCode == 0 "  id="percantige[]" name="percantige[]" placeholder="النسبة %" class="form-control name_list"/><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");
