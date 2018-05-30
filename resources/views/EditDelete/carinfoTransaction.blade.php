@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>ادخال مركبة جديدة</title>
+    <title>استعلام عن مركبة</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
@@ -41,7 +41,7 @@
 
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
         <div class="panel panel-default">
-            <div class="panel-heading text-center PanelHeadingCss">ادخال بيانات مركبة</div>
+            <div class="panel-heading text-center PanelHeadingCss"> بيانات مركبة</div>
             <div class="panel-body PanelBodyCss">
 
                 <div class="container " style="max-width: 1000px ;margin-bottom: -15px">

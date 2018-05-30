@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','إدخال ضرر')
+@section('title','إدخال شهادة')
 
 @section('content')
 <div class="panel panel-default">

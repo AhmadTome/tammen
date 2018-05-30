@@ -41,11 +41,15 @@ class addcarInformation extends Controller
             'fileNumber' => 'required|unique:enter_car_infos,file_num'
         ]);
 
-
+        $car_number=Input::get('carNumber');
+        $check_if_exist=enter_car_info::select('ve_num')->where('ve_num','=',$car_number)->take(100)->get();
+        if(count($check_if_exist) > 0){
+            session()->flash("notif_for_exist","هذه المركبة مدخلة سابقا , سوف يتم التعامل معها بشكل منفصل باستخدام رقم الملف الجديد ");
+        }
 
 
         $output=Input::get('name');
-$attach='';
+        $attach='';
     for($i=0;$i<count($output)-1;$i++){
         $attach=$attach.$output[$i].',';
     }

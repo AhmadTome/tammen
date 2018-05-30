@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>ادخال معلومات شخصية</title>
+    <title>استعلام عن زبون</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">

@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 
-@section('title','إدخال ضرر')
+@section('title','إدخال مدينة')
 
 @section('content')
         <div class="panel panel-default">

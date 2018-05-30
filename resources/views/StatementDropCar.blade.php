@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','إدخال ضرر')
+@section('title','ادخال بيان هبوط قيمة')
 
 @section('content')
 <div class="panel panel-default">
