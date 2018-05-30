@@ -149,7 +149,12 @@ return $finalPercantige;
         $user->DestroyCarTo=Input::get('crossOffNamer');
         $user->DestroyText=Input::get('crossOffNote');
 
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال تخمين المركبة بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال تخمين المركبة لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('/carGuess');
     }
 

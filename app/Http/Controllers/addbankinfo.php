@@ -39,7 +39,8 @@ class addbankinfo extends Controller
     {
 
         $this->validate($request,[
-            'bankfilenumber' => 'required|unique:bankinfos,bankfilenumber'
+            'bankfilenumber' => 'required|unique:bankinfos,bankfilenumber' ,
+             'filenumber' =>'required'
         ]);
 
 

@@ -38,7 +38,30 @@
         @include('mainpar')
 
     </div>
+    <div class="col-sm-12">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+    <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
 
+        @if(session()->has('notif'))
+            <div class="row">
+                <div class="alert alert-success" dir="rtl">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('notif') }}</strong>
+                </div>
+            </div>
+        @endif
+
+        @yield('content')
+    </div>
     <!--Body-->
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
         <div class="panel panel-default">
@@ -66,19 +89,19 @@
 
 
                             <div class="col-sm-2 pull-right text-left">
-                                <input type="text" class="form-control PanelBodyCssInput " name="filenumber" id="filenumber" placeholder="رقم الملف" disabled>
+                                <input type="text" class="form-control PanelBodyCssInput " name="filenumber" id="filenumber" placeholder="رقم الملف" readonly>
                             </div>
                             <div class="col-sm-2 pull-right text-left">
-                                <input type="text" class="form-control PanelBodyCssInput " name="carused" id="carused" placeholder="استعمال المركبة" disabled>
+                                <input type="text" class="form-control PanelBodyCssInput " name="carused" id="carused" placeholder="استعمال المركبة" readonly>
                             </div>
                             <div class="col-sm-2 pull-right text-left">
-                                <input type="text" class="form-control PanelBodyCssInput " name="carversion" id="carversion" placeholder="طراز المركبة" disabled>
+                                <input type="text" class="form-control PanelBodyCssInput " name="carversion" id="carversion" placeholder="طراز المركبة" readonly>
                             </div>
                             <div class="col-sm-2 pull-right text-left">
-                                <input type="text" class="form-control PanelBodyCssInput " name="producedyear" id="producedyear" placeholder="سنة الانتاج" disabled>
+                                <input type="text" class="form-control PanelBodyCssInput " name="producedyear" id="producedyear" placeholder="سنة الانتاج" readonly>
                             </div>
                             <div class="col-sm-2 pull-right text-left">
-                                <input type="text" class="form-control PanelBodyCssInput " name="bodynumber" id="bodynumber" placeholder="رقم الشاصي" disabled required>
+                                <input type="text" class="form-control PanelBodyCssInput " name="bodynumber" id="bodynumber" placeholder="رقم الشاصي" readonly required>
                             </div>
 
                         </div>

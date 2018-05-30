@@ -61,7 +61,6 @@
                         <li role="presentation" class="divider"></li>
 
                         <li role="presentation"><a  role="menuitem" tabindex="-1" href="/letters/list">المراسلات</a></li>
-                        <li role="presentation" class="divider"></li>
 
                     </ul>
                 </li>
@@ -88,7 +87,6 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('carcostTransaction') }}">احتساب سعر مركبة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('BankTransaction') }}">كشف بنك</a></li>
-                        <li role="presentation" class="divider"></li>
                         <!--
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('certificationTransaction') }}">كشف شهادة</a></li>
                         <li role="presentation" class="divider"></li>
@@ -134,21 +132,20 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addCarInformation')}}">ادخال بيانات مركبة</a></li>
                         <li role="presentation" class="divider"></li>
-
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('carGuess')}}">ادخال تخمين مركبة</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('carCost')}}>احتساب سعر المركبة</a></li>
                         <li role="presentation" class="divider"></li>
-
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addcarTransaction')}}"> ادخال العمليات على المركبة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropvalue')}}"> ادخال هبوط المركبة</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('sendMessage')}}">ادخال مراسلة</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('carGuess')}}">ادخال تخمين مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('BankDisclosure')}}>ادخال كشف بنك</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('SaveLetter')}}">حفظ رسائل للطباعة </a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('carCost')}}>احتساب سعر المركبة</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('BankDisclosure')}}>ادخال كشف بنك</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('sendMessage')}}">ارسال ايميل</a></li>
+
 
                         <!--
                         <li role="presentation" class="divider"></li>

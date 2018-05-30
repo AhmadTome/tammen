@@ -33,6 +33,19 @@
         @include('mainpar')
 
     </div>
+    <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
+
+        @if(session()->has('notif'))
+            <div class="row">
+                <div class="alert alert-success" dir="rtl">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('notif') }}</strong>
+                </div>
+            </div>
+        @endif
+
+        @yield('content')
+    </div>
     <div class="col-sm-12">
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -44,6 +57,7 @@
         </div>
 @endif
     </div>
+
     <!--Body-->
 
     <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >

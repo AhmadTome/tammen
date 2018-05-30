@@ -85,7 +85,9 @@ class dropvalueofcar extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->validate($request,[
+            'filenumber' => 'required|unique:drop_cars,filenumber'
+        ]);
 
         $data =Input::get('dropcartable');
 
@@ -105,7 +107,12 @@ class dropvalueofcar extends Controller
             $user->firstCar=Input::get('firstcar_note');
             $user->secondCar=Input::get('secondcar_note');
 
-            $user->save();
+            if($user->save()){
+                session()->flash("notif","تم ادخال هبوط القيمة بنجاح ");
+            }else{
+                session()->flash("notif","لم يتم ادخال هبوط القيمة لحدوث خطأ في الادخال");
+
+            }
 
         }
 
