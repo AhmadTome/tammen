@@ -37,6 +37,13 @@ class addbankinfo extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'bankfilenumber' => 'required|unique:bankinfos,bankfilenumber' ,
+             'filenumber' =>'required'
+        ]);
+
+
         $status=Input::get('status');
         $name=Input::get('name');
         $output='';

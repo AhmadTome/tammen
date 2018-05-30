@@ -59,7 +59,11 @@ class addBodywork extends Controller
 
 
 
-            $user->save();
+            if($user->save()){
+                session()->flash("notif_body","تم ادخال قطع غيار هيكل بنجاح ");
+            }else{
+                session()->flash("notif_body","لم يتم ادخال قطع غيار هيكل لحدوث خطأ في الادخال");
+            }
 
         }
         return redirect()->to('/addcarTransaction');

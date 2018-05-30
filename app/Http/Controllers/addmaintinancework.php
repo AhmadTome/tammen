@@ -40,6 +40,8 @@ class addmaintinancework extends Controller
 
 
 
+
+
       $data=Input::get('maintinacetable');
        // $data = $request->maintinacetable;
      foreach ($data as $item){
@@ -56,10 +58,9 @@ class addmaintinancework extends Controller
          $user->mawo_work_name=$item['work'];
          $user->file_number=$item['fileNumber'];
          if($user->save()){
-             session()->flash("notif","تم ادخال اعمال صيانة بنجاح ");
+             session()->flash("notif_maintin","تم ادخال اعمال صيانة بنجاح ");
          }else{
-             session()->flash("notif","لم يتم ادخال اعمال صيانة لحدوث خطأ في الادخال");
-
+             session()->flash("notif_maintin","لم يتم ادخال اعمال صيانة لحدوث خطأ في الادخال");
          }
 
      }

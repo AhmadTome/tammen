@@ -28,7 +28,13 @@ class carcosts extends Controller
 
     public function calculate(Request $request){
 
+        $this->validate($request,[
+            'filrnumberhidden' => 'required|unique:carcosts,filrnumberhidden'
+        ]);
+
+
         $orginalcost=Input::get('orginalPrice');
+
         $orginalcostforstore=$orginalcost;
         $percantige = Input::get('percantige');
         $sign = Input::get('sign');
@@ -128,6 +134,7 @@ class carcosts extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -217,6 +224,8 @@ if(count($data2) > 0){
     return "";
 }
     }
+
+
 
 
 }

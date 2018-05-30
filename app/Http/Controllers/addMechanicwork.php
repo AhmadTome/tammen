@@ -37,6 +37,8 @@ class addMechanicwork extends Controller
      */
     public function store(Request $request)
     {
+
+
         $data=Input::get('Mechanicaltable');
         foreach ($data as $item){
             $user=new mechanic_vehicle_work;
@@ -58,8 +60,11 @@ class addMechanicwork extends Controller
             $user->filenumber=$item['fileNumber'];
 
 
-
-            $user->save();
+            if($user->save()){
+                session()->flash("notif_mech","تم ادخال قطع غيار ميكانيك بنجاح ");
+            }else{
+                session()->flash("notif_mech","لم يتم ادخال قطع غيار ميكانيك لحدوث خطأ في الادخال");
+            }
 
         }
         return redirect()->to('/addcarTransaction');

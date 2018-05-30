@@ -36,6 +36,11 @@ class addpersonalInformation extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'ID' => 'required|unique:enter_personal_infos,id'
+        ]);
+
+
         $user=new enter_personalinfo;
 
         $user->name=Input::get('name');
@@ -45,7 +50,12 @@ class addpersonalInformation extends Controller
         $user->tel_num=Input::get('homeNumber');
         $user->email=Input::get('email');
         $user->note=Input::get('note');
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال الزبون بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال الزبون لحدوث خطأ في الادخال");
+
+        }
 
 return redirect()->to('/addpersonalInformation');
     }

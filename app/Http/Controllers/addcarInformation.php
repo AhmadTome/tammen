@@ -81,10 +81,15 @@ $attach='';
         $user->attachments=$attach;
         $user->seat_close_Driver=Input::get('seatsCloseofDriver');
 
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال مركبة جديدة بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال المركبة لحدوث خطأ في الادخال");
+
+        }
 
 
-        return redirect()->to('/carinfoTransaction');
+        return redirect()->to('/addCarInformation');
 
 
     }

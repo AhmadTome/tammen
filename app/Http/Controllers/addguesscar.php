@@ -108,6 +108,11 @@ return $finalPercantige;
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'filenumber' => 'required|unique:estimate_cars,fileNumber'
+        ]);
+
+
         $user=new estimate_car;
         $user->fileNumber=Input::get('filenumber');
         $user->to=Input::get('ToPerson');
@@ -144,7 +149,12 @@ return $finalPercantige;
         $user->DestroyCarTo=Input::get('crossOffNamer');
         $user->DestroyText=Input::get('crossOffNote');
 
-        $user->save();
+        if($user->save()){
+            session()->flash("notif","تم ادخال تخمين المركبة بنجاح ");
+        }else{
+            session()->flash("notif","لم يتم ادخال تخمين المركبة لحدوث خطأ في الادخال");
+
+        }
         return redirect()->to('/carGuess');
     }
 
