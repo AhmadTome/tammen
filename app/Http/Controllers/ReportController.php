@@ -172,12 +172,19 @@ class ReportController extends Controller
     //كشف الزيارات
     public function carVisit($fileId,$l = 'AR'){
         $From = Input::get('From',date('Y-m-d'));
-        if($From == null) $From = date('Y-m-d');
         $To = Input::get('To',date('Y-m-d'));
-        if($To == null) $To = date('Y-m-d');
         $car = enter_car_info::find($fileId);
-        $visits = CarVisit::where('vis_date','>=',$From)->where('vis_date','<=',$To)->where('vis_vehicle_num',$car->ve_num)->get();
-        return view('report.carVisit',['car' => $car,'l' => $l,'visits' => $visits]);
+
+        $visits = CarVisit::where('vis_vehicle_num',$car->ve_num);
+
+        if($From != null){
+            $visits->where('vis_date','>=',$From);
+        }
+
+        if($To != null){
+            $visits->where('vis_date','<=',$To);
+        }
+        return view('report.carVisit',['car' => $car,'l' => $l,'visits' => $visits->get()]);
     }
 
     //حساب شركة التامي
@@ -318,14 +325,26 @@ class ReportController extends Controller
     public function monitorReport(){
         $l = Input::get('lang','AR');
         
+        $ests;
         
         $From = Input::get('From',date('Y-m-d'));
-        if($From == null) $From = date('Y-m-d');
-        
         $To = Input::get('To',date('Y-m-d'));
-        if($To == null) $To = date('Y-m-d');
+        if($From == null){
+            if($To == null){
+                $ests = estimate_car::get();
+            }else{
+                $ests = estimate_car::where('registerDate','<=',$To)->get();
+            }
+        }else{
+            if($To == null){
+                $ests = estimate_car::where('registerDate','>=',$From)->get();
+            }else{
+                $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+            }
+        }
+        
 
-        $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+        
         return view('report.monitorReport',['l' => $l,'ests' => $ests]);
     }
 
