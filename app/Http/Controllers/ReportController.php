@@ -186,20 +186,27 @@ class ReportController extends Controller
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
         
+        $ests = estimate_car::with('carInfo')->where('insurance_company',$ins_num);
+
+        $toName = Input::get('toName');
+
+        if(count($toName) != 0){
+            $ests->whereIn('to',$toName);
+        }
+
         $From = Input::get('From',date('Y-m-d'));
-        if($From == null){
-            $From = date('Y-m-d');
+        if($From != null){
+            $ests->where('registerDate','>=',$From);
         }
         
         $To = Input::get('To',date('Y-m-d'));
-        if($To == null){
-            $To = date('Y-m-d');
+        if($To != null){
+            $ests->where('registerDate','<=',$To);
         }
 
-        $toName = Input::get('toName');
         $company = enter_insurence_company::where('ins_name',$ins_num)->first();
-        $ests = estimate_car::with('carInfo')->whereIn('to',$toName)->where('insurance_company',$ins_num)->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
-        return view('report.insCompanyAcc',['l' => $l,'company' => $company,'ests' => $ests]);
+        
+        return view('report.insCompanyAcc',['l' => $l,'company' => $company,'ests' => $ests->get()]);
     }
 
     //حساب شركة التامين للمستفيد
@@ -310,6 +317,7 @@ class ReportController extends Controller
     //تقرير الرقابة
     public function monitorReport(){
         $l = Input::get('lang','AR');
+        
         
         $From = Input::get('From',date('Y-m-d'));
         if($From == null) $From = date('Y-m-d');
