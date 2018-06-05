@@ -42,7 +42,7 @@
             @foreach($parts as $p)
                 <tr>
                     <td>
-                        {{$p->me_limit_name}}
+                        {{$p->me_part_name}}
                     </td>
                     <td>
                         {{$p->me_part_type}}
