@@ -62,7 +62,7 @@
                         {{$p->mech_price * $p->me_mech_count}}
                     </td>
                     <td>
-                        {{$p->me_part_num}}
+                        {{$p->me_part_produce_num}}
                     </td>
                 </tr>
             @endforeach
