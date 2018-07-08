@@ -45,6 +45,7 @@ class addgarage extends Controller
 $user=new enter_garage;
 $user->gar_num=Input::get('garNum');
 $user->gar_name=Input::get('garName');
+$user->gar_hebrow_name=Input::get('garName_hebrow');
 
         $user->phone=Input::get('garphoneNumber');
         $user->tel=Input::get('gartelNumber');
@@ -108,7 +109,7 @@ return redirect()->to('garage');
 
         enter_garage::where('gar_num', '=', $lastnum)
             ->where('gar_name','=',$lastname)
-            ->update(array('gar_num' =>$newnum , 'gar_name'=>$newname ,'tel'=>$newtel , 'phone'=>$newphone , 'email'=>$newemail));
+            ->update(array('gar_num' =>$newnum , 'gar_name'=>$newname ,'tel'=>$newtel , 'phone'=>$newphone , 'email'=>$newemail,'gar_hebrow_name'=>$request->hebrow));
 
     }
 

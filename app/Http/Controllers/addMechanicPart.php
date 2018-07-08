@@ -39,6 +39,7 @@ class addMechanicPart extends Controller
         $user=new enter_mechanic_part;
         $user->mec_num=Input::get('IdMechNum');
         $user->mec_name=Input::get('MechName');
+        $user->mec_hebrow=Input::get('hebrow_MechName');
         if($user->save()){
             session()->flash("notif","تم ادخال الضرر بنجاح");
         }else{
@@ -90,7 +91,7 @@ class addMechanicPart extends Controller
 
         enter_mechanic_part::where('mec_num', '=', $lastnum)
             ->where('mec_name','=',$lastname)
-            ->update(array('mec_num' =>$newnum , 'mec_name'=>$newname ));
+            ->update(array('mec_num' =>$newnum , 'mec_name'=>$newname ,'mec_hebrow'=>$request->hebrow));
     }
 
     /**

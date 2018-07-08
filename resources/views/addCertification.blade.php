@@ -9,28 +9,24 @@
 
                 <form method="post" class="form-horizontal" action="storeCertificat">
                     {{ csrf_field() }}
+
                     <div class="form-group row col-sm-12" dir="rtl">
+                        <label class="control-label col-sm-2 pull-right" >الشهادة :</label>
+                        <div class="col-sm-8 pull-right">
+                            <textarea class="form-control text-center" rows="5" name="cert" required>
 
-                    <div class="col-sm-10 pull-right">
-                        <div class="form-group">
-                            <label class="control-label" >الشهادات</label>
-                            <div class="table-responsive">
-                                <table class="table" id="dynamic_field">
-                                    <tr>
-
-                                        <td><textarea rows="5"  name="name[]" placeholder="ادخل الشهادة" class="form-control name_list" ></textarea></td>
-                                        <td><button type="button" name="add" id="add" class="btn btn-success">اضافة المزيد</button></td>
-
-                                    </tr>
-                                </table>
-
-                            </div>
-
+                            </textarea>
                         </div>
                     </div>
 
+                    <div class="form-group row col-sm-12" dir="rtl">
+                        <label class="control-label col-sm-2 pull-right" >الشهادة عبري:</label>
+                        <div class="col-sm-8 pull-right">
+                            <textarea class="form-control text-center" rows="5" name="cert_hebrow">
 
-                </div>
+                            </textarea>
+                        </div>
+                    </div>
 
 
                     <div class="form-group">
@@ -45,6 +41,7 @@
                         <tbody style="text-align: center">
 
                         <td><label>الشهادة</label></td>
+                        <td><label> الشهادة عبري</label></td>
 
                         <td><label>تعديل</label></td>
                         <td><label>حذف</label></td>
@@ -52,10 +49,11 @@
                         </tbody>
                         @foreach($cert as $item)
                             <tr>
-                                <td style="text-align: center"><textarea rows="5">{{$item->cer_text}}</textarea></td>
+                                <td style="text-align: center"><textarea class="form-control text-center" rows="5" readonly>{{$item->cer_text}}</textarea></td>
+                                <td style="text-align: center"><textarea class="form-control text-center" rows="5" readonly>{{$item->cer_hebrow_text}}</textarea></td>
 
                                 <td style="text-align: center"><input class="edit-modal btn btn-info" data-name="{{$item->cer_text}}"
-                                           value="تعديل"></td>
+                                     data-hebrow="{{$item->cer_hebrow_text}}"      value="تعديل"></td>
 
                                 <td style="text-align: center"><input class="delete-modal btn btn-danger"
                                            data-name="{{$item->cer_text}}"
@@ -80,15 +78,24 @@
                                     <form class="form-horizontal" role="form" >
                                         <div class="EditContent">
 
+
                                             <div class="form-group" dir="rtl">
                                                 <label class="control-label col-sm-2 pull-right"  >الشهادة :</label>
                                                 <div class="col-sm-10 pull-right">
                                                     <textarea class="form-control" id="insName" rows="5"
-                                                        ></textarea>
+                                                    ></textarea>
 
                                                 </div>
                                             </div>
 
+                                            <div class="form-group" dir="rtl">
+                                                <label class="control-label col-sm-2 pull-right"  >الشهادة عبري :</label>
+                                                <div class="col-sm-10 pull-right">
+                                                    <textarea class="form-control" id="hebrow_insName" rows="5"
+                                                    ></textarea>
+
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </form>
@@ -136,14 +143,7 @@
     var updaterow;
     $(document).ready(function () {
         var i = 1;
-        $('#add').click(function () {
-            i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td><textarea rows="5"  name="name[]" placeholder="ادخل الشهادة" class="form-control name_list" ></textarea></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
-        $(document).on('click', '.btn_remove', function () {
-            var button_id = $(this).attr("id");
-            $('#row' + button_id + '').remove();
-        });
+
 
         $(document).on('click', '.edit-modal', function() {
             $('#footer_action_button').text("Update");
@@ -157,6 +157,7 @@
             $('.EditContent').show();
 
             $('#insName').val($(this).data('name'));
+            $('#hebrow_insName').val($(this).data('hebrow'));
 
             lastcompanyname=$(this).data('name');
 
@@ -218,7 +219,8 @@
                 data: {
 
                     'name':companyname_update,
-                    'lastname':lastcompanyname
+                    'lastname':lastcompanyname,
+                    'hebrow':$('#hebrow_insName').val()
                 },
                 success: function(data) {
                     //$('.item' + $('.did').text()).remove();

@@ -39,6 +39,7 @@ class addCity extends Controller
         $user=new enter_city;
         $user->city_num=Input::get('IdDamNum');
         $user->city_name=Input::get('damName');
+        $user->city_hebrow_name=Input::get('city_hebrow_name');
         if($user->save()){
             session()->flash("notif","تم ادخال المدينة بنجاح ");
         }else{
@@ -85,11 +86,14 @@ class addCity extends Controller
 
         $newnum=$request->num;
         $newname=$request->name;
+        $hebrowname=$request->hebrowname;
 
 
         enter_city::where('city_num', '=', $lastnum)
             ->where('city_name','=',$lastname)
-            ->update(array('city_num' =>$newnum , 'city_name'=>$newname ));
+            ->update(array('city_num' =>$newnum , 'city_name'=>$newname,'city_hebrow_name'=>$hebrowname ));
+
+
 
     }
 

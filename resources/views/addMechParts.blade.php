@@ -18,12 +18,21 @@
                             </div>
                             <label class="control-label col-sm-1" for="idDamNum">: الرقم</label>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control PanelBodyCssInput" name="MechName" id="MechName" placeholder="ادخل الاسم" required>
                             </div>
                             <label class="control-label col-sm-1" for="damName">: الاسم</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_MechName" id="hebrow_MechName" placeholder="ادخل الاسم عبري" >
+                            </div>
+                            <label class="control-label col-sm-1" for="hebrow_MechName">: الاسم عبري</label>
                         </div>
 
                         <div class="form-group">
@@ -37,7 +46,8 @@
                             <tbody style="text-align: center">
 
                             <td><label>الرقم</label></td>
-                            <td><label>اسم الضرر</label></td>
+                            <td><label>اسم قطعة الميكانيك</label></td>
+                            <td><label>اسم قطعة الميكانيك عبري</label></td>
                             <td><label>تعديل</label></td>
                             <td><label>حذف</label></td>
 
@@ -46,9 +56,10 @@
                                 <tr>
                                     <td ><label>{{$item->mec_num}}</label></td>
                                     <td><label>{{$item->mec_name}}</label></td>
+                                    <td><label>{{$item->mec_hebrow}}</label></td>
 
                                     <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->mec_num}}" data-name="{{$item->mec_name}}"
-                                                                          value="تعديل"></td>
+                                                                      data-hebrow="{{$item->mec_hebrow}}"    value="تعديل"></td>
 
                                     <td style="text-align: center"><input class="delete-modal btn btn-danger"
                                                                           data-id="{{$item->mec_num}}" data-name="{{$item->mec_name}}"
@@ -79,10 +90,18 @@
                                                         <input type="text" class="form-control" id="insNumber" >
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group" dir="rtl">
                                                     <label class="control-label col-sm-2 pull-right"  >اسم القطعة الميكانيكية :</label>
                                                     <div class="col-sm-10 pull-right">
                                                         <input type="text" class="form-control" id="insName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >اسم القطعة الميكانيكية عبري :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <input type="text" class="form-control" id="hebrow_insName">
                                                     </div>
                                                 </div>
 
@@ -147,6 +166,7 @@
             $('.EditContent').show();
             $('#insNumber').val($(this).data('id'));
             $('#insName').val($(this).data('name'));
+            $('#hebrow_insName').val($(this).data('hebrow'));
 
             lastcompanynumnum=$(this).data('id');
             lastcompanyname=$(this).data('name');
@@ -208,7 +228,7 @@
                 data: {
                     'num':num_update,
                     'name':companyname_update,
-
+                    'hebrow':$('#hebrow_insName').val(),
                     'lastnum':lastcompanynumnum,
                     'lastname':lastcompanyname
                 },

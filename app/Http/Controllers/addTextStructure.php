@@ -41,6 +41,7 @@ class addTextStructure extends Controller
 
         $user->str_num=Input::get('textNum');
         $user->str_name=Input::get('textName');
+        $user->hebrow_txt=Input::get('hebrow_textName');
         if($user->save()){
             session()->flash("notif","تم ادخال نص التركيب بنجاح ");
         }else{
@@ -91,7 +92,7 @@ class addTextStructure extends Controller
 
         enter_structer_text::where('str_num', '=', $lastnum)
             ->where('str_name','=',$lastname)
-            ->update(array('str_num' =>$newnum , 'str_name'=>$newname ));
+            ->update(array('str_num' =>$newnum , 'str_name'=>$newname ,'hebrow_txt'=>$request->hebrow));
 
     }
 

@@ -41,10 +41,11 @@ class addEstimater extends Controller
 
         $user->nes_num=Input::get('IdNum');
         $user->nes_name=Input::get('name');
+        $user->hebrow_estimater=Input::get('hebrow_name');
         $user->nes_authorization_num=Input::get('authNumber');
         $user->nes_signature=Input::get('signature');
         if($user->save()){
-            session()->flash("notif","تم ادخال المخمن بنجاح بنجاح");
+            session()->flash("notif","تم ادخال المخمن بنجاح ");
         }else{
             session()->flash("notif","لم يتم ادخال المخمن لحدوث خطأ في الادخال");
 
@@ -97,7 +98,7 @@ class addEstimater extends Controller
 
         Estimater::where('nes_authorization_num', '=', $lastnum)
             ->where('nes_name','=',$lastname)
-            ->update(array('nes_num' =>$newnum , 'nes_name'=>$newname ,'nes_authorization_num'=>$newestimaterid , 'nes_signature'=>$newsign ));
+            ->update(array('nes_num' =>$newnum , 'nes_name'=>$newname ,'nes_authorization_num'=>$newestimaterid , 'nes_signature'=>$newsign,'hebrow_estimater'=>$request->hebrow ));
 
     }
 

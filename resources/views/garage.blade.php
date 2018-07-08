@@ -33,6 +33,14 @@
                         </div>
 
                         <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right" for="garName_hebrow">الاسم عبري :</label>
+
+                            <div class="col-sm-8 pull-right">
+                                <input type="text" class="form-control PanelBodyCssInput" name="garName_hebrow" id="garName_hebrow" placeholder="ادخل الاسم عبري" >
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-sm-12" dir="rtl">
                             <label class="control-label col-sm-2 pull-right">رقم الجوال :</label>
 
                             <div class="col-sm-8 pull-right">
@@ -70,6 +78,7 @@
 
                             <td><label>الرقم</label></td>
                             <td><label>اسم الكراج</label></td>
+                            <td><label>اسم الكراج عبري</label></td>
                             <td><label>رقم الهاتف</label></td>
                             <td><label>رقم الجوال</label></td>
                             <td><label>الايميل</label></td>
@@ -81,11 +90,12 @@
                                 <tr>
                                     <td ><label>{{$item->gar_num}}</label></td>
                                     <td><label>{{$item->gar_name}}</label></td>
+                                    <td><label>{{$item->gar_hebrow_name}}</label></td>
                                     <td><label>{{$item->tel}}</label></td>
                                     <td><label>{{$item->phone}}</label></td>
                                     <td><label>{{$item->email}}</label></td>
                                     <td><input class="edit-modal btn btn-info" data-email="{{$item->email}}" data-id="{{$item->gar_num}}" data-name="{{$item->gar_name}}" data-phone="{{$item->tel}}" data-jawwal="{{$item->phone}}"
-                                               value="تعديل"></td>
+                                          data-hebrow="{{$item->gar_hebrow_name}}"     value="تعديل"></td>
 
                                     <td><input class="delete-modal btn btn-danger"
                                                data-id="{{$item->gar_num}}" data-name="{{$item->gar_name}}"
@@ -120,6 +130,13 @@
                                                     <label class="control-label col-sm-2 pull-right"  >اسم الكراج :</label>
                                                     <div class="col-sm-10 pull-right">
                                                         <input type="text" class="form-control" id="insName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >اسم الكراج عبري :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <input type="text" class="form-control" id="insName_hebrow">
                                                     </div>
                                                 </div>
 
@@ -207,6 +224,7 @@
             $('#insphone').val($(this).data('phone'));
             $('#modelJawwal').val($(this).data('jawwal'));
             $('#modelEmail').val($(this).data('email'));
+            $('#insName_hebrow').val($(this).data('hebrow'));
             lastcompanynumnum=$(this).data('id');
             lastcompanyname=$(this).data('name');
 
@@ -273,7 +291,8 @@
                     'phone':phonenum_update,
                     'email':email_update,
                     'lastnum':lastcompanynumnum,
-                    'lastname':lastcompanyname
+                    'lastname':lastcompanyname,
+                    'hebrow': $('#insName_hebrow').val()
                 },
                 success: function(data) {
                     //$('.item' + $('.did').text()).remove();

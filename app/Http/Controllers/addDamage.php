@@ -39,10 +39,11 @@ class addDamage extends Controller
         $user=new Damage;
         $user->dam_num=Input::get('IdDamNum');
         $user->dam_name=Input::get('damName');
+        $user->dam_hebrow=Input::get('hebrow_damName');
         if($user->save()){
-            session()->flash("notif","تم ادخال القطعة الميكانيكية بنجاح ");
+            session()->flash("notif","تم اضافة الضرر بنجاح ");
         }else{
-            session()->flash("notif","لم يتم ادخال القطعة الميكانيكية لحدوث خطأ في الادخال");
+            session()->flash("notif","لم يتم اضافة الضرر لحدوث خطأ في الادخال");
 
         }
         return redirect()->to('addDamage');
@@ -88,7 +89,7 @@ class addDamage extends Controller
 
         Damage::where('dam_num', '=', $lastnum)
             ->where('dam_name','=',$lastname)
-            ->update(array('dam_num' =>$newnum , 'dam_name'=>$newname ));
+            ->update(array('dam_num' =>$newnum , 'dam_name'=>$newname ,'dam_hebrow'=>$request->hebrow));
 
     }
 

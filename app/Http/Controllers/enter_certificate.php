@@ -36,17 +36,12 @@ class enter_certificate extends Controller
     public function store(Request $request)
     {
 
-        $output=Input::get('name');
 
-        foreach ($output as $sku){
             $user = new add_certificate;
-            $user->cer_text=$sku;
-            $user->save();
+            $user->cer_text=Input::get('cert');
+            $user->cer_hebrow_text=Input::get('cert_hebrow');
 
-        }
-
-
-     session()->flash("notif","تم ادخال الشهادات بنجاح");
+             if($user->save()){session()->flash("notif","تم ادخال الشهادات بنجاح");}
 
         return redirect()->to('/addCertification');
     }
@@ -89,7 +84,7 @@ class enter_certificate extends Controller
 
 
         add_certificate::where('cer_text','=',$lastname)
-            ->update(array('cer_text' =>$newname ));
+            ->update(array('cer_text' =>$newname ,'cer_hebrow_text'=>$request->hebrow));
 
     }
 
