@@ -42,7 +42,7 @@
             @foreach($parts as $p)
                 <tr>
                     <td>
-                        {{$p->me_limit_name}}
+                        {{$p->me_part_name}}
                     </td>
                     <td>
                         {{$p->me_part_type}}
@@ -62,7 +62,7 @@
                         {{$p->mech_price * $p->me_mech_count}}
                     </td>
                     <td>
-                        {{$p->me_part_num}}
+                        {{$p->me_part_produce_num}}
                     </td>
                 </tr>
             @endforeach
