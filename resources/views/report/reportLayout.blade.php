@@ -97,6 +97,9 @@
         .padding-0{
             padding: 0px;
         }
+        .show-print{
+            display:none;
+        }
         @page {
             size: A4;
             margin: 11mm 17mm 17mm 17mm;
@@ -106,6 +109,12 @@
             html, body {
             width: 210mm;
             height: 297mm;
+        }
+        .show-print{
+            display: auto !important;
+        }
+        .hide-print{
+            display: none;
         }
         .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
             padding: 1px !important;

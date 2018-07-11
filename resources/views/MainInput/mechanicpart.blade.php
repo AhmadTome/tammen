@@ -59,7 +59,7 @@
                             <option selected disabled="">اختار القطعة</option>
 
                             @foreach($mechanicinfo as $item)
-                                <option value="{{$item->mec_name}}">{{$item->mec_num." |  ".$item->mec_name}}</option>
+                                <option value="{{$item->mec_num}}">{{$item->mec_name}}</option>
 
                             @endforeach
                         </select>
@@ -205,7 +205,7 @@
 
         var x2 = document.getElementById("carPartMech_select").selectedIndex;
         var y2 = document.getElementById("carPartMech_select").options;
-        var carpartno=y2[x2].text;
+        var carpartno= document.getElementById("carPartMech_select").value;
         var carpart = document.getElementById("carPartMech").value;
 
         var partcode = document.getElementById("IDPARTCARMech").value;
