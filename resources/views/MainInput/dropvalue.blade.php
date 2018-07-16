@@ -115,7 +115,7 @@
                                 <select class="form-control" type="text" id="dropstatment" >
                                     <option selected disabled="">اختار بيان هبوط القيمة</option>
                                     @foreach($dropStatment as $item)
-                                        <option value="{{$item->text}}">{{$item->id." | ".$item->text}}</option>
+                                        <option value="{{$item->id}}">{{$item->text}}</option>
 
                                     @endforeach
 
@@ -132,7 +132,7 @@
 
                                     <option selected disabled="">اختار القطعة</option>
                                     @foreach($bodypart as $item)
-                                        <option value="{{$item->body_name}}">{{$item->body_num." | ".$item->body_name}}</option>
+                                        <option value="{{$item->body_num}}">{{$item->body_name}}</option>
 
                                     @endforeach
 
