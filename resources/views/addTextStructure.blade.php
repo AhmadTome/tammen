@@ -71,7 +71,6 @@
                         </table>
 
                         <!-- Start Model -->
-
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
@@ -130,8 +129,8 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- End Model -->
+
                     </form>
                 </div>
 
