@@ -15,6 +15,6 @@ class mechanic_vehicle_work extends Model
     }
 
     public function part(){
-        return $this->hasOne('App\enter_mechanic_part','mec_num','me_part_num');
+        return $this->hasOne('App\enter_mechanic_part','id','me_part_num');
     }
 }

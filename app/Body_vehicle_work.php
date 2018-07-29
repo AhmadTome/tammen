@@ -11,6 +11,6 @@ class body_vehicle_work extends Model
     }
 
     public function bodyPart(){
-        return $this->hasOne('App\enter_body_part','body_num','bo_part_num');
+        return $this->hasOne('App\enter_body_part','id','bo_part_num');
     }
 }

@@ -59,7 +59,7 @@
                             <option selected disabled="">اختار القطعة</option>
 
                             @foreach($mechanicinfo as $item)
-                                <option value="{{$item->mec_num}}">{{$item->mec_name}}</option>
+                                <option value="{{$item->id}}">{{$item->mec_name}}</option>
 
                             @endforeach
                         </select>

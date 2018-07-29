@@ -15,4 +15,8 @@ class maintenance_vehicle_work extends Model
     public function getTaxAttribute(){
         return toPercentage($this->mawo_rate) * $this->mawo_cost;
     }
+
+    public function maintianace(){
+        return $this->hasOne('App\enter_maintinance','id','mawo_work_num');
+    }
 }

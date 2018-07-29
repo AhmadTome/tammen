@@ -46,7 +46,7 @@
                             <option selected disabled="">اختار القطعة</option>
 
                             @foreach($Bodyinfo as $item)
-                                <option value="{{$item->body_num}}">{{$item->body_name}}</option>
+                                <option value="{{$item->id}}">{{$item->body_name}}</option>
 
                             @endforeach
                         </select>
