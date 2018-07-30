@@ -37,7 +37,7 @@ class addImages extends Controller
      */
     public function store(Request $request)
     {
-$imagcount=1;
+           $imagcount=1;
             if($request->hasFile('images')){
 
                 foreach($request->file('images') as $file) {

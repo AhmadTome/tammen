@@ -39,6 +39,7 @@ class addDropStatment extends Controller
         $user=new enter_Drop_statment;
         $user->id=Input::get('IdStatmentNum');
         $user->text=Input::get('text');
+        $user->hebrow_text=Input::get('hebrow_text');
         if($user->save()){
             session()->flash("notif","تم ادخال بيان الهبوط بنجاح ");
         }else{
@@ -88,7 +89,7 @@ class addDropStatment extends Controller
 
         enter_Drop_statment::where('id', '=', $lastnum)
             ->where('text','=',$lastname)
-            ->update(array('id' =>$newnum , 'text'=>$newname ));
+            ->update(array('id' =>$newnum , 'text'=>$newname ,'hebrow_text'=>$request->hebrow));
 
     }
 

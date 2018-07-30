@@ -43,6 +43,7 @@ class addInsuranceCompany extends Controller
       $user->ins_phone=Input::get('compTele');
         $user->ins_jawwalphone=Input::get('insPhoneNumber');
         $user->ins_email=Input::get('insemail');
+        $user->ins_hebrow=Input::get('compName_hebrow');
 
 
         if($user->save()){
@@ -96,7 +97,7 @@ class addInsuranceCompany extends Controller
 
         enter_insurence_company::where('ins_num', '=', $lastnum)
             ->where('ins_name','=',$lastname)
-            ->update(array('ins_num' =>$newnum , 'ins_name'=>$newname ,'ins_phone'=>$newtel , 'ins_jawwalphone'=>$newphone , 'ins_email'=>$newemail));
+            ->update(array('ins_num' =>$newnum , 'ins_name'=>$newname ,'ins_phone'=>$newtel , 'ins_jawwalphone'=>$newphone , 'ins_email'=>$newemail,'ins_hebrow'=>$request->hebrow_text));
 
     }
 

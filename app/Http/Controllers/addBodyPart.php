@@ -39,6 +39,7 @@ class addBodyPart extends Controller
         $user=new enter_body_part;
         $user->body_num=Input::get('idBodyNum');
         $user->body_name=Input::get('Bodyname');
+        $user->body_hebrow=Input::get('hebrow_Bodyname');
         if($user->save()){
             session()->flash("notif","تم ادخال قطعة الهيكل بنجاح ");
         }else{
@@ -88,7 +89,7 @@ class addBodyPart extends Controller
 
         enter_body_part::where('body_num', '=', $lastnum)
             ->where('body_name','=',$lastname)
-            ->update(array('body_num' =>$newnum , 'body_name'=>$newname ));
+            ->update(array('body_num' =>$newnum , 'body_name'=>$newname,'body_hebrow'=>$request->hebrow ));
 
     }
 

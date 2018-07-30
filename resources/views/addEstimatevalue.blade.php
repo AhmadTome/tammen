@@ -18,6 +18,7 @@
                             </div>
                             <label class="control-label col-sm-1" for="textNum">: الرقم</label>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-9">
@@ -25,6 +26,15 @@
                             </div>
                             <label class="control-label col-sm-1" for="textName">: النص</label>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_text" id="hebrow_text" placeholder="ادخل نص المركبة عبري" >
+                            </div>
+                            <label class="control-label col-sm-1" for="textName">: النص عبري</label>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-3">
@@ -38,6 +48,7 @@
 
                             <td><label>الرقم</label></td>
                             <td><label>قيمة التخمين</label></td>
+                            <td><label>قيمة التخمين عبري</label></td>
                             <td><label>تعديل</label></td>
                             <td><label>حذف</label></td>
 
@@ -46,8 +57,9 @@
                                 <tr>
                                     <td ><label>{{$item->estim_num}}</label></td>
                                     <td><label>{{$item->estim_name}}</label></td>
+                                    <td><label>{{$item->hebrow_text}}</label></td>
 
-                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->estim_num}}" data-name="{{$item->estim_name}}"
+                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->estim_num}}" data-name="{{$item->estim_name}}" data-hebrow="{{$item->hebrow_text}}"
                                                                           value="تعديل"></td>
 
                                     <td style="text-align: center"><input class="delete-modal btn btn-danger"
@@ -82,7 +94,17 @@
                                                 <div class="form-group" dir="rtl">
                                                     <label class="control-label col-sm-2 pull-right"  >قيمة التخمين :</label>
                                                     <div class="col-sm-10 pull-right">
-                                                        <input type="text" class="form-control" id="insName">
+                                                        <textarea class="form-control" rows="5" id="insName">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >قيمة التخمين عبري :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <textarea class="form-control" rows="5" id="hebrow_insName">
+                                                        </textarea>
                                                     </div>
                                                 </div>
 
@@ -146,6 +168,7 @@
             $('.EditContent').show();
             $('#insNumber').val($(this).data('id'));
             $('#insName').val($(this).data('name'));
+            $('#hebrow_insName').val($(this).data('hebrow'));
 
             lastcompanynumnum=$(this).data('id');
             lastcompanyname=$(this).data('name');
@@ -207,7 +230,7 @@
                 data: {
                     'num':num_update,
                     'name':companyname_update,
-
+                    'hebrow':$('#hebrow_insName').val(),
                     'lastnum':lastcompanynumnum,
                     'lastname':lastcompanyname
                 },

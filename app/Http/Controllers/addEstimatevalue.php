@@ -40,6 +40,7 @@ class addEstimatevalue extends Controller
 
         $user->estim_num=Input::get('textNum');
         $user->estim_name=Input::get('textName');
+        $user->hebrow_text=Input::get('hebrow_text');
 
         if($user->save()){
             session()->flash("notif","تم ادخال قيمة التخمين بنجاح ");
@@ -91,7 +92,7 @@ class addEstimatevalue extends Controller
 
         enter_estimit_value::where('estim_num', '=', $lastnum)
             ->where('estim_name','=',$lastname)
-            ->update(array('estim_num' =>$newnum , 'estim_name'=>$newname ));
+            ->update(array('estim_num' =>$newnum , 'estim_name'=>$newname ,'hebrow_text'=>$request->hebrow));
 
     }
 

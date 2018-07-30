@@ -18,12 +18,21 @@
                             </div>
                             <label class="control-label col-sm-1" for="idNum">: الرقم</label>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-9">
                                 <input type="address" class="form-control PanelBodyCssInput" name="name" id="name" placeholder="ادخل الاسم" required>
                             </div>
                             <label class="control-label col-sm-1" for="name">: الاسم</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_name" id="hebrow_name" placeholder="ادخل الاسم عبري" >
+                            </div>
+                            <label class="control-label col-sm-1" for="hebrow_name">: الاسم عبري</label>
                         </div>
 
                         <div class="form-group">
@@ -50,11 +59,12 @@
                             <label class="control-label col-sm-7"></label>
                         </div>
 
-                        <table class="table" dir="rtl" border="1" id="mytable">
+                        <table class="table" dir="rtl"  id="mytable">
                             <tbody>
 
                             <td><label>الرقم</label></td>
                             <td><label>اسم </label></td>
+                            <td><label>اسم عبري </label></td>
                             <td><label>رقم التفويض</label></td>
                             <td><label>التوقيع</label></td>
 
@@ -66,10 +76,11 @@
                                 <tr>
                                     <td ><label>{{$item->nes_num}}</label></td>
                                     <td><label>{{$item->nes_name}}</label></td>
+                                    <td><label>{{$item->hebrow_estimater}}</label></td>
                                     <td><label>{{$item->nes_authorization_num}}</label></td>
                                     <td><label>{{$item->nes_signature}}</label></td>
                                     <td><input class="edit-modal btn btn-info" data-id="{{$item->nes_num}}" data-name="{{$item->nes_name}}" data-estimaterid="{{$item->nes_authorization_num}}" data-sign="{{$item->nes_signature}}"
-                                               value="تعديل"></td>
+                                             data-hebrow="{{$item->hebrow_estimater}}"  value="تعديل"></td>
 
                                     <td><input class="delete-modal btn btn-danger"
                                                data-estimaterid="{{$item->nes_authorization_num}}" data-name="{{$item->nes_name}}"
@@ -104,6 +115,13 @@
                                                     <label class="control-label col-sm-2 pull-right"  >اسم :</label>
                                                     <div class="col-sm-10 pull-right">
                                                         <input type="text" class="form-control" id="estimatername">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >اسم عبري:</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <input type="text" class="form-control" id="hebrow_estimatername">
                                                     </div>
                                                 </div>
 
@@ -186,6 +204,7 @@
             $('#estimatername').val($(this).data('name'));
             $('#estimaterid').val($(this).data('estimaterid'));
             $('#sign').val($(this).data('sign'));
+            $('#hebrow_estimatername').val($(this).data('hebrow'));
 
             lastestimaternum=$(this).data('estimaterid');
             lastname=$(this).data('name');
@@ -250,7 +269,7 @@
                     'name':name_update,
                     'estimaterid':estimaterid_update,
                     'sign':sign_update,
-
+                    'hebrow':$('#hebrow_estimatername').val(),
                     'lastnum':lastestimaternum,
                     'lastname':lastname
                 },

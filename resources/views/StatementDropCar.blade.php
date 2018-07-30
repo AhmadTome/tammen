@@ -27,6 +27,14 @@
 
                         <div class="form-group">
                             <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_text" id="hebrow_text" placeholder=" ادخل النص عبري" >
+                            </div>
+                            <label class="control-label col-sm-1" for="damName">: النص عبري</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
                             <div class="col-sm-3">
                                 <input type="submit" class="btn btn-success" id="submit" value="إدخال">
                             </div>
@@ -38,6 +46,7 @@
 
                             <td><label>الرقم</label></td>
                             <td><label> بيان هبوط القيمة</label></td>
+                            <td><label> بيان هبوط القيمة(عبري)</label></td>
                             <td><label>تعديل</label></td>
                             <td><label>حذف</label></td>
 
@@ -46,8 +55,9 @@
                                 <tr>
                                     <td ><label>{{$item->id}}</label></td>
                                     <td><label>{{$item->text}}</label></td>
+                                    <td><label>{{$item->hebrow_text}}</label></td>
 
-                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->id}}" data-name="{{$item->text}}"
+                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->id}}" data-name="{{$item->text}}" data-hebrow="{{$item->hebrow_text}}"
                                                                           value="تعديل"></td>
 
                                     <td style="text-align: center"><input class="delete-modal btn btn-danger"
@@ -82,7 +92,16 @@
                                                 <div class="form-group" dir="rtl">
                                                     <label class="control-label col-sm-2 pull-right"  >بيان هبوط القيمة :</label>
                                                     <div class="col-sm-10 pull-right">
-                                                        <input type="text" class="form-control" id="insName">
+                                                        <textarea id="insName" class="form-control" style="width: 100%" rows="5">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >بيان هبوط القيمة عبري :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <textarea id="insName_hebrow" class="form-control" style="width: 100%" rows="5">
+                                                        </textarea>
                                                     </div>
                                                 </div>
 
@@ -145,7 +164,7 @@
             $('.EditContent').show();
             $('#insNumber').val($(this).data('id'));
             $('#insName').val($(this).data('name'));
-
+            $('#insName_hebrow').val($(this).data('hebrow'))
             lastcompanynumnum=$(this).data('id');
             lastcompanyname=$(this).data('name');
 
@@ -206,7 +225,7 @@
                 data: {
                     'num':num_update,
                     'name':companyname_update,
-
+                    'hebrow':$("#insName_hebrow").val(),
                     'lastnum':lastcompanynumnum,
                     'lastname':lastcompanyname
                 },

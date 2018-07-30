@@ -24,6 +24,14 @@
                                 <input type="name" class="form-control PanelBodyCssInput" name="compName" id="compName" placeholder="ادخل الاسم" required>
                             </div>
                         </div>
+
+                        <div class="form-group row col-sm-12" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right" >الاسم عبري :</label>
+                            <div class="col-sm-8 pull-right">
+                                <input type="text" class="form-control PanelBodyCssInput" name="compName_hebrow" id="compName_hebrow" placeholder="ادخل الاسم عبري" required>
+                            </div>
+                        </div>
+
                         <div class="form-group row col-sm-12" dir="rtl">
                             <label class="control-label col-sm-2 pull-right"> رقم الهاتف :</label>
                             <div class="col-sm-8 pull-right">
@@ -63,6 +71,7 @@
 
                                 <td><label>الرقم</label></td>
                                 <td><label>اسم الشركة</label></td>
+                                <td><label>اسم الشركة عبري</label></td>
                                 <td><label>رقم الهاتف</label></td>
                                 <td><label>رقم الجوال</label></td>
                                 <td><label>الايميل</label></td>
@@ -74,11 +83,12 @@
                                 <tr>
                                 <td ><label>{{$item->ins_num}}</label></td>
                                 <td><label>{{$item->ins_name}}</label></td>
+                                <td><label>{{$item->ins_hebrow}}</label></td>
                                 <td><label>{{$item->ins_phone}}</label></td>
                                 <td><label>{{$item->ins_jawwalphone}}</label></td>
                                 <td><label>{{$item->ins_email}}</label></td>
                                 <td><input class="edit-modal btn btn-info" data-email="{{$item->ins_email}}" data-id="{{$item->ins_num}}" data-name="{{$item->ins_name}}" data-phone="{{$item->ins_phone}}" data-jawwal="{{$item->ins_jawwalphone}}"
-                                           value="تعديل"></td>
+                                        data-hebrow="{{$item->ins_hebrow}}"   value="تعديل"></td>
 
                                 <td><input class="delete-modal btn btn-danger"
                                             data-id="{{$item->ins_num}}" data-name="{{$item->ins_name}}"
@@ -109,10 +119,18 @@
                                                     <input type="text" class="form-control" id="insNumber" >
                                                 </div>
                                             </div>
-                                            <div class="form-group" dir="rtl">
+
+                                               <div class="form-group" dir="rtl">
                                                 <label class="control-label col-sm-2 pull-right"  >اسم الشركة :</label>
                                                 <div class="col-sm-10 pull-right">
                                                     <input type="text" class="form-control" id="insName">
+                                                </div>
+                                            </div>
+
+                                               <div class="form-group" dir="rtl">
+                                                <label class="control-label col-sm-2 pull-right"  >اسم الشركة عبري:</label>
+                                                <div class="col-sm-10 pull-right">
+                                                    <input type="text" class="form-control" id="insName_hebrow">
                                                 </div>
                                             </div>
 
@@ -203,6 +221,7 @@
             $('#insphone').val($(this).data('phone'));
             $('#modelJawwal').val($(this).data('jawwal'));
             $('#modelEmail').val($(this).data('email'));
+            $('#insName_hebrow').val($(this).data('hebrow'));
             lastcompanynumnum=$(this).data('id');
             lastcompanyname=$(this).data('name');
 
@@ -269,7 +288,8 @@
                     'phone':phonenum_update,
                     'email':email_update,
                     'lastnum':lastcompanynumnum,
-                    'lastname':lastcompanyname
+                    'lastname':lastcompanyname,
+                    'hebrow_text':$('#insName_hebrow').val()
                 },
                 success: function(data) {
                     //$('.item' + $('.did').text()).remove();

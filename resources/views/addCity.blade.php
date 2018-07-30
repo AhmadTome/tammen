@@ -29,6 +29,13 @@
                         </div>
 
                         <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-2 col-xs-offset-0">
+                                <input type="text" class="form-control PanelBodyCssInput" name="city_hebrow_name" id="city_hebrow_name" placeholder="  ادخل الاسم العبري" >
+                            </div>
+                            <label class="control-label col-sm-1" for="damName">:الاسم العبري</label>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-3">
                                 <input type="submit" class="btn btn-success" id="submit" value="إدخال">
@@ -42,6 +49,7 @@
 
                             <td><label>الرقم</label></td>
                             <td><label>اسم المدينة</label></td>
+                            <td><label>اسم العبري للمدينة</label></td>
                             <td><label>تعديل</label></td>
                             <td><label>حذف</label></td>
 
@@ -50,8 +58,9 @@
                                 <tr>
                                     <td ><label>{{$item->city_num}}</label></td>
                                     <td><label>{{$item->city_name}}</label></td>
+                                    <td><label>{{$item->city_hebrow_name}}</label></td>
 
-                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->city_num}}" data-name="{{$item->city_name}}"
+                                    <td style="text-align: center"><input class="edit-modal btn btn-info"  data-id="{{$item->city_num}}" data-name="{{$item->city_name}}" data-hebrowname="{{$item->city_hebrow_name}}"
                                                                           value="تعديل"></td>
 
                                     <td style="text-align: center"><input class="delete-modal btn btn-danger"
@@ -87,6 +96,13 @@
                                                     <label class="control-label col-sm-2 pull-right"  >اسم المدينة :</label>
                                                     <div class="col-sm-10 pull-right">
                                                         <input type="text" class="form-control" id="insName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" dir="rtl">
+                                                    <label class="control-label col-sm-2 pull-right"  >اسم المدينة بالعبري :</label>
+                                                    <div class="col-sm-10 pull-right">
+                                                        <input type="text" class="form-control" id="hebrowName">
                                                     </div>
                                                 </div>
 
@@ -136,6 +152,7 @@
     var lastcompanyname;
     var num_update;
     var companyname_update;
+    var cityHebrowname_update;
 
 
     var deleterow;
@@ -153,10 +170,10 @@
             $('.EditContent').show();
             $('#insNumber').val($(this).data('id'));
             $('#insName').val($(this).data('name'));
+            $('#hebrowName').val($(this).data('hebrowname'));
 
             lastcompanynumnum=$(this).data('id');
             lastcompanyname=$(this).data('name');
-
             updaterow=$(this).parent().parent();
 
 
@@ -214,6 +231,7 @@
                 data: {
                     'num':num_update,
                     'name':companyname_update,
+                    'hebrowname':$("#hebrowName").val(),
 
                     'lastnum':lastcompanynumnum,
                     'lastname':lastcompanyname
@@ -225,7 +243,7 @@
                     location.reload();
                 },
                 error:function (data) {
-                    console.log('error')
+                    alert('error')
                 }
 
             });

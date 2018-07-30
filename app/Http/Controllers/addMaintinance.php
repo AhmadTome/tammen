@@ -39,6 +39,7 @@ class addMaintinance extends Controller
      $user=new enter_maintinance;
      $user->mai_num=Input::get('mainNum');
      $user->mai_name=Input::get('mainName');
+     $user->mai_hebrow_name=Input::get('hebrow_mainName');
         if($user->save()){
             session()->flash("notif","تم ادخال الصيانة بنجاح ");
         }else{
@@ -92,7 +93,7 @@ class addMaintinance extends Controller
 
         enter_maintinance::where('mai_num', '=', $lastnum)
             ->where('mai_name','=',$lastname)
-            ->update(array('mai_num' =>$newnum , 'mai_name'=>$newname ));
+            ->update(array('mai_num' =>$newnum , 'mai_name'=>$newname ,'mai_hebrow_name'=>$request->hebrow));
 
     }
 
