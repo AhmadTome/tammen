@@ -23,7 +23,7 @@
         <br>
         @foreach($certificates as $cer)
             <p class="certificate">
-            {{$cer->cert}}
+            {!! $cer->getText($l) !!}
             </p>
         @endforeach
         <br>

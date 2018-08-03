@@ -12,7 +12,7 @@ use App\body_vehicle_work;
 use App\mechanic_vehicle_work;
 use App\maintenance_vehicle_work;
 use App\drop_car;
-use App\enter_certificate;
+use App\add_certificate;
 use App\add_image;
 use App\Estimater;
 use App\bankinfo;
@@ -294,7 +294,7 @@ class ReportController extends Controller
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
         //$date = Input::get('date',date('Y-m-d'));
-        $certificates = enter_certificate::all();
+        $certificates = add_certificate::all();
         return view('report.degree',['car' => $car,'certificates' => $certificates,'l' => $l]);
     }
 
