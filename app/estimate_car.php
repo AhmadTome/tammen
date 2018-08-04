@@ -21,4 +21,8 @@ class estimate_car extends Model
     public function getNetTotalAttribute(){
         return $this->total + $this->estimater_cost;
     }
+
+    public function insCompany(){
+        return $this->belongsTo('App\enter_insurence_company','insurance_company','ins_name');
+    }
 }
