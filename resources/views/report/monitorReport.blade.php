@@ -47,10 +47,10 @@
                             {{$est->person_insurances}}
                         </td>
                         <td>
-                            {{$est->city}}
+                            {!! $est->cityObject != null ? $est->cityObject->getName($l) : '' !!}
                         </td>
                         <td>
-                            {{$est->insurance_company}}
+                            {!! $est->insCompany != null ? $est->insCompany->getName($l) : '' !!}
                         </td>
                         <td>
                             {{$est->Insurance_policy}}

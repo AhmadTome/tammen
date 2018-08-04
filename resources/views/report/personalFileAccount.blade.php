@@ -84,7 +84,7 @@
                     {{_t('city',$l)}}
                 </th>
                 <td>
-                    {{$est['city']}}
+                    {!! $est->cityObject != null ? $est->cityObject->getName($l) : '' !!}
                 </td>
             </tr>
             <tr>
@@ -186,7 +186,7 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <td>
-                        {{$est['insurance_company']}}
+                        {!! $est->insCompany != null ? $est->insCompany->getName($l) : '' !!}
                     </td>
                 </tr>
                 <tr>
@@ -194,7 +194,7 @@
                         {{_t('damage',$l)}}
                     </th>
                     <td>
-                        {{$est['DamageType']}}
+                        {!! $est->damage != null ? $est->damage->getName($l) : '' !!}
                     </td>
                 </tr>
             </table>

@@ -141,7 +141,7 @@
                         {{_t('damage',$l)}}
                     </th>
                     <td>
-                        {{$est['DamageType']}}
+                        {!! $est->damage != null ? $est->damage->getName($l) : '' !!}
                     </td>
                 </tr>
                 <tr>
@@ -174,7 +174,11 @@
             </tr>
             <tr>
                 <td>
-                    {{ $estimater->nes_name }}
+                    @if($l == 'AR')
+                        {{ $estimater->nes_name }}
+                    @else
+                        {{ $estimater->hebrow_estimater }}
+                    @endif
                 </td>
                 <td>
                     {{ $estimater->nes_authorization_num }}

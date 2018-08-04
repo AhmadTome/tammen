@@ -97,7 +97,7 @@
                         {{_t('city',$l)}}
                     </th>
                     <td>
-                        {{$est['city']}}
+                        {!! $est->cityObject != null ? $est->cityObject->getName($l) : '' !!}
                     </td>
                 </tr>
                 <tr>

@@ -88,7 +88,7 @@ class ReportController extends Controller
     //تقرير حساب ملف شخصي
     public function personalFileAccount($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->get();
+        $est = estimate_car::with('insCompany')->where('fileNumber',$fileId)->get();
         if(count($est) == 0){
             return view('errors.noData',[
                 'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
@@ -197,7 +197,7 @@ class ReportController extends Controller
 
         $toName = Input::get('toName');
 
-        if(count($toName) != 0){
+        if($toName != null && count($toName) != 0){
             $ests->whereIn('to',$toName);
         }
 

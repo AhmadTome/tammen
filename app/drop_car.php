@@ -17,4 +17,8 @@ class drop_car extends Model
     public function maintPart(){
         return $this->hasOne('App\enter_maintinance','mai_num','maintinance');
     }
+
+    public function dropStatement(){
+        return $this->belongsTo('App\enter_Drop_statment','dropStatment','text');
+    }
 }
