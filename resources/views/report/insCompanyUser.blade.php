@@ -34,7 +34,7 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <td>
-                        {{$company->getName($l)}}
+                        {!! $company->getName($l) !!}
                     </td>
                 </tr>
             </table>

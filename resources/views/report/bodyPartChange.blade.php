@@ -42,7 +42,7 @@
             @foreach($parts as $p)
                 <tr>
                     <td>
-                        {{$p->bodyPart->getName($l)}}
+                        {!! $p->bodyPart->getName($l) !!}
                     </td>
                     <td>
                         {{$p->bo_part_type}}

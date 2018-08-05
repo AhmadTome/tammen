@@ -30,7 +30,7 @@
                 <?php $total += $p->mawo_cost; $taxValue += $p->tax; ?>
                 <tr>
                     <td>
-                        {{$p->mawo_work_name}}
+                        {!! $p->maintianace != null ? $p->maintianace->getName($l) : '' !!}
                     </td>
                     <td>
                         {{$p->mawo_cost}}
