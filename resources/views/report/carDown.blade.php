@@ -89,10 +89,10 @@
                 @foreach($drops as $drop)
                     <tr>
                         <td>
-                            {{$drop->bodyPart->getName($l)}}
+                            {!! $drop->bodyPart != null ? $drop->bodyPart->getName($l) : '' !!}
                         </td>
                         <td>
-                            {{$drop->maintPart->getName($l)}}
+                            {!! $drop->mainPart != null ? $drop->maintPart->getName($l) : '' !!}
                         </td>
                         <td>
                             {{$drop->count}}

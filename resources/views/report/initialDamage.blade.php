@@ -100,7 +100,7 @@
                         {{_t('garage_name',$l)}}
                     </th>
                     <td colspan="2">
-                        {{$est['Garage']}}
+                        {!! $est->garageObject != null ? $est->garageObject->getName($l) : '' !!}
                     </td>
                 </tr>
                 <tr>
@@ -135,7 +135,7 @@
                         {{_t('ins_company',$l)}}
                     </th>
                     <td colspan="2">
-                        {{$est['insurance_company']}}
+                        {!! $est->insCompany != null ? $est->insCompany->getName($l) : '' !!}
                     </td>
                 </tr>
             </table>

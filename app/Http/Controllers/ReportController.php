@@ -12,7 +12,7 @@ use App\body_vehicle_work;
 use App\mechanic_vehicle_work;
 use App\maintenance_vehicle_work;
 use App\drop_car;
-use App\enter_certificate;
+use App\add_certificate;
 use App\add_image;
 use App\Estimater;
 use App\bankinfo;
@@ -88,7 +88,7 @@ class ReportController extends Controller
     //تقرير حساب ملف شخصي
     public function personalFileAccount($fileId,$l = 'AR'){
         $car = enter_car_info::find($fileId);
-        $est = estimate_car::where('fileNumber',$fileId)->get();
+        $est = estimate_car::with('insCompany')->where('fileNumber',$fileId)->get();
         if(count($est) == 0){
             return view('errors.noData',[
                 'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
@@ -197,7 +197,7 @@ class ReportController extends Controller
 
         $toName = Input::get('toName');
 
-        if(count($toName) != 0){
+        if($toName != null && count($toName) != 0){
             $ests->whereIn('to',$toName);
         }
 
@@ -259,7 +259,7 @@ class ReportController extends Controller
     }
 
     //أعمالمركبة
-    public function carWork($fileId,$l = 'AR'){
+    public function carWork($l = 'AR'){
         $fileId = Input::get('file_num','');
         $date = Input::get('date',date('Y-m-d'));
         $car = enter_car_info::find($fileId);
@@ -294,7 +294,7 @@ class ReportController extends Controller
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
         //$date = Input::get('date',date('Y-m-d'));
-        $certificates = enter_certificate::all();
+        $certificates = add_certificate::all();
         return view('report.degree',['car' => $car,'certificates' => $certificates,'l' => $l]);
     }
 

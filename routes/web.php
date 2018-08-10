@@ -18,7 +18,7 @@ use App\enter_Drop_statment;
 use App\enter_garage;
 use App\enter_insurence_company;
 use App\enter_maintinance;
-use App\enter_personalInfo;
+use App\enter_personalinfo;
 use App\Estimater;
 use App\getCarInfo;
 
@@ -103,7 +103,7 @@ Route::get('/addpersonalInformation', function () {
 });
 Route::get('/personalinformationTransaction', function () {
 
-    $Id=enter_personalInfo::all();
+    $Id=enter_personalinfo::all();
     return view('EditDelete.personalinformationTransaction')->with('Id',$Id);
 });
 
@@ -174,7 +174,7 @@ Route::get('/CarGuessTransaction', function () {
     $carInfo=getCarInfo::all();
     $insuranceCompany=enter_insurence_company::all();
     $cities=enter_city::all();
-    $Id = enter_personalInfo::all();
+    $Id = enter_personalinfo::all();
     $DamageType=Damage::all();
     $Estimater=Estimater::all();
     $Garage=enter_garage::all();
@@ -201,14 +201,14 @@ Route::get('/addCertification', function () {
 //Bank Transaction
 Route::get('/BankDisclosure', function () {
     $carInfo = \App\getCarInfo::all();
-    $Id =\App\enter_personalInfo::all();
+    $Id =\App\enter_personalinfo::all();
     $estimatevalue = \App\enter_estimit_value::all();
 
     return view('MainInput.BankDisclosure')->with('carInfo',$carInfo)->with('Id',$Id)->with('estimatevalue',$estimatevalue);
 });
 Route::get('/BankTransaction', function () {
     $carInfo = \App\getCarInfo::all();
-    $Id =\App\enter_personalInfo::all();
+    $Id =\App\enter_personalinfo::all();
     $estimatevalue = \App\enter_estimit_value::all();
 
     return view('EditDelete.BankTransaction')->with('carInfo',$carInfo)->with('Id',$Id)->with('estimatevalue',$estimatevalue);

@@ -111,7 +111,7 @@
             height: 297mm;
         }
         .show-print{
-            display: auto !important;
+            display: block !important;
         }
         .hide-print{
             display: none;

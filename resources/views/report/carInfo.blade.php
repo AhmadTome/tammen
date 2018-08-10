@@ -103,7 +103,7 @@
                             {{_t('exam_place',$l)}}
                         </th>
                         <td>
-                            {{$est['Garage']}}
+                            {!! $est->garageObject != null ? $est->garageObject->getName($l) : '' !!}
                         </td>
                     </tr>
                     <tr>
@@ -119,7 +119,7 @@
                             {{_t('damage',$l)}}
                         </th>
                         <td>
-                            {{$est['DamageType']}}
+                            {!! $est->damage != null ? $est->damage->getName($l) : '' !!}
                         </td>
                     </tr>
                     <tr>
