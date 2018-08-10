@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_text" id="hebrow_text" placeholder="ادخل نص المركبة عبري" >
+                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_text" id="hebrow_text" placeholder="ادخل نص المركبة عبري" required>
                             </div>
                             <label class="control-label col-sm-1" for="textName">: النص عبري</label>
                         </div>

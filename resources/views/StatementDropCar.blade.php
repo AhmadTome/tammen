@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_text" id="hebrow_text" placeholder=" ادخل النص عبري" >
+                                <input type="text" class="form-control PanelBodyCssInput" name="hebrow_text" id="hebrow_text" placeholder=" ادخل النص عبري" required>
                             </div>
                             <label class="control-label col-sm-1" for="damName">: النص عبري</label>
                         </div>
