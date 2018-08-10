@@ -259,7 +259,7 @@ class ReportController extends Controller
     }
 
     //أعمالمركبة
-    public function carWork($fileId,$l = 'AR'){
+    public function carWork($l = 'AR'){
         $fileId = Input::get('file_num','');
         $date = Input::get('date',date('Y-m-d'));
         $car = enter_car_info::find($fileId);
