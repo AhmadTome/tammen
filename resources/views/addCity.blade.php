@@ -30,7 +30,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-2 col-xs-offset-0">
-                                <input type="text" class="form-control PanelBodyCssInput" name="city_hebrow_name" id="city_hebrow_name" placeholder="  ادخل الاسم العبري" >
+                                <input type="text" class="form-control PanelBodyCssInput" name="city_hebrow_name" id="city_hebrow_name" placeholder="  ادخل الاسم العبري" required >
                             </div>
                             <label class="control-label col-sm-1" for="damName">:الاسم العبري</label>
                         </div>

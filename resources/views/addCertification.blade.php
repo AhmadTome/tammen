@@ -22,7 +22,7 @@
                     <div class="form-group row col-sm-12" dir="rtl">
                         <label class="control-label col-sm-2 pull-right" >الشهادة عبري:</label>
                         <div class="col-sm-8 pull-right">
-                            <textarea class="form-control text-center" rows="5" name="cert_hebrow">
+                            <textarea class="form-control text-center" rows="5" name="cert_hebrow" required>
 
                             </textarea>
                         </div>

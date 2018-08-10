@@ -36,7 +36,7 @@
                             <label class="control-label col-sm-2 pull-right" for="garName_hebrow">الاسم عبري :</label>
 
                             <div class="col-sm-8 pull-right">
-                                <input type="text" class="form-control PanelBodyCssInput" name="garName_hebrow" id="garName_hebrow" placeholder="ادخل الاسم عبري" >
+                                <input type="text" class="form-control PanelBodyCssInput" name="garName_hebrow" id="garName_hebrow" placeholder="ادخل الاسم عبري" required>
                             </div>
                         </div>
 
