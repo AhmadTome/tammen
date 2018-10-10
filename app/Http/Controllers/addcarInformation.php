@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\car_model;
 use App\enter_car_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -199,5 +200,70 @@ $lastfilenum=Input::get('carInfo_select');
             ,'ve_version_num','seat_num','attachments','seat_close_Driver')
             ->where('file_num',$request->id)->take(1500)->get();
         return response()->json($data);
+    }
+
+    public function enter_model(Request $request){
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads');
+            $image->move($destinationPath, $name);
+            $user = new car_model;
+            $user->model_name = Input::get('car_model');
+            $user->car_img = $name ;
+            if($user->save()){
+                session()->flash("notif","تم ادخال صورة الموديل بنجاح ");
+            }
+            return redirect()->back();
+        }
+        else{
+            session()->flash("notif","لم يتم ادخال الموديل لحدوث خطأ في الادخال");
+            return redirect()->back();
+        }
+
+    }
+
+    public function get_cars_model(Request $request){
+        $num = $request->id;
+
+       $data = car_model::where('id','=',$num)->get();
+        return $data;
+    }
+
+    public function delete_cars_model(Request $request){
+        $num = $request->id;
+
+        car_model::where('id','=',$num)->delete();
+        return response()->json();
+    }
+
+    public function edit_cars_model(Request $request){
+        $previmg = car_model::where('id','=',Input::get('idhidden'))->get()[0]->car_img;
+
+        car_model::where('id','=',Input::get('idhidden'))->delete();
+
+        if ($request->hasFile('editimg')) {
+            unlink(public_path().'/uploads/'.$previmg);
+            $image = $request->file('editimg');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads');
+            $image->move($destinationPath, $name);
+            $user = new car_model;
+            $user->model_name = Input::get('carname');
+            $user->car_img = $name ;
+            if($user->save()){
+                session()->flash("notif","تم تعديل صورة الموديل بنجاح ");
+            }
+            return redirect()->back();
+        }else{
+            $user = new car_model;
+            $user->model_name = Input::get('carname');
+            $user->car_img = $previmg ;
+            if($user->save()){
+                session()->flash("notif","تم تعديل صورة الموديل بنجاح ");
+            }
+            return redirect()->back();
+        }
     }
 }

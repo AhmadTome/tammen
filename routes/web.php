@@ -268,6 +268,18 @@ Route::get('/SaveLetter', function () {
     return view('MainInput.saveletter');
 });
 
+// Enter car model
+    Route::get('/car_model', function () {
+        return view('MainInput.car_model');
+    });
+    Route::post('storcarmodel','addcarInformation@enter_model');
+    Route::get('/Edit_Delete_car_model', function () {
+        $models = \App\car_model::all();
+        return view('EditDelete.car_model')->with('models',$models);
+    });
+    Route::get('/get_car_model','addcarInformation@get_cars_model');
+    Route::get('/deletcarmodel','addcarInformation@delete_cars_model');
+    Route::post('Editcarmodel','addcarInformation@edit_cars_model');
 
 
 
