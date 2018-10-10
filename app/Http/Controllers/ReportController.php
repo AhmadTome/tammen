@@ -18,6 +18,7 @@ use App\Estimater;
 use App\bankinfo;
 use App\letter;
 use Illuminate\Support\Facades\Input;
+use function MongoDB\BSON\toJSON;
 
 class ReportController extends Controller
 {
@@ -60,7 +61,12 @@ class ReportController extends Controller
     }
 
     //تقرير بيانات مركبة
-    public function carInfo($fileId,$l = 'AR'){
+    public function carInfo(Request $request,$l = 'AR'){
+
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -73,7 +79,11 @@ class ReportController extends Controller
     
 
     //تقرير حساب ملف
-    public function fileAccount($fileId,$l = 'AR'){
+    public function fileAccount(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -86,7 +96,11 @@ class ReportController extends Controller
     }
 
     //تقرير حساب ملف شخصي
-    public function personalFileAccount($fileId,$l = 'AR'){
+    public function personalFileAccount(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::with('insCompany')->where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -99,7 +113,11 @@ class ReportController extends Controller
     }
 
     //تقرير شطب مركبة
-    public function carDestroy($fileId,$l = 'AR'){
+    public function carDestroy(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         
@@ -121,7 +139,11 @@ class ReportController extends Controller
     }
 
     //تقرير ثمن المركبة
-    public function carPrice($fileId,$l = 'AR'){
+    public function carPrice(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::with(['maintenance','bodyVehicleWork'])->find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -133,7 +155,11 @@ class ReportController extends Controller
     }
 
     //تقرير ثمن المركبة مع حطام
-    public function carPriceWithRek($fileId,$l='AR'){
+    public function carPriceWithRek(Request $request,$l='AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -146,7 +172,11 @@ class ReportController extends Controller
     }
 
     //دائرة الترخيص
-    public function licence($fileId,$l = 'AR'){
+    public function licence(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -158,7 +188,11 @@ class ReportController extends Controller
     }
 
     //تقرير أضرار أولي
-    public function initialDamage($fileId,$l = 'AR'){
+    public function initialDamage(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
         if(count($est) == 0){
@@ -170,7 +204,11 @@ class ReportController extends Controller
     }
 
     //كشف الزيارات
-    public function carVisit($fileId,$l = 'AR'){
+    public function carVisit(Request $request,$l = 'AR'){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $From = Input::get('From',date('Y-m-d'));
         $To = Input::get('To',date('Y-m-d'));
         $car = enter_car_info::find($fileId);
@@ -192,6 +230,7 @@ class ReportController extends Controller
         $l = Input::get('lang','AR');
         $ins_num = Input::get('ins_num',1);
         $benName = Input::get('benName',0);
+
         
         $ests = estimate_car::with('carInfo')->where('insurance_company',$ins_num);
 
@@ -199,6 +238,7 @@ class ReportController extends Controller
 
         if($toName != null && count($toName) != 0){
             $ests->whereIn('to',$toName);
+
         }
 
         $From = Input::get('From',date('Y-m-d'));
@@ -219,8 +259,9 @@ class ReportController extends Controller
     //حساب شركة التامين للمستفيد
     public function insCompanyUser(){
         $l = Input::get('lang','AR');
-        $car_num = Input::get('car_num',0);
+        $car_num = Input::get('carInfo_select',0);
         $ins_num = Input::get('ins_num',1);
+
         $benName = Input::get('benName',0);
         //$RegDate = Input::get('RegDate',date('Y-m-d'));
         $company = enter_insurence_company::where('ins_name',$ins_num)->get();
@@ -349,7 +390,11 @@ class ReportController extends Controller
     }
 
     //
-    public function carImages($fileId){
+    public function carImages(Request $request){
+        $fileId = $request->type;
+        if(!$fileId){
+            return;
+        }
         $allImages = add_image::where('file_number',$fileId)->get();
         $groupedImages = [];
         foreach($allImages as $image){

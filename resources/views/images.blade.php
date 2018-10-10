@@ -101,7 +101,7 @@
             $("#fileError").hide();
             $("#fileError").html("");
             
-            window.open("/report/" + route + "/" + type);
+            window.open("/report/" + route +"?type="+ type);
             
         }
     $(document).ready(function () {

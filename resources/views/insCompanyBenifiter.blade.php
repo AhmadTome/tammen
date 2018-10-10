@@ -97,6 +97,7 @@
     });
         function goTo(route,withDate){
             var type = $("#filenumber").val();
+
             var lang = $("#lang").val();
             if(withDate){
                 var To = $("#To").val();

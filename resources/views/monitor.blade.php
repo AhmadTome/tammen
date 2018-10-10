@@ -7,15 +7,16 @@
             <div class="panel-heading">
                 تقرير الرقابة
             </div>
-            <div>
+            <div dir="rtl">
             <form action="/report/monitorReport" method="GET">
-                <div class="col-sm-6">
-                    <label class="contrl-label">من تاريخ: </label>
-                    <input type="date" class="form-control" name='From'>
-                </div>
+
                 <div class="col-sm-6">
                     <label class="contrl-label">إلى تاريخ: </label>
                     <input type="date" class="form-control" name='To'>
+                </div>
+                <div class="col-sm-6">
+                    <label class="contrl-label">من تاريخ: </label>
+                    <input type="date" class="form-control" name='From'>
                 </div>
                 <div class="clearfix"></div>
                 <br>    
