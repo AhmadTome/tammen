@@ -87,6 +87,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('carcostTransaction') }}">احتساب سعر مركبة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('BankTransaction') }}">كشف بنك</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('Edit_Delete_car_model') }}">تعديل واستعلام عن موديل سيارة</a></li>
                         <!--
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('certificationTransaction') }}">كشف شهادة</a></li>
                         <li role="presentation" class="divider"></li>
@@ -145,6 +147,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('SaveLetter')}}">حفظ رسائل للطباعة </a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('sendMessage')}}">ارسال ايميل</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('car_model')}}">ادخال موديل سيارة</a></li>
 
 
                         <!--

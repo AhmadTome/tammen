@@ -44,7 +44,6 @@ class addCity extends Controller
             session()->flash("notif","تم ادخال المدينة بنجاح ");
         }else{
             session()->flash("notif","لم يتم ادخال المدينة لحدوث خطأ في الادخال");
-
         }
         return redirect()->to('addCity');
 
