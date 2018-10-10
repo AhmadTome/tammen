@@ -358,8 +358,13 @@ class ReportController extends Controller
         return view('report.carImages',['groupedImages' => $groupedImages]);
     }
 
-    public function partsDates($fileId){
+    public function partsDates(Request $request){
+        $fileId = $request->input('fileId');
+        if(!$fileId){
+            return ;
+        }
         $dropDates = drop_car::where('filenumber',$fileId)->distinct('data')->select('data')->get();
+
         $dates = [];
         foreach($dropDates as $date){
             $dates[] = [
@@ -385,6 +390,7 @@ class ReportController extends Controller
         }
 
         $bDates = body_vehicle_work::where('file_number',$fileId)->distinct('bo_date')->select('bo_date')->get();
+
         foreach($bDates as $date){
             $dates[] = [
                 'value' => $date->bo_date,

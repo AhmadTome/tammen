@@ -480,7 +480,7 @@ Route::get('/uploadimage','addImages@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/car/parts/dates/{fileId}','ReportController@partsDates');
+    Route::get('/car/parts/dates','ReportController@partsDates');
 
 Route::group(['prefix' => '/report'],function(){
     

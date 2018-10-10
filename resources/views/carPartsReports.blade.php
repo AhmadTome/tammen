@@ -98,16 +98,19 @@
 
             function getDates(){
                 var fileId = $fileNumber.val();
-                console.log(fileId)
-                $.get("/car/parts/dates/" + fileId).done(function(data){
-                    console.log(data)
-                    dateChoose.innerHTML = "";
-                    for(var i = 0,l = data.length; i < l; i++){
-                        dateChoose.appendChild(new Option(data[i].display,data[i].value));
-                    }
-                }).fail(function(err){
-                    console.log('error')
-                });
+
+                if(fileId != "") {
+                    console.log(fileId)
+                    $.get("/car/parts/dates?fileId=" + fileId).done(function (data) {
+                        console.log(data)
+                        dateChoose.innerHTML = "";
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            dateChoose.appendChild(new Option(data[i].display, data[i].value));
+                        }
+                    }).fail(function (err) {
+                        console.log(err)
+                    });
+                }
             }
         function goTo(route){
             var type = $("#filenumber").val();
