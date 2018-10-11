@@ -1,6 +1,6 @@
 @extends('report.reportLayout')
 
-@section('title','أعمال مركبة')
+@section('title','جدولة الأضرار الفنية')
 
 @section('content')
 

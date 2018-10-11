@@ -149,6 +149,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('sendMessage')}}">ارسال ايميل</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('car_model')}}">ادخال موديل سيارة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('car_visit')}}">تسجيل زيارة للمركبة</a></li>
 
 
                         <!--

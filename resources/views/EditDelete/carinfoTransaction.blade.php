@@ -47,6 +47,7 @@
                 <div class="container " style="max-width: 1000px ;margin-bottom: -15px">
                     <form class="form-horizontal" method="post" action="EditCarInformation" >
                         {{ csrf_field() }}
+
                         <div class="form-group row  " dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left"> اختار رقم المركبة  : </label>
                         <div class="col-sm-8 pull-right text-left">
@@ -60,7 +61,7 @@
                         </div>
 
 
-                </div>
+                        </div>
 
 
                         <div class="form-group row" dir="rtl">

@@ -88,7 +88,7 @@
                         {{$v['vis_vehicle_work']}}
                     </td>
                     <td>
-                        {{$v['notes']}}
+                        {{$v['vis_note']}}
                     </td>
                 </tr>
             @endforeach

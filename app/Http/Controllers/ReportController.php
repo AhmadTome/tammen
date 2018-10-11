@@ -209,11 +209,12 @@ class ReportController extends Controller
         if(!$fileId){
             return;
         }
+
         $From = Input::get('From',date('Y-m-d'));
         $To = Input::get('To',date('Y-m-d'));
         $car = enter_car_info::find($fileId);
 
-        $visits = CarVisit::where('vis_vehicle_num',$car->ve_num);
+        $visits = CarVisit::where('vis_vehicle_num',$fileId);
 
         if($From != null){
             $visits->where('vis_date','>=',$From);
@@ -325,7 +326,9 @@ class ReportController extends Controller
     //اضرار فنية لدائرة الترخيص
     public function carTechDamage($l = 'AR'){
         $fileId = Input::get('file_num','');
+
         $car = enter_car_info::find($fileId);
+
         $date = Input::get('date',date('Y-m-d'));
         return view('report.carTechDamage',['car' => $car,'l' => $l]);
     }

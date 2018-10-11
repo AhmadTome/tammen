@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\car_model;
+use App\car_visit;
 use App\enter_car_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -265,5 +266,24 @@ $lastfilenum=Input::get('carInfo_select');
             }
             return redirect()->back();
         }
+    }
+
+    public function addNewVisit(Request $request){
+        $this->validate($request,[
+            'notes' => 'required'
+        ]);
+        $user = new car_visit;
+        $user->vis_vehicle_num = Input::get('carInfo_select');
+
+        $user->vis_day = Input::get('day');
+        $user->vis_date = Input::get('visitdate');
+        $user->vis_vehicle_work = Input::get('workInCar');
+        $user->vis_note = Input::get('notes');
+        if($user->save()){
+            session()->flash("notif","تم تسجيل الزيارة بنجاح ");
+        }
+        return redirect()->back();
+
+
     }
 }
