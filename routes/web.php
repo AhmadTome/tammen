@@ -499,31 +499,31 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/images','ReportController@images');
     
     //تقرير بيانات مركبة
-    Route::get('/carInfo/{fileId}/{l?}','ReportController@carInfo');
+    Route::get('/carInfo/{l?}','ReportController@carInfo');
     
     //تقرير حساب فايل
-    Route::get('/fileAccount/{fileId}/{l?}','ReportController@fileAccount');
+    Route::get('/fileAccount/{l?}','ReportController@fileAccount');
 
     //تقرير حساب فايل / ملف شخصي
-    Route::get('/personalFileAccount/{fileId}/{l?}','ReportController@personalFileAccount');
+    Route::get('/personalFileAccount/{l?}','ReportController@personalFileAccount');
 
     //تقرير شطب مركبة
-    Route::get('/carDestroy/{fileId}/{l?}','ReportController@carDestroy');
+    Route::get('/carDestroy/{l?}','ReportController@carDestroy');
 
     //تقرير ثمن المركبة
-    Route::get('/carPrice/{fileId}/{l?}','ReportController@carPrice');
+    Route::get('/carPrice/{l?}','ReportController@carPrice');
 
     //تقرير ثمن المركبة مع حطام
-    Route::get('/carPriceWithRek/{fileId}/{l?}','ReportController@carPriceWithRek');
+    Route::get('/carPriceWithRek/{l?}','ReportController@carPriceWithRek');
 
     //دائرة الترخيص
-    Route::get('/licence/{fileId}/{l?}','ReportController@licence');
+    Route::get('/licence/{l?}','ReportController@licence');
 
     //تقرير أضرار أولي
-    Route::get('/initialDamageReport/{fileId}/{l?}','ReportController@initialDamage');
+    Route::get('/initialDamageReport/{l?}','ReportController@initialDamage');
 
     //كشف زيارات المركبة
-    Route::get('/carVisit/{fileId}/{l?}','ReportController@carVisit');
+    Route::get('/carVisit/{l?}','ReportController@carVisit');
 
     //حساب شركة التامين
     Route::get('/insCompanyAcc','ReportController@insCompanyAcc');
@@ -556,7 +556,7 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/monitorReport','ReportController@monitorReport');
 
     //صور الحادث
-    Route::get('/carImages/{fileId}','ReportController@carImages');
+    Route::get('/carImages','ReportController@carImages');
 
     Route::get('/letter/{id}','ReportController@letter');
 });
