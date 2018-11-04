@@ -191,6 +191,13 @@
       });
 
 
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
 
     });
 

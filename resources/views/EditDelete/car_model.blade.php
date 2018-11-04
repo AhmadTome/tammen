@@ -192,6 +192,14 @@
 </style>
 <script>
     $(document).ready(function () {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
+
         $("#car_model_select").select2({
             dropdownAutoWidth: true,
             theme: "classic"
