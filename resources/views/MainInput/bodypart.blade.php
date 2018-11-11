@@ -47,7 +47,6 @@
 
                             @foreach($Bodyinfo as $item)
                                 <option value="{{$item->id}}">{{$item->body_name}}</option>
-
                             @endforeach
                         </select>
                     </div>
@@ -135,7 +134,7 @@
                         <thead>
                         <tr>
 
-                            <th>رقم المركبة  </th>
+                            <th>رقم المركبة</th>
                             <th>رقم الملف</th>
                             <th>تحديد</th>
                             <th>تحديد</th>
