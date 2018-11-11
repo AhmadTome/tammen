@@ -281,6 +281,13 @@ Route::get('/SaveLetter', function () {
     Route::get('/deletcarmodel','addcarInformation@delete_cars_model');
     Route::post('Editcarmodel','addcarInformation@edit_cars_model');
 
+// add car visit
+    Route::get('/car_visit', function () {
+        $carInfo=\App\enter_car_info::all();
+        return view('MainInput.visit_car')->with('carInfo',$carInfo);
+    });
+    Route::post('StoreNewVisit','addcarInformation@addNewVisit');
+
 
 
 Route::get('/findEstimaterinfo','addCertification@estimaterinfo');
@@ -473,6 +480,7 @@ Route::post('EditCertification','addCertification@update');
 Route::post('saveletter','saveletterConreoller@store');
 
 //Route::get('/addInsuranceCompany','addInsuranceCompany@findCarInfoforGesscar');
+
 
 
 Route::get('/uploadimage','addImages@store');
