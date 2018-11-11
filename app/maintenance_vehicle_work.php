@@ -17,6 +17,6 @@ class maintenance_vehicle_work extends Model
     }
 
     public function maintianace(){
-        return $this->hasOne('App\enter_maintinance','id','mawo_work_num');
+        return $this->hasOne('App\enter_maintinance','id','mawo_work_name');
     }
 }
