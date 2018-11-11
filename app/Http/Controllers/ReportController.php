@@ -296,7 +296,9 @@ class ReportController extends Controller
     public function mechPartChange($l = 'AR'){
         $fileId = Input::get('file_num','');
         $car = enter_car_info::find($fileId);
-        $parts = mechanic_vehicle_work::where('filenumber',$fileId)->get();
+        $date = Input::get('date',date('Y-m-d'));
+        $parts = mechanic_vehicle_work::where('filenumber',$fileId)->where('me_date',$date)->get();
+        //$parts = mechanic_vehicle_work::where('filenumber',$fileId)->get();
         return view('report.mechPartChange',['car' => $car,'parts' => $parts,'l' => $l]);
     }
 
