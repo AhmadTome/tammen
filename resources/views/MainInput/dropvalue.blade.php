@@ -68,7 +68,7 @@
             <div class="panel-heading text-center PanelHeadingCss">ادخال هبوط قيمة</div>
             <div class="panel-body PanelBodyCss">
 
-                    <form class="form-horizontal" method="post" action="storDropValue" >
+                    <form class="form-horizontal" method="post" action="storDropValue" id="dropcarform">
                         {{ csrf_field() }}
 
 
@@ -303,6 +303,22 @@ $(document).ready(function () {
         theme: "classic"
     });
 
+    $("#dropcarform").on("submit",function () {
+        if($("#filenumber").val() == ""){
+            alert("يجب اختيار رقم الملف من أعلى ")
+            return false;
+        }
+
+    })
+
+    $("#addMaintinance").on("click",function () {
+        if($("#filenumber").val() == ""){
+            alert("يجب اختيار رقم الملف من أعلى ")
+            return false;
+        }
+
+    })
+
 $(document).on("change",".carInfo_select",function () {
 var file_nom=$(this).val();
 
@@ -370,53 +386,53 @@ $('#cost').val(data);
 var dropcatindex=0;
 function addrow() {
 
-    //get variable data
-    //var carnumber=document.getElementById("carInfo_select").value;
-    var filenumber=document.getElementById("filenumber").value;
-    var dropvaluestatment=document.getElementById("dropstatment").value;
-    var part=document.getElementById("part").value;
-    var maintinace = document.getElementById("maintinancework").value;
-    var date=document.getElementById("dropdate").value;
-    var countpart=document.getElementById("partcount").value;
-    var percantige=document.getElementById("dropPercantige").value;
-    var note=document.getElementById("note").value;
+    if (document.getElementById('filenumber').value != "") {
+        //get variable data
+        //var carnumber=document.getElementById("carInfo_select").value;
+        var filenumber = document.getElementById("filenumber").value;
+        var dropvaluestatment = document.getElementById("dropstatment").value;
+        var part = document.getElementById("part").value;
+        var maintinace = document.getElementById("maintinancework").value;
+        var date = document.getElementById("dropdate").value;
+        var countpart = document.getElementById("partcount").value;
+        var percantige = document.getElementById("dropPercantige").value;
+        var note = document.getElementById("note").value;
 
-    //select table
+        //select table
 
-    var table=document.getElementsByTagName("table")[0];
+        var table = document.getElementsByTagName("table")[0];
 
-    var tablerow=table.insertRow(1);
-
-
-    //var cell1=tablerow.insertCell(0);
-    var cellfile=tablerow.insertCell(0);
-    var cell2=tablerow.insertCell(1);
-    var cell3=tablerow.insertCell(2);
-    var cell4=tablerow.insertCell(3);
-    var cell5=tablerow.insertCell(4);
-    var cell6=tablerow.insertCell(5);
-    var cell7=tablerow.insertCell(6);
-    var cell8=tablerow.insertCell(7);
-    var cell9=tablerow.insertCell(8);
+        var tablerow = table.insertRow(1);
 
 
+        //var cell1=tablerow.insertCell(0);
+        var cellfile = tablerow.insertCell(0);
+        var cell2 = tablerow.insertCell(1);
+        var cell3 = tablerow.insertCell(2);
+        var cell4 = tablerow.insertCell(3);
+        var cell5 = tablerow.insertCell(4);
+        var cell6 = tablerow.insertCell(5);
+        var cell7 = tablerow.insertCell(6);
+        var cell8 = tablerow.insertCell(7);
+        var cell9 = tablerow.insertCell(8);
 
-    //cell1.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][carnumber]" id="carnumber_table" value="' + carnumber + '" />'+carnumber+'</td>' ;
-    cellfile.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][filenumber]" id="fileNumber_table" value="' + filenumber + '" />'+filenumber+'</td>' ;
-    cell2.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][dropvaluestatment]" id="limitno_table" value="' + dropvaluestatment + '"/>'+ dropvaluestatment+'</td>' ;
-    cell3.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][part]" id="limit_table" value="' + part + '"/>'+ part+'</td>' ;
-    cell4.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][maintinace]" id="percantige_table" value="' + maintinace + '"/>'+maintinace +'</td>' ;
 
-    cell5.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][date]" id="workno_table" value="' + date + '"/>'+ date+'</td>' ;
-    cell6.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][countpart]" id="work_table" value="' + countpart + '"/>'+ countpart+'</td>' ;
-    cell7.innerHTML= '<td><input type="hidden" name="dropcartable['+ dropcatindex +'][percantige]" id="price_table" value="' + percantige + '"/>'+ percantige+'</td>';
-    cell8.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][note]" id="percantige_table" value="' + note + '"/>'+note +'</td>' ;
+        //cell1.innerHTML='<td><input type="hidden" name="dropcartable['+ dropcatindex +'][carnumber]" id="carnumber_table" value="' + carnumber + '" />'+carnumber+'</td>' ;
+        cellfile.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][filenumber]" id="fileNumber_table" value="' + filenumber + '" />' + filenumber + '</td>';
+        cell2.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][dropvaluestatment]" id="limitno_table" value="' + dropvaluestatment + '"/>' + dropvaluestatment + '</td>';
+        cell3.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][part]" id="limit_table" value="' + part + '"/>' + part + '</td>';
+        cell4.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][maintinace]" id="percantige_table" value="' + maintinace + '"/>' + maintinace + '</td>';
 
-    cell9.innerHTML='<td><input type="button" class="btn-danger" value="X" id="remCF" /></td>';
+        cell5.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][date]" id="workno_table" value="' + date + '"/>' + date + '</td>';
+        cell6.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][countpart]" id="work_table" value="' + countpart + '"/>' + countpart + '</td>';
+        cell7.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][percantige]" id="price_table" value="' + percantige + '"/>' + percantige + '</td>';
+        cell8.innerHTML = '<td><input type="hidden" name="dropcartable[' + dropcatindex + '][note]" id="percantige_table" value="' + note + '"/>' + note + '</td>';
 
-    dropcatindex++;
+        cell9.innerHTML = '<td><input type="button" class="btn-danger" value="X" id="remCF" /></td>';
+
+        dropcatindex++;
+    }
 }
-
 
 
 

@@ -104,7 +104,7 @@
             <div class="panel-body PanelBodyCss">
 
                 <div class="container " style="max-width: 1000px ;margin-bottom: -15px">
-                    <form class="form-horizontal" method="post" action="calculateCarCost" >
+                    <form class="form-horizontal" method="post" action="calculateCarCost" id="carcostform">
                         {{ csrf_field() }}
                         <input class="form-control" type="hidden" name="filrnumberhidden" id="filrnumberhidden" value=""  />
 
@@ -227,6 +227,14 @@
             dropdownAutoWidth : true,
             theme: "classic"
         });
+
+        $("#carcostform").on("submit",function () {
+            if($("#filenumber").val() == ""){
+                alert("يجب اختيار رقم الملف من أعلى ")
+                return false;
+            }
+
+        })
 
         $(".calculate_car_cost").on("click",function () {
 

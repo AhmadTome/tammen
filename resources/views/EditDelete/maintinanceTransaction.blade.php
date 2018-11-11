@@ -291,58 +291,59 @@
     var Maintinanceindex=0;
     function addrow() {
 
+        if (document.getElementById('filenumber').value != "") {
+            //get variable data
+            var x = document.getElementById("limit_select").selectedIndex;
+            var y = document.getElementById("limit_select").options;
+            var limitno = y[x].text;
 
-        //get variable data
-        var x = document.getElementById("limit_select").selectedIndex;
-        var y = document.getElementById("limit_select").options;
-        var limitno=y[x].text;
-
-        var x2 = document.getElementById("carMaintinance_select").selectedIndex;
-        var y2 = document.getElementById("carMaintinance_select").options;
-        var workno =y2[x2].text;
-
-
-        var limit = document.getElementById("limit").value;
-        var work=document.getElementById("carMaintinance_work").value;
-        var price = document.getElementById("Price").value;
-        var percantige = document.getElementById("Percantige").value;
-        var date = document.getElementById("Date").value;
-        var details = document.getElementById("details").value;
-        var carnumber=document.getElementById("carnumber").value;
-
-        var fileNumber=document.getElementById("filenumber").value;
-        //select table
-
-        var table=document.getElementsByTagName("table")[0];
-
-        var tablerow=table.insertRow(1);
+            var x2 = document.getElementById("carMaintinance_select").selectedIndex;
+            var y2 = document.getElementById("carMaintinance_select").options;
+            var workno = y2[x2].text;
 
 
-        var cell1=tablerow.insertCell(0);
-        var cellfile=tablerow.insertCell(1);
-        var cell2=tablerow.insertCell(2);
-        var cell3=tablerow.insertCell(3);
-        var cell4=tablerow.insertCell(4);
-        var cell5=tablerow.insertCell(5);
-        var cell6=tablerow.insertCell(6);
-        var cell7=tablerow.insertCell(7);
-        var cell8=tablerow.insertCell(8);
-        var cell9=tablerow.insertCell(9);
-        var cell10=tablerow.insertCell(10);
+            var limit = document.getElementById("limit").value;
+            var work = document.getElementById("carMaintinance_work").value;
+            var price = document.getElementById("Price").value;
+            var percantige = document.getElementById("Percantige").value;
+            var date = document.getElementById("Date").value;
+            var details = document.getElementById("details").value;
+            var carnumber = document.getElementById("carnumber").value;
+
+            var fileNumber = document.getElementById("filenumber").value;
+            //select table
+
+            var table = document.getElementsByTagName("table")[0];
+
+            var tablerow = table.insertRow(1);
 
 
-        cell1.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][carnumber]" id="carnumber_table" value="' + carnumber + '" />'+carnumber+'</td>' ;
-        cellfile.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][fileNumber]" id="fileNumber_table" value="' + fileNumber + '" />'+fileNumber+'</td>' ;
-        cell2.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][limitno]" id="limitno_table" value="' + limitno + '"/>'+ limitno+'</td>' ;
-        cell3.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][limit]" id="limit_table" value="' + limit + '"/>'+ limit+'</td>' ;
-        cell4.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][workno]" id="workno_table" value="' + workno + '"/>'+ workno+'</td>' ;
-        cell5.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][work]" id="work_table" value="' + work + '"/>'+ work+'</td>' ;
-        cell6.innerHTML= '<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][price]" id="price_table" value="' + price + '"/>'+ price+'</td>';
-        cell7.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][percantige]" id="percantige_table" value="' + percantige + '"/>'+percantige +'</td>' ;
-        cell8.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][date]" id="date_table" value="' + date + '"/>'+date +'</td>' ;
-        cell9.innerHTML='<td><input type="hidden" name="maintinacetable['+ Maintinanceindex +'][details]" id="details_table" value="' + details + '"/>'+details +'</td>';
-        cell10.innerHTML='<td><input type="button" class="btn-danger" value="X" id="remCF" /></td>';
-        Maintinanceindex++;
+            var cell1 = tablerow.insertCell(0);
+            var cellfile = tablerow.insertCell(1);
+            var cell2 = tablerow.insertCell(2);
+            var cell3 = tablerow.insertCell(3);
+            var cell4 = tablerow.insertCell(4);
+            var cell5 = tablerow.insertCell(5);
+            var cell6 = tablerow.insertCell(6);
+            var cell7 = tablerow.insertCell(7);
+            var cell8 = tablerow.insertCell(8);
+            var cell9 = tablerow.insertCell(9);
+            var cell10 = tablerow.insertCell(10);
+
+
+            cell1.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][carnumber]" id="carnumber_table" value="' + carnumber + '" />' + carnumber + '</td>';
+            cellfile.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][fileNumber]" id="fileNumber_table" value="' + fileNumber + '" />' + fileNumber + '</td>';
+            cell2.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][limitno]" id="limitno_table" value="' + limitno + '"/>' + limitno + '</td>';
+            cell3.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][limit]" id="limit_table" value="' + limit + '"/>' + limit + '</td>';
+            cell4.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][workno]" id="workno_table" value="' + workno + '"/>' + workno + '</td>';
+            cell5.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][work]" id="work_table" value="' + work + '"/>' + work + '</td>';
+            cell6.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][price]" id="price_table" value="' + price + '"/>' + price + '</td>';
+            cell7.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][percantige]" id="percantige_table" value="' + percantige + '"/>' + percantige + '</td>';
+            cell8.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][date]" id="date_table" value="' + date + '"/>' + date + '</td>';
+            cell9.innerHTML = '<td><input type="hidden" name="maintinacetable[' + Maintinanceindex + '][details]" id="details_table" value="' + details + '"/>' + details + '</td>';
+            cell10.innerHTML = '<td><input type="button" class="btn-danger" value="X" id="remCF" /></td>';
+            Maintinanceindex++;
+        }
     }
 
 
@@ -409,6 +410,24 @@
         $("#maintinacetable").on('click','#remCF',function(){
             $(this).parent().parent().remove();
         });
+
+        $("#maintinanceform").on("submit",function () {
+            if($("#filenumber").val() == ""){
+                alert("يجب اختيار رقم الملف من أعلى ")
+                return false;
+            }
+
+        })
+
+        $("#addMaintinance").on("click",function () {
+            if($("#filenumber").val() == ""){
+                alert("يجب اختيار رقم الملف من أعلى ")
+                return false;
+            }
+
+        })
+
+
         $(document).on("change",".carInfo_select",function () {
             var file_nom=$(this).val();
             ID=$(this).val();
