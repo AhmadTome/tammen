@@ -154,6 +154,14 @@
 </style>
 <script>
     $(document).ready(function () {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
+
         var path;
         var filenumforimage;
         var deleterow;

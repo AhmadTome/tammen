@@ -551,6 +551,15 @@ if(data !=""){
             var button_id = $(this).attr("id");
             $('#row' + button_id + '').remove();
         });
+
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
+
     });
 
 

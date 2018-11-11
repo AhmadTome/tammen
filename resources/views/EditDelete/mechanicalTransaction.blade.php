@@ -110,7 +110,7 @@
                                     <option selected disabled="">اختار القطعة</option>
 
                                     @foreach($mechanicinfo as $item)
-                                        <option value="{{$item->mec_name}}">{{$item->mec_num." |  ".$item->mec_name}}</option>
+                                        <option value="{{$item->id}}">{{$item->mec_num." |  ".$item->mec_name}}</option>
 
                                     @endforeach
                                 </select>
@@ -331,11 +331,14 @@
         var limitno=y[x].text;
         var limit = document.getElementById("limitMech").value;
 
-        var x2 = document.getElementById("carPartMech_select").selectedIndex;
-        var y2 = document.getElementById("carPartMech_select").options;
-        var carpartno=y2[x2].text;
-        var carpart = document.getElementById("carPartMech").value;
+       // var x2 = document.getElementById("carPartMech_select").selectedIndex;
+        //var y2 = document.getElementById("carPartMech_select").options;
+        //var carpartno=y2[x2].text;
+        //var carpart = document.getElementById("carPartMech").value;
 
+        var carpartno = document.getElementById("carPartMech_select").value;
+        var carpart = document.getElementById("carPartMech").value;
+        
         var partcode = document.getElementById("IDPARTCARMech").value;
 
         var x3 = document.getElementById("carTypeMech_select").selectedIndex;
@@ -398,6 +401,13 @@
         Maintinanceindex++;
     }
     $(document).ready(function () {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
 
         $("#carInfo_select,#carPartMech_select").select2({
             dropdownAutoWidth : true,

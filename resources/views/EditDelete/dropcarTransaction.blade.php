@@ -310,6 +310,14 @@
 <script>
     var dropcatindex=0;
     $(document).ready(function () {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
+
 
         $("#carInfo_select,#dropstatment,#part,#maintinancework").select2({
             dropdownAutoWidth : true,

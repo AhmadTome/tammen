@@ -109,7 +109,7 @@
                                     <option selected disabled="">اختار القطعة</option>
 
                                     @foreach($Bodyinfo as $item)
-                                        <option value="{{$item->body_name}}">{{$item->body_num." |  ".$item->body_name}}</option>
+                                        <option value="{{$item->id}}">{{$item->body_num." |  ".$item->body_name}}</option>
 
                                     @endforeach
                                 </select>
@@ -328,10 +328,13 @@
         var limitno=y[x].text;
         var limit = document.getElementById("limitBody").value;
 
-        var x2 = document.getElementById("carPart_select").selectedIndex;
-        var y2 = document.getElementById("carPart_select").options;
-        var carpartno=y2[x2].text;
+       // var x2 = document.getElementById("carPart_select").selectedIndex;
+        //var y2 = document.getElementById("carPart_select").options;
+        //var carpartno=y2[x2].text;
+        var carpartno = document.getElementById("carPart_select").value; //y2[x2].text;
         var carpart = document.getElementById("carPart").value;
+
+        //var carpart = document.getElementById("carPart").value;
 
         var partcode = document.getElementById("IDPARTCAR").value;
 
@@ -395,6 +398,14 @@
     }
 
     $(document).ready(function () {
+
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
 
         $("#carInfo_select,#carPart_select").select2({
             dropdownAutoWidth : true,

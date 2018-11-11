@@ -111,7 +111,7 @@
                                     <option selected disabled="">اختار العمل</option>
 
                                     @foreach($maintinanceinfo as $item)
-                                        <option value="{{$item->mai_name}}">{{$item->mai_num." |  ".$item->mai_name}}</option>
+                                        <option value="{{$item->id}}">{{$item->mai_num." |  ".$item->mai_name}}</option>
 
                                     @endforeach
 
@@ -347,6 +347,13 @@
 
 
     $(document).ready(function () {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log("enter pressed")
+                event.preventDefault();
+                return false;
+            }
+        });
 
         $("#carInfo_select,#carMaintinance_select").select2({
             dropdownAutoWidth : true,

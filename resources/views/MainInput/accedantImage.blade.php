@@ -10,7 +10,7 @@
                     <div class="form-group row" dir="rtl">
                         <label class="control-label col-sm-1 pull-right text-left">تاريخ التصوير: </label>
                         <div class="col-sm-3 pull-right">
-                            <input class="form-control" type="date" name="pictureDate" id="pictureDate" style="text-align: right;"  placeholder="تاريخ التقاط الصور" />
+                            <input class="form-control" type="date" name="pictureDate" id="pictureDate" style="text-align: right;"  placeholder="تاريخ التقاط الصور" required/>
                         </div>
 
                     </div>
@@ -61,6 +61,11 @@
 $(document).ready(function () {
 
     $('#uploadeform').submit(function (e) {
+        if($("#filenumber").val() == ""){
+            alert("يجب اختيار رقم الملف من أعلى ")
+            return false;
+        }
+
         var $fileUpload = $("input[type='file']");
         if (parseInt($fileUpload.get(0).files.length)>20){
             alert("تستطيع تحميل فقط 20 صورة في المرة الواحدة");

@@ -355,6 +355,13 @@ $('#cost').val(data);
         $(this).parent().parent().remove();
     });
 
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            console.log("enter pressed")
+            event.preventDefault();
+            return false;
+        }
+    });
 });
 
 
@@ -409,6 +416,8 @@ function addrow() {
 
     dropcatindex++;
 }
+
+
 
 
 
