@@ -55,7 +55,7 @@
             <div class="panel-body PanelBodyCss">
 
                 <div  style="max-width: 1000px ;margin-bottom: -15px">
-                    <form class="form-horizontal" action="storBankinfo" method="post" >
+                    <form class="form-horizontal" action="storBankinfo" method="post" id="bankform">
                         {{ csrf_field() }}
                         <div class="form-group row" dir="rtl">
                             <div class="form-group row col-sm-12 " dir="rtl">
@@ -321,6 +321,13 @@
             theme: "classic"
         });
 
+        $("#bankform").on("submit",function () {
+            if($("#filenumber").val() == ""){
+                alert("يجب اختيار رقم الملف من أعلى ")
+                return false;
+            }
+
+        })
 
         $(document).on("change","#person_select",function () {
             var data = $(this).val();

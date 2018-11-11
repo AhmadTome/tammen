@@ -45,7 +45,7 @@
             <div class="panel-body PanelBodyCss">
 
                 <div  style="max-width: 1000px ;margin-bottom: -15px">
-                    <form class="form-horizontal" action="EditBankinfo" method="post" >
+                    <form class="form-horizontal" action="EditBankinfo" method="post" id="editbankinfoform">
                         {{ csrf_field() }}
                         <div class="form-group row" dir="rtl">
                             <div class="form-group row col-sm-12 " dir="rtl">
@@ -364,6 +364,13 @@
                 theme: "classic"
             });
 
+        $("#editbankinfoform").on("submit",function () {
+            if($("#filenumber").val() == ""){
+                alert("يجب اختيار رقم الملف من أعلى ")
+                return false;
+            }
+
+        })
 
         var i = 1;
         var ID;

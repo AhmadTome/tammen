@@ -46,7 +46,7 @@
             <div class="panel-body PanelBodyCss">
 
                 <div class="container " style="max-width: 1000px ;margin-bottom: -15px">
-                    <form class="form-horizontal" method="post" action="Editcarcost" >
+                    <form class="form-horizontal" method="post" action="Editcarcost" id="editcarcostform">
                         {{ csrf_field() }}
                         <div class="form-group row col-lg-12 col-md-12 col-xs-12 col-sm-12 " dir="rtl">
 
@@ -242,6 +242,14 @@
             dropdownAutoWidth : true,
             theme: "classic"
         });
+
+        $("#editcarcostform").on("submit",function () {
+            if($("#filenumber").val() == ""){
+                alert("يجب اختيار رقم الملف من أعلى ")
+                return false;
+            }
+
+        })
 
         var i = 1;
         var ID;
