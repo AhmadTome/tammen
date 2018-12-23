@@ -135,7 +135,9 @@
                 'claim_money' => 'مبلغ المطالبة',
                 'report_fees' => 'رسوم التقرير',
                 'with_respect_message' => 'وتفضلو بقبول فائق الاحترام',
-                'discount' => 'الخصم'
+                'discount' => 'الخصم',
+                'Breakdown' => 'بدل تعطل'
+
             ],
             'HR' => [
                 'car_num' => 'מספר רישוי',
@@ -270,7 +272,8 @@
                 'claim_money' => 'דמי דווח',
                 'report_fees' => 'דמי דווח',
                 'with_respect_message' => 'בכבוד רב',
-                'discount' => 'הנחה'
+                'discount' => 'הנחה',
+                'Breakdown' => 'התקלקל'
             ]
         ];
 

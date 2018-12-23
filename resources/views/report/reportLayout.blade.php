@@ -261,6 +261,9 @@
         var newVal = oldValue - discount;
         $oldVal.html(newVal);
     });
+
+
+
 </script>
 </body>
 </html>
