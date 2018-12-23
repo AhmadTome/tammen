@@ -162,19 +162,19 @@
                         <div class="form-group row" dir="rtl">
                             <label class="control-label  pull-right text-left" style="width: 110px">ملاحظات: </label>
                             <div class="col-sm-8 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="note" required></textArea>
+                                <textArea class="form-control PanelBodyCssInput _details" type="note" rows="5"  id="note" required></textArea>
                             </div>
                         </div>
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label  pull-right text-left" style="width: 110px">المركبة الاولى: </label>
                             <div class="col-sm-4 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="firstcar_note" name="firstcar_note" required></textArea>
+                                <textArea class="form-control PanelBodyCssInput _details" type="note" rows="5"  id="firstcar_note" name="firstcar_note" required></textArea>
                             </div>
                             <label class="control-label  pull-right text-left" style="width: 80px">لمركبة الثانية: </label>
 
                             <div class="col-sm-4 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" type="note" rows="5"  id="secondcar_note" name="secondcar_note" required></textArea>
+                                <textArea class="form-control PanelBodyCssInput _details" type="note" rows="5"  id="secondcar_note" name="secondcar_note" required></textArea>
                             </div>
                         </div>
 
@@ -310,11 +310,14 @@
 <script>
     var dropcatindex=0;
     $(document).ready(function () {
-        $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-                console.log("enter pressed")
-                event.preventDefault();
-                return false;
+        $(document).keydown(function (e) {
+            if(event.keyCode == "13"){
+                if ($("._details").is(":focus")) {
+                }
+                else {
+                    event.preventDefault();
+                    return false;
+                }
             }
         });
 

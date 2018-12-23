@@ -98,7 +98,7 @@
                         {{_t('damage_rate',$l)}}
                     </th>
                     <td>
-                        {{$est->DamagePercantige}}
+                        <span id="damage_rate">  {{$est->DamagePercantige}}</span>
                     </td>
                 </tr>
                 <tr>
@@ -114,6 +114,7 @@
                         {{_t('final_price',$l)}}
                     </th>
                     <td>
+                        {{$car->cost->finalcost - $est->DamageCost}}
                     </td>
                 </tr>
             </table>
@@ -129,3 +130,13 @@
         </div>
     </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var damage_rate = parseFloat($("#damage_rate").html());
+        $("#damage_rate").html(damage_rate.toFixed(2))
+
+    })
+</script>

@@ -99,7 +99,7 @@
                         <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left"> ملاحظات : </label>
                             <div class="col-sm-8 pull-right">
-                                <textarea class="form-control rounded-0" name="notes" id="notes" rows="5"  placeholder="ادخل ملاحظاتك ..." required></textarea>
+                                <textarea class="form-control rounded-0 _details" name="notes" id="notes" rows="5"  placeholder="ادخل ملاحظاتك ..." required></textarea>
                             </div>
                         </div>
 
@@ -144,13 +144,16 @@
             theme: "classic"
         });
 
-            $(window).keydown(function(event){
-                if(event.keyCode == 13) {
-                    console.log("enter pressed")
+        $(document).keydown(function (e) {
+            if(event.keyCode == "13"){
+                if ($("._details").is(":focus")) {
+                }
+                else {
                     event.preventDefault();
                     return false;
                 }
-            });
+            }
+        });
 
 
 

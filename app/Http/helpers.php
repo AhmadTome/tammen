@@ -46,7 +46,8 @@
                 'repair_calc' => 'مجموع مبلغ الأعمال / تصليح',
                 'body_part_calc' => 'مجموع ثمن قطع غيار هيكل',
                 'mech_part_calc' => 'مجموع ثمن قطع غيار ميكانيك',
-                'down_calc' => 'مجموع نسبة الهبوط',
+                'down_calc' => 'مجموع مبلغ الهبوط',
+                'damagePercentSummation'=>'مجموع نسبة الأضرار الفنية',
                 'car_price' => 'سعر المركبة',
                 'total_inc_down' => 'المبلغ الكلي للتعويض شامل هبوط القيمة',
                 'direct_damage_total' => 'مبلغ تعويض الأضرار المباشرة',
@@ -134,7 +135,9 @@
                 'claim_money' => 'مبلغ المطالبة',
                 'report_fees' => 'رسوم التقرير',
                 'with_respect_message' => 'وتفضلو بقبول فائق الاحترام',
-                'discount' => 'الخصم'
+                'discount' => 'الخصم',
+                'Breakdown' => 'بدل تعطل'
+
             ],
             'HR' => [
                 'car_num' => 'מספר רישוי',
@@ -154,6 +157,7 @@
                 'acc_date' => 'תאריך נזק',
                 'exam_date' => 'תאריך הבדיקה',
                 'car_num' => 'מספר רישוי',
+                'damagePercentSummation'=>'סך כל הנזקים הטכניים',
                 'car_model' => 'דגם הרכב',
                 'meter' => 'מד אוץ',
                 'car_desc_add' => 'מפרט הרכב ותוספות',
@@ -268,7 +272,8 @@
                 'claim_money' => 'דמי דווח',
                 'report_fees' => 'דמי דווח',
                 'with_respect_message' => 'בכבוד רב',
-                'discount' => 'הנחה'
+                'discount' => 'הנחה',
+                'Breakdown' => 'התקלקל'
             ]
         ];
 

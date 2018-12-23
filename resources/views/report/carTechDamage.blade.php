@@ -12,8 +12,8 @@
     <Br>
     @include('report.parts.carInfoHeader')
     <br>
-    <div class='row border-1' style="height:100px;">
-
+    <div class='row border-1' style="height:100px;padding-right: 20px;">
+        {{$drops[0]->dropStatment}}
     </div>
     <hr>
     <div class="col-xs-3 col-xs-offset-9">
@@ -23,7 +23,7 @@
                     {{_t('car_price',$l)}}
                 </th>
                 <td>
-                    
+                    {{$car->cost->finalcost}}
                 </td>
             </tr>
         </table>
@@ -49,25 +49,35 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+            $totalDrop = 0;
+            ?>
+            @foreach($drops as $drop)
                 <tr>
                     <td>
-                        
+                        {!! $drop->bodyPart != null ? $drop->bodyPart->getName($l) : '' !!}
                     </td>
                     <td>
-                        
+                        {!! $drop->mainPart != null ? $drop->maintPart->getName($l) : '' !!}
                     </td>
                     <td>
-                        
+                        {{$drop->count}}
                     </td>
                     <td>
-                        
+                        {{$drop->percantige / 100}}
+                    </td>
+                    <td>
+                        % {{$drop->percantige}}
+                        <?php $totalDrop += $drop->percantige; ?>
                     </td>
                 </tr>
+            @endforeach
                 <tr>
                     <th colspan="3">
-                        {{_t('total_down_ratio',$l)}}
+                        {{_t('damagePercentSummation',$l)}}
                     </th>
                     <td>
+                        % {{ $totalDrop }}
                     </td>
                 </tr>
                 <tr>
@@ -75,9 +85,10 @@
                         {{_t("direct_damage",$l)}}
                     </th>
                     <td>
-                    
+                        {{$drop->maintinanceCost}}
                     </td>
                 </tr>
+              <!--
                 <tr>
                     <th colspan='3'>
                         {{_t('total_drop_value',$l)}}
@@ -86,6 +97,7 @@
                     
                     </td>
                 </tr>
+                -->
             </tbody>
         </table>
     </div>

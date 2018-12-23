@@ -114,7 +114,7 @@
                             <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
                             <div class="col-sm-8 pull-right">
-                                <textArea type="note" class="form-control PanelBodyCssInput" rows="5" name="note" id="note" placeholder="ادخل ملاحظات" required></textArea>
+                                <textArea type="note" class="form-control PanelBodyCssInput _details" rows="5" name="note" id="note" placeholder="ادخل ملاحظات" required></textArea>
                             </div>
                         </div>
 
@@ -213,11 +213,14 @@
 <script>
     $(document).ready(function () {
 
-        $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-                console.log("enter pressed")
-                event.preventDefault();
-                return false;
+        $(document).keydown(function (e) {
+            if(event.keyCode == "13"){
+                if ($("._details").is(":focus")) {
+                }
+                else {
+                    event.preventDefault();
+                    return false;
+                }
             }
         });
 

@@ -13,18 +13,14 @@
                     <div class="form-group row col-sm-12" dir="rtl">
                         <label class="control-label col-sm-2 pull-right" >الشهادة :</label>
                         <div class="col-sm-8 pull-right">
-                            <textarea class="form-control text-center" rows="5" name="cert" required>
-
-                            </textarea>
+                            <textarea class="form-control text-center _details" rows="5" name="cert" required></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row col-sm-12" dir="rtl">
                         <label class="control-label col-sm-2 pull-right" >الشهادة عبري:</label>
                         <div class="col-sm-8 pull-right">
-                            <textarea class="form-control text-center" rows="5" name="cert_hebrow" required>
-
-                            </textarea>
+                            <textarea class="form-control text-center _details" rows="5" name="cert_hebrow" required></textarea>
                         </div>
                     </div>
 
@@ -82,8 +78,7 @@
                                             <div class="form-group" dir="rtl">
                                                 <label class="control-label col-sm-2 pull-right"  >الشهادة :</label>
                                                 <div class="col-sm-10 pull-right">
-                                                    <textarea class="form-control" id="insName" rows="5"
-                                                    ></textarea>
+                                                    <textarea class="form-control _details" id="insName" rows="5"></textarea>
 
                                                 </div>
                                             </div>
@@ -91,8 +86,7 @@
                                             <div class="form-group" dir="rtl">
                                                 <label class="control-label col-sm-2 pull-right"  >الشهادة عبري :</label>
                                                 <div class="col-sm-10 pull-right">
-                                                    <textarea class="form-control" id="hebrow_insName" rows="5"
-                                                    ></textarea>
+                                                    <textarea class="form-control _details" id="hebrow_insName" rows="5"></textarea>
 
                                                 </div>
                                             </div>
@@ -240,13 +234,16 @@
         });
 
 
-            $(window).keydown(function(event){
-                if(event.keyCode == 13) {
-                    console.log("enter pressed")
+        $(document).keydown(function (e) {
+            if(event.keyCode == "13"){
+                if ($("._details").is(":focus")) {
+                }
+                else {
                     event.preventDefault();
                     return false;
                 }
-            });
+            }
+        });
 
 
     });

@@ -123,7 +123,7 @@
                     <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
                     <div class="col-sm-8 pull-right">
-                        <textArea type="Bodynote" class="form-control PanelBodyCssInput" rows="5" id="note" placeholder="ادخل ملاحظات"></textArea>
+                        <textArea type="Bodynote" class="form-control PanelBodyCssInput _details" rows="5" id="note" placeholder="ادخل ملاحظات"></textArea>
                     </div>
                 </div>
 

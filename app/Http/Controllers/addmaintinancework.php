@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\body_vehicle_work;
+use App\carcost;
+use App\estimate_car;
 use App\getCarInfo;
 use App\maintenance_vehicle_work;
+use App\mechanic_vehicle_work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -120,7 +124,39 @@ class addmaintinancework extends Controller
             $user->file_number = $item['fileNumber'];
             $user->save();
         }
+
+
+        $this->updateDamage($num);
+
+
+
         return redirect()->to('/maintinanceTransaction');
+    }
+
+    public function updateDamage($num){
+        $data_cal =0.0;
+        $mecha_work=mechanic_vehicle_work::select('mech_price','me_mech_count')->where('filenumber',$num)->take(1500)->get();
+        $maintinance_work=maintenance_vehicle_work::select('mawo_cost')->where('file_number',$num)->take(1500)->get();
+        $body_work=body_vehicle_work::select('partPrice','bo_bod_count')->where('file_number',$num)->take(1500)->get();
+
+        foreach ($mecha_work as $value){
+            $data_cal = $data_cal+($value->mech_price * $value->me_mech_count);
+        }
+        foreach ($maintinance_work as $value){
+            $data_cal = $data_cal+($value->mawo_cost );
+        }
+
+        foreach ($body_work as $value){
+            $data_cal = $data_cal+($value->partPrice * $value->bo_bod_count);
+        }
+
+        $carprice=carcost::select('finalcost')->where('filrnumberhidden',$num)->take(100)->get();
+
+        $Dmagepercient = ($data_cal / $carprice[0]->finalcost) * 100 ;
+
+        estimate_car::where('fileNumber','=',$num)
+            ->update(array('DamagePercantige'=>$Dmagepercient , 'finalPriceForMaintinance'=> $data_cal));
+
     }
 
     /**
@@ -143,4 +179,6 @@ class addmaintinancework extends Controller
 
         return response()->json(array('data' => $data, 'data2' => $data2));
     }
+
+
 }

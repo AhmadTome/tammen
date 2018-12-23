@@ -137,6 +137,30 @@
             }
         }
     $(document).ready(function () {
+
+        $("#carInfo_select").on("change",function () {
+
+      var filenumber = $("#carInfo_select").val();
+            $("#DamagePercient").hide();
+            $("#DamagePercient").html("");
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('getDamagePercantige')!!}',
+                data:{'id':filenumber},
+                success:function(data) {
+                    $("#DamagePercient").show();
+                    $("#DamagePercient").html("نسبة الضرر لهذه المركبة "+"%"+(data[0].DamagePercantige).toFixed(2));
+                }
+            });
+
+
+
+
+
+        })
+
+
+
         $(window).keydown(function(event){
             if(event.keyCode == 13) {
                 console.log("enter pressed")

@@ -169,7 +169,7 @@
                             <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
                             <div class="col-sm-8 pull-right">
-                                <textArea  class="form-control PanelBodyCssInput" rows="5" id="personNote" name="personNote" placeholder="ادخل ملاحظات" required></textArea>
+                                <textArea  class="form-control PanelBodyCssInput _details" rows="5" id="personNote" name="personNote" placeholder="ادخل ملاحظات" required></textArea>
                             </div>
                         </div>
 
@@ -348,7 +348,7 @@
                             <label class="control-label col-sm-2 pull-right text-left">  وصف الضرر : </label>
 
                             <div class="col-sm-8 pull-right">
-                                <textArea  class="form-control PanelBodyCssInput" rows="5" id="DamegeDescription" name="DamegeDescription" placeholder="ادخل وصف الضرر" required></textArea>
+                                <textArea  class="form-control PanelBodyCssInput _details" rows="5" id="DamegeDescription" name="DamegeDescription" placeholder="ادخل وصف الضرر" required></textArea>
                             </div>
                         </div>
 
@@ -357,7 +357,7 @@
                             <label class="control-label col-sm-2 pull-right text-left">  ملاحظات : </label>
 
                             <div class="col-sm-8 pull-right">
-                                <textArea  class="form-control PanelBodyCssInput" rows="5" id="noteGuess" name="noteGuess" placeholder="ادخل ملاحظات" required></textArea>
+                                <textArea  class="form-control PanelBodyCssInput _details" rows="5" id="noteGuess" name="noteGuess" placeholder="ادخل ملاحظات" required></textArea>
                             </div>
                         </div>
 
@@ -365,7 +365,7 @@
                             <label class="control-label col-sm-2 pull-right text-left">  ملاحظات تخمين المركبة: </label>
 
                             <div class="col-sm-8 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" rows="5" id="noteGuessCar" name="noteGuessCar" placeholder=" ادخل ملاحظات تخمين المركبة" required></textArea>
+                                <textArea class="form-control PanelBodyCssInput _details" rows="5" id="noteGuessCar" name="noteGuessCar" placeholder=" ادخل ملاحظات تخمين المركبة" required></textArea>
                             </div>
                         </div>
 
@@ -373,7 +373,7 @@
                             <label class="control-label col-sm-2 pull-right text-left">  المرفقات : </label>
 
                             <div class="col-sm-8 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" rows="5" id="AttachmentsGuess" name="AttachmentsGuess" placeholder="ادخل المرفقات" required></textArea>
+                                <textArea class="form-control PanelBodyCssInput _details" rows="5" id="AttachmentsGuess" name="AttachmentsGuess" placeholder="ادخل المرفقات" required></textArea>
                             </div>
                         </div>
 
@@ -385,7 +385,7 @@
 
                             </div>
                             <div class="col-sm-4 pull-right text-left">
-                                <textArea type="crossOffNote" class="form-control PanelBodyCssInput" rows="5" id="crossOffNote" name="crossOffNote" required></textArea>
+                                <textArea type="crossOffNote" class="form-control PanelBodyCssInput _details" rows="5" id="crossOffNote" name="crossOffNote" required></textArea>
                             </div>
 
                         </div>
@@ -487,11 +487,14 @@
 </style>
 <script>
     $(document).ready(function () {
-        $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-                console.log("enter pressed")
-                event.preventDefault();
-                return false;
+        $(document).keydown(function (e) {
+            if(event.keyCode == "13"){
+                if ($("._details").is(":focus")) {
+                }
+                else {
+                    event.preventDefault();
+                    return false;
+                }
             }
         });
 

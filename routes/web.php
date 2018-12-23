@@ -485,6 +485,8 @@ Route::post('saveletter','saveletterConreoller@store');
 
 Route::get('/uploadimage','addImages@store');
 
+Route::get('/getDamagePercantige','addguesscar@findallinfo');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
