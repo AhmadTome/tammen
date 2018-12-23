@@ -57,9 +57,17 @@
                     {{$drops[0]->finalprice}}
                 </td>
             </tr>
+
         </table>
+
+
     </div>
+
     <div class="clearfix"></div>
+
+    <div class='row border-1' style="height:100px;padding-right: 20px;">
+        {{$drops[0]->dropStatment}}
+    </div>
     <br>
     <div class='col-xs-6 col-xs-offset-6'>
         <table class="table table-bordered">

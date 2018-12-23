@@ -114,6 +114,7 @@
                         {{_t('final_price',$l)}}
                     </th>
                     <td>
+                        {{$car->cost->finalcost - $est->DamageCost}}
                     </td>
                 </tr>
             </table>

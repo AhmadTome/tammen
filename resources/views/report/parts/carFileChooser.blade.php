@@ -29,6 +29,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="text-danger text-center" id="fileError"></div>
+    <div class="text-danger text-center" style="font-size: 22px;" id="DamagePercient"></div>
     <br>
 <script>
 

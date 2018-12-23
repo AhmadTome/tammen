@@ -104,7 +104,7 @@
                     <label class="control-label col-sm-2 pull-right text-left">  تفاصيل : </label>
 
                     <div class="col-sm-8 pull-right">
-                        <textArea type="Bodynote" class="form-control PanelBodyCssInput" rows="5" id="details" placeholder="ادخل ملاحظات" required></textArea>
+                        <textArea type="Bodynote" class="form-control PanelBodyCssInput _details" rows="5" id="details" placeholder="ادخل ملاحظات" required></textArea>
                     </div>
                 </div>
 
@@ -321,6 +321,8 @@ var Maintinanceindex=0;
                 newNumber += n[i];
         return newNumber;
     }
+
+
 
 
 </script>

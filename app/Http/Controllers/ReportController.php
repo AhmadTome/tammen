@@ -329,10 +329,13 @@ class ReportController extends Controller
     public function carTechDamage($l = 'AR'){
         $fileId = Input::get('file_num','');
 
+        $estimate = estimate_car::where('fileNumber',$fileId)->get();
         $car = enter_car_info::find($fileId);
+        $drop = drop_car::where('filenumber',$fileId)->get();
+
 
         $date = Input::get('date',date('Y-m-d'));
-        return view('report.carTechDamage',['car' => $car,'l' => $l]);
+        return view('report.carTechDamage',['car' => $car,'estimate',$estimate[0],'drops' => $drop,'l' => $l]);
     }
 
     //شهادة

@@ -192,14 +192,14 @@
                             <div class="form-group col-sm-12 row" dir="rtl">
                                 <label class="control-label col-sm-2 pull-right text-left">قيمة التخمين: </label>
                                 <div class="col-sm-8 pull-right">
-                                    <textArea class="form-control PanelBodyCssInput" rows="5"  id="estimatevalue" name="estimatevalue" required>                                                                            بناء على نتائج الفحص أعلاه فإن قيمة المركبة حسب السوق الفلسطيني هي () شيقل</textArea>
+                                    <textArea class="form-control PanelBodyCssInput _details" rows="5"  id="estimatevalue" name="estimatevalue" required>                                                                            بناء على نتائج الفحص أعلاه فإن قيمة المركبة حسب السوق الفلسطيني هي () شيقل</textArea>
                                 </div>
                             </div>
 
                         <div class="form-group col-sm-12 row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left">ملاحظات البنك: </label>
                             <div class="col-sm-8 pull-right">
-                                <textArea class="form-control PanelBodyCssInput" rows="5"  id="banknote" name="banknote" required></textArea>
+                                <textArea class="form-control PanelBodyCssInput _details" rows="5"  id="banknote" name="banknote" required></textArea>
                             </div>
                         </div>
 
@@ -400,11 +400,14 @@
         });
 
 
-        $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-                console.log("enter pressed")
-                event.preventDefault();
-                return false;
+        $(document).keydown(function (e) {
+            if(event.keyCode == "13"){
+                if ($("._details").is(":focus")) {
+                }
+                else {
+                    event.preventDefault();
+                    return false;
+                }
             }
         });
     });
