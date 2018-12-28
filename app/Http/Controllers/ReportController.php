@@ -289,6 +289,7 @@ class ReportController extends Controller
         $car = enter_car_info::find($fileId);
         $date = Input::get('date',date('Y-m-d'));
         $parts = body_vehicle_work::where('file_number',$fileId)->where('bo_date',$date)->get();
+
         return view('report.bodyPartChange',['car' => $car,'parts' => $parts,'l' => $l]);
     }
 
