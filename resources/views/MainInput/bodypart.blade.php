@@ -265,7 +265,7 @@
         });
 
         $(this).on("change","#carPart_select",function () {
-            var MechPart=$("#carPart_select").val();
+            var MechPart=$("#carPart_select option:selected").text();
             $('#carPart').val(MechPart);
 
         });
