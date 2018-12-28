@@ -149,7 +149,7 @@
                 data:{'id':filenumber},
                 success:function(data) {
                     $("#DamagePercient").show();
-                    $("#DamagePercient").html("نسبة الضرر لهذه المركبة "+"%"+(data[0].DamagePercantige).toFixed(2));
+                    $("#DamagePercient").html("نسبة الضرر لهذه المركبة "+"%"+(data[0].DamagePercantige));
                 }
             });
 
