@@ -60,6 +60,48 @@
     <br>
 
     <div class="row">
+        <div class="col-xs-4 col-xs-offset-8">
+            <table class="table table-bordered" >
+                <tr>
+                    <th class="gray-back" >
+                        {{_t('direct_damage_total',$l)}}
+                    </th>
+                    <td>
+                        <div id="directDamage">{{ $car->total_maintenance + $car->total_body_work + $car->total_mechanic }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="gray-back">
+                        {{_t('damagePercentSummation',$l)}}
+                    </th>
+                    <td>
+                <?php
+                $totalDrop = 0;
+                ?>
+                @foreach($drops as $drop)
+                            <?php $totalDrop += $drop->percantige; ?>
+                @endforeach
+
+
+                        <div id="down_calc"> % {{ $totalDrop }}</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="gray-back">
+                        {{_t('damage_rate',$l)}}
+                    </th>
+                    <td>
+                        <span style="width: 140px;" id="damage_rate">{{$est->DamagePercantige}}</span> %
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xs-8">
             @include('report.parts.carGuessNotes')
         </div>

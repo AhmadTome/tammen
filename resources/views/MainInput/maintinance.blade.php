@@ -294,6 +294,10 @@ var Maintinanceindex=0;
 
         })
 
+        $('#maintinanceform').submit(function(){
+            $(this).find(':submit').attr('disabled','disabled');
+        });
+
     });
 
     $('input[id="Percantige"]').keyup(function(e) {
@@ -321,6 +325,8 @@ var Maintinanceindex=0;
                 newNumber += n[i];
         return newNumber;
     }
+
+
 
 
 

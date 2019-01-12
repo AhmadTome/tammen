@@ -47,19 +47,19 @@ class dropvalueofcar extends Controller
 
     public function findCostDropValue(Request $request){
         $data =0.0;
-        $mecha_work=mechanic_vehicle_work::select('mech_price')->where('filenumber',$request->id)->take(1500)->get();
+        $mecha_work=mechanic_vehicle_work::select('mech_price','me_mech_count')->where('filenumber',$request->id)->take(1500)->get();
         $maintinance_work=maintenance_vehicle_work::select('mawo_cost')->where('file_number',$request->id)->take(1500)->get();
-        $body_work=Body_vehicle_work::select('partPrice')->where('file_number',$request->id)->take(1500)->get();
+        $body_work=Body_vehicle_work::select('partPrice','bo_bod_count')->where('file_number',$request->id)->take(1500)->get();
 
         foreach ($mecha_work as $value){
-            $data = $data+($value->mech_price);
+            $data = $data+($value->mech_price * $value->me_mech_count);
         }
         foreach ($maintinance_work as $value){
-            $data = $data+($value->mawo_cost);
+            $data = $data+($value->mawo_cost );
         }
 
         foreach ($body_work as $value){
-            $data = $data+($value->partPrice);
+            $data = $data+($value->partPrice * $value->bo_bod_count);
         }
 
 

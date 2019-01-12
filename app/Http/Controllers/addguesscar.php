@@ -148,6 +148,7 @@ return $finalPercantige;
         $user->Attachment=Input::get('AttachmentsGuess');
         $user->DestroyCarTo=Input::get('crossOffNamer');
         $user->DestroyText=Input::get('crossOffNote');
+        $user->account_number=Input::get('accountNumber');
 
         if($user->save()){
             session()->flash("notif","تم ادخال تخمين المركبة بنجاح ");
@@ -225,6 +226,7 @@ return $finalPercantige;
         $DestroyText=Input::get('crossOffNote');
 
         $checkplace=Input::get('checkplace');
+        $account_number=Input::get('accountNumber');
 
         $lastid=Input::get('carInfo_select');
 
@@ -239,7 +241,7 @@ return $finalPercantige;
             ,'visitCost'=>$visitCost,'DamageDiscription'=>$DamageDiscription
             ,'EstimateNote'=>$EstimateNote,'carEstimateNote'=>$carEstimateNote
             ,'Attachment'=>$Attachment,'DestroyCarTo'=>$DestroyCarTo
-            ,'DestroyText'=>$DestroyText,'checkplace'=>$checkplace));
+            ,'DestroyText'=>$DestroyText,'checkplace'=>$checkplace,'account_number'=>$account_number));
 
         return redirect()->to('/CarGuessTransaction');
     }
@@ -265,7 +267,7 @@ return $finalPercantige;
             ,'officeCost','finalPriceForMaintinance','dropPercantige','dropCost'
             ,'estimatePercantige','DamagePercantige','DamageCost','visitCost'
             ,'DamageDiscription','EstimateNote','carEstimateNote','Attachment'
-            ,'DestroyCarTo','DestroyText','checkplace')
+            ,'DestroyCarTo','DestroyText','checkplace','account_number')
             ->where('fileNumber',$request->id)->take(1500)->get();
         return response()->json($data);
     }

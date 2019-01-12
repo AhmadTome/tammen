@@ -56,7 +56,7 @@
                             {{$est->Insurance_policy}}
                         </td>
                         <td>
-                            {{$est->DamagePercantige * 100}} %
+                            {{$est->DamagePercantige }} %
                         </td>
                         <td>
                             {{$est->netTotal}}

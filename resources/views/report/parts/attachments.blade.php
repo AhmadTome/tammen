@@ -4,5 +4,6 @@
             <div class="clearfix">
             </div>
             <div class="box padding">
-                {{$est->Attachment}}
+                {!! nl2br(e($est->Attachment)) !!}
+
             </div>

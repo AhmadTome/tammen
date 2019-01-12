@@ -105,6 +105,13 @@
                         </div>
 
                         <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left">   رقم الحساب : </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" id="accountNumber" name="accountNumber" type="text"  placeholder="ادخل رقم الحساب" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
                             <div class="col-sm-4 pull-right text-left">
                                 <select class="form-control " id="insuranceCompany_select">
@@ -595,6 +602,7 @@
                     $('#dropPercantige').val(data);
 
                     var dropPrice=((data/100) * $('#carPrice').val());
+                    console.log(dropPrice);
                     $('#dropPercantigePrice').val(dropPrice);
                 }
 
@@ -627,8 +635,8 @@
                     $('#photograper').val(data[0].gelary);
                     $('#officeCost').val(data[0].officeCost);
                     $('#cost').val(data[0].finalPriceForMaintinance);
-                    $('#dropPercantigePrice').val(data[0].dropCost);
-                    $('#dropPercantige').val(data[0].dropPercantige);
+                    //$('#dropPercantigePrice').val(data[0].dropCost);
+                   // $('#dropPercantige').val(data[0].dropPercantige);
                     $('#Guesspersantige').val(data[0].estimatePercantige);
                     $('#TechnicalDamage').val(data[0].DamagePercantige);
                     $('#DebrisPrice').val(data[0].DamageCost);
@@ -640,6 +648,7 @@
                     $('#crossOffNamer').val(data[0].DestroyCarTo);
                     $('#crossOffNote').val(data[0].DestroyText);
                     $('#checkplace').val(data[0].checkplace);
+                    $('#accountNumber').val(data[0].account_number);
                     }else{
                         alert("لم يتم تسجيل تخمين لهذه المركبة من قبل")
                         $('#ToPerson').val("");

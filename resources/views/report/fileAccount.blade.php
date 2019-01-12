@@ -76,7 +76,7 @@
                         {{_t('account_num',$l)}}
                     </th>
                     <td width="70%" colspan="2">
-
+                        {{$est->account_number}}
                     </td>
                 </tr>
             </table>
@@ -159,6 +159,14 @@
                         {{$car['ve_num']}}
                     </td>
                 </tr>
+                <tr>
+                    <th width="30%">
+                        {{_t('ins_policy',$l)}}
+                    </th>
+                    <td>
+                        {{$est['Insurance_policy']}}
+                    </td>
+                </tr>
             </table>
             <br>
             <table class="table table-bordered">
@@ -174,17 +182,7 @@
             <br>
         </div>
         <div class="col-xs-6">
-            <table class="table table-bordered">
-                <tr>
-                    <th width="30%">
-                        {{_t('ins_policy',$l)}}
-                    </th>
-                    <td>
-                        {{$est['Insurance_policy']}}
-                    </td>
-                </tr>
-            </table>
-            <br>
+
             <table class="table table-bordered">
                 <tr>
                     <th width="30%">

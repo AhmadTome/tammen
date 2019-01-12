@@ -184,7 +184,8 @@
             <div class="clearfix">
             </div>
             <div class="box padding">
-                {{$est->carEstimateNote}}
+                {!! nl2br(e($est->carEstimateNote )) !!}
+
             </div>
         </div>
         <div class="col-xs-3">
@@ -194,7 +195,8 @@
             <div class="clearfix">
             </div>
             <div class="box padding">
-                {{$est->Attachment}}
+                {!! nl2br(e($est->Attachment )) !!}
+
             </div>
         </div>
     </div>

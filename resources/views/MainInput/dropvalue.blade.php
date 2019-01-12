@@ -393,7 +393,16 @@ function addrow() {
         //get variable data
         //var carnumber=document.getElementById("carInfo_select").value;
         var filenumber = document.getElementById("filenumber").value;
-        var dropvaluestatment = document.getElementById("dropstatment").value;
+
+
+        var x2 = document.getElementById("dropstatment").selectedIndex;
+        var y2 = document.getElementById("dropstatment").options;
+        var dropvaluestatment = y2[x2].text;
+
+       // var dropvaluestatment = document.getElementById("dropstatment").value;
+
+
+
         var part = document.getElementById("part").value;
         var maintinace = document.getElementById("maintinancework").value;
         var date = document.getElementById("dropdate").value;

@@ -310,6 +310,10 @@ $(document).ready(function () {
     })
 
 
+    $('#mechanicalform').submit(function(){
+        $(this).find(':submit').attr('disabled','disabled');
+    });
+
 });
 
     $('input[id="MechPercantige" ]').keyup(function(e) {

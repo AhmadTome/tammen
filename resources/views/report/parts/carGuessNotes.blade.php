@@ -4,5 +4,7 @@
             <div class="clearfix">
             </div>
             <div class="box padding">
-                {{$est->carEstimateNote}}
+
+                {!! nl2br(e($est->carEstimateNote )) !!}
+
             </div>

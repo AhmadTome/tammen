@@ -179,12 +179,14 @@ class ReportController extends Controller
         }
         $car = enter_car_info::find($fileId);
         $est = estimate_car::where('fileNumber',$fileId)->get();
+        $drop = drop_car::where('filenumber',$fileId)->get();
+
         if(count($est) == 0){
             return view('errors.noData',[
                 'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
             ]);
         }
-        return view('report.licence',['car' => $car,'l' => $l,'est' => $est[0]]);
+        return view('report.licence',['car' => $car,'l' => $l,'est' => $est[0],'drops' => $drop]);
     }
 
     //تقرير أضرار أولي

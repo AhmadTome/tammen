@@ -127,6 +127,14 @@
                 </div>
             </div>
 
+
+            <div class="form-group row" dir="rtl">
+                <label class="control-label col-sm-2 pull-right text-left">   رقم الحساب : </label>
+                <div class="col-sm-8 pull-right">
+                    <input class="form-control" id="accountNumber" name="accountNumber" type="text"  placeholder="ادخل رقم الحساب" required/>
+                </div>
+            </div>
+
             <div class="form-group row" dir="rtl">
                 <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
                 <div class="col-sm-4 pull-right text-left">
