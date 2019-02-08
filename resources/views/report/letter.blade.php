@@ -4,14 +4,29 @@
 
 @section('content')
 
-<h3 class="text-center">
+    <div dir="ltr">
+    <table class="table pull-left" >
+        <tr>
+
+            <label>{{$letter->sendNum}}&nbsp;&nbsp;</label>
+            <label> :  رقم الصادر</label>
+        </tr>
+        <br>
+        <tr>
+
+            <label>{{$letter->msgDate}}&nbsp;&nbsp;</label>
+            <label> :  التاريخ</label>
+        </tr>
+    </table>
+    </div>
+<h2 class="text-center">
     الموضوع: {{$letter->subject}}
-</h3>
+</h2>
 
 <div class="text-right">
-    <h4>
-        إلى:  {{$letter->destination}}
-    </h4>
+    <h2>
+        إلى:   {{$letter->destination}}
+    </h2>
 </div>
 <div>
     {!! $letter->msg !!}

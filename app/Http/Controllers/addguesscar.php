@@ -210,7 +210,7 @@ return $finalPercantige;
         $transport=Input::get('visit');
         $gelary=Input::get('photograper');
         $officeCost=Input::get('officeCost');
-        //$finalPriceForMaintinance=Input::get('cost');
+        $finalPriceForMaintinance=Input::get('cost');
        // $dropPercantige=Input::get('dropPercantige');
       //  $dropCost=Input::get('dropPercantigePrice');
         $estimatePercantige=Input::get('Guesspersantige');
@@ -241,7 +241,7 @@ return $finalPercantige;
             ,'visitCost'=>$visitCost,'DamageDiscription'=>$DamageDiscription
             ,'EstimateNote'=>$EstimateNote,'carEstimateNote'=>$carEstimateNote
             ,'Attachment'=>$Attachment,'DestroyCarTo'=>$DestroyCarTo
-            ,'DestroyText'=>$DestroyText,'checkplace'=>$checkplace,'account_number'=>$account_number));
+            ,'DestroyText'=>$DestroyText,'checkplace'=>$checkplace,'account_number'=>$account_number,'finalPriceForMaintinance'=>$finalPriceForMaintinance));
 
         return redirect()->to('/CarGuessTransaction');
     }
@@ -271,4 +271,7 @@ return $finalPercantige;
             ->where('fileNumber',$request->id)->take(1500)->get();
         return response()->json($data);
     }
+
+
+
 }

@@ -27,10 +27,10 @@
                         {{_t('file_num',$l)}}
                     </th>
                     <td width="20%">
-
+                        ت
                     </td>
-                    <td width="40%">
-                    
+                    <td>
+                        {{$carInfo['file_num']}}
                     </td>
                 </tr>
             </table>
@@ -131,6 +131,7 @@
                         {{_t('car_owner_name',$l)}}
                     </th>
                     <td>
+                        {{$bankInfo->personowner}}
 
                     </td>
                 </tr>
@@ -139,6 +140,8 @@
                         {{_t('car_owner_id',$l)}}
                     </th>
                     <td>
+                        {{$bankInfo->idpersonowner}}
+
                     </td>
                 </tr>
                 <tr>
@@ -263,7 +266,7 @@
                 {{_t('guess_val',$l)}}
             </td>
             <td>
-            
+                {{$bankInfo->estimatorvalue}}
             </td>
         </tr>
         <tr>

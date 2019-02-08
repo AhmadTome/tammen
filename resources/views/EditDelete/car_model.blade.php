@@ -67,7 +67,7 @@
                                 <select class="form-control " id="car_model_select" name="car_model_select">
                                     <option selected disabled>اختار المركبة</option>
                                     @foreach($models as $item)
-                                        <option value="{{$item->id}}">{{$item->model_name}}</option>
+                                        <option value="{{$item->id}}">{{$item->model_name .'   -   '. $item->modelNumber}}</option>
 
                                     @endforeach
                                 </select>
@@ -89,26 +89,40 @@
                         </div>
 
                         <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left"> رقم الطراز : </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" name="carmodelno" id="carmodelno" type="text"  placeholder="ادخل رقم الطراز" required/>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left"> الصورة : </label>
-                            <div id="imgdiv" class="col-sm-7 pull-right" style="display: none">
-                                <img src="" name="img" id="img" width="600px" height="500px">
-                            </div>
                             <div class="col-sm-2 pull-right" style="margin-right: 20px;">
-                                <input type="file" value="تغيير صورة هذا الموديل" name="editimg" id="editimg">
+                                <input type="file" value="تغيير صورة هذا الموديل" name="images[]" id="images" multiple>
                             </div>
+
+                            <div class="col-sm-2 pull-left">
+                                <button type="button" class="btn btn-danger delete-modal"  id="Delete">حذف</button>
+
+                            </div>
+
+                            <div class="col-sm-2 pull-left">
+                                <input type="submit" class="btn btn-primary"  id="Edit" value="تعديل"/>
+                            </div>
+
+
+
+                            <div id="imgsdiv">
+
+                            </div>
+
                             </div>
 
 
                         <div class="form-group row col-sm-12 ">
 
-                            <div class="col-sm-4 pull-right">
-                                <input type="submit" class="btn btn-primary"  id="Edit" value="تعديل"/>
-                            </div>
 
-                            <div class="col-sm-3 pull-right">
-                                <button type="button" class="btn btn-danger delete-modal"  id="Delete">حذف</button>
-
-                            </div>
 
                         </div>
 
@@ -206,6 +220,7 @@
         });
 
         $("#car_model_select").on("change",function () {
+            $('#imgsdiv').empty();
             var car_model_id = $(this).val();
             $.ajax({
                 type: 'get',
@@ -214,15 +229,45 @@
                     'id':car_model_id
                 },
                 success: function(data) {
-                    $("#carname").val(data[0].model_name);
-                    var imgsrc = "uploads/"+data[0].car_img ;
 
-                    var imgdiv = document.getElementById('imgdiv');
-                    imgdiv.style.display="block";
-                    var image = document.getElementById('img');
-                        image.src = imgsrc;
 
-                     $("#idhidden").val(data[0].id);
+                    $("#carname").val(data.data1[0].model_name);
+                    $("#carmodelno").val(data.data1[0].modelNumber);
+
+
+
+                    if(data.data2.length == 0){
+                        $('#imgsdiv').empty();
+                    }
+                    // عرض الصور من data2
+                    for(var i = 0 ; i<data.data2.length ;i++){
+                        $('#imgsdiv').append('<br><br><div id="imgdiv" class="col-sm-7 pull-right"><br><br><button id="'+ data.data2[i].imgID +'" type="button" name="remove" class="btn btn-danger btn_remove pull-left deleteIMG" ">X</button><br><br> <img style="display: block;" src="'+ data.data2[i].img_path + '" name="img" id="img" width="600px" height="500px"></div>');
+                    }
+
+                    $(".deleteIMG").on('click',function () {
+                        var id = $(this).attr('id');
+
+                        $.ajax({
+                            type: 'get',
+                            url: '{!!URL::to('deletimg')!!}',
+                            data: {
+                                'id':id
+                            },
+                            success: function(data) {
+                                location.reload();
+                            },
+                            error:function (data) {
+                                console.log('error')
+                            }
+
+                        });
+
+
+
+                    });
+
+
+                     $("#idhidden").val(data.data1[0].id);
 
                 },
                 error:function (data) {
@@ -255,6 +300,7 @@
         });
 
         $('.modal-footer').on('click', '.delete', function() {
+
 
             $.ajax({
                 type: 'get',

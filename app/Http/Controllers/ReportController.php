@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\car_model;
+use App\car_model_img;
 use Illuminate\Http\Request;
 use App\enter_car_info;
 use App\CarVisit;
@@ -17,6 +19,7 @@ use App\add_image;
 use App\Estimater;
 use App\bankinfo;
 use App\letter;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use function MongoDB\BSON\toJSON;
 
@@ -55,9 +58,18 @@ class ReportController extends Controller
         return view('monitor');
     }
 
+    public function AccountsInsuranceCompany(){
+        return view('AccountsInsuranceCompany');
+    }
+
     public function images(){
         $carInfo = enter_car_info::all();
         return view('images',['carInfo' => $carInfo]);
+    }
+
+    public function carModelImages(){
+        $carInfo = car_model::all();
+        return view('carModelImages',['carInfo' => $carInfo]);
     }
 
     //تقرير بيانات مركبة
@@ -356,8 +368,9 @@ class ReportController extends Controller
         $fileId = Input::get('file_num','');
         $carInfo = enter_car_info::find($fileId);
         $person = enter_personalinfo::find($id);
+
         $est = estimate_car::where('fileNumber',$fileId)->get();
-        $bankInfo = bankinfo::where('filenumber',$fileId)->get();
+        $bankInfo = bankinfo::where('filenumber',$fileId)->where('personname',$person->name)->get();
         if(count($est) == 0){
             return view('errors.noData',[
                 'msg' => 'يجب ادخال معلومات تخمين لهذه المركبة'
@@ -383,21 +396,132 @@ class ReportController extends Controller
         $To = Input::get('To',date('Y-m-d'));
         if($From == null){
             if($To == null){
-                $ests = estimate_car::get();
+                //$ests = \Illuminate\Support\Facades\DB::select('select m.summation,e.* from monitor_report m inner join estimate_cars e on m.fileNumber = e.fileNumber;');
+                $ests=estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                    ->select('estimate_cars.*', 'monitor_report.summation')
+                    ->get();
             }else{
-                $ests = estimate_car::where('registerDate','<=',$To)->get();
+                $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                    ->select('estimate_cars.*', 'monitor_report.summation')->where('registerDate','<=',$To)->get();
             }
         }else{
             if($To == null){
-                $ests = estimate_car::where('registerDate','>=',$From)->get();
+                $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                    ->select('estimate_cars.*', 'monitor_report.summation')->where('registerDate','>=',$From)->get();
             }else{
-                $ests = estimate_car::where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
+                $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                    ->select('estimate_cars.*', 'monitor_report.summation')->where('registerDate','>=',$From)->where('registerDate','<=',$To)->get();
             }
         }
         
 
         
         return view('report.monitorReport',['l' => $l,'ests' => $ests]);
+    }
+
+    //تقريرحساب شركة التأمين
+    public function AccountsInsuranceCompanyReport(){
+
+        $l = Input::get('lang','AR');
+        $ests;
+        $From = Input::get('From',date('Y-m-d'));
+        $To = Input::get('To',date('Y-m-d'));
+        $companyAccId = Input::get('To_selectBranch');
+
+        // for specific Branch
+        if(strpos($companyAccId,'-')){
+            $companyAcc = explode('-',$companyAccId);
+            $account = $companyAcc[0];
+            $branchNO = $companyAcc[1];
+
+
+            if($From == null){
+                if($To == null){
+                    //$ests = \Illuminate\Support\Facades\DB::select('select m.summation,e.* from monitor_report m inner join estimate_cars e on m.fileNumber = e.fileNumber;');
+                    $ests=estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number',$account.'-'.$branchNO)
+                        ->get();
+                }else{
+                    $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number',$account.'-'.$branchNO)
+                        ->where('registerDate','<=',$To)->get();
+                }
+            }else{
+                if($To == null){
+                    $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number',$account.'-'.$branchNO)
+                        ->where('registerDate','>=',$From)->get();
+                }else{
+                    $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number',$account.'-'.$branchNO)
+                        ->where('registerDate','<=',$To)->get();
+                }
+            }
+
+        }
+
+
+
+
+        // for company to get all branches
+        else{
+
+            $account = $companyAccId;
+
+            if($From == null){
+                if($To == null){
+                    //$ests = \Illuminate\Support\Facades\DB::select('select m.summation,e.* from monitor_report m inner join estimate_cars e on m.fileNumber = e.fileNumber;');
+                    $ests=estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number','like',$account.'-%')
+                        ->get();
+                }else{
+                    $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number','like',$account.'-%')
+                        ->where('registerDate','<=',$To)->get();
+                }
+            }else{
+                if($To == null){
+                    $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number','like',$account.'-%')
+                        ->where('registerDate','>=',$From)->get();
+                }else{
+                    $ests = estimate_car::leftJoin('monitor_report','estimate_cars.fileNumber','=', 'monitor_report.fileNumber')
+                        ->leftJoin('enter_car_infos','estimate_cars.fileNumber','=','enter_car_infos.file_num')
+                        ->leftJoin('accountstatment','estimate_cars.fileNumber','=','accountstatment.filenumber')
+                        ->select('estimate_cars.*', 'monitor_report.summation','enter_car_infos.ve_num','accountstatment.*')
+                        ->where('account_number','like',$account.'-%')
+                        ->where('registerDate','<=',$To)->get();
+                }
+            }
+        }
+
+
+
+
+
+
+        return view('report.AccountsInsuranceCompanyReport',['l' => $l,'ests' => $ests]);
     }
 
     //
@@ -412,6 +536,21 @@ class ReportController extends Controller
             $groupedImages[$image->im_photo_date][] = $image;
         }
         return view('report.carImages',['groupedImages' => $groupedImages]);
+    }
+
+    //
+    public function carImgModel(Request $request){
+        $id = $request->type;
+        if(!$id){
+            return;
+        }
+        $allImages = car_model_img::where('car_model_id',$id)->get();
+        $info      = car_model::where('id',$id)->get();
+        $groupedImages = [];
+        foreach($allImages as $image){
+            $groupedImages[$image->im_photo_date][] = $image;
+        }
+        return view('report.carImgModel',['groupedImages' => $groupedImages , 'info' => $info]);
     }
 
     public function partsDates(Request $request){

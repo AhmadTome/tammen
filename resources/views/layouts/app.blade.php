@@ -19,6 +19,8 @@
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=pr258dvhk93ysoi90l1gq5dtc887f9djj8i9rozctarmfaql"></script>
     <script>tinymce.init({ selector:'.tinymce' });</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/myscript_Angularjs.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
     <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
 
@@ -79,6 +81,15 @@
                 </div>
             </div>
         @endif
+
+            @if(session()->has('error'))
+                <div class="row">
+                    <div class="alert alert-danger" dir="rtl">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{ session('error') }}</strong>
+                    </div>
+                </div>
+            @endif
         
         @yield('content')
     </div>

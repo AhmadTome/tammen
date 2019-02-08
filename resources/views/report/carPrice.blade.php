@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <th class="gray-back" width="100px;">
-                        {{_t('Breakdown',$l)}}
+                        <input class="gray-back" style="text-align: center;border: none;" type="text" value="أخرى">
                     </th>
                     <td id="discount">
                         <input id="breakdown" type="number" value="0">

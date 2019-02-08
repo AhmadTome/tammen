@@ -279,7 +279,9 @@ Route::get('/SaveLetter', function () {
     });
     Route::get('/get_car_model','addcarInformation@get_cars_model');
     Route::get('/deletcarmodel','addcarInformation@delete_cars_model');
+    Route::get('/deletimg','addcarInformation@deleteIMG');
     Route::post('Editcarmodel','addcarInformation@edit_cars_model');
+
 
 // add car visit
     Route::get('/car_visit', function () {
@@ -481,9 +483,35 @@ Route::post('saveletter','saveletterConreoller@store');
 
 //Route::get('/addInsuranceCompany','addInsuranceCompany@findCarInfoforGesscar');
 
+// Account of statment
+    Route::get('/AccountOfStatment', function () {
+        $carInfo =getCarInfo::all();
+      return view('MainInput.AccountStatment')->with('carInfo',$carInfo);
+    });
+    Route::post('storeAccountStatment','accountstatment@store');
+    Route::get('/EditAccountOfStatment', function () {
+        $carInfo =getCarInfo::all();
+        return view('EditDelete.EditAccountStatment')->with('carInfo',$carInfo);
+    });
+    Route::get('findInfoAccountStatment','accountstatment@getData');
+    Route::post('updateAccountStatment','accountstatment@update');
+    Route::get('deletAccountStatment','accountstatment@delete');
 
 
-Route::get('/uploadimage','addImages@store');
+// Account for Insurance Company
+    Route::get('/AccountForIncuranceCompany', function () {
+        return view('AccountForIncuranceCompany');
+    });
+    Route::post('storeAccountForIncuranceCompany','account_insurance_companys@store');
+    Route::get('/getMainCompany','account_insurance_companys@gerMainCompany');
+    Route::get('/getallCompany','account_insurance_companys@getallCompany');
+
+
+
+
+
+
+    Route::get('/uploadimage','addImages@store');
 
 Route::get('/getDamagePercantige','addguesscar@findallinfo');
 
@@ -506,8 +534,12 @@ Route::group(['prefix' => '/report'],function(){
 
     Route::get('/monitor','ReportController@monitor');
 
+    Route::get('/AccountsInsuranceCompany','ReportController@AccountsInsuranceCompany');
+
     Route::get('/images','ReportController@images');
-    
+
+    Route::get('/carModelImages','ReportController@carModelImages');
+
     //تقرير بيانات مركبة
     Route::get('/carInfo/{l?}','ReportController@carInfo');
     
@@ -563,10 +595,14 @@ Route::group(['prefix' => '/report'],function(){
     Route::get('/bankStmnt/{l?}','ReportController@bankStmnt');
 
     //تقرير الرقابة
-    Route::get('/monitorReport','ReportController@monitorReport');
+    Route::get('/monitorReport','ReportController@AccountsInsuranceCompanyReport');
 
+    //تقرير حساب شركة التأمين
+    Route::get('/AccountsInsuranceCompanyReport','ReportController@AccountsInsuranceCompanyReport');
     //صور الحادث
     Route::get('/carImages','ReportController@carImages');
+    // عرض صور موديل مركبة
+    Route::get('/carImgModel','ReportController@carImgModel');
 
     Route::get('/letter/{id}','ReportController@letter');
 });

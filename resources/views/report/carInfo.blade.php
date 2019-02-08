@@ -103,7 +103,8 @@
                             {{_t('exam_place',$l)}}
                         </th>
                         <td>
-                            {!! $est->garageObject != null ? $est->garageObject->getName($l) : '' !!}
+                            {{$est->checkplace}}
+                           <!-- {!! $est->garageObject != null ? $est->garageObject->getName($l) : '' !!} -->
                         </td>
                     </tr>
                     <tr>

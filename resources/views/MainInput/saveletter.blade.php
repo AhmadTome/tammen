@@ -75,6 +75,20 @@
                         </div>
 
                         <div class="form-group col-sm-12 row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left"> رقم الصادر :</label>
+                            <div class="col-sm-5 pull-right text-left">
+                                <input class="form-control" type="text" name="sendNumber" placeholder="ادخل رقم الصادر" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left"> تاريخ المراسلة :</label>
+                            <div class="col-sm-5 pull-right text-left">
+                                <input class="form-control" type="date" name="msgDate" placeholder="ادخل تاريخ المراسلة" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left">نص الرسالة :</label>
                             <div class="col-sm-8 pull-right text-left">
            <textarea class="tinymce" name="msg" placeholder="ادخل النص" rows="10" cols="15" required>

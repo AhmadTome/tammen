@@ -3,11 +3,14 @@
 @section('title','تقرير الرقابة')
 
 @section('content')
-<div class="panel panel-default">
-            <div class="panel-heading">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h4>
                 تقرير الرقابة
-            </div>
-            <div dir="rtl">
+            </h4>
+
+        </div>
+        <div dir="rtl">
             <form action="/report/monitorReport" method="GET">
 
                 <div class="col-sm-6">
@@ -19,7 +22,7 @@
                     <input type="date" class="form-control" name='From'>
                 </div>
                 <div class="clearfix"></div>
-                <br>    
+                <br>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         <select name="lang" id="lang" class='form-control'>
@@ -42,9 +45,9 @@
                 </div>
                 <div class="clearfix"></div>
                 <br>
-                </form>
-            </div>
+            </form>
         </div>
+    </div>
 @endsection
 
 {{--

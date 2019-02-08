@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\carcost;
+use App\estimate_car;
 use App\getCarInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -198,6 +199,13 @@ class carcosts extends Controller
 
         carcost::where('filrnumberhidden', '=', $filrnumberhidden)
             ->update(array('finalcost' =>$finalcost , 'causes'=>$causes ,'orginalcost'=>$orginalcost ));
+
+        if(count(estimate_car::where('fileNumber','=',$filrnumberhidden)->get() ) > 0){
+            estimate_car::where('fileNumber','=',$filrnumberhidden)
+                ->update(array('carPrice' => $finalcost));
+        }
+
+
         return redirect()->to('/carcostTransaction');
     }
 

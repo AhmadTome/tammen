@@ -59,10 +59,14 @@
                             {{$est->DamagePercantige }} %
                         </td>
                         <td>
-                            {{$est->netTotal}}
+                            @if($est->DamageCost > 0  )
+                                {{$est->carPrice - $est->DamageCost}}
+                            @else
+                                {{($est->finalPriceForMaintinance) +(($est->summation / 100) * $est->carPrice)}}
+                            @endif
                         </td>
                         <td>
-                            
+                            {{$est->netTotal}}
                         </td>
                         <td>
                             {{$est->registerDate}}

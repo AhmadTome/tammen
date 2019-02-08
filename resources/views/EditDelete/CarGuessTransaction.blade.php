@@ -82,11 +82,31 @@
 
                     </div>
 
+
+
                     <div  style="max-width: 1000px ;margin-bottom: -15px">
+
+
                         <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left">   لحضرة : </label>
                             <div class="col-sm-8 pull-right">
-                                <input class="form-control" id="ToPerson" name="ToPerson" type="text"  placeholder="ادخل الاسم" required/>
+                                <select class="form-control text-right" id="To_selectBranch" name="To_selectBranch">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left">   لحضرة : </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" id="ToPerson" name="ToPerson" type="text"  placeholder="ادخل الاسم" required readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left">   رقم الحساب : </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control" id="accountNumber" name="accountNumber" type="text"  placeholder="ادخل رقم الحساب" required readonly/>
                             </div>
                         </div>
 
@@ -104,12 +124,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row" dir="rtl">
-                            <label class="control-label col-sm-2 pull-right text-left">   رقم الحساب : </label>
-                            <div class="col-sm-8 pull-right">
-                                <input class="form-control" id="accountNumber" name="accountNumber" type="text"  placeholder="ادخل رقم الحساب" required/>
-                            </div>
-                        </div>
+
 
                         <div class="form-group row" dir="rtl">
                             <label class="control-label col-sm-2 pull-right text-left" >شركة التأمين :</label>
@@ -506,11 +521,38 @@
         });
 
 
-        $("#carInfo_select,#insuranceCompany_select,#City_select,#person_select,#damaeType_select,#GuessNumber_select,#garageNumber_select").select2({
+        $("#To_selectBranch,#carInfo_select,#insuranceCompany_select,#City_select,#person_select,#damaeType_select,#GuessNumber_select,#garageNumber_select").select2({
             dropdownAutoWidth : true,
             theme: "classic"
         });
 
+        $.ajax({
+
+            type:'get',
+            url:'{!!URL::to('getallCompany')!!}',
+            success:function(data) {
+                $('#To_selectBranch').empty();
+                $('#To_selectBranch').append('<option selected disabled=""> اختار الشركة الرئيسية </option>')
+
+                for(var i = 0 ; i< data.length ; i++){
+                    if(data[i].accountNoBranch == 'x' && data[i].branchName == 'x')
+                        $('#To_selectBranch').append('<option value=" '+ data[i].accountNo +'"> '+ data[i].ToCompany +' </option>')
+                    else
+                        $('#To_selectBranch').append('<option value=" '+ data[i].accountNo+'-'+data[i].accountNoBranch +'"> '+ data[i].ToCompany+'-'+data[i].branchName +' </option>')
+                }
+            }
+        });
+
+        $('#To_selectBranch').on("change",function () {
+            var countNO = $(this).val();
+
+            var x2 = document.getElementById("To_selectBranch").selectedIndex;
+            var y2 = document.getElementById("To_selectBranch").options;
+            var ToMain = y2[x2].text;
+
+            $('#accountNumber').val(countNO);
+            $('#ToPerson').val(ToMain);
+        })
 
         var ID;
         $(document).on('click', '.delete-modal', function() {

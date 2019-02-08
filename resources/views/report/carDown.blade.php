@@ -100,7 +100,7 @@
                             {!! $drop->bodyPart != null ? $drop->bodyPart->getName($l) : '' !!}
                         </td>
                         <td>
-                            {!! $drop->mainPart != null ? $drop->maintPart->getName($l) : '' !!}
+                            {{$drop->maintinance}}
                         </td>
                         <td>
                             {{$drop->count}}
@@ -109,8 +109,8 @@
                             {{$drop->percantige / 100}}
                         </td>
                         <td>
-                            % {{$drop->percantige}}
-                            <?php $totalDrop += $drop->percantige; ?>
+                            % {{$drop->percantige * $drop->count}}
+                            <?php $totalDrop += ($drop->percantige * $drop->count) ; ?>
                         </td>
                     </tr>
                 @endforeach

@@ -167,9 +167,15 @@
                         {{$est['Insurance_policy']}}
                     </td>
                 </tr>
-            </table>
-            <br>
-            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">
+                        {{_t('ins_company',$l)}}
+                    </th>
+                    <td>
+                        {{$est['insurance_company']}}
+                    </td>
+                </tr>
+
                 <tr>
                     <th width="30%">
                         {{_t('production_year',$l)}}

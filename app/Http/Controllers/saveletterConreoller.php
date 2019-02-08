@@ -43,6 +43,10 @@ class saveletterConreoller extends Controller
         $user->msg = Input::get('msg');
         $user->sender = Input::get('sender');
         $user->sign = Input::get('sign');
+
+        $user->msgDate = Input::get('msgDate');
+        $user->sendNum = Input::get('sendNumber');
+
         if ($user->save()) {
             session()->flash("notif", "تم حفظ الرسالة بنجاح ");
         } else {

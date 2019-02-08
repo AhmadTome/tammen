@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\car_model;
+use App\car_model_img;
 use App\car_visit;
 use App\enter_car_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rules\In;
 
 
 class addcarInformation extends Controller
@@ -204,42 +206,97 @@ $lastfilenum=Input::get('carInfo_select');
     }
 
     public function enter_model(Request $request){
+        $car = new car_model;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/uploads');
-            $image->move($destinationPath, $name);
-            $user = new car_model;
-            $user->model_name = Input::get('car_model');
-            $user->car_img = $name ;
-            if($user->save()){
-                session()->flash("notif","تم ادخال صورة الموديل بنجاح ");
+
+        $car->model_name = Input::get('car_model');
+        $car->modelNumber = Input::get('car_model_no');
+
+        $car->save();
+        $id = $car->id;
+
+
+
+        $imagcount=1;
+        if($request->hasFile('images')){
+
+            foreach($request->file('images') as $file) {
+                $ext=$file->getClientOriginalExtension();
+                $date=date('Ymd_His');
+                $imagename =time().'_'.$date.'_'.($imagcount++).'.'.$ext ;
+                $file->move(public_path().'/uploads', $imagename);
+
+                $car_img = new car_model_img;
+                $car_img->car_model_id=$id;
+
+                $car_img->img_path='/uploads/'.$imagename;
+                $car_img->save();
             }
-            return redirect()->back();
         }
         else{
             session()->flash("notif","لم يتم ادخال الموديل لحدوث خطأ في الادخال");
             return redirect()->back();
         }
 
+        session()->flash("notif","تم ادخال موديل السيارة بنجاح");
+        return redirect()->back();
+
     }
 
     public function get_cars_model(Request $request){
         $num = $request->id;
 
-       $data = car_model::where('id','=',$num)->get();
-        return $data;
+       $data1 = car_model::where('id','=',$num)->get();
+       $data2 = car_model_img::where('car_model_id','=',$num)->get();
+        return response()->json(array('data1' => $data1, 'data2' => $data2));
+    }
+
+    public function deleteIMG(Request $request){
+        $num = $request->id;
+
+
+      car_model_img::where('imgID','=',$num)->delete();
     }
 
     public function delete_cars_model(Request $request){
         $num = $request->id;
-
         car_model::where('id','=',$num)->delete();
-        return response()->json();
+
     }
 
     public function edit_cars_model(Request $request){
+
+        $carname = Input::get('carname');
+        $carno = Input::get('carmodelno');
+        $id = Input::get('idhidden');
+
+
+       car_model::where('id','=',$id)
+           ->update(array('model_name' => $carname , 'modelNumber' => $carno));
+
+        $imagcount=1;
+        if($request->hasFile('images')){
+
+            foreach($request->file('images') as $file) {
+                $ext=$file->getClientOriginalExtension();
+                $date=date('Ymd_His');
+                $imagename =time().'_'.$date.'_'.($imagcount++).'.'.$ext ;
+                $file->move(public_path().'/uploads', $imagename);
+
+                $car_img = new car_model_img;
+                $car_img->car_model_id=$id;
+
+                $car_img->img_path='/uploads/'.$imagename;
+                $car_img->save();
+            }
+        }
+
+
+return redirect()->back();
+
+
+
+
         $previmg = car_model::where('id','=',Input::get('idhidden'))->get()[0]->car_img;
 
         car_model::where('id','=',Input::get('idhidden'))->delete();

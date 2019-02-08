@@ -136,7 +136,12 @@
                 'report_fees' => 'رسوم التقرير',
                 'with_respect_message' => 'وتفضلو بقبول فائق الاحترام',
                 'discount' => 'الخصم',
-                'Breakdown' => 'بدل تعطل'
+                'Breakdown' => 'بدل تعطل',
+                'bill_number' => 'رقم الفاتورة',
+                'Invoice_value' => 'قيمة الفاتورة',
+                'check_number' => 'رقم الشيك',
+                'check_value' => 'قيمة الشيك'
+
 
             ],
             'HR' => [
@@ -273,7 +278,12 @@
                 'report_fees' => 'דמי דווח',
                 'with_respect_message' => 'בכבוד רב',
                 'discount' => 'הנחה',
-                'Breakdown' => 'התקלקל'
+                'Breakdown' => 'התקלקל',
+                'bill_number' => 'מספר חשבונית',
+                'Invoice_value' => 'ערך חשבונית',
+                'check_number' => 'בדוק את המספר',
+                'check_value' => 'בדוק את הערך'
+
             ]
         ];
 

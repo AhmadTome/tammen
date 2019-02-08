@@ -55,10 +55,15 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/monitor">تقرير الرقابة</a></li>
                         <li role="presentation" class="divider"></li>
 
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/AccountsInsuranceCompany">تقرير حساب شركة تأمين</a></li>
+                        <li role="presentation" class="divider"></li>
+
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/images">صور الحادث</a></li>
                         <li role="presentation" class="divider"></li>
 
                         <li role="presentation"><a  role="menuitem" tabindex="-1" href="/letters/list">المراسلات</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a  role="menuitem" tabindex="-1" href="/report/carModelImages">تقرير موديل سيارة</a></li>
 
                     </ul>
                 </li>
@@ -69,6 +74,9 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('carinfoTransaction') }}">بيانات مركبة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('CarGuessTransaction') }}">تخمين مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('EditAccountOfStatment') }}">كشف حساب</a></li>
                         <li role="presentation" class="divider"></li>
 
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('maintinanceTransaction') }}"> أعمال صيانة على المركبة</a></li>
@@ -101,6 +109,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addDamage') }}">ادخال ضرر</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('addCertification')}}">ادخال شهادة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('AccountForIncuranceCompany')}}">ادخال كشف حساب تأمين</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('addMechParts') }}">ادخال أجزاء ميكانيكية</a></li>
                         <li role="presentation" class="divider"></li>
@@ -139,6 +149,8 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ asset('dropvalue')}}"> ادخال هبوط المركبة</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('carGuess')}}">ادخال تخمين مركبة</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{asset('AccountOfStatment')}}">ادخال كشف حساب</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href={{asset('BankDisclosure')}}>ادخال كشف بنك</a></li>
                         <li role="presentation" class="divider"></li>

@@ -83,16 +83,23 @@
                         {{ csrf_field() }}
 
                         <div class="form-group row" dir="rtl">
-                            <label class="control-label col-sm-2 pull-right text-left"> اسم الموديل : </label>
+                            <label class="control-label col-sm-2 pull-right text-left"> الاسم التجاري : </label>
                             <div class="col-sm-8 pull-right">
-                                <input class="form-control" name="car_model" id="car_model" type="text"  placeholder="ادخل اسم الموديل" required/>
+                                <input class="form-control" name="car_model" id="car_model" type="text"  placeholder="ادخل الاسم التجاري" required/>
                             </div>
                         </div>
 
                         <div class="form-group row" dir="rtl">
-                            <label class="control-label col-sm-2 pull-right text-left">ادراج موديل المركبة : </label>
+                            <label class="control-label col-sm-2 pull-right text-left"> رقم الطراز : </label>
                             <div class="col-sm-8 pull-right">
-                                <input class="form-control image" type="file" name="image" id="image" value="اختار صورة المركبة" required/>
+                                <input class="form-control" name="car_model_no" id="car_model_no" type="text"  placeholder="ادخل الاسم التجاري" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" dir="rtl">
+                            <label class="control-label col-sm-2 pull-right text-left">صور المركبة ( 1 - 10 ) : </label>
+                            <div class="col-sm-8 pull-right">
+                                <input class="form-control image" type="file" name="images[]" id="images" value="اختار صورة المركبة" multiple required/>
 
 
 
@@ -133,6 +140,16 @@
 </html>
 <script>
     $(document).ready(function () {
+        $(function(){
+            $("input[type='submit']").click(function(){
+                var $fileUpload = $("input[type='file']");
+                if (parseInt($fileUpload.get(0).files.length)>10){
+                    alert("الحد الأقصى لعدد الصور هو 10 صور فقط");
+                    return false;
+                }
+            });
+        });
+
         $(window).keydown(function(event){
             if(event.keyCode == 13) {
                 console.log("enter pressed")
