@@ -46,8 +46,8 @@
                     <td>
                         {{$car['ve_body_num']}}
                     </td>
-                    <td>
-                        {{date('Y-m-d',strtotime($car->created_at))}}
+                    <td id="discount">
+                        <input id="breakdown" type="text" value="">
                     </td>
                 </tr>
             </tbody>

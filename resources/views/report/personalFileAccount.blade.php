@@ -55,8 +55,8 @@
                 <th>
                     {{_t('production_date',$l)}}
                 </th>
-                <td>
-                    {{date('Y-m-d',strtotime($est->created_at))}}
+                <td id="discount">
+                    <input id="breakdown" type="text" value="">
                 </td>
             </tr>
             <tr>

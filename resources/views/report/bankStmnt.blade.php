@@ -18,8 +18,8 @@
                     <th width="40%">
                         {{_t('production_date',$l)}}
                     </th>
-                    <td colspan="2">
-                        {{date('Y-m-d',strtotime($carInfo->created_at))}}
+                    <td id="discount" colspan="2">
+                        <input id="breakdown" type="text" value="">
                     </td>
                 </tr>
                 <tr>

@@ -3,8 +3,8 @@
                     <th width="30%">
                         {{_t('production_date',$l)}}
                     </th>
-                    <td colspan="2">
-                        {{date('Y-m-d')}}
+                    <td id="discount" colspan="2">
+                        <input id="breakdown" type="text" value="">
                     </td>
                 </tr>
                 <tr>
