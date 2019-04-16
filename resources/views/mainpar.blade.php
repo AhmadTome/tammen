@@ -40,9 +40,10 @@
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a href="/report/car">تقارير المركبة</a></li>
                         <li role="presentation" class="divider"></li>
+                        <!--
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/insurance">حساب شركة التأمين</a></li>
                         <li role="presentation" class="divider"></li>
-
+                        -->
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/report/insurance/benifiter">حساب شركة التامين للمستفيد</a></li>
                         <li role="presentation" class="divider"></li>
 
